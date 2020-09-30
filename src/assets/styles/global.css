@@ -33,7 +33,8 @@ body,
 }
 
 body {
-  background: var(--color-background);
+  z-index: 0;
+  background-color: #cdd9e2;
 }
 
 #root {
@@ -46,8 +47,7 @@ body,
 input,
 button,
 textarea {
-  font: 500 1.6rem Poppins;
-  color: var(--color-text-base);
+  font: 500 1.6rem Roboto;
 }
 
 .container {
