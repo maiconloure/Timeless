@@ -13,7 +13,7 @@ interface LandingPageProps {
 }
 
 const Landing = ({ history }: LandingPageProps) => {
-  const [handleForm, setHandleForm] = useState(true);
+  const [handleForm, setHandleForm] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [windowSize, setWindowSize] = useState({
@@ -120,7 +120,7 @@ const Landing = ({ history }: LandingPageProps) => {
           </FeatTwo>
         </RegisterArea>
 
-        {handleForm && (
+        {windowSize.width < 768 && handleForm && (
           <RegisterMenu>
             <Input
               type="text"
@@ -151,6 +151,44 @@ const Landing = ({ history }: LandingPageProps) => {
               Cadastrar
             </Button>
           </RegisterMenu>
+        )}
+
+        {windowSize.width > 768 && handleForm && (
+          <ModalBackground>
+            <RegisterModal>
+              <ReturnModal onClick={() => setHandleForm(false)}>
+                <img src={returnIcon} alt="return-icon" />
+              </ReturnModal>
+              <Input
+                type="text"
+                placeholder="email"
+                color="#014D82"
+                width="260px"
+                fontSize="2rem"
+                weight={400}
+                height="44px"
+                onTextChange={(evt: any) => setEmail(evt)}
+              />
+              <PasswordInput
+                placeholder="senha"
+                width="260px"
+                color="#014D82"
+                fontSize="2rem"
+                weight={400}
+                height="44px"
+                onTextChange={(evt: any) => setPassword(evt)}
+              />
+              <Button
+                color="#014D82"
+                fontSize="2.6rem"
+                width="200px"
+                height="44px"
+                weight={700}
+                onClick={OnFinish}>
+                Cadastrar
+              </Button>
+            </RegisterModal>
+          </ModalBackground>
         )}
 
         <MainFrame>
@@ -537,11 +575,10 @@ const RegisterMenu = styled.div`
   align-items: center;
   justify-content: center;
 
-  &:nth-child(1) {
-    margin-right: 20px;
-  }
-
   div {
+    &:nth-child(2) {
+      margin-right: 17px;
+    }
     padding: 10px;
 
     input {
@@ -636,4 +673,58 @@ const BottomBar = styled.div`
   width: 100%;
   height: 60%;
   background-color: var(--color-primary-0);
+`;
+
+const ModalBackground = styled.div`
+  position: absolute;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+`;
+
+const RegisterModal = styled.div`
+  position: absolute;
+  z-index: 99999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 460px;
+  border-radius: 4px;
+  background: var(--color-primary-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    padding: 10px;
+    &:nth-child(3) {
+      margin-right: 17px;
+    }
+    input {
+      font-size: 1.7rem;
+      padding: 10px;
+      height: 36px;
+      width: 220px;
+    }
+    svg {
+      width: 1.8rem;
+    }
+  }
+
+  button {
+    border-radius: 3px;
+    font-size: 1.8rem;
+    margin-top: 0px;
+    height: 36px;
+    width: 120px;
+  }
+`;
+
+const ReturnModal = styled.div`
+  img {
+    width: 80px;
+  }
 `;
