@@ -2,15 +2,27 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
+import './styles.css';
 import BackgroundImage from '../../assets/background.svg';
-
+import UserIcon from '../../assets/user1-icon.png';
 const Board = () => {
   return (
     <BoardPage>
       <Background src={BackgroundImage} alt="background-image" />
+
       <TopContainer>
-        <Bar />
+        <Bar>
+          <Info>
+            <h2>Maicon Lourenço</h2>
+            <p>Online</p>
+          </Info>
+
+          <ProfileIcon>
+            <img src={UserIcon} alt="user-profile-pic" />
+          </ProfileIcon>
+        </Bar>
       </TopContainer>
+
       <InnerBoardContainer>
         <SideMenuContainer drag dragMomentum={false}>
           <SideMenu>
@@ -26,7 +38,7 @@ export default Board;
 
 const BoardPage = styled.div`
   background-color: var(--color-background);
-  position: relative;
+  /* position: relative; */
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -46,10 +58,20 @@ const TopContainer = styled.div`
 `;
 
 const Bar = styled.div`
-  display: block;
+  display: flex;
   width: 100%;
   height: 55px;
   background-color: var(--color-primary-0);
+`;
+
+const Info = styled.div``;
+
+const ProfileIcon = styled.div`
+  height: 55px;
+
+  img {
+    width: 50px;
+  }
 `;
 
 const InnerBoardContainer = styled.div`
