@@ -163,19 +163,19 @@ const Landing = ({ history }: LandingPageProps) => {
                 type="text"
                 placeholder="email"
                 color="#014D82"
-                width="260px"
+                width="300px"
                 fontSize="2rem"
                 weight={400}
-                height="44px"
+                height="48px"
                 onTextChange={(evt: any) => setEmail(evt)}
               />
               <PasswordInput
                 placeholder="senha"
-                width="260px"
+                width="300px"
                 color="#014D82"
                 fontSize="2rem"
                 weight={400}
-                height="44px"
+                height="48px"
                 onTextChange={(evt: any) => setPassword(evt)}
               />
               <Button
@@ -538,7 +538,7 @@ const RegisterArea = styled.div`
       font-size: 2.2rem;
       width: 190px;
       height: 44px;
-      font-weight: 500;
+      font-weight: 600;
       margin-right: 50px;
     }
   }

@@ -1166,7 +1166,7 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@emotion/is-prop-valid@^0.8.8":
+"@emotion/is-prop-valid@^0.8.2", "@emotion/is-prop-valid@^0.8.8":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
   integrity sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==
@@ -3265,10 +3265,10 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001140.tgz#30dae27599f6ede2603a0962c82e468bca894232"
   integrity sha512-xFtvBtfGrpjTOxTpjP5F2LmN04/ZGfYV8EQzUIC/RmKpdrmzJrjqlJ4ho7sGuAMPko2/Jl08h7x9uObCfBFaAA==
 
-capstone-project@^0.3.1:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.3.5.tgz#25168fb4f62efb5378ebd6e2a2078cc034f19b70"
-  integrity sha512-P7IrUXvRpLmdPo84olRYD6CaSMMFcLJogYwu0GVMncPrnTulHhdfyu5lsLPxAVt1Qncz6pqukb+F0fLGTkvB2w==
+capstone-project@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.0.tgz#cc8137f43bd9ac9cbc5b272424f59bb8230ceefd"
+  integrity sha512-uKkPa6CzYJV/zTtpHxEbbvtMDF2vshxEZ7sfbdAuSW/eggknF1cquE6Fp8N63Xgkm03HdaYVPgn8CWcO1v7wHQ==
   dependencies:
     "@types/styled-components" "^5.1.3"
     react-icons "^3.11.0"
@@ -5462,6 +5462,26 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+framer-motion@^2.7.6:
+  version "2.7.6"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.6.tgz#ab88b432576f25542c15932e1daf1b3a7d130176"
+  integrity sha512-FhoU46MHqD0deJ5GRr9I8wKGTVftVtW+upT1uiqhmxWE0zzmcv4sAgdYAUTpMG9nZJf4FeFuItNxLElmcA/Clw==
+  dependencies:
+    framesync "^4.1.0"
+    hey-listen "^1.0.8"
+    popmotion "9.0.0-rc.19"
+    style-value-types "^3.1.9"
+    tslib "^1.10.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
+framesync@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/framesync/-/framesync-4.1.0.tgz#69a8db3ca432dc70d6a76ba882684a1497ef068a"
+  integrity sha512-MmgZ4wCoeVxNbx2xp5hN/zPDCbLSKiDt4BbbslK7j/pM2lg5S0vhTNv1v8BCVb99JPIo6hXBFdwzU7Q4qcAaoQ==
+  dependencies:
+    hey-listen "^1.0.5"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -5850,6 +5870,11 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+
+hey-listen@^1.0.5, hey-listen@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.8.tgz#8e59561ff724908de1aa924ed6ecc84a56a9aa68"
+  integrity sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
 
 history@^4.9.0:
   version "4.10.1"
@@ -7199,9 +7224,9 @@ json-server-auth@^2.0.2:
     yargs "^15.3.1"
 
 json-server@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/json-server/-/json-server-0.16.1.tgz#1d3cb19087f5cb5040d94a49d99472102b2859d9"
-  integrity sha512-aVUTdpt+X27iIuWuxBChJywykPSP4opEiFrH044pG+34Gde3eHZRTzeMyx8ts5/kY2gK1Ru2YBmF2k/vI0lQug==
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/json-server/-/json-server-0.16.2.tgz#72545a34a1f0ca24b9fb05b5ca1dece7e7dc3229"
+  integrity sha512-USmSODvmBvt9Z7M3e4AHGHzLBcFlNkQMVOOqtB/h/k79JQI4saPcWniYvD5zf0kE3oGNR9VJzcHKzT8fZ9kEtw==
   dependencies:
     body-parser "^1.19.0"
     chalk "^3.0.0"
@@ -7220,7 +7245,6 @@ json-server@^0.16.1:
     nanoid "^2.1.11"
     please-upgrade-node "^3.2.0"
     pluralize "^8.0.0"
-    request "^2.88.2"
     server-destroy "^1.0.1"
     update-notifier "^4.0.0"
     yargs "^15.1.0"
@@ -8759,6 +8783,16 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+popmotion@9.0.0-rc.19:
+  version "9.0.0-rc.19"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-9.0.0-rc.19.tgz#24b28d9d4481536da699af77841d04bc5351f1d5"
+  integrity sha512-rmXYVzkFPHZAqTgnlrif2Wiojv2qOra0IFb22Md/Uogqi7ZLPi7EoVbZzwQxoSpbeixWx8+yr4LamAXqsFj4OQ==
+  dependencies:
+    framesync "^4.1.0"
+    hey-listen "^1.0.8"
+    style-value-types "^3.1.9"
+    tslib "^1.10.0"
+
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -10141,7 +10175,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.87.0, request@^2.88.0, request@^2.88.2:
+request@^2.87.0, request@^2.88.0:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -11095,6 +11129,14 @@ style-loader@0.23.1:
   dependencies:
     loader-utils "^1.1.0"
     schema-utils "^1.0.0"
+
+style-value-types@^3.1.9:
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-3.1.9.tgz#faf7da660d3f284ed695cff61ea197d85b9122cc"
+  integrity sha512-050uqgB7WdvtgacoQKm+4EgKzJExVq0sieKBQQtJiU3Muh6MYcCp4T3M8+dfl6VOF2LR0NNwXBP1QYEed8DfIw==
+  dependencies:
+    hey-listen "^1.0.8"
+    tslib "^1.10.0"
 
 styled-components@^5.2.0:
   version "5.2.0"

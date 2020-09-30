@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -10,12 +11,13 @@ const Board = () => {
       <TopContainer>
         <Bar />
       </TopContainer>
-
-      <SideMenuContainer>
-        <SideMenu>
-          <NavBar />
-        </SideMenu>
-      </SideMenuContainer>
+      <InnerBoardContainer>
+        <SideMenuContainer drag dragMomentum={false}>
+          <SideMenu>
+            <NavBar />
+          </SideMenu>
+        </SideMenuContainer>
+      </InnerBoardContainer>
     </BoardPage>
   );
 };
@@ -27,7 +29,7 @@ const BoardPage = styled.div`
   position: relative;
   width: 100vw;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 const Background = styled.img`
@@ -50,7 +52,13 @@ const Bar = styled.div`
   background-color: var(--color-primary-0);
 `;
 
-const SideMenuContainer = styled.div`
+const InnerBoardContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+`;
+
+const SideMenuContainer = styled(motion.div)`
   position: absolute;
   top: 100px;
   left: 50px;
@@ -60,6 +68,7 @@ const SideMenu = styled.div`
   width: 100%;
   height: 200px;
   background: #cdd9e2;
+  border-radius: 2px;
   background-color: var(--color-primary-1);
 `;
 const NavBar = styled.div`
