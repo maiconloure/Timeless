@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.svg';
-import { CreationMenu } from '../../components';
+import { CreationMenu, Card } from '../../components';
 
 const Board = () => {
   return (
     <div>
-      <BoardPage>
+      <Card />
+      {/* <BoardPage>
         <Background src={BackgroundImage} alt="background-image" />
         <TopContainer>
           <Bar />
@@ -18,7 +19,7 @@ const Board = () => {
             <NavBar />
           </SideMenu>
         </SideMenuContainer>
-      </BoardPage>
+      </BoardPage> */}
     </div>
   );
 };
