@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
-import './styles.css';
 import BackgroundImage from '../../assets/background.svg';
 import UserIcon from '../../assets/user1-icon.png';
+
 const Board = () => {
   return (
     <BoardPage>

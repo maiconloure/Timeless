@@ -66,15 +66,17 @@ const Landing = ({ history }: LandingPageProps) => {
               height={windowSize.height > 550 ? '55px' : '44px'}
               onTextChange={(evt: any) => setPassword(evt)}
             />
-            <Button
-              color="#014D82"
-              fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
-              width="200px"
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              weight={700}
-              onClick={OnFinish}>
-              Entrar
-            </Button>
+            <div>
+              <Button
+                color="#014D82"
+                fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
+                width="200px"
+                height={windowSize.height > 550 ? '55px' : '44px'}
+                weight={700}
+                onClick={OnFinish}>
+                Entrar
+              </Button>
+            </div>
           </LoginMenu>
         )}
 
@@ -453,7 +455,7 @@ const LogoBox = styled.div`
 
 const Slogan = styled.div`
   p {
-    font: 700 3.6rem Inter;
+    font: 700 2vw Inter;
     line-height: 44px;
     text-align: center;
     color: #ffca30;
@@ -463,12 +465,16 @@ const Slogan = styled.div`
     display: flex;
     gap: 5px;
     p {
-      font: 700 2.6rem Inter;
+      font-size: 2.6rem;
       line-height: 2.5rem;
     }
   }
 
   @media (min-width: 768px) and (min-height: 550px) {
+    p {
+      font-size: 2.2vw;
+    }
+
     display: flex;
     gap: 8px;
   }
@@ -671,7 +677,7 @@ const BottomBar = styled.div`
   bottom: 0;
   grid-area: login;
   width: 100%;
-  height: 60%;
+  height: 70%;
   background-color: var(--color-primary-0);
 `;
 
