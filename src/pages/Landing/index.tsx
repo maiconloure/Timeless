@@ -1,20 +1,25 @@
 import { Input, PasswordInput, Button } from 'capstone-project';
 import { History, LocationState } from 'history';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import MainFrameBoard from '../../assets/mainframe.png';
 import returnIcon from '../../assets/return.png';
 import LibIcon from '../../assets/thumb.jpg';
+import { requestLogin } from '../../redux/actions/service.action';
+import { RootStoreType } from '../../redux/store/store';
 
 interface LandingPageProps {
   history: History<LocationState>;
 }
 
 const Landing = ({ history }: LandingPageProps) => {
+  const dispatch = useDispatch();
+  const { status } = useSelector((state: RootStoreType) => state.service);
   const [handleForm, setHandleForm] = useState(false);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -28,9 +33,15 @@ const Landing = ({ history }: LandingPageProps) => {
   };
 
   const OnFinish = () => {
-    console.log({ email, password });
-    history.push('/board');
+    // console.log({ email, password });
+    dispatch(requestLogin({ email, password }));
   };
+
+  useEffect(() => {
+    if (status === 200) {
+      history.push('/board');
+    }
+  });
 
   return (
     <LandingPage>
