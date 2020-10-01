@@ -5,9 +5,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import BlankFrameBoard from '../../assets/blank-board.png';
 import MainFrameBoard from '../../assets/mainframe.png';
-import returnIcon from '../../assets/return.png';
+import returnIcon from '../../assets/return-icon.png';
 import LibIcon from '../../assets/thumb.jpg';
+import PageTransition from '../../components/pageTransition';
 import { requestLogin, registerUser } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store';
 
@@ -21,6 +23,7 @@ const Landing = ({ history }: LandingPageProps) => {
   const [handleForm, setHandleForm] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [currentFrame, setCurrentFrame] = useState('main');
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -52,15 +55,15 @@ const Landing = ({ history }: LandingPageProps) => {
     <LandingPage>
       <Container>
         <LeftMenu>
-          <img src={LibIcon} alt="clock-icon" />
+          <img onClick={() => setCurrentFrame('main')} src={LibIcon} alt="clock-icon" />
           <LinksContainer>
-            <p>Exemplo</p>
-            <p>Times</p>
-            <p>Sobre</p>
+            <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
+            <p onClick={() => setCurrentFrame('teams')}>Times</p>
+            <p onClick={() => setCurrentFrame('about')}>Sobre</p>
           </LinksContainer>
         </LeftMenu>
 
-        {!handleForm && (
+        {(!handleForm || windowSize.width > 550) && (
           <LoginMenu>
             <Input
               type="text"
@@ -81,20 +84,22 @@ const Landing = ({ history }: LandingPageProps) => {
               height={windowSize.height > 550 ? '55px' : '44px'}
               onTextChange={(evt: any) => setPassword(evt)}
             />
-            <Button
-              color="#014D82"
-              fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
-              width="200px"
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              weight={700}
-              onClick={OnFinishLogin}>
-              Entrar
-            </Button>
+            <div>
+              <Button
+                color="#014D82"
+                fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
+                width="200px"
+                height={windowSize.height > 550 ? '55px' : '44px'}
+                weight={700}
+                onClick={OnFinishLogin}>
+                Entrar
+              </Button>
+            </div>
           </LoginMenu>
         )}
 
         <LogoArea>
-          <Logo>
+          <Logo onClick={() => setCurrentFrame('main')}>
             <LogoBox />
             <h1>Time</h1>
             <h1>less</h1>
@@ -106,33 +111,35 @@ const Landing = ({ history }: LandingPageProps) => {
         </LogoArea>
 
         <RegisterArea>
-          <FeatOne>
-            <div />
-            <p>Alto nível em gestão</p>
-            <p>de tempo e equipes.</p>
-          </FeatOne>
+          <TopFrame>
+            <FeatOne>
+              <div />
+              <p>Alto nível em gestão</p>
+              <p>de tempo e equipes.</p>
+            </FeatOne>
 
-          {!handleForm ? (
-            <Button
-              color="#014D82"
-              fontSize={windowSize.height > 550 ? '2.8rem' : '2.4rem'}
-              onClick={() => setHandleForm(true)}
-              width="250px"
-              height={windowSize.height > 550 ? '70px' : '46px'}
-              weight={700}>
-              Começe agora
-            </Button>
-          ) : (
-            <Return onClick={() => setHandleForm(false)}>
-              <img src={returnIcon} alt="return-icon" />
-            </Return>
-          )}
+            {!handleForm ? (
+              <Button
+                color="#014D82"
+                fontSize={windowSize.height > 550 ? '2.8rem' : '2.4rem'}
+                onClick={() => setHandleForm(true)}
+                width="250px"
+                height={windowSize.height > 550 ? '70px' : '46px'}
+                weight={700}>
+                Começe agora
+              </Button>
+            ) : (
+              <Return onClick={() => setHandleForm(false)}>
+                <img src={returnIcon} alt="return-icon" />
+              </Return>
+            )}
 
-          <FeatTwo>
-            <div />
-            <p>Fluxo dinâmico e intuitivo,</p>
-            <p>eficiência elevada ao máximo!</p>
-          </FeatTwo>
+            <FeatTwo>
+              <div />
+              <p>Fluxo dinâmico e intuitivo,</p>
+              <p>eficiência elevada ao máximo!</p>
+            </FeatTwo>
+          </TopFrame>
         </RegisterArea>
 
         {windowSize.width < 768 && handleForm && (
@@ -163,7 +170,7 @@ const Landing = ({ history }: LandingPageProps) => {
               height={windowSize.height > 550 ? '55px' : '44px'}
               weight={700}
               onClick={OnFinishRegister}>
-              Cadastrar
+              Começar
             </Button>
           </RegisterMenu>
         )}
@@ -174,41 +181,74 @@ const Landing = ({ history }: LandingPageProps) => {
               <ReturnModal onClick={() => setHandleForm(false)}>
                 <img src={returnIcon} alt="return-icon" />
               </ReturnModal>
-              <Input
-                type="text"
-                placeholder="email"
-                color="#014D82"
-                width="300px"
-                fontSize="2rem"
-                weight={400}
-                height="48px"
-                onTextChange={(evt: any) => setEmail(evt)}
-              />
-              <PasswordInput
-                placeholder="senha"
-                width="300px"
-                color="#014D82"
-                fontSize="2rem"
-                weight={400}
-                height="48px"
-                onTextChange={(evt: any) => setPassword(evt)}
-              />
-              <Button
-                color="#014D82"
-                fontSize="2.6rem"
-                width="200px"
-                height="44px"
-                weight={700}
-                onClick={OnFinishRegister}>
-                Cadastrar
-              </Button>
+              <Text>
+                <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
+              </Text>
+              <Form>
+                <Input
+                  type="text"
+                  placeholder="email"
+                  color="#014D82"
+                  width="300px"
+                  fontSize="2rem"
+                  weight={400}
+                  height="48px"
+                  onTextChange={(evt: any) => setEmail(evt)}
+                />
+                <PasswordInput
+                  placeholder="senha"
+                  width="300px"
+                  color="#014D82"
+                  fontSize="2rem"
+                  weight={400}
+                  height="48px"
+                  onTextChange={(evt: any) => setPassword(evt)}
+                />
+                <Button
+                  color="#014D82"
+                  fontSize="2.6rem"
+                  width="200px"
+                  height="44px"
+                  weight={600}
+                  onClick={OnFinishRegister}>
+                  Começar
+                </Button>
+              </Form>
             </RegisterModal>
           </ModalBackground>
         )}
 
-        <MainFrame>
-          <img src={MainFrameBoard} alt="main-frame-board" />
-        </MainFrame>
+        {currentFrame === 'main' && (
+          <MainFrame>
+            <PageTransition>
+              <img src={MainFrameBoard} alt="main-frame-board" />
+            </PageTransition>
+          </MainFrame>
+        )}
+
+        {currentFrame === 'examples' && (
+          <ExamplesFrame>
+            <PageTransition>
+              <img src={BlankFrameBoard} alt="main-frame-board" />
+            </PageTransition>
+          </ExamplesFrame>
+        )}
+
+        {currentFrame === 'teams' && (
+          <TeamFrame>
+            <PageTransition>
+              <img src={BlankFrameBoard} alt="main-frame-board" />
+            </PageTransition>
+          </TeamFrame>
+        )}
+
+        {currentFrame === 'about' && (
+          <AboutFrame>
+            <PageTransition>
+              <img src={BlankFrameBoard} alt="main-frame-board" />
+            </PageTransition>
+          </AboutFrame>
+        )}
       </Container>
 
       <Wave>
@@ -303,6 +343,7 @@ const LeftMenu = styled.div`
       box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.4);
       margin-right: 14px;
       opacity: 0.8;
+      cursor: pointer;
     }
   }
 `;
@@ -343,10 +384,6 @@ const LoginMenu = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  &:nth-child(1) {
-    margin-right: 20px;
-  }
 
   div {
     padding: 10px;
@@ -391,7 +428,7 @@ const LoginMenu = styled.div`
       }
     }
     button {
-      border-radius: 3px;
+      border-radius: 2px;
       font-size: 1.8rem;
       margin-top: 0px;
       margin-left: 20px;
@@ -418,6 +455,8 @@ const Logo = styled.div`
   grid-area: logo;
   position: relative;
   display: flex;
+  cursor: pointer;
+
   h1 {
     z-index: 999;
     font: 400 7rem Inter;
@@ -468,10 +507,10 @@ const LogoBox = styled.div`
 
 const Slogan = styled.div`
   p {
-    font: 700 2vw Inter;
+    font: 700 3rem Inter;
     line-height: 44px;
     text-align: center;
-    color: #ffca30;
+    color: var(--color-secondary-6);
   }
 
   @media (min-width: 550px) and (max-height: 550px) {
@@ -493,30 +532,6 @@ const Slogan = styled.div`
   }
 `;
 
-const FeatOne = styled.div`
-  position: absolute;
-  left: 25%;
-  display: none;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1.8rem;
-
-  div {
-    width: 77px;
-    height: 6px;
-    border-radius: 2px;
-    background-color: var(--color-secondary-8);
-  }
-
-  @media (min-width: 768px) and (min-height: 550px) {
-    display: block;
-  }
-
-  @media (min-width: 2000px) and (min-height: 768px) {
-    left: 32%;
-  }
-`;
-
 const Return = styled.div`
   grid-area: register;
   width: 100%;
@@ -525,7 +540,11 @@ const Return = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: 0.2s;
 
+  &:hover {
+    transform: scale(0.7);
+  }
   img {
     width: 80px;
   }
@@ -563,12 +582,47 @@ const RegisterArea = styled.div`
   }
 `;
 
-const FeatTwo = styled.div`
+const TopFrame = styled.div`
+  @media (min-width: 768px) and (min-height: 550px) {
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+const FeatOne = styled.div`
+  /* position: absolute; */
+  width: 250px;
+  left: 25%;
   display: none;
   color: #fff;
   font-weight: 500;
   font-size: 1.8rem;
-  position: absolute;
+
+  div {
+    width: 77px;
+    height: 6px;
+    border-radius: 2px;
+    background-color: var(--color-secondary-8);
+  }
+
+  @media (min-width: 768px) and (min-height: 550px) {
+    display: block;
+  }
+
+  @media (min-width: 2000px) and (min-height: 768px) {
+    left: 32vw;
+  }
+`;
+
+const FeatTwo = styled.div`
+  display: none;
+  width: 250px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.8rem;
+  /* position: absolute; */
   /* top: 0; */
   right: 27%;
 
@@ -661,6 +715,37 @@ const MainFrame = styled.div`
   }
 `;
 
+const ExamplesFrame = styled.div`
+  display: none;
+  z-index: 999;
+
+  @media (min-width: 768px) and (min-height: 550px) {
+    display: inline-grid;
+    justify-content: center;
+    grid-area: mainframe;
+  }
+`;
+const TeamFrame = styled.div`
+  display: none;
+  z-index: 999;
+
+  @media (min-width: 768px) and (min-height: 550px) {
+    display: inline-grid;
+    justify-content: center;
+    grid-area: mainframe;
+  }
+`;
+const AboutFrame = styled.div`
+  display: none;
+  z-index: 999;
+
+  @media (min-width: 768px) and (min-height: 550px) {
+    display: inline-grid;
+    justify-content: center;
+    grid-area: mainframe;
+  }
+`;
+
 const Wave = styled.div`
   position: absolute;
   top: 11vh;
@@ -691,6 +776,10 @@ const BottomBar = styled.div`
   grid-area: login;
   width: 100%;
   height: 70%;
+
+  @media (max-width: 1660px) {
+    height: 72%;
+  }
   background-color: var(--color-primary-0);
 `;
 
@@ -702,31 +791,61 @@ const ModalBackground = styled.div`
   background: rgba(0, 0, 0, 0.7);
 `;
 
+const Text = styled.div`
+  text-align: center;
+  width: 80%;
+
+  h3 {
+    font: 700 2.6rem Inter;
+    color: var(--color-secondary-6);
+  }
+`;
+
+const ReturnModal = styled.div`
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+  img {
+    width: 60px;
+  }
+`;
+
 const RegisterModal = styled.div`
   position: absolute;
   z-index: 99999;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 460px;
+  width: 440px;
+  height: 580px;
   border-radius: 4px;
-  background: var(--color-primary-1);
+  background: var(--color-primary-2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80px;
 
   div {
     padding: 10px;
-    &:nth-child(3) {
+    &:nth-child(2) {
       margin-right: 17px;
     }
     input {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       padding: 10px;
-      height: 36px;
-      width: 220px;
+      height: 50px;
+      width: 300px;
     }
     svg {
       width: 1.8rem;
@@ -735,15 +854,9 @@ const RegisterModal = styled.div`
 
   button {
     border-radius: 3px;
-    font-size: 1.8rem;
-    margin-top: 0px;
-    height: 36px;
-    width: 120px;
-  }
-`;
-
-const ReturnModal = styled.div`
-  img {
-    width: 80px;
+    font-size: 2.6rem;
+    margin-top: 10px;
+    height: 50px;
+    width: 200px;
   }
 `;

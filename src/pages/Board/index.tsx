@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.svg';
+import KenzieLogo from '../../assets/kenzie.png';
 import UserIcon from '../../assets/user1-icon.png';
 
 const Board = () => {
@@ -12,14 +13,21 @@ const Board = () => {
 
       <TopContainer>
         <Bar>
-          <Info>
-            <h2>Maicon Lourenço</h2>
-            <p>Online</p>
-          </Info>
+          <ProjectInfo>
+            <img src={KenzieLogo} alt="user-profile-pic" />
+            <h2>Kenzie Academy</h2>
+          </ProjectInfo>
 
-          <ProfileIcon>
-            <img src={UserIcon} alt="user-profile-pic" />
-          </ProfileIcon>
+          <UserInfo>
+            <div>
+              <h2>Maicon Lourenço</h2>
+              <p>Online</p>
+            </div>
+
+            <ProfileIcon>
+              <img src={UserIcon} alt="user-profile-pic" />
+            </ProfileIcon>
+          </UserInfo>
         </Bar>
       </TopContainer>
 
@@ -54,23 +62,47 @@ const TopContainer = styled.div`
   position: fixed;
   z-index: 9999;
   top: 0;
-  width: 100%;
+  width: 100vw;
 `;
 
 const Bar = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 55px;
+  height: 60px;
   background-color: var(--color-primary-0);
 `;
 
-const Info = styled.div``;
+const ProjectInfo = styled.div`
+  display: flex;
+  align-items: center;
+
+  h2 {
+    font-size: 2.1rem;
+    font-style: italic;
+    color: #fff;
+  }
+
+  img {
+    margin: 0 10px;
+    width: 50px;
+  }
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+`;
 
 const ProfileIcon = styled.div`
   height: 55px;
 
   img {
     width: 50px;
+    margin: 0 10px;
   }
 `;
 
