@@ -2,21 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.svg';
+import { CreationMenu } from '../../components';
 
 const Board = () => {
   return (
-    <BoardPage>
-      <Background src={BackgroundImage} alt="background-image" />
-      <TopContainer>
-        <Bar />
-      </TopContainer>
+    <div>
+      <BoardPage>
+        <Background src={BackgroundImage} alt="background-image" />
+        <TopContainer>
+          <Bar />
+        </TopContainer>
 
-      <SideMenuContainer>
-        <SideMenu>
-          <NavBar />
-        </SideMenu>
-      </SideMenuContainer>
-    </BoardPage>
+        <SideMenuContainer>
+          <SideMenu>
+            <NavBar />
+          </SideMenu>
+        </SideMenuContainer>
+      </BoardPage>
+    </div>
   );
 };
 
