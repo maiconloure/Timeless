@@ -2644,6 +2644,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.1.tgz#e1e82e4f3e999e2cfd61b161280d16a111f86428"
   integrity sha512-zg7Hz2k5lI8kb7U32998pRRFin7zJlkfezGJjUc2heaD4Pw2wObakCDVzkKztTm/Ln7eiVvYsjqak0Ed4LkMDA==
 
+axios@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 axobject-query@^2.0.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -3265,13 +3272,17 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001140.tgz#30dae27599f6ede2603a0962c82e468bca894232"
   integrity sha512-xFtvBtfGrpjTOxTpjP5F2LmN04/ZGfYV8EQzUIC/RmKpdrmzJrjqlJ4ho7sGuAMPko2/Jl08h7x9uObCfBFaAA==
 
-capstone-project@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.0.tgz#cc8137f43bd9ac9cbc5b272424f59bb8230ceefd"
-  integrity sha512-uKkPa6CzYJV/zTtpHxEbbvtMDF2vshxEZ7sfbdAuSW/eggknF1cquE6Fp8N63Xgkm03HdaYVPgn8CWcO1v7wHQ==
+capstone-project@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.2.tgz#f6791d2c337b834b1ab592e19bbbf5789120f7fb"
+  integrity sha512-VIBJy7Ie0SJ0QTlXxF79PpZdSihnyh9p92cEdtRnwtj/+auBV3baua5jN3+ZQoxOnKBoUxPpXnM0nRJ7kBZLVg==
   dependencies:
+    "@types/history" "^4.7.8"
+    "@types/react-router-dom" "^5.1.5"
     "@types/styled-components" "^5.1.3"
     react-icons "^3.11.0"
+    react-router "^5.2.0"
+    react-router-dom "^5.2.0"
     styled-components "^5.2.0"
 
 capture-exit@^2.0.0:
@@ -5400,7 +5411,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
@@ -9838,7 +9849,7 @@ react-router-dom@^5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5.2.0:
+react-router@5.2.0, react-router@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"
   integrity sha512-smz1DUuFHRKdcJC0jobGo8cVbhO3x50tCL4icacOlcwDOEQPq4TMqwx3sY1TP+DvtTgz4nm3thuo7A+BK2U0Dw==

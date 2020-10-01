@@ -41,7 +41,7 @@ const BoardPage = styled.div`
   /* position: relative; */
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 const Background = styled.img`
