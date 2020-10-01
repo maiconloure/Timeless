@@ -1,6 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {
+  GroupImg,
+  CardImg,
+  RemoveCardImg,
+  CreateTextImg,
+  FasterCardImg,
+  PinCardImg,
+  WarningCardImg,
+  ArrowImg,
+  BlockCardImg,
+} from '../../assets';
+
 const CreationMenu = () => {
   const groupButton = () => {
     console.log('groupButton');
@@ -50,11 +62,11 @@ const CreationMenu = () => {
           <h4>Objetos</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src="" onClick={groupButton} />
-          <img src="" onClick={createCardButton} />
-          <img src="" onClick={createFasterCardButton} />
-          <img src="" onClick={createWarningCardButton} />
-          <img src="" onClick={removeCardButton} />
+          <img src={GroupImg} onClick={groupButton} />
+          <img src={CardImg} onClick={createCardButton} />
+          <img src={FasterCardImg} onClick={createFasterCardButton} />
+          <img src={WarningCardImg} onClick={createWarningCardButton} />
+          <img src={RemoveCardImg} onClick={removeCardButton} />
         </MenuOptions>
       </MenuSection>
       <MenuSection>
@@ -62,10 +74,10 @@ const CreationMenu = () => {
           <h4>Ferramentas</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src="" onClick={createTextButton} />
-          <img src="" onClick={connectArrowButton} />
-          <img src="" onClick={pinCardButton} />
-          <img src="" onClick={blockCardButton} />
+          <img src={CreateTextImg} onClick={createTextButton} />
+          <img src={ArrowImg} onClick={connectArrowButton} />
+          <img src={PinCardImg} onClick={pinCardButton} />
+          <img src={BlockCardImg} onClick={blockCardButton} />
         </MenuOptions>
       </MenuSection>
     </Menu>
@@ -76,7 +88,6 @@ export default CreationMenu;
 
 const Menu = styled.div`
   background-color: var(--color-background);
-  border: 1px solid black;
   width: 300px;
   height: 200px;
 `;
@@ -98,6 +109,6 @@ const MenuOptions = styled.div`
   img {
     width: 55px;
     height: 50px;
-    background-color: red;
+    /* background-color: red; */
   }
 `;
