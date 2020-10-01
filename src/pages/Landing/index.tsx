@@ -1,21 +1,25 @@
 import { Input, PasswordInput, Button } from 'capstone-project';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { History, LocationState } from 'history';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import MainFrameBoard from '../../assets/mainframe.png';
 import returnIcon from '../../assets/return.png';
 import LibIcon from '../../assets/thumb.jpg';
+import { requestLogin, registerUser } from '../../redux/actions/service.action';
+import { RootStoreType } from '../../redux/store/store';
 
 interface LandingPageProps {
   history: History<LocationState>;
 }
 
 const Landing = ({ history }: LandingPageProps) => {
+  const dispatch = useDispatch();
+  const { status } = useSelector((state: RootStoreType) => state.service);
   const [handleForm, setHandleForm] = useState(false);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -28,10 +32,20 @@ const Landing = ({ history }: LandingPageProps) => {
     });
   };
 
-  const OnFinish = () => {
-    console.log({ email, password });
-    history.push('/board');
+  const OnFinishLogin = () => {
+    console.log('OnFinishLogin');
+    dispatch(requestLogin({ email, password }));
   };
+  const OnFinishRegister = () => {
+    console.log('OnFinishRegister');
+    dispatch(registerUser({ email, password }));
+  };
+
+  useEffect(() => {
+    if (status === 200 || status === 201) {
+      history.push('/board');
+    }
+  });
 
   return (
     <LandingPage>
@@ -72,7 +86,7 @@ const Landing = ({ history }: LandingPageProps) => {
               width="200px"
               height={windowSize.height > 550 ? '55px' : '44px'}
               weight={700}
-              onClick={OnFinish}>
+              onClick={OnFinishLogin}>
               Entrar
             </Button>
           </LoginMenu>
@@ -147,7 +161,7 @@ const Landing = ({ history }: LandingPageProps) => {
               width="200px"
               height={windowSize.height > 550 ? '55px' : '44px'}
               weight={700}
-              onClick={OnFinish}>
+              onClick={OnFinishRegister}>
               Cadastrar
             </Button>
           </RegisterMenu>
@@ -184,7 +198,7 @@ const Landing = ({ history }: LandingPageProps) => {
                 width="200px"
                 height="44px"
                 weight={700}
-                onClick={OnFinish}>
+                onClick={OnFinishRegister}>
                 Cadastrar
               </Button>
             </RegisterModal>
