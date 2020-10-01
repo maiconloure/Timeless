@@ -53,9 +53,9 @@ const CreationMenu = () => {
   return (
     <Menu>
       <MenuTitle>
-        <span>o</span>
-        <span>o</span>
-        <span>o</span>
+        <span />
+        <span />
+        <span />
       </MenuTitle>
       <MenuSection>
         <SectionTitle>
@@ -89,26 +89,47 @@ export default CreationMenu;
 const Menu = styled.div`
   background-color: var(--color-background);
   width: 300px;
-  height: 200px;
+  color: #fff;
+  padding-bottom: 1px;
 `;
 
 const MenuSection = styled.div`
   background-color: #fff;
-  margin-top: 12px;
+  margin: 10px;
 `;
 
 const SectionTitle = styled.div`
   background-color: var(--color-primary-4);
+  padding: 2px 4px;
 `;
 
 const MenuTitle = styled.div`
   background-color: var(--color-primary-1);
+  text-align: right;
+  span {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 4px;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+  }
+
+  span:nth-child(1) {
+    background-color: #f59439;
+  }
+  span:nth-child(2) {
+    background-color: #0c395c;
+  }
+  span:nth-child(3) {
+    background-color: #da0000;
+  }
 `;
 
 const MenuOptions = styled.div`
   img {
     width: 55px;
     height: 50px;
-    /* background-color: red; */
+    padding: 4px;
   }
 `;

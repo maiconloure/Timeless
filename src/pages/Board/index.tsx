@@ -6,20 +6,20 @@ import { CreationMenu } from '../../components';
 
 const Board = () => {
   return (
-    // <BoardPage>
-    //   {/* <Background src={BackgroundImage} alt="background-image" /> */}
-    //   <TopContainer>
-    //     <Bar />
-    //   </TopContainer>
+    <div>
+      <BoardPage>
+        <Background src={BackgroundImage} alt="background-image" />
+        <TopContainer>
+          <Bar />
+        </TopContainer>
 
-    //   <SideMenuContainer>
-    //     <SideMenu>
-    //       <NavBar />
-    //     </SideMenu>
-    //   </SideMenuContainer>
-
-    // </BoardPage>
-    <CreationMenu />
+        <SideMenuContainer>
+          <SideMenu>
+            <NavBar />
+          </SideMenu>
+        </SideMenuContainer>
+      </BoardPage>
+    </div>
   );
 };
 
