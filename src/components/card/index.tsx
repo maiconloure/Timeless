@@ -8,28 +8,12 @@ import {
   PlanText,
   //PlanLine,
 } from 'capstone-project';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const Card = () => {
-  const [cardData, setCardData] = useState<any[]>([]);
-  const getCardData = () => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Rla2trQHRlc3Rla2trLmNvbSIsImlhdCI6MTYwMTU4MTU0NywiZXhwIjoxNjAxNTg1MTQ3LCJzdWIiOiIyIn0.0vrY7BUYV0BZ23FDqCsJ2Jf4sWUSJKUZ2sNi1aIjSQw';
-    axios
-      .get(`https://server-timeless.herokuapp.com/users/2/boards?id=1`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((resp) => {
-        setCardData(resp.data);
-        console.log(resp.data);
-      });
-  };
-  useEffect(() => {
-    getCardData();
-  }, []);
+const Card = (props: any) => {
   return (
     <div>
-      {cardData.map((item, index) => (
+      {props.cardData.map((item: any, index: any) => (
         <div key={index}>
           <PlanCard cardMargin={5} cardPadding={10} cardWidth={275} cardBgColor="#CDD9E2">
             <PlanContainer flexContent="space-between" gap={0}>
