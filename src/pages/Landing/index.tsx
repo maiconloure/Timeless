@@ -1,5 +1,4 @@
 import { Input, PasswordInput, Button } from 'capstone-project';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import styled from 'styled-components';
