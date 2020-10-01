@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import MainFrameBoard from '../../assets/mainframe.png';
 import returnIcon from '../../assets/return.png';
 import LibIcon from '../../assets/thumb.jpg';
-import { requestLogin } from '../../redux/actions/service.action';
+import { requestLogin, registerUser } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 
 interface LandingPageProps {
@@ -32,13 +32,17 @@ const Landing = ({ history }: LandingPageProps) => {
     });
   };
 
-  const OnFinish = () => {
-    // console.log({ email, password });
+  const OnFinishLogin = () => {
+    console.log('OnFinishLogin');
     dispatch(requestLogin({ email, password }));
+  };
+  const OnFinishRegister = () => {
+    console.log('OnFinishRegister');
+    dispatch(registerUser({ email, password }));
   };
 
   useEffect(() => {
-    if (status === 200) {
+    if (status === 200 || status === 201) {
       history.push('/board');
     }
   });
@@ -82,7 +86,7 @@ const Landing = ({ history }: LandingPageProps) => {
               width="200px"
               height={windowSize.height > 550 ? '55px' : '44px'}
               weight={700}
-              onClick={OnFinish}>
+              onClick={OnFinishLogin}>
               Entrar
             </Button>
           </LoginMenu>
@@ -157,7 +161,7 @@ const Landing = ({ history }: LandingPageProps) => {
               width="200px"
               height={windowSize.height > 550 ? '55px' : '44px'}
               weight={700}
-              onClick={OnFinish}>
+              onClick={OnFinishRegister}>
               Cadastrar
             </Button>
           </RegisterMenu>
@@ -194,7 +198,7 @@ const Landing = ({ history }: LandingPageProps) => {
                 width="200px"
                 height="44px"
                 weight={700}
-                onClick={OnFinish}>
+                onClick={OnFinishRegister}>
                 Cadastrar
               </Button>
             </RegisterModal>

@@ -1,16 +1,19 @@
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
-import { DispatchType, RootStoreType } from '../store/store';
-import { LoginAction, PropsLoginAction, PropsRequestLogin } from './interface.action';
+import { RootStoreType } from '../store/store';
+import {
+  LoginAction,
+  PropsLoginAction,
+  PropsRequestLogin,
+  PropsRegisterUser,
+} from './interface.action';
 import { LOGIN } from './type.action';
 
 export const requestLogin = ({
   email,
   password,
-}: PropsRequestLogin): ThunkAction<void, RootStoreType, unknown, LoginAction> => (
-  dispatch: DispatchType
-) => {
+}: PropsRequestLogin): ThunkAction<void, RootStoreType, unknown, LoginAction> => (dispatch) => {
   api
     .post('/login', {
       email,
@@ -18,15 +21,50 @@ export const requestLogin = ({
     })
     .then((response) => {
       if (response.status !== 200) {
-        console.error(response);
+        console.error(`requestLogin =>> ERROR: ${response.data} ${response.status}`);
+      } else {
+        console.warn(`requestLogin =>> Status: ${response.status}`);
+        dispatch(
+          loginAction({
+            status: response.status,
+            token: response.data.accessToken,
+          })
+        );
       }
-      console.warn('requestLogin =>> Statues: ', response.status);
-      dispatch(loginAction({ status: response.status, token: response.data.accessToken }));
     })
-    .catch((error) => console.error('requestLogin =>> ERROR:', error));
+    .catch((error) =>
+      console.error(`requestLogin =>> ERROR: ${error.response.data} ${error.response.status}`)
+    );
 
-  //descriptografar token
-  // fazer pegar informacoes do usuario
+  // descriptografar token
+  // pegar informacoes do usuario
+};
+
+export const registerUser = ({
+  email,
+  password,
+}: PropsRegisterUser): ThunkAction<void, RootStoreType, unknown, LoginAction> => (dispatch) => {
+  api
+    .post('/register', { email, password })
+    .then((response) => {
+      if (response.status !== 201) {
+        console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
+      } else {
+        console.warn(`registerUser =>> Status: ${response.status}`);
+        dispatch(
+          loginAction({
+            status: response.status,
+            token: response.data.accessToken,
+          })
+        );
+      }
+    })
+    .catch((error) =>
+      console.error(`registerUser =>> ERROR: ${error.response.data} ${error.response.status}`)
+    );
+
+  // descriptografar token
+  // pegar informacoes do usuario
 };
 
 const loginAction = ({ status, token }: PropsLoginAction): LoginAction => ({

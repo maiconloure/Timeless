@@ -1,5 +1,7 @@
 import { LOGIN } from './type.action';
 
+// INTERFACE TO LOGIN
+
 export interface LoginAction {
   type: typeof LOGIN;
   payload: {
@@ -14,6 +16,13 @@ export interface PropsLoginAction {
 }
 
 export interface PropsRequestLogin {
+  email: string;
+  password: string;
+}
+
+// INTERFACE TO REGISTERUSER
+
+export interface PropsRegisterUser {
   email: string;
   password: string;
 }
