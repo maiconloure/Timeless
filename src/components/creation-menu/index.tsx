@@ -11,7 +11,7 @@ import {
   WarningCardImg,
   ArrowImg,
   BlockCardImg,
-} from '../../assets';
+} from '../../assets/creation-menu-logos.js';
 
 const CreationMenu = () => {
   const groupButton = () => {

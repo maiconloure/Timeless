@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.svg';
-import { CreationMenu, Card } from '../../components';
+import { CreationMenu, Card, DefaultCard } from '../../components';
+import Imagem from './image.png';
 
 const Board = () => {
   return (
     <div>
-      <Card />
+      <img src={Imagem} width="260px" height="170px" />
+      <DefaultCard />
       {/* <BoardPage>
         <Background src={BackgroundImage} alt="background-image" />
         <TopContainer>
