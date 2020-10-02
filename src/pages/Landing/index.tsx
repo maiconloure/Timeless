@@ -9,7 +9,7 @@ import MainFrameBoard from '../../assets/mainframe.png';
 import returnIcon from '../../assets/return.png';
 import LibIcon from '../../assets/thumb.jpg';
 import { requestLogin, registerUser } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store';
+import { RootStoreType } from '../../redux/store/store';
 
 interface LandingPageProps {
   history: History<LocationState>;

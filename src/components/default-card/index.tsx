@@ -10,16 +10,40 @@ import {
   AlerterImg,
 } from '../../assets/card-logos.js';
 
-const DefaultCard = () => {
+interface PropsTag {
+  color: string;
+  text: string;
+}
+
+interface PropsCard {
+  card: {
+    title: string;
+    time: {
+      finish: string;
+      start: string;
+      done: string;
+    };
+    description: string;
+    tags: PropsTag[];
+  };
+}
+
+const DefaultCard = ({ card }: PropsCard) => {
   return (
     <Card>
       <CardInside>
         <CardHeader>
-          <AlertImg>
-            <img src={AlerterImg} />
-          </AlertImg>
+          <AlertImg>{/* <img src={AlerterImg} /> */}</AlertImg>
           <div>
-            <span contentEditable>#sprint1</span>
+            {card.tags.map((tag: PropsTag, key: number) => (
+              <span
+                key={key}
+                contentEditable
+                suppressContentEditableWarning
+                style={{ color: tag.color }}>
+                {tag.text}
+              </span>
+            ))}
           </div>
           <div>
             <InfoIcons>
@@ -28,20 +52,18 @@ const DefaultCard = () => {
             </InfoIcons>
           </div>
           <div>
-            <span>00:00</span>
+            <span>{card.time.start}</span>
           </div>
         </CardHeader>
         <Description>
           <div>
             <div>
-              <h4 contentEditable>Timeless, Board Principal</h4>
+              <DescriptionTitle contentEditable suppressContentEditableWarning>
+                {card.title}
+              </DescriptionTitle>
             </div>
             <div>
-              <p>
-                Construção do prototipo do front-end do board principal, com figma.Construção do
-                prototipo do front-end do board principal, com figma.Construção do prototipo do
-                front-end do board principal, com figma.Construção do prototipo do front-end do
-              </p>
+              <p>{card.description}</p>
             </div>
           </div>
           <div>
@@ -53,7 +75,7 @@ const DefaultCard = () => {
             <img src={User01Img} />
           </CardUsers>
           <CardData>
-            <span>00/00</span>
+            <span>{card.time.finish}</span>
           </CardData>
         </CardFooter>
       </CardInside>
@@ -73,7 +95,7 @@ const Card = styled.div`
   border-radius: 5px;
   position: relative;
 
-  border: 1px solid black;
+  border: 1px solid gray;
   margin-top: 30px;
 
   [contenteditable='true'] {
@@ -105,7 +127,13 @@ const CardHeader = styled.div`
     font-size: 1.8rem;
     font-weight: bold;
     font-style: italic;
-    max-width: 25ch;
+    width: 100px;
+    height: 1.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -113,6 +141,7 @@ const AlertImg = styled.span`
   position: absolute;
   top: -30px;
   left: 0px;
+  z-index: 1000000000;
   img {
     width: 45px;
     height: 45px;
@@ -141,13 +170,22 @@ const Description = styled.section`
     font-size: 1.2rem;
     font-weight: 300;
     overflow: hidden;
-    /* text-overflow: ellipsis; */
   }
   div input[type='checkbox'] {
     transform: scale(2);
     margin: 10px;
     cursor: pointer;
   }
+`;
+
+const DescriptionTitle = styled.h4`
+  width: 200px;
+  height: 1.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const CardFooter = styled.div`
