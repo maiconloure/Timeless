@@ -78,6 +78,7 @@ const Card = styled.div`
 
   [contenteditable='true'] {
     cursor: pointer;
+    text-overflow: ellipsis;
   }
 
   [contenteditable='true']:focus {
@@ -104,6 +105,7 @@ const CardHeader = styled.div`
     font-size: 1.8rem;
     font-weight: bold;
     font-style: italic;
+    max-width: 25ch;
   }
 `;
 
