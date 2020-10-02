@@ -48,6 +48,7 @@ const Landing = ({ history }: LandingPageProps) => {
   useEffect(() => {
     if (status === 200 || status === 201) {
       history.push('/board');
+    } else {
     }
   });
 
@@ -175,7 +176,7 @@ const Landing = ({ history }: LandingPageProps) => {
           </RegisterMenu>
         )}
 
-        {windowSize.width > 768 && handleForm && (
+        {windowSize.width > 760 && handleForm && (
           <ModalBackground>
             <RegisterModal>
               <ReturnModal onClick={() => setHandleForm(false)}>
@@ -301,12 +302,27 @@ const Container = styled.div`
     'register'
     'login';
 
+  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     grid-gap: 4px;
     grid-template-rows: 8% 30% 15% 60%;
   }
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* IPAD */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    grid-gap: 0;
+    grid-template-columns: 35% 30% 35%;
+    grid-template-rows: 8% 8% 30% 8% auto;
+    grid-template-areas:
+      'top top top'
+      'login login login'
+      '. logo .'
+      'register register register'
+      'mainframe mainframe mainframe';
+  }
+
+  /* NOTEBOOK/PC/WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1000px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
     grid-template-rows: 8% 30% 8% auto;
@@ -338,7 +354,7 @@ const LeftMenu = styled.div`
 
     img {
       display: block;
-      width: 60px;
+      width: 50px;
       border-radius: 8px;
       box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.4);
       margin-right: 14px;
@@ -372,7 +388,7 @@ const LinksContainer = styled.div`
 
     p {
       width: auto;
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin: 0 14px;
     }
   }
@@ -418,13 +434,13 @@ const LoginMenu = styled.div`
       padding: 10px;
 
       input {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         padding: 10px;
-        height: 36px;
-        width: 220px;
+        height: 32px;
+        width: 200px;
       }
       svg {
-        width: 1.8rem;
+        width: 1.5rem;
       }
     }
     button {
@@ -478,8 +494,8 @@ const Logo = styled.div`
 
   @media (min-width: 768px) and (min-height: 550px) {
     h1 {
-      font-size: 8rem;
-      line-height: 8rem;
+      font-size: 7rem;
+      line-height: 7rem;
       margin-bottom: 2.6rem;
     }
   }
@@ -495,13 +511,16 @@ const LogoBox = styled.div`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 
   @media (min-width: 550px) and (max-height: 550px) {
+    width: 143px;
+  }
+  @media (min-width: 670px) {
     width: 148px;
   }
 
   @media (min-width: 768px) and (min-height: 550px) {
     left: -2px;
-    width: 200px;
-    height: 80px;
+    width: 174px;
+    height: 70px;
   }
 `;
 
@@ -513,6 +532,7 @@ const Slogan = styled.div`
     color: var(--color-secondary-6);
   }
 
+  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     display: flex;
     gap: 5px;
@@ -522,9 +542,18 @@ const Slogan = styled.div`
     }
   }
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* IPAD */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    width: 500px;
     p {
-      font-size: 2.2vw;
+      font-size: 3.4rem;
+    }
+  }
+
+  /* NOTEBOOK/PC/WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1100px) {
+    p {
+      font-size: 1.7vw;
     }
 
     display: flex;
@@ -565,11 +594,27 @@ const RegisterArea = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* IPAD */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    width: 68vw;
     position: relative;
     flex-direction: row;
     align-items: flex-end;
-    justify-content: center;
+    margin-bottom: 8px;
+
+    button {
+      font-size: 1.5rem;
+      width: 120px;
+      height: 36px;
+      font-weight: 600;
+    }
+  }
+
+  /* NOTEBOOK/PC/WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1100px) {
+    position: relative;
+    flex-direction: row;
+    align-items: flex-end;
     margin-bottom: 8px;
 
     button {
@@ -592,7 +637,6 @@ const TopFrame = styled.div`
 `;
 
 const FeatOne = styled.div`
-  /* position: absolute; */
   width: 250px;
   left: 25%;
   display: none;
@@ -607,10 +651,25 @@ const FeatOne = styled.div`
     background-color: var(--color-secondary-8);
   }
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* IPAD */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    display: block;
+    font-size: 1.2rem;
+    width: 170px;
+    div {
+      width: 57px;
+      height: 6px;
+      border-radius: 2px;
+      background-color: var(--color-secondary-8);
+    }
+  }
+
+  /* NOTEBOOK/PC */
+  @media (min-height: 768px) and (min-width: 1100px) {
     display: block;
   }
 
+  /* WIDESCREEN */
   @media (min-width: 2000px) and (min-height: 768px) {
     left: 32vw;
   }
@@ -622,8 +681,6 @@ const FeatTwo = styled.div`
   color: #fff;
   font-weight: 500;
   font-size: 1.8rem;
-  /* position: absolute; */
-  /* top: 0; */
   right: 27%;
 
   div {
@@ -633,10 +690,27 @@ const FeatTwo = styled.div`
     background-color: var(--color-secondary-8);
   }
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* IPAD */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    display: block;
+    font-size: 1.2rem;
+    width: 170px;
+
+    div {
+      width: 94px;
+      height: 6px;
+      border-radius: 2px;
+      background-color: var(--color-secondary-8);
+    }
+  }
+
+  /* NOTEBOOK/PC */
+  @media (min-height: 768px) and (min-width: 1100px) {
     display: block;
   }
-  @media (min-width: 2000px) and (min-height: 768px) {
+
+  /* WIDESCREEN */
+  @media (min-width: 1700px) and (min-height: 768px) {
     right: 33%;
   }
 `;
@@ -650,7 +724,7 @@ const RegisterMenu = styled.div`
 
   div {
     &:nth-child(2) {
-      margin-right: 17px;
+      /* margin-right: 17px; */
     }
     padding: 10px;
 
@@ -659,6 +733,7 @@ const RegisterMenu = styled.div`
     }
   }
 
+  /* MOBILE HORIZONTAL */
   @media (min-width: 550px) and (max-height: 550px) {
     justify-content: flex-start;
     div {
@@ -676,6 +751,7 @@ const RegisterMenu = styled.div`
     }
   }
 
+  /* NOTEBOOK/PC */
   @media (min-width: 768px) and (min-height: 550px) {
     flex-direction: row;
     justify-content: flex-end;
@@ -707,42 +783,80 @@ const RegisterMenu = styled.div`
 const MainFrame = styled.div`
   display: none;
   z-index: 999;
+  justify-content: center;
+  grid-area: mainframe;
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* NOTEBOOK/PC */
+  @media (min-width: 768px) and (max-width: 1100px) {
     display: inline-grid;
-    justify-content: center;
-    grid-area: mainframe;
+    img {
+      width: 700px;
+    }
+  }
+
+  /* WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1100px) {
+    display: inline-grid;
   }
 `;
 
 const ExamplesFrame = styled.div`
   display: none;
   z-index: 999;
+  justify-content: center;
+  grid-area: mainframe;
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* NOTEBOOK/PC */
+  @media (min-width: 768px) and (max-width: 1100px) {
     display: inline-grid;
-    justify-content: center;
-    grid-area: mainframe;
+    img {
+      width: 700px;
+    }
+  }
+
+  /* WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1100px) {
+    display: inline-grid;
   }
 `;
+
 const TeamFrame = styled.div`
   display: none;
   z-index: 999;
+  justify-content: center;
+  grid-area: mainframe;
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* NOTEBOOK/PC */
+  @media (min-width: 768px) and (max-width: 1100px) {
     display: inline-grid;
-    justify-content: center;
-    grid-area: mainframe;
+    img {
+      width: 700px;
+    }
+  }
+
+  /* WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1100px) {
+    display: inline-grid;
   }
 `;
+
 const AboutFrame = styled.div`
   display: none;
   z-index: 999;
+  justify-content: center;
+  grid-area: mainframe;
 
-  @media (min-width: 768px) and (min-height: 550px) {
+  /* NOTEBOOK/PC */
+  @media (min-width: 768px) and (max-width: 1100px) {
     display: inline-grid;
-    justify-content: center;
-    grid-area: mainframe;
+    img {
+      width: 700px;
+    }
+  }
+
+  /* WIDESCREEN */
+  @media (min-height: 768px) and (min-width: 1100px) {
+    display: inline-grid;
   }
 `;
 
@@ -752,11 +866,13 @@ const Wave = styled.div`
   left: -1700px;
   z-index: 10;
 
+  /* MOBILE HORIZONTAL */
   @media (min-width: 550px) and (max-height: 550px) {
     top: 4vh;
     left: -1550px;
   }
 
+  /* NOTEBOOK/PC */
   @media (min-width: 768px) and (min-height: 550px) {
     width: 100%;
     top: 12%;
@@ -776,11 +892,26 @@ const BottomBar = styled.div`
   grid-area: login;
   width: 100%;
   height: 70%;
+  background-color: var(--color-primary-0);
 
-  @media (max-width: 1660px) {
+  @media (min-width: 550px) and (max-height: 550px) {
+    height: 40%;
+  }
+
+  /* IPAD VERTICAL*/
+  @media (min-width: 768px) and (max-width: 1100px) {
+    height: 80%;
+  }
+
+  /* NOTEBOOK/PC */
+  @media (min-height: 768px) and (min-width: 1100px) {
     height: 72%;
   }
-  background-color: var(--color-primary-0);
+
+  /* WIDESCREEN */
+  @media (min-width: 1660px) {
+    height: 70%;
+  }
 `;
 
 const ModalBackground = styled.div`
@@ -843,8 +974,8 @@ const Form = styled.div`
     }
     input {
       font-size: 1.8rem;
-      padding: 10px;
-      height: 50px;
+      padding: 0px 10px;
+      height: 45px;
       width: 300px;
     }
     svg {
