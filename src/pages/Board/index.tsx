@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { motion } from 'framer-motion';
 import BackgroundImage from '../../assets/background.svg';
 import { CreationMenu } from '../../components';
+import BacklogCard from '../../components/backlog-card';
 
 const Board = () => {
   return (
@@ -18,6 +19,11 @@ const Board = () => {
             <NavBar />
           </SideMenu>
         </SideMenuContainer>
+
+        <CreationMenu />
+        <CardContainer drag dragMomentum={false}>
+          <BacklogCard />
+        </CardContainer>
       </BoardPage>
     </div>
   );
@@ -69,4 +75,9 @@ const NavBar = styled.div`
   width: 100%;
   height: 25px;
   background-color: var(--color-primary-4);
+`;
+
+const CardContainer = styled(motion.div)`
+  position: absolute;
+  z-index: 1;
 `;
