@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-
+import { motion } from 'framer-motion';
 import BackgroundImage from '../../assets/background.svg';
 import { CreationMenu, DefaultCard } from '../../components';
 import { getUserBoards } from '../../redux/actions/boards.action';
@@ -48,7 +48,12 @@ const Board = () => {
             <NavBar />
           </SideMenu>
         </SideMenuContainer>
-      </BoardPage> */}
+
+        <CreationMenu />
+        <CardContainer drag dragMomentum={false}>
+          <BacklogCard />
+        </CardContainer>
+      </BoardPage>
     </div>
   );
 };
@@ -61,7 +66,7 @@ const BoardPage = styled.div`
   width: 100vw;
   height: 100vh;
   /* overflow: hidden; */
-`;
+`
 
 const Background = styled.img`
   position: absolute;
@@ -99,4 +104,9 @@ const NavBar = styled.div`
   width: 100%;
   height: 25px;
   background-color: var(--color-primary-4);
+`;
+
+const CardContainer = styled(motion.div)`
+  position: absolute;
+  z-index: 1;
 `;
