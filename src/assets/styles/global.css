@@ -34,7 +34,8 @@ body,
 
 body {
   z-index: 0;
-  background-color: #cdd9e2;
+  background-color: #f0f2f5;
+  margin: 0;
 }
 
 #root {
