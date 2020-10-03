@@ -11,7 +11,7 @@ import {
   WarningCardImg,
   ArrowImg,
   BlockCardImg,
-} from '../../assets';
+} from '../../assets/creation-menu-logos.js';
 
 const CreationMenu = () => {
   const groupButton = () => {
@@ -88,19 +88,26 @@ export default CreationMenu;
 
 const Menu = styled.div`
   background-color: var(--color-background);
-  width: 300px;
+  width: 100%;
+  min-width: 320px;
+  max-width: 400px;
   color: #fff;
   padding-bottom: 1px;
+  border: 1px solid gray;
 `;
 
 const MenuSection = styled.div`
   background-color: #fff;
   margin: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 const SectionTitle = styled.div`
   background-color: var(--color-primary-4);
   padding: 2px 4px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 const MenuTitle = styled.div`
@@ -131,5 +138,6 @@ const MenuOptions = styled.div`
     width: 55px;
     height: 50px;
     padding: 4px;
+    cursor: pointer;
   }
 `;
