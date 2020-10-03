@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import BackgroundImage from '../../assets/background.svg';
-import { CreationMenu } from '../../components';
-import BacklogCard from '../../components/backlog-card';
+import { CreationMenu, DefaultCard } from '../../components';
+import { getUserBoards } from '../../redux/actions/boards.action';
+import { RootStoreType } from '../../redux/store/store';
 
 const Board = () => {
+  //USUARIO ENTRA NA PAGINA, PEGAR AS INFORMACOES DOS BOARDS DELE
+  const dispatch = useDispatch();
+  const [id, token, boards] = useSelector((state: RootStoreType) => [
+    state.service.user.id,
+    state.service.token,
+    state.boards.boards,
+  ]);
+
+  useEffect(() => {
+    dispatch(getUserBoards({ id, token }));
+  }, []);
+
+  useEffect(() => {
+    console.log('useEffect Board:', boards);
+  }, [boards]);
+
   return (
     <div>
-      <BoardPage>
+      <CreationMenu />
+      {boards.map((board: any) => (
+        <div key={board.id}>
+          <h2>{board.title}</h2>
+          <div>
+            {board.cards.map((card: any) => (
+              <DefaultCard card={card.card} key={card.id} />
+            ))}
+          </div>
+        </div>
+      ))}
+      {/* <BoardPage>
         <Background src={BackgroundImage} alt="background-image" />
         <TopContainer>
           <Bar />

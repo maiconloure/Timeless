@@ -1,4 +1,4 @@
-import { LOGIN } from './type.action';
+import { LOGIN, SET_BOARDS } from './type.action';
 
 // DECODE TOKEN TYPES
 
@@ -16,8 +16,8 @@ export interface LoginAction {
   payload: {
     user: {
       email: string;
-      id: number;
       name: string;
+      id: number;
     };
     status: number;
     token: string;
@@ -27,8 +27,8 @@ export interface LoginAction {
 export interface PropsLoginAction {
   user: {
     email: string;
-    id: number;
     name: string;
+    id: number;
   };
   status: number;
   token: string;
@@ -44,4 +44,53 @@ export interface PropsRequestLogin {
 export interface PropsRegisterUser {
   email: string;
   password: string;
+}
+
+// ---------------------------------------------------------
+
+// INTERFACE TO USERS BOARDS
+
+export interface PropsGetUserBoards {
+  id: number | string;
+  token: any;
+}
+
+interface TagsObject {
+  color: string;
+  text: string;
+}
+
+interface CardsObject {
+  card: {
+    title: string;
+    description: string;
+    tags: TagsObject[];
+    time: {
+      done: string;
+      start: string;
+      finish: string;
+    };
+    users: [];
+  };
+  fasterCard: {
+    title: string;
+    data: string;
+  };
+  id: number | string;
+}
+
+interface BoardsObject {
+  title: string;
+  id: number | string;
+  userId: number | string;
+  cards: CardsObject[];
+}
+
+export interface PropsSetUserBoards {
+  boards: BoardsObject[];
+}
+
+export interface SetUserBoardsAction {
+  type: typeof SET_BOARDS;
+  payload: any;
 }

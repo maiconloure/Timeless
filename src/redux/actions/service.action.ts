@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
-import { RootStoreType } from '../store';
+import { RootStoreType } from '../store/store';
 import {
   LoginAction,
   PropsLoginAction,
