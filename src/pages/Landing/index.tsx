@@ -4,14 +4,10 @@ import { History, LocationState } from 'history';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import BlankFrameBoard from '../../assets/blank-board.png';
-import MainFrameBoard from '../../assets/mainframe.png';
-import returnIcon from '../../assets/return-icon.png';
-import LibIcon from '../../assets/thumb.jpg';
-import WaveBackground from '../../assets/wave.svg';
 import PageTransition from '../../components/pageTransition';
 import { requestLogin, registerUser } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store/store';
+import { RootStoreType } from '../../redux/store';
+import { icons, images } from '../../utils/importAll';
 import * as St from './styled';
 
 interface LandingPageProps {
@@ -41,13 +37,13 @@ const Landing = ({ history }: LandingPageProps) => {
     console.log('OnFinishLogin');
     dispatch(requestLogin({ email, password }));
   };
+
   const OnFinishRegister = () => {
     console.log('OnFinishRegister');
     dispatch(registerUser({ email, password }));
   };
 
   useEffect(() => {
-    console.log(status)
     if (localStorage.service !== undefined) {
       history.push('/board');
     } else {
@@ -58,7 +54,7 @@ const Landing = ({ history }: LandingPageProps) => {
     <St.LandingPage>
       <St.Container>
         <St.LeftMenu>
-          <img onClick={() => setCurrentFrame('main')} src={LibIcon} alt="clock-icon" />
+          <img onClick={() => setCurrentFrame('main')} src={icons.logo} alt="logo" />
           <St.LinksContainer>
             <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
             <p onClick={() => setCurrentFrame('teams')}>Times</p>
@@ -122,7 +118,7 @@ const Landing = ({ history }: LandingPageProps) => {
               </Button>
             ) : (
               <St.Return onClick={() => setHandleForm(false)}>
-                <img src={returnIcon} alt="return-icon" />
+                <img src={icons.return} alt="return-icon" />
               </St.Return>
             )}
 
@@ -162,7 +158,7 @@ const Landing = ({ history }: LandingPageProps) => {
           <St.ModalBackground>
             <St.RegisterModal>
               <St.ReturnModal onClick={() => setHandleForm(false)}>
-                <img src={returnIcon} alt="return-icon" />
+                <img src={icons.return} alt="return-icon" />
               </St.ReturnModal>
               <St.Text>
                 <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
@@ -194,7 +190,7 @@ const Landing = ({ history }: LandingPageProps) => {
         {currentFrame === 'main' && (
           <St.MainFrame>
             <PageTransition>
-              <img src={MainFrameBoard} alt="main-frame-board" />
+              <img src={images.mainframe} alt="main-frame-board" />
             </PageTransition>
           </St.MainFrame>
         )}
@@ -202,7 +198,7 @@ const Landing = ({ history }: LandingPageProps) => {
         {currentFrame === 'examples' && (
           <St.ExamplesFrame>
             <PageTransition>
-              <img src={BlankFrameBoard} alt="main-frame-board" />
+              <img src={images.blankBoard} alt="main-frame-board" />
             </PageTransition>
           </St.ExamplesFrame>
         )}
@@ -210,7 +206,7 @@ const Landing = ({ history }: LandingPageProps) => {
         {currentFrame === 'teams' && (
           <St.TeamFrame>
             <PageTransition>
-              <img src={BlankFrameBoard} alt="main-frame-board" />
+              <img src={images.blankBoard} alt="main-frame-board" />
             </PageTransition>
           </St.TeamFrame>
         )}
@@ -218,14 +214,14 @@ const Landing = ({ history }: LandingPageProps) => {
         {currentFrame === 'about' && (
           <St.AboutFrame>
             <PageTransition>
-              <img src={BlankFrameBoard} alt="main-frame-board" />
+              <img src={images.blankBoard} alt="main-frame-board" />
             </PageTransition>
           </St.AboutFrame>
         )}
       </St.Container>
 
       <St.Wave>
-        <img src={WaveBackground} alt="wave background" />
+        <img src={images.wave} alt="wave background" />
       </St.Wave>
       <St.BottomBar />
     </St.LandingPage>

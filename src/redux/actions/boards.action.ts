@@ -2,7 +2,7 @@
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
-import { RootStoreType } from '../store/store';
+import { RootStoreType } from '../store';
 import {
   PropsGetUserBoards,
   PropsSetUserBoards,

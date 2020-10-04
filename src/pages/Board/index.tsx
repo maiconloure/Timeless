@@ -5,22 +5,19 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import BackgroundImage from '../../assets/background.svg';
-import CloseIcon from '../../assets/close.png';
-import KenzieLogo from '../../assets/kenzie.png';
-import UserIcon from '../../assets/user1-icon.png';
 import { CreationMenu, DefaultCard } from '../../components';
 import BacklogCard from '../../components/backlog-card';
 import { getUserBoards } from '../../redux/actions/boards.action';
 import { signOut } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store/store';
+import { RootStoreType } from '../../redux/store';
+import { icons, images } from '../../utils/importAll';
 
 interface BoardPageProps {
   history: History<LocationState>;
 }
 
 const Board = ({ history }: BoardPageProps) => {
-  //USUARIO ENTRA NA PAGINA, PEGAR AS INFORMACOES DOS BOARDS DELE
+  // USUARIO ENTRA NA PAGINA, PEGAR AS INFORMACOES DOS BOARDS DELE
   const dispatch = useDispatch();
   const [id, token, boards] = useSelector((state: RootStoreType) => [
     state.service.user.id,
@@ -45,13 +42,13 @@ const Board = ({ history }: BoardPageProps) => {
 
   return (
     <BoardPage>
-      <Background src={BackgroundImage} alt="background-image" />
+      <Background src={images.background} alt="background-image" />
 
       <TopContainer>
         <Bar>
           <ProjectInfo>
             <a href="https://kenzie.com.br/" target="_blank" rel="noopener noreferrer">
-              <img src={KenzieLogo} alt="Project icon" />
+              <img src={icons.kenzie} alt="Project icon" />
             </a>
             <h2> Kenzie Academy Brasil </h2>
             <h4> &nbsp; | &nbsp; </h4>
@@ -65,7 +62,7 @@ const Board = ({ history }: BoardPageProps) => {
             </User>
 
             <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
-              <img src={UserIcon} alt="User icon" />
+              <img src={icons.user1} alt="User icon" />
             </ProfileIcon>
 
             {toggleMenu && (
@@ -74,7 +71,7 @@ const Board = ({ history }: BoardPageProps) => {
                   <h2>Conta</h2>
                   <img
                     onClick={() => setToggleMenu(!toggleMenu)}
-                    src={CloseIcon}
+                    src={icons.closeIcon}
                     alt="close icon"
                   />
                 </MainUserMenu>
@@ -122,13 +119,14 @@ export default Board;
 const BoardPage = styled.div`
   width: 100vw;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 const Background = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
+  background-repeat: repeat;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
 `;
 
 const TopContainer = styled.div`
@@ -302,9 +300,12 @@ const ProfileIcon = styled.div`
 `;
 
 const InnerBoardContainer = styled.div`
-  width: 2000px;
-  height: 2000px;
-  overflow: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  overflow: auto;
 `;
 
 const SideMenuContainer = styled(motion.div)`

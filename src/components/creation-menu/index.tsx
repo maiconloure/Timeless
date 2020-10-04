@@ -1,17 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  GroupImg,
-  CardImg,
-  RemoveCardImg,
-  CreateTextImg,
-  FasterCardImg,
-  PinCardImg,
-  WarningCardImg,
-  ArrowImg,
-  BlockCardImg,
-} from '../../assets/creation-menu-logos.js';
+import { icons } from '../../utils/importAll';
 
 const CreationMenu = () => {
   const groupButton = () => {
@@ -62,11 +52,11 @@ const CreationMenu = () => {
           <h4>OBJETOS</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src={GroupImg} onClick={groupButton} alt="group" />
-          <img src={CardImg} onClick={createCardButton} alt="create card" />
-          <img src={FasterCardImg} onClick={createFasterCardButton} alt=" create fast card" />
-          <img src={WarningCardImg} onClick={createWarningCardButton} alt="create warning card" />
-          <img src={RemoveCardImg} onClick={removeCardButton} alt=" remove card" />
+          <img src={icons.group} onClick={groupButton} alt="group" />
+          <img src={icons.card} onClick={createCardButton} alt="create card" />
+          <img src={icons.fastCard} onClick={createFasterCardButton} alt=" create fast card" />
+          <img src={icons.warning} onClick={createWarningCardButton} alt="create warning card" />
+          <img src={icons.trash} onClick={removeCardButton} alt=" remove card" />
         </MenuOptions>
       </MenuSection>
       <MenuSection>
@@ -74,10 +64,10 @@ const CreationMenu = () => {
           <h4>FERRAMENTAS</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src={CreateTextImg} onClick={createTextButton} alt="create text box" />
-          <img src={ArrowImg} onClick={connectArrowButton} alt="connect cards" />
-          <img src={PinCardImg} onClick={pinCardButton} alt="pin/follow card" />
-          <img src={BlockCardImg} onClick={blockCardButton} alt=" block card" />
+          <img src={icons.addText} onClick={createTextButton} alt="create text box" />
+          <img src={icons.connect} onClick={connectArrowButton} alt="connect cards" />
+          <img src={icons.pin} onClick={pinCardButton} alt="pin/follow card" />
+          <img src={icons.blocked} onClick={blockCardButton} alt=" block card" />
         </MenuOptions>
       </MenuSection>
     </Menu>
