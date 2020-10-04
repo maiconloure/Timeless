@@ -30,7 +30,7 @@ export default function BacklogCard() {
       <ContentContainer>
         <Main>
           <WriteableContent>
-            <WriteableTop contentEditable="true">...</WriteableTop>
+            <WriteableTop contentEditable="true">DESCRIÇÃO</WriteableTop>
             <WriteableBox contentEditable="true">...</WriteableBox>
           </WriteableContent>
           <Labels>
@@ -39,13 +39,16 @@ export default function BacklogCard() {
             <HourglassLabel>
               <Icon src={hourglassIcon} alt="Ícone de Ampulheta" onClick={() => {}} />
               <span>
-                Tempo Execução <strong style={{ color: 'red' }}>2:00</strong>
+                Tempo Execução{' '}
+                <strong contentEditable="true" style={{ color: 'red' }}>
+                  00:00
+                </strong>
               </span>
             </HourglassLabel>
             <ClockLabel>
               <Icon src={clockIcon} alt="Ícone de Cronômetro" onClick={() => {}} />
               <span>
-                Data Entrega <strong style={{ color: '#ffbe00' }}>28/09/20</strong>
+                Data Entrega <strong style={{ color: '#ffbe00' }}>00/00/00</strong>
               </span>
             </ClockLabel>
             <LabelTitle>AÇÕES</LabelTitle>
@@ -170,6 +173,18 @@ const HourglassLabel = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+
+  span {
+    strong {
+      outline: none;
+      width: 50px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 `;
 
 const Icon = styled.img`

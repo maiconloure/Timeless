@@ -11,7 +11,7 @@ import {
   WarningCardImg,
   ArrowImg,
   BlockCardImg,
-} from '../../assets';
+} from '../../assets/creation-menu-logos.js';
 
 const CreationMenu = () => {
   const groupButton = () => {
@@ -62,11 +62,11 @@ const CreationMenu = () => {
           <h4>OBJETOS</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src={GroupImg} onClick={groupButton} />
-          <img src={CardImg} onClick={createCardButton} />
-          <img src={FasterCardImg} onClick={createFasterCardButton} />
-          <img src={WarningCardImg} onClick={createWarningCardButton} />
-          <img src={RemoveCardImg} onClick={removeCardButton} />
+          <img src={GroupImg} onClick={groupButton} alt="group" />
+          <img src={CardImg} onClick={createCardButton} alt="create card" />
+          <img src={FasterCardImg} onClick={createFasterCardButton} alt=" create fast card" />
+          <img src={WarningCardImg} onClick={createWarningCardButton} alt="create warning card" />
+          <img src={RemoveCardImg} onClick={removeCardButton} alt=" remove card" />
         </MenuOptions>
       </MenuSection>
       <MenuSection>
@@ -74,10 +74,10 @@ const CreationMenu = () => {
           <h4>FERRAMENTAS</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src={CreateTextImg} onClick={createTextButton} />
-          <img src={ArrowImg} onClick={connectArrowButton} />
-          <img src={PinCardImg} onClick={pinCardButton} />
-          <img src={BlockCardImg} onClick={blockCardButton} />
+          <img src={CreateTextImg} onClick={createTextButton} alt="create text box" />
+          <img src={ArrowImg} onClick={connectArrowButton} alt="connect cards" />
+          <img src={PinCardImg} onClick={pinCardButton} alt="pin/follow card" />
+          <img src={BlockCardImg} onClick={blockCardButton} alt=" block card" />
         </MenuOptions>
       </MenuSection>
     </Menu>
@@ -89,6 +89,8 @@ export default CreationMenu;
 const Menu = styled.div`
   background: #8ac0e9;
   width: 300px;
+  min-width: 320px;
+  max-width: 400px;
   color: #fff;
   padding-bottom: 1px;
 `;
@@ -96,6 +98,8 @@ const Menu = styled.div`
 const MenuSection = styled.div`
   background-color: #fff;
   margin: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 const SectionTitle = styled.div`
@@ -140,5 +144,6 @@ const MenuOptions = styled.div`
     cursor: pointer;
     width: 55px;
     padding: 4px;
+    cursor: pointer;
   }
 `;

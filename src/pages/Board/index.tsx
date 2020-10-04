@@ -1,27 +1,47 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.svg';
 import CloseIcon from '../../assets/close.png';
 import KenzieLogo from '../../assets/kenzie.png';
 import UserIcon from '../../assets/user1-icon.png';
-import { CreationMenu, Card } from '../../components';
+import { CreationMenu, DefaultCard } from '../../components';
 import BacklogCard from '../../components/backlog-card';
+import { getUserBoards } from '../../redux/actions/boards.action';
+import { signOut } from '../../redux/actions/service.action';
+import { RootStoreType } from '../../redux/store/store';
 
-interface LandingPageProps {
+interface BoardPageProps {
   history: History<LocationState>;
 }
 
-const Board = ({ history }: LandingPageProps) => {
+const Board = ({ history }: BoardPageProps) => {
+  //USUARIO ENTRA NA PAGINA, PEGAR AS INFORMACOES DOS BOARDS DELE
+  const dispatch = useDispatch();
+  const [id, token, boards] = useSelector((state: RootStoreType) => [
+    state.service.user.id,
+    state.service.token,
+    state.boards.boards,
+  ]);
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
     history.push('/');
+    dispatch(signOut());
   };
+
+  useEffect(() => {
+    dispatch(getUserBoards({ id, token }));
+  }, []);
+
+  useEffect(() => {
+    console.log('useEffect Board:', boards);
+  }, [boards]);
 
   return (
     <BoardPage>
@@ -30,10 +50,12 @@ const Board = ({ history }: LandingPageProps) => {
       <TopContainer>
         <Bar>
           <ProjectInfo>
-            <img src={KenzieLogo} alt="user-profile-pic" />
+            <a href="https://kenzie.com.br/" target="_blank" rel="noopener noreferrer">
+              <img src={KenzieLogo} alt="Project icon" />
+            </a>
             <h2> Kenzie Academy Brasil </h2>
-            <h4>&nbsp;|&nbsp;</h4>
-            <h3> Capstone Project</h3>
+            <h4> &nbsp; | &nbsp; </h4>
+            <h3> Capstone Project </h3>
           </ProjectInfo>
 
           <UserInfo>
@@ -43,7 +65,7 @@ const Board = ({ history }: LandingPageProps) => {
             </User>
 
             <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
-              <img src={UserIcon} alt="user-profile-pic" />
+              <img src={UserIcon} alt="User icon" />
             </ProfileIcon>
 
             {toggleMenu && (
@@ -76,7 +98,18 @@ const Board = ({ history }: LandingPageProps) => {
           <CreationMenu />
         </SideMenuContainer>
 
-        <CardContainer drag dragMomentum={false}>
+        <CardContainer>
+          {boards.map((board: any) => (
+            <div key={board.id}>
+              <h2>{board.title}</h2>
+              <div>
+                {board.cards.map((card: any) => (
+                  <DefaultCard card={card.data} key={card.id} />
+                ))}
+              </div>
+            </div>
+          ))}
+
           <BacklogCard />
         </CardContainer>
       </InnerBoardContainer>
@@ -138,6 +171,7 @@ const ProjectInfo = styled.div`
   @media (min-width: 1200px) and (min-height: 768px) {
     display: flex;
     align-items: center;
+
     h2 {
       display: block;
       font-size: 0.9vw;
@@ -159,7 +193,7 @@ const ProjectInfo = styled.div`
 
     img {
       margin: 0 10px;
-      width: 2.2vw;
+      width: 2vw;
     }
   }
 `;
@@ -268,8 +302,8 @@ const ProfileIcon = styled.div`
 `;
 
 const InnerBoardContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 2000px;
+  height: 2000px;
   overflow: scroll;
 `;
 

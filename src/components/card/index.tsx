@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   PlanCard,
   PlanContainer,
@@ -39,8 +38,9 @@ const Card = (props: any) => {
               <PlanInnerContainer innerFlexDirection="column" innerWidth={85} innerPadding={15}>
                 <PlanText fontSize={18}>{item.cards[0].card.title}</PlanText>
                 <PlanText fontSize={10} Ypos={-2.5} fontStyle="italic">
-                  Durmo mesmo quero mais é que se dane essa po*** , quero ver alguém falar pra eu
-                  não dormir!
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus aliquid
+                  veniam modi at iste illum qui in alias quibusdam dolorem maxime consectetur soluta
+                  beatae magni quasi praesentium, quo ab delectus.
                 </PlanText>
               </PlanInnerContainer>
               <PlanImage

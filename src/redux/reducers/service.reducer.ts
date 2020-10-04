@@ -1,19 +1,30 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ServiceAction } from '../actions/service.action';
-import { LOGIN } from '../actions/type.action';
+import { LOGIN, LOGOUT } from '../actions/type.action';
 
-const initialState = {
-  user: {},
-  status: 0,
-  token: '',
-};
+const initialState = JSON.parse(
+  localStorage.getItem('service') ||
+    `{
+      "user": {
+        "email": "",
+        "name": "",
+        "id": "0"
+      },
+      "status": "0",
+      "token": ""
+    }`
+);
 
 const service = (state = initialState, action: ServiceAction) => {
   switch (action.type) {
     case LOGIN:
-      console.log({ ...state, ...action.payload });
-
+      localStorage.setItem('service', JSON.stringify({ ...state, ...action.payload }));
       return { ...state, ...action.payload };
+
+    case LOGOUT:
+      localStorage.clear();
+      return initialState;
+
     default:
       return state;
   }

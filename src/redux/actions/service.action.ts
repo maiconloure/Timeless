@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import jwt_decode from 'jwt-decode';
+import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
-import { RootStoreType } from '../store';
+import { RootStoreType } from '../store/store';
 import {
   LoginAction,
+  LogoutAction,
+  ClearBoardAction,
   PropsLoginAction,
   PropsRequestLogin,
   PropsRegisterUser,
   DecodeTokenType,
 } from './interface.action';
-import { LOGIN } from './type.action';
+import { LOGIN, LOGOUT, CLEAR_BOARD } from './type.action';
 
 export const requestLogin = ({
   email,
@@ -96,4 +99,17 @@ const loginAction = ({ user, status, token }: PropsLoginAction): LoginAction => 
   payload: { user, status, token },
 });
 
-export type ServiceAction = LoginAction;
+export const signOut = () => (dispatch: Dispatch) => {
+  dispatch(clearBoard());
+  dispatch(logout());
+};
+
+const clearBoard = (): ClearBoardAction => ({
+  type: CLEAR_BOARD,
+});
+
+const logout = (): LogoutAction => ({
+  type: LOGOUT,
+});
+
+export type ServiceAction = LoginAction | LogoutAction;
