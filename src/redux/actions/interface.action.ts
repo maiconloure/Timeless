@@ -1,4 +1,4 @@
-import { LOGIN, SET_BOARDS } from './type.action';
+import { LOGIN, SET_BOARDS, LOGOUT, CLEAR_BOARD } from './type.action';
 
 // DECODE TOKEN TYPES
 
@@ -39,6 +39,16 @@ export interface PropsRequestLogin {
   password: string;
 }
 
+// INTERFACE DO LOGOUT
+
+export interface LogoutAction {
+  type: typeof LOGOUT;
+}
+
+export interface ClearBoardAction {
+  type: typeof CLEAR_BOARD;
+}
+
 // INTERFACE TO REGISTERUSER
 
 export interface PropsRegisterUser {
@@ -61,7 +71,7 @@ interface TagsObject {
 }
 
 interface CardsObject {
-  card: {
+  data: {
     title: string;
     description: string;
     tags: TagsObject[];

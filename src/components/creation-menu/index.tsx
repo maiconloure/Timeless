@@ -1,17 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  GroupImg,
-  CardImg,
-  RemoveCardImg,
-  CreateTextImg,
-  FasterCardImg,
-  PinCardImg,
-  WarningCardImg,
-  ArrowImg,
-  BlockCardImg,
-} from '../../assets/creation-menu-logos.js';
+import { icons } from '../../utils/importAll';
 
 const CreationMenu = () => {
   const groupButton = () => {
@@ -59,25 +49,25 @@ const CreationMenu = () => {
       </MenuTitle>
       <MenuSection>
         <SectionTitle>
-          <h4>Objetos</h4>
+          <h4>OBJETOS</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src={GroupImg} onClick={groupButton} />
-          <img src={CardImg} onClick={createCardButton} />
-          <img src={FasterCardImg} onClick={createFasterCardButton} />
-          <img src={WarningCardImg} onClick={createWarningCardButton} />
-          <img src={RemoveCardImg} onClick={removeCardButton} />
+          <img src={icons.group} onClick={groupButton} alt="group" />
+          <img src={icons.card} onClick={createCardButton} alt="create card" />
+          <img src={icons.fastCard} onClick={createFasterCardButton} alt=" create fast card" />
+          <img src={icons.warning} onClick={createWarningCardButton} alt="create warning card" />
+          <img src={icons.trash} onClick={removeCardButton} alt=" remove card" />
         </MenuOptions>
       </MenuSection>
       <MenuSection>
         <SectionTitle>
-          <h4>Ferramentas</h4>
+          <h4>FERRAMENTAS</h4>
         </SectionTitle>
         <MenuOptions>
-          <img src={CreateTextImg} onClick={createTextButton} />
-          <img src={ArrowImg} onClick={connectArrowButton} />
-          <img src={PinCardImg} onClick={pinCardButton} />
-          <img src={BlockCardImg} onClick={blockCardButton} />
+          <img src={icons.addText} onClick={createTextButton} alt="create text box" />
+          <img src={icons.connect} onClick={connectArrowButton} alt="connect cards" />
+          <img src={icons.pin} onClick={pinCardButton} alt="pin/follow card" />
+          <img src={icons.blocked} onClick={blockCardButton} alt=" block card" />
         </MenuOptions>
       </MenuSection>
     </Menu>
@@ -87,13 +77,12 @@ const CreationMenu = () => {
 export default CreationMenu;
 
 const Menu = styled.div`
-  background-color: var(--color-background);
-  width: 100%;
+  background: #8ac0e9;
+  width: 300px;
   min-width: 320px;
   max-width: 400px;
   color: #fff;
   padding-bottom: 1px;
-  border: 1px solid gray;
 `;
 
 const MenuSection = styled.div`
@@ -104,10 +93,14 @@ const MenuSection = styled.div`
 `;
 
 const SectionTitle = styled.div`
+  font-family: Fira Code;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.6rem;
   background-color: var(--color-primary-4);
   padding: 2px 4px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 2px 2px 0px 0px;
 `;
 
 const MenuTitle = styled.div`
@@ -123,20 +116,23 @@ const MenuTitle = styled.div`
   }
 
   span:nth-child(1) {
+    cursor: pointer;
     background-color: #f59439;
   }
   span:nth-child(2) {
+    cursor: pointer;
     background-color: #0c395c;
   }
   span:nth-child(3) {
+    cursor: pointer;
     background-color: #da0000;
   }
 `;
 
 const MenuOptions = styled.div`
   img {
+    cursor: pointer;
     width: 55px;
-    height: 50px;
     padding: 4px;
     cursor: pointer;
   }

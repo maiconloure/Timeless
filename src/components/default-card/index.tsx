@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  User01Img,
-  EyeImg,
-  DescriptionImg,
-  User02Img,
-  User03Img,
-  AlerterImg,
-} from '../../assets/card-logos.js';
+import { icons } from '../../utils/importAll';
 
 interface PropsTag {
   color: string;
@@ -32,8 +25,10 @@ const DefaultCard = ({ card }: PropsCard) => {
   return (
     <Card>
       <CardInside>
+        <AlertImg>
+          <img src={icons.warning} />
+        </AlertImg>
         <CardHeader>
-          <AlertImg>{/* <img src={AlerterImg} /> */}</AlertImg>
           <div>
             {card.tags.map((tag: PropsTag, key: number) => (
               <span
@@ -47,8 +42,8 @@ const DefaultCard = ({ card }: PropsCard) => {
           </div>
           <div>
             <InfoIcons>
-              <img src={DescriptionImg} />
-              <img src={EyeImg} />
+              <img src={icons.description} alt="Have description" />
+              <img src={icons.eye} alt="Someone follow" />
             </InfoIcons>
           </div>
           <div>
@@ -72,7 +67,7 @@ const DefaultCard = ({ card }: PropsCard) => {
         </Description>
         <CardFooter>
           <CardUsers>
-            <img src={User01Img} />
+            <img src={icons.user1} alt="user icon" />
           </CardUsers>
           <CardData>
             <span>{card.time.finish}</span>
@@ -94,8 +89,6 @@ const Card = styled.div`
   max-width: 350px;
   border-radius: 5px;
   position: relative;
-
-  border: 1px solid gray;
   margin-top: 30px;
 
   [contenteditable='true'] {
@@ -141,10 +134,10 @@ const AlertImg = styled.span`
   position: absolute;
   top: -30px;
   left: 0px;
-  z-index: 1000000000;
+  z-index: 99999;
   img {
     width: 45px;
-    height: 45px;
+    /* height: 45px; */
     cursor: pointer;
   }
 `;

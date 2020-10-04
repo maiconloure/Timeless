@@ -34,7 +34,7 @@ body,
 
 body {
   z-index: 0;
-  background-color: #cdd9e2;
+  background-color: #f0f2f5;
   margin: 0;
 }
 
@@ -60,4 +60,34 @@ textarea {
   :root {
     font-size: 62.5%;
   }
+}
+
+/* -------------- SCROLL CSS ---------*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -1,13 +1,19 @@
-import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import Landing from "../pages/Landing";
-import Board from "../pages/Board";
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import PageTransition from '../components/pageTransition';
+import Board from '../pages/Board';
+import Landing from '../pages/Landing';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Landing} />
-      <Route path="/board" component={Board} />
+      <PageTransition>
+        <Route path="/" exact component={Landing} />
+      </PageTransition>
+      <PageTransition>
+        <Route path="/board" component={Board} />
+      </PageTransition>
     </BrowserRouter>
   );
 };
