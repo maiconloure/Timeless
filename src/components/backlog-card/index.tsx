@@ -1,14 +1,8 @@
+import { CardLeandro } from 'capstone-project';
 import React, { useState } from 'react';
-import { Button, CardLeandro, Title } from 'capstone-project';
-import elaine from '../../images/elaine-avatar.jpg';
-import jerry from '../../images/jerry-avatar.jpg';
 import styled from 'styled-components';
-import hourglassIcon from '../../assets/icons/icons8-ampulheta-96.png';
-import clockIcon from '../../assets/icons/icons8-cronômetro-100.png';
-import doorIcon from '../../assets/icons/icons8-sair-100.png';
-import copyIcon from '../../assets/icons/icons8-copiar-96.png';
-import deleteIcon from '../../assets/icons/icons8-excluir-propriedade-96.png';
-import listIcon from '../../assets/icons/icons8-lista-de-verificação-100.png';
+
+import { icons } from '../../utils/importAll';
 
 export default function BacklogCard() {
   const [showCard, setShowCard] = useState(true);
@@ -18,8 +12,8 @@ export default function BacklogCard() {
       title="Product Backlog"
       boxWidth="700px"
       avatars={[
-        { image: elaine, user: 'Elaine Benes' },
-        { image: jerry, user: 'Jerry Seinfeld' },
+        { image: icons.user1, user: 'Elaine Benes' },
+        { image: icons.user2, user: 'Jerry Seinfeld' },
       ]}
       fontColor="#014D82"
       closeable
@@ -29,35 +23,38 @@ export default function BacklogCard() {
       <ContentContainer>
         <Main>
           <WriteableContent>
-            <WriteableTop contentEditable="true"></WriteableTop>
+            <WriteableTop contentEditable="true">DESCRIÇÃO</WriteableTop>
             <WriteableBox contentEditable="true">...</WriteableBox>
           </WriteableContent>
           <Labels>
             <LabelTitle>ETIQUETAS</LabelTitle>
             <IdLabel>#Sprint1</IdLabel>
             <HourglassLabel>
-              <Icon src={hourglassIcon} alt="Ícone de Ampulheta" onClick={() => {}} />
+              <Icon src={icons.hourglass} alt="Ícone de Ampulheta" onClick={() => {}} />
               <span>
-                Tempo Execução <strong style={{ color: 'red' }}>2:00</strong>
+                Tempo Execução{' '}
+                <strong contentEditable="true" style={{ color: 'red' }}>
+                  00:00
+                </strong>
               </span>
             </HourglassLabel>
             <ClockLabel>
-              <Icon src={clockIcon} alt="Ícone de Cronômetro" onClick={() => {}} />
+              <Icon src={icons.clock} alt="Ícone de Cronômetro" onClick={() => {}} />
               <span>
-                Data Entrega <strong style={{ color: '#ffbe00' }}>28/09/20</strong>
+                Data Entrega <strong style={{ color: '#ffbe00' }}>00/00/00</strong>
               </span>
             </ClockLabel>
             <LabelTitle>AÇÕES</LabelTitle>
             <ActionLabels>
-              <IconSmall src={doorIcon} alt="Ícone de Porta" onClick={() => {}} />
+              <IconSmall src={icons.signOut} alt="Ícone de Porta" onClick={() => {}} />
               <span>Mover</span>
             </ActionLabels>
             <ActionLabels>
-              <IconSmall src={copyIcon} alt="Ícone de Copiar" onClick={() => {}} />
+              <IconSmall src={icons.copy} alt="Ícone de Copiar" onClick={() => {}} />
               <span>Copiar</span>
             </ActionLabels>
             <ActionLabels>
-              <IconSmall src={deleteIcon} alt="Ícone de Excluir" onClick={() => {}} />
+              <IconSmall src={icons.deleteCard} alt="Ícone de Excluir" onClick={() => {}} />
               <span>Excluir</span>
             </ActionLabels>
             <FeedbackButton>feedback</FeedbackButton>
@@ -66,10 +63,10 @@ export default function BacklogCard() {
         <ChecklistContainer>
           <Checklist>
             <ChecklistTitle>
-              <IconSmall src={listIcon} alt="Ícone de Lista" />
+              <IconSmall src={icons.checkboxList} alt="Ícone de Lista" />
               <span>Checklist</span>
             </ChecklistTitle>
-            <ChecklistBox></ChecklistBox>
+            <ChecklistBox>Teste</ChecklistBox>
           </Checklist>
         </ChecklistContainer>
       </ContentContainer>
@@ -169,6 +166,18 @@ const HourglassLabel = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+
+  span {
+    strong {
+      outline: none;
+      width: 50px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 `;
 
 const Icon = styled.img`

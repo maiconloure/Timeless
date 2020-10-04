@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
-import { RootStoreType } from '../store/store';
-import { PropsGetUserBoards, PropsSetUserBoards, SetUserBoardsAction } from './interface.action';
+import { RootStoreType } from '../store';
+import {
+  PropsGetUserBoards,
+  PropsSetUserBoards,
+  SetUserBoardsAction,
+  ClearBoardAction,
+} from './interface.action';
 import { SET_BOARDS } from './type.action';
 
 export const getUserBoards = ({
@@ -38,4 +44,4 @@ const setUserBoards = (boards: PropsSetUserBoards): SetUserBoardsAction => ({
   payload: boards,
 });
 
-export type BoardsAction = SetUserBoardsAction;
+export type BoardsAction = SetUserBoardsAction | ClearBoardAction;
