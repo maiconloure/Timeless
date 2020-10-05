@@ -1,19 +1,43 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { BoardsAction } from '../actions/boards.action';
-import { SET_BOARDS, CLEAR_BOARD } from '../actions/type.action';
+import { BoardState } from '../actions/interface.action';
+import * as TYPE from '../actions/type.action';
 
-const initialState = {
+const initialState: BoardState = {
   boards: [],
+  chosenBoard: JSON.parse(
+    localStorage.getItem('chosenBoard') ||
+      `{
+    "title": "",
+    "description": "",
+    "user": [],
+    "userId": "",
+    "id": ""
+  }`
+  ),
+  cards: [],
 };
 
-const boards = (state = initialState, action: BoardsAction) => {
+const boards = (state = initialState, action: BoardsAction): BoardState => {
   switch (action.type) {
-    case SET_BOARDS:
+    case TYPE.SET_BOARDS:
       return { ...state, boards: action.payload };
 
-    case CLEAR_BOARD:
+    case TYPE.UPDATE_BOARD:
+      return {
+        ...state,
+        boards: [...state.boards.filter((board) => board.id !== action.payload.id), action.payload],
+      };
+
+    case TYPE.CLEAR_BOARD:
       return initialState;
 
+    case TYPE.SET_CHOSEN_BOARD:
+      localStorage.setItem('chosenBoard', JSON.stringify(action.payload));
+      return { ...state, chosenBoard: action.payload };
+
+    case TYPE.SET_CURRENT_CARDS:
+      return { ...state, cards: action.payload };
     default:
       return state;
   }
