@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { icons } from '../../utils/importAll';
 
 export default function BacklogCard() {
+  const [showCardContent, setShowCardContent] = useState(true);
   const [showCard, setShowCard] = useState(true);
 
   return (
@@ -17,7 +18,8 @@ export default function BacklogCard() {
       ]}
       fontColor="#014D82"
       closeable
-      data={[showCard, () => setShowCard(!showCard)]}
+      minimizeDataPass={[showCardContent, () => setShowCardContent(!showCardContent)]}
+      closeDataPass={[showCard, () => setShowCard(false)]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
       <ContentContainer>
