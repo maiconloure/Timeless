@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { CreationMenu, DefaultCard } from '../../components';
+import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
 import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
@@ -161,7 +161,7 @@ const Board = ({ history }: BoardPageProps) => {
                 /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
                 if (e && e.target && e.target.offsetParent) {
                   const position = e.target.offsetParent.getBoundingClientRect();
-                  // console.log(position);
+                  console.log(position);
 
                   card.position = {
                     x: position.x,
@@ -173,6 +173,9 @@ const Board = ({ history }: BoardPageProps) => {
               <DefaultCard data={card.data} />
             </CardContainer>
           ))}
+        <CardContainer>
+          <BacklogCard />
+        </CardContainer>
       </InnerBoardContainer>
     </BoardPage>
   );
