@@ -1,4 +1,4 @@
-![Logo Image](./src/assets/image.png?raw=true "Logo")
+![Logo Image](./src/assets/image.png?raw=true 'Logo')
 
 # <strong>Timeless</strong>
 

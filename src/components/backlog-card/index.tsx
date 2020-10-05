@@ -23,8 +23,12 @@ export default function BacklogCard() {
       <ContentContainer>
         <Main>
           <WriteableContent>
-            <WriteableTop contentEditable="true">DESCRIÇÃO</WriteableTop>
-            <WriteableBox contentEditable="true">...</WriteableBox>
+            <WriteableTop contentEditable="true" suppressContentEditableWarning>
+              DESCRIÇÃO
+            </WriteableTop>
+            <WriteableBox contentEditable="true" suppressContentEditableWarning>
+              ...
+            </WriteableBox>
           </WriteableContent>
           <Labels>
             <LabelTitle>ETIQUETAS</LabelTitle>
@@ -33,7 +37,10 @@ export default function BacklogCard() {
               <Icon src={icons.hourglass} alt="Ícone de Ampulheta" onClick={() => {}} />
               <span>
                 Tempo Execução{' '}
-                <strong contentEditable="true" style={{ color: 'red' }}>
+                <strong
+                  contentEditable="true"
+                  suppressContentEditableWarning
+                  style={{ color: 'red' }}>
                   00:00
                 </strong>
               </span>

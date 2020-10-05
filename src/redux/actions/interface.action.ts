@@ -1,8 +1,8 @@
-import { LOGIN, SET_BOARDS, LOGOUT, CLEAR_BOARD } from './type.action';
+import * as TYPE from './type.action';
 
 // DECODE TOKEN TYPES
 
-export interface DecodeTokenType {
+export interface DecodeToken {
   email: string;
   exp: number;
   iat: number;
@@ -12,7 +12,7 @@ export interface DecodeTokenType {
 // INTERFACE TO LOGIN
 
 export interface LoginAction {
-  type: typeof LOGIN;
+  type: typeof TYPE.LOGIN;
   payload: {
     user: {
       email: string;
@@ -24,7 +24,7 @@ export interface LoginAction {
   };
 }
 
-export interface PropsLoginAction {
+export interface PropsLogin {
   user: {
     email: string;
     name: string;
@@ -34,73 +34,140 @@ export interface PropsLoginAction {
   token: string;
 }
 
+// INTERFACE LOGIN PROPS
+
 export interface PropsRequestLogin {
   email: string;
   password: string;
 }
 
-// INTERFACE DO LOGOUT
-
-export interface LogoutAction {
-  type: typeof LOGOUT;
-}
-
-export interface ClearBoardAction {
-  type: typeof CLEAR_BOARD;
-}
-
-// INTERFACE TO REGISTERUSER
+// INTERFACE TO REGISTER USER PROPS
 
 export interface PropsRegisterUser {
   email: string;
   password: string;
 }
 
-// ---------------------------------------------------------
+export interface PropsResponseRegister {
+  data: {
+    accessToken: string;
+  };
+  status: number;
+}
+
+// INTERFACE LOGOUT
+
+export interface LogoutAction {
+  type: typeof TYPE.LOGOUT;
+}
+
+// INTERFACE CLEAR_BOARD
+
+export interface ClearBoardAction {
+  type: typeof TYPE.CLEAR_BOARD;
+}
 
 // INTERFACE TO USERS BOARDS
 
 export interface PropsGetUserBoards {
+  user: {
+    email: string;
+    name: string;
+    id: number;
+  };
+  token: string;
+}
+
+export interface UserBoards {
+  title: string;
+  description: string;
+  user: { name: string; id: number | string }[];
+  userId: number | string;
   id: number | string;
-  token: any;
 }
 
-interface TagsObject {
-  color: string;
-  text: string;
-}
-
-interface CardsObject {
+export interface CardInterface {
+  position: {
+    x: number | string;
+    y: number | string;
+  };
   data: {
     title: string;
-    description: string;
-    tags: TagsObject[];
     time: {
-      done: string;
-      start: string;
-      finish: string;
+      finish: {
+        date: string;
+        hour: number | string;
+      };
+      start: {
+        date: string;
+        hour: number | string;
+      };
+      done: {
+        date: string;
+        hour: number | string;
+      };
     };
-    users: [];
+    description: string;
+    tags: {
+      color: string;
+      text: string;
+    }[];
   };
-  fasterCard: {
-    title: string;
-    data: string;
-  };
-  id: number | string;
-}
-
-interface BoardsObject {
-  title: string;
-  id: number | string;
+  boardId: number | string;
   userId: number | string;
-  cards: CardsObject[];
+  id: number | string;
 }
 
-export interface PropsSetUserBoards {
-  boards: BoardsObject[];
+export interface CardDataInterface {
+  data: {
+    title: string;
+    time: {
+      finish: {
+        date: string;
+        hour: number | string;
+      };
+      start: {
+        date: string;
+        hour: number | string;
+      };
+      done: {
+        date: string;
+        hour: number | string;
+      };
+    };
+    description: string;
+    tags: {
+      color: string;
+      text: string;
+    }[];
+  };
 }
 
 export interface SetUserBoardsAction {
-  type: typeof SET_BOARDS;
-  payload: any;
+  type: typeof TYPE.SET_BOARDS;
+  payload: UserBoards[];
+}
+
+// INTERFACE UPDATE BOARD
+
+export interface UpdateBoardAction {
+  type: typeof TYPE.UPDATE_BOARD;
+  payload: UserBoards;
+}
+export interface ChosenBoardAction {
+  type: typeof TYPE.SET_CHOSEN_BOARD;
+  payload: UserBoards;
+}
+
+export interface CurrentCardsAction {
+  type: typeof TYPE.SET_CURRENT_CARDS;
+  payload: CardInterface[];
+}
+
+// REDUX INTERFACES
+
+export interface BoardState {
+  boards: UserBoards[];
+  chosenBoard: UserBoards;
+  cards: CardInterface[];
 }
