@@ -173,7 +173,7 @@ const Board = ({ history }: BoardPageProps) => {
               <DefaultCard data={card.data} />
             </CardContainer>
           ))}
-        <CardContainer>
+        <CardContainer drag dragMomentum={false}>
           <BacklogCard />
         </CardContainer>
       </InnerBoardContainer>

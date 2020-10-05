@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renderer false 1`] = `
+<div
+  className="sc-dIsAE bRTquH"
+  style={
+    Object {
+      "background": "rgba(58, 166, 242, 0.5)",
+      "border": "none",
+      "marginLeft": "0",
+      "marginTop": "0",
+      "padding": "1vh 2vw 1vh 2vw",
+      "width": "700px",
+    }
+  }
+>
+  <div
+    className="sc-fFSRdu iXClUG"
+  >
+    <button
+      className="sc-crzoUp iPTyCq"
+      onClick={[Function]}
+    >
+      _
+    </button>
+  </div>
+  <div
+    className="sc-bqGHjH efLMGY"
+    style={
+      Object {
+        "marginBottom": "0",
+      }
+    }
+  >
+    <h1
+      className="sc-ksluoS hNkUcY"
+      style={
+        Object {
+          "borderBottom": "2px solid #014D82",
+          "color": "#014D82",
+          "fontSize": "1.8rem",
+          "paddingBottom": "4px",
+        }
+      }
+    >
+      Product Backlog
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`Snapshot renderer true 1`] = `
+<div
+  className="sc-dIsAE bRTquH"
+  style={
+    Object {
+      "background": "rgba(58, 166, 242, 0.5)",
+      "border": "none",
+      "marginLeft": "0",
+      "marginTop": "0",
+      "padding": "1vh 2vw 1vh 2vw",
+      "width": "700px",
+    }
+  }
+>
+  <div
+    className="sc-fFSRdu iXClUG"
+  >
+    <button
+      className="sc-crzoUp iPTyCq"
+      onClick={[Function]}
+    >
+      _
+    </button>
+  </div>
+  <div
+    className="sc-bqGHjH efLMGY"
+    style={
+      Object {
+        "marginBottom": "0",
+      }
+    }
+  >
+    <h1
+      className="sc-ksluoS hNkUcY"
+      style={
+        Object {
+          "borderBottom": "2px solid #014D82",
+          "color": "#014D82",
+          "fontSize": "1.8rem",
+          "paddingBottom": "4px",
+        }
+      }
+    >
+      Product Backlog
+    </h1>
+  </div>
+  <div
+    className="sc-hBMVcZ hBmSHu"
+  >
+    <div
+      className="sc-bkbjAj iOUaTI"
+    >
+      <img
+        className="sc-fnVYJo eKCOSX"
+        onClick={[Function]}
+        src=""
+        title=""
+      />
+    </div>
+    <div
+      className="sc-iemXMA eFkVwr"
+    />
+  </div>
+</div>
+`;
