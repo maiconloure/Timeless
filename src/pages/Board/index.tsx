@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Modal } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
@@ -6,10 +7,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard } from '../../components';
-import BacklogCard from '../../components/backlog-card';
-import { getUserBoards } from '../../redux/actions/boards.action';
+import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
+import { UserBoards, CardInterface } from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store';
+import { RootStoreType } from '../../redux/store/store';
 import { icons, images } from '../../utils/importAll';
 
 interface BoardPageProps {
@@ -17,14 +18,15 @@ interface BoardPageProps {
 }
 
 const Board = ({ history }: BoardPageProps) => {
-  // USUARIO ENTRA NA PAGINA, PEGAR AS INFORMACOES DOS BOARDS DELE
   const dispatch = useDispatch();
-  const [id, token, boards] = useSelector((state: RootStoreType) => [
-    state.service.user.id,
-    state.service.token,
-    state.boards.boards,
-  ]);
+  const token = useSelector((state: RootStoreType) => state.service.token);
+  const id = useSelector((state: RootStoreType) => state.service.user.id);
+  const boards = useSelector((state: RootStoreType) => state.boards.boards);
+  const chosenBoard = useSelector((state: RootStoreType) => state.boards.chosenBoard);
+  const cards = useSelector((state: RootStoreType) => state.boards.cards);
+
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
@@ -32,13 +34,34 @@ const Board = ({ history }: BoardPageProps) => {
     dispatch(signOut());
   };
 
+  const saveChanges = () => {
+    // dispatch(updateBoardAPI({ token, board: boards[0] }));
+  };
+
+  const currentBoard = (board: UserBoards) => {
+    dispatch(getUserCards(board, token));
+  };
+
   useEffect(() => {
     dispatch(getUserBoards({ id, token }));
+    return () => {
+      console.log('useEffect: Board Unmounted');
+    };
   }, []);
 
   useEffect(() => {
-    console.log('useEffect Board:', boards);
-  }, [boards]);
+    // AUTO SAVE, 10s | undefined error in boards[0] some reason
+    const timer = setTimeout(saveChanges, 5000);
+    return () => clearInterval(timer);
+  });
+
+  useEffect(() => {
+    dispatch(getUserCards(chosenBoard, token));
+  }, [chosenBoard]);
+
+  useEffect(() => {
+    console.log(cards);
+  }, [cards]);
 
   return (
     <BoardPage>
@@ -81,6 +104,22 @@ const Board = ({ history }: BoardPageProps) => {
                   <h3>maiconloure@gmail.com</h3>
                 </UserInfoMenu>
 
+                <Logout
+                  onClick={() => {
+                    saveChanges();
+                    setToggleMenu(!toggleMenu);
+                  }}>
+                  <p>Salvar Board</p>
+                </Logout>
+
+                <Logout
+                  onClick={() => {
+                    setShowModal(true);
+                    setToggleMenu(!toggleMenu);
+                  }}>
+                  <p>Escolher Board</p>
+                </Logout>
+
                 <Logout onClick={handleLogout}>
                   <p>Fazer Logout</p>
                 </Logout>
@@ -90,25 +129,44 @@ const Board = ({ history }: BoardPageProps) => {
         </Bar>
       </TopContainer>
 
+      <Modal
+        title="Boards"
+        data={[showModal, setShowModal]}
+        styles={{ size: 'medium', fontSize: 'large' }}>
+        <div>
+          {boards.map((board: UserBoards, key: number) => (
+            <div key={key}>
+              <button onClick={() => currentBoard(board)}>{board.title}</button>
+            </div>
+          ))}
+        </div>
+      </Modal>
       <InnerBoardContainer>
         <SideMenuContainer drag dragMomentum={false}>
           <CreationMenu />
         </SideMenuContainer>
 
-        <CardContainer>
-          {boards.map((board: any) => (
-            <div key={board.id}>
-              <h2>{board.title}</h2>
-              <div>
-                {board.cards.map((card: any) => (
-                  <DefaultCard card={card.data} key={card.id} />
-                ))}
-              </div>
-            </div>
-          ))}
+        {cards.map((card: CardInterface, key: number) => (
+          <CardContainer
+            key={key}
+            drag
+            dragMomentum={false}
+            onDragEnd={(e: any) => {
+              /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
+              if (e && e.target && e.target.offsetParent) {
+                const position = e.target.offsetParent.getBoundingClientRect();
+                console.log(position);
 
-          <BacklogCard />
-        </CardContainer>
+                card.position = {
+                  x: position.x,
+                  y: position.y - 28, // tive que fazer esse ajuste em pixels
+                };
+              }
+            }}
+            style={{ x: card.position.x, y: card.position.y }}>
+            <DefaultCard data={card.data} />
+          </CardContainer>
+        ))}
       </InnerBoardContainer>
     </BoardPage>
   );

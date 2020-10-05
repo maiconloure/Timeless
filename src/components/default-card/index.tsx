@@ -1,36 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { CardDataInterface } from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
 
-interface PropsTag {
-  color: string;
-  text: string;
-}
-
-interface PropsCard {
-  card: {
-    title: string;
-    time: {
-      finish: string;
-      start: string;
-      done: string;
-    };
-    description: string;
-    tags: PropsTag[];
-  };
-}
-
-const DefaultCard = ({ card }: PropsCard) => {
+const DefaultCard = ({ data }: CardDataInterface) => {
   return (
     <Card>
       <CardInside>
         <AlertImg>
-          <img src={icons.warning} />
+          <img src={icons.warning} alt="warning" />
         </AlertImg>
         <CardHeader>
           <div>
-            {card.tags.map((tag: PropsTag, key: number) => (
+            {data.tags.map((tag: any, key: number) => (
               <span
                 key={key}
                 contentEditable
@@ -47,18 +30,18 @@ const DefaultCard = ({ card }: PropsCard) => {
             </InfoIcons>
           </div>
           <div>
-            <span>{card.time.start}</span>
+            <span>{data.time.start.date}</span>
           </div>
         </CardHeader>
         <Description>
           <div>
             <div>
               <DescriptionTitle contentEditable suppressContentEditableWarning>
-                {card.title}
+                {data.title}
               </DescriptionTitle>
             </div>
             <div>
-              <p>{card.description}</p>
+              <p>{data.description}</p>
             </div>
           </div>
           <div>
@@ -70,7 +53,7 @@ const DefaultCard = ({ card }: PropsCard) => {
             <img src={icons.user1} alt="user icon" />
           </CardUsers>
           <CardData>
-            <span>{card.time.finish}</span>
+            <span>{data.time.finish.date}</span>
           </CardData>
         </CardFooter>
       </CardInside>

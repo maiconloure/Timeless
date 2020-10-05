@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PageTransition from '../../components/pageTransition';
 import { requestLogin, registerUser } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store';
+import { RootStoreType } from '../../redux/store/store';
 import { icons, images } from '../../utils/importAll';
 import * as St from './styled';
 

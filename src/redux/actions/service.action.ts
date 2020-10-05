@@ -4,22 +4,19 @@ import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
-import { RootStoreType } from '../store';
-import {
-  LoginAction,
-  LogoutAction,
-  ClearBoardAction,
-  PropsLoginAction,
-  PropsRequestLogin,
-  PropsRegisterUser,
-  DecodeTokenType,
-} from './interface.action';
+import { RootStoreType } from '../store/store';
+import * as Interface from './interface.action';
 import { LOGIN, LOGOUT, CLEAR_BOARD } from './type.action';
 
 export const requestLogin = ({
   email,
   password,
-}: PropsRequestLogin): ThunkAction<void, RootStoreType, unknown, LoginAction> => (dispatch) => {
+}: Interface.PropsRequestLogin): ThunkAction<
+  void,
+  RootStoreType,
+  unknown,
+  Interface.LoginAction
+> => (dispatch) => {
   api
     .post('/login', {
       email,
@@ -41,7 +38,12 @@ export const requestLogin = ({
 export const registerUser = ({
   email,
   password,
-}: PropsRegisterUser): ThunkAction<void, RootStoreType, unknown, LoginAction> => (dispatch) => {
+}: Interface.PropsRegisterUser): ThunkAction<
+  void,
+  RootStoreType,
+  unknown,
+  Interface.LoginAction
+> => (dispatch) => {
   api
     .post('/register', { email, password })
     .then((response) => {
@@ -49,6 +51,7 @@ export const registerUser = ({
         console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
       } else {
         console.warn(`registerUser =>> Status: ${response.status}`);
+
         dispatch(getUser(response));
       }
     })
@@ -57,10 +60,10 @@ export const registerUser = ({
     );
 };
 
-const getUser = (data: any): ThunkAction<void, RootStoreType, unknown, LoginAction> => async (
-  dispatch
-) => {
-  const decodedToken: DecodeTokenType = await jwt_decode(data.data.accessToken);
+const getUser = (
+  data: Interface.PropsResponseRegister
+): ThunkAction<void, RootStoreType, unknown, Interface.LoginAction> => async (dispatch) => {
+  const decodedToken: Interface.DecodeToken = await jwt_decode(data.data.accessToken);
 
   const headers = {
     headers: {
@@ -94,7 +97,7 @@ const getUser = (data: any): ThunkAction<void, RootStoreType, unknown, LoginActi
     );
 };
 
-const loginAction = ({ user, status, token }: PropsLoginAction): LoginAction => ({
+const loginAction = ({ user, status, token }: Interface.PropsLogin): Interface.LoginAction => ({
   type: LOGIN,
   payload: { user, status, token },
 });
@@ -104,12 +107,12 @@ export const signOut = () => (dispatch: Dispatch) => {
   dispatch(logout());
 };
 
-const clearBoard = (): ClearBoardAction => ({
+const clearBoard = (): Interface.ClearBoardAction => ({
   type: CLEAR_BOARD,
 });
 
-const logout = (): LogoutAction => ({
+const logout = (): Interface.LogoutAction => ({
   type: LOGOUT,
 });
 
-export type ServiceAction = LoginAction | LogoutAction;
+export type ServiceAction = Interface.LoginAction | Interface.LogoutAction;
