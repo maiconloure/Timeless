@@ -51,180 +51,182 @@ const Landing = ({ history }: LandingPageProps) => {
   });
 
   return (
-    <St.LandingPage>
-      <St.Container>
-        <St.LeftMenu>
-          <img onClick={() => setCurrentFrame('main')} src={icons.logo} alt="logo" />
-          <St.LinksContainer>
-            <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
-            <p onClick={() => setCurrentFrame('teams')}>Times</p>
-            <p onClick={() => setCurrentFrame('about')}>Sobre</p>
-          </St.LinksContainer>
-        </St.LeftMenu>
+    <PageTransition>
+      <St.LandingPage>
+        <St.Container>
+          <St.LeftMenu>
+            <img onClick={() => setCurrentFrame('main')} src={icons.logo} alt="logo" />
+            <St.LinksContainer>
+              <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
+              <p onClick={() => setCurrentFrame('teams')}>Times</p>
+              <p onClick={() => setCurrentFrame('about')}>Sobre</p>
+            </St.LinksContainer>
+          </St.LeftMenu>
 
-        {(!handleForm || windowSize.width > 550) && (
-          <St.LoginMenu>
-            <Input
-              type="email"
-              placeholder="email"
-              width={windowSize.width < 550 ? '300px' : '400px'}
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              onTextChange={(evt: any) => setEmail(evt)}
-            />
-            <PasswordInput
-              placeholder="senha"
-              width={windowSize.width < 550 ? '300px' : '400px'}
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              onTextChange={(evt: any) => setPassword(evt)}
-            />
-            <div>
+          {(!handleForm || windowSize.width > 550) && (
+            <St.LoginMenu>
+              <Input
+                type="email"
+                placeholder="email"
+                width={windowSize.width < 550 ? '300px' : '400px'}
+                height={windowSize.height > 550 ? '55px' : '44px'}
+                onTextChange={(evt: any) => setEmail(evt)}
+              />
+              <PasswordInput
+                placeholder="senha"
+                width={windowSize.width < 550 ? '300px' : '400px'}
+                height={windowSize.height > 550 ? '55px' : '44px'}
+                onTextChange={(evt: any) => setPassword(evt)}
+              />
+              <div>
+                <Button
+                  fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
+                  height={windowSize.height > 550 ? '55px' : '44px'}
+                  onClick={OnFinishLogin}>
+                  Entrar
+                </Button>
+              </div>
+            </St.LoginMenu>
+          )}
+
+          <St.LogoArea>
+            <St.Logo onClick={() => setCurrentFrame('main')}>
+              <St.LogoBox />
+              <h1>Time</h1>
+              <h1>less</h1>
+            </St.Logo>
+
+            <St.Slogan>
+              <p>simples, rápido e dinâmico!</p>
+            </St.Slogan>
+          </St.LogoArea>
+
+          <St.RegisterArea>
+            <St.TopFrame>
+              <St.FeatOne>
+                <div />
+                <p>Alto nível em gestão</p>
+                <p>de tempo e equipes.</p>
+              </St.FeatOne>
+
+              {!handleForm ? (
+                <Button
+                  fontSize={windowSize.height > 550 ? '2.8rem' : '2.4rem'}
+                  onClick={() => setHandleForm(true)}
+                  width="250px"
+                  height={windowSize.height > 550 ? '70px' : '46px'}>
+                  Começe agora
+                </Button>
+              ) : (
+                <St.Return onClick={() => setHandleForm(false)}>
+                  <img src={icons.return} alt="return-icon" />
+                </St.Return>
+              )}
+
+              <St.FeatTwo>
+                <div />
+                <p>Fluxo dinâmico e intuitivo,</p>
+                <p>eficiência elevada ao máximo!</p>
+              </St.FeatTwo>
+            </St.TopFrame>
+          </St.RegisterArea>
+
+          {windowSize.width < 968 && handleForm && (
+            <St.RegisterMenu>
+              <Input
+                type="email"
+                placeholder="email"
+                width={windowSize.width < 550 ? '300px' : '400px'}
+                height={windowSize.height > 550 ? '55px' : '44px'}
+                onTextChange={(evt: any) => setEmail(evt)}
+              />
+              <PasswordInput
+                placeholder="senha"
+                width={windowSize.width < 550 ? '300px' : '400px'}
+                height={windowSize.height > 550 ? '55px' : '44px'}
+                onTextChange={(evt: any) => setPassword(evt)}
+              />
               <Button
                 fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
                 height={windowSize.height > 550 ? '55px' : '44px'}
-                onClick={OnFinishLogin}>
-                Entrar
+                onClick={OnFinishRegister}>
+                Começar
               </Button>
-            </div>
-          </St.LoginMenu>
-        )}
+            </St.RegisterMenu>
+          )}
 
-        <St.LogoArea>
-          <St.Logo onClick={() => setCurrentFrame('main')}>
-            <St.LogoBox />
-            <h1>Time</h1>
-            <h1>less</h1>
-          </St.Logo>
+          {windowSize.width > 968 && handleForm && (
+            <St.ModalBackground>
+              <St.RegisterModal>
+                <St.ReturnModal onClick={() => setHandleForm(false)}>
+                  <img src={icons.return} alt="return-icon" />
+                </St.ReturnModal>
+                <St.Text>
+                  <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
+                </St.Text>
+                <St.Form>
+                  <Input
+                    type="text"
+                    placeholder="email"
+                    width="300px"
+                    fontSize="2rem"
+                    height="48px"
+                    onTextChange={(evt: any) => setEmail(evt)}
+                  />
+                  <PasswordInput
+                    placeholder="senha"
+                    width="300px"
+                    fontSize="2rem"
+                    height="48px"
+                    onTextChange={(evt: any) => setPassword(evt)}
+                  />
+                  <Button fontSize="2.6rem" height="44px" weight={600} onClick={OnFinishRegister}>
+                    Começar
+                  </Button>
+                </St.Form>
+              </St.RegisterModal>
+            </St.ModalBackground>
+          )}
 
-          <St.Slogan>
-            <p>simples, rápido e dinâmico!</p>
-          </St.Slogan>
-        </St.LogoArea>
+          {currentFrame === 'main' && (
+            <St.MainFrame>
+              <PageTransition>
+                <img src={images.mainframe} alt="main-frame-board" />
+              </PageTransition>
+            </St.MainFrame>
+          )}
 
-        <St.RegisterArea>
-          <St.TopFrame>
-            <St.FeatOne>
-              <div />
-              <p>Alto nível em gestão</p>
-              <p>de tempo e equipes.</p>
-            </St.FeatOne>
+          {currentFrame === 'examples' && (
+            <St.ExamplesFrame>
+              <PageTransition>
+                <img src={images.blankBoard} alt="main-frame-board" />
+              </PageTransition>
+            </St.ExamplesFrame>
+          )}
 
-            {!handleForm ? (
-              <Button
-                fontSize={windowSize.height > 550 ? '2.8rem' : '2.4rem'}
-                onClick={() => setHandleForm(true)}
-                width="250px"
-                height={windowSize.height > 550 ? '70px' : '46px'}>
-                Começe agora
-              </Button>
-            ) : (
-              <St.Return onClick={() => setHandleForm(false)}>
-                <img src={icons.return} alt="return-icon" />
-              </St.Return>
-            )}
+          {currentFrame === 'teams' && (
+            <St.TeamFrame>
+              <PageTransition>
+                <img src={images.blankBoard} alt="main-frame-board" />
+              </PageTransition>
+            </St.TeamFrame>
+          )}
 
-            <St.FeatTwo>
-              <div />
-              <p>Fluxo dinâmico e intuitivo,</p>
-              <p>eficiência elevada ao máximo!</p>
-            </St.FeatTwo>
-          </St.TopFrame>
-        </St.RegisterArea>
+          {currentFrame === 'about' && (
+            <St.AboutFrame>
+              <PageTransition>
+                <img src={images.blankBoard} alt="main-frame-board" />
+              </PageTransition>
+            </St.AboutFrame>
+          )}
+        </St.Container>
 
-        {windowSize.width < 968 && handleForm && (
-          <St.RegisterMenu>
-            <Input
-              type="email"
-              placeholder="email"
-              width={windowSize.width < 550 ? '300px' : '400px'}
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              onTextChange={(evt: any) => setEmail(evt)}
-            />
-            <PasswordInput
-              placeholder="senha"
-              width={windowSize.width < 550 ? '300px' : '400px'}
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              onTextChange={(evt: any) => setPassword(evt)}
-            />
-            <Button
-              fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
-              height={windowSize.height > 550 ? '55px' : '44px'}
-              onClick={OnFinishRegister}>
-              Começar
-            </Button>
-          </St.RegisterMenu>
-        )}
-
-        {windowSize.width > 968 && handleForm && (
-          <St.ModalBackground>
-            <St.RegisterModal>
-              <St.ReturnModal onClick={() => setHandleForm(false)}>
-                <img src={icons.return} alt="return-icon" />
-              </St.ReturnModal>
-              <St.Text>
-                <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
-              </St.Text>
-              <St.Form>
-                <Input
-                  type="text"
-                  placeholder="email"
-                  width="300px"
-                  fontSize="2rem"
-                  height="48px"
-                  onTextChange={(evt: any) => setEmail(evt)}
-                />
-                <PasswordInput
-                  placeholder="senha"
-                  width="300px"
-                  fontSize="2rem"
-                  height="48px"
-                  onTextChange={(evt: any) => setPassword(evt)}
-                />
-                <Button fontSize="2.6rem" height="44px" weight={600} onClick={OnFinishRegister}>
-                  Começar
-                </Button>
-              </St.Form>
-            </St.RegisterModal>
-          </St.ModalBackground>
-        )}
-
-        {currentFrame === 'main' && (
-          <St.MainFrame>
-            <PageTransition>
-              <img src={images.mainframe} alt="main-frame-board" />
-            </PageTransition>
-          </St.MainFrame>
-        )}
-
-        {currentFrame === 'examples' && (
-          <St.ExamplesFrame>
-            <PageTransition>
-              <img src={images.blankBoard} alt="main-frame-board" />
-            </PageTransition>
-          </St.ExamplesFrame>
-        )}
-
-        {currentFrame === 'teams' && (
-          <St.TeamFrame>
-            <PageTransition>
-              <img src={images.blankBoard} alt="main-frame-board" />
-            </PageTransition>
-          </St.TeamFrame>
-        )}
-
-        {currentFrame === 'about' && (
-          <St.AboutFrame>
-            <PageTransition>
-              <img src={images.blankBoard} alt="main-frame-board" />
-            </PageTransition>
-          </St.AboutFrame>
-        )}
-      </St.Container>
-
-      <St.Wave>
-        <img src={images.wave} alt="wave background" />
-      </St.Wave>
-      <St.BottomBar />
-    </St.LandingPage>
+        <St.Wave>
+          <img src={images.wave} alt="wave background" />
+        </St.Wave>
+        <St.BottomBar />
+      </St.LandingPage>
+    </PageTransition>
   );
 };
 

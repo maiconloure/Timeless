@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
+import PageTransition from '../../components/pageTransition';
 import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
@@ -68,116 +69,118 @@ const Board = ({ history }: BoardPageProps) => {
   }, [chosenBoard]);
 
   return (
-    <BoardPage>
-      <Background src={images.background} alt="background-image" />
+    <PageTransition>
+      <BoardPage>
+        <Background src={images.background} alt="background-image" />
 
-      <TopContainer>
-        <Bar>
-          <ProjectInfo>
-            <a href="https://kenzie.com.br/" target="_blank" rel="noopener noreferrer">
-              <img src={icons.kenzie} alt="Project icon" />
-            </a>
-            <h2> Kenzie Academy Brasil </h2>
-            <h4> &nbsp; | &nbsp; </h4>
-            <h3> Capstone Project </h3>
-          </ProjectInfo>
+        <TopContainer>
+          <Bar>
+            <ProjectInfo>
+              <a href="https://kenzie.com.br/" target="_blank" rel="noopener noreferrer">
+                <img src={icons.kenzie} alt="Project icon" />
+              </a>
+              <h2> Kenzie Academy Brasil </h2>
+              <h4> &nbsp; | &nbsp; </h4>
+              <h3> Capstone Project </h3>
+            </ProjectInfo>
 
-          <UserInfo>
-            <User>
-              <h2>Maicon Lourenço</h2>
-              <p>Online</p>
-            </User>
+            <UserInfo>
+              <User>
+                <h2>Maicon Lourenço</h2>
+                <p>Online</p>
+              </User>
 
-            <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
-              <img src={icons.user1} alt="User icon" />
-            </ProfileIcon>
+              <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
+                <img src={icons.user1} alt="User icon" />
+              </ProfileIcon>
 
-            {toggleMenu && (
-              <UserMenu>
-                <MainUserMenu>
-                  <h2>Conta</h2>
-                  <img
-                    onClick={() => setToggleMenu(!toggleMenu)}
-                    src={icons.closeIcon}
-                    alt="close icon"
-                  />
-                </MainUserMenu>
+              {toggleMenu && (
+                <UserMenu>
+                  <MainUserMenu>
+                    <h2>Conta</h2>
+                    <img
+                      onClick={() => setToggleMenu(!toggleMenu)}
+                      src={icons.closeIcon}
+                      alt="close icon"
+                    />
+                  </MainUserMenu>
 
-                <UserInfoMenu>
-                  <h2>Maicon Lourenço</h2>
-                  <h3>maiconloure@gmail.com</h3>
-                </UserInfoMenu>
+                  <UserInfoMenu>
+                    <h2>Maicon Lourenço</h2>
+                    <h3>maiconloure@gmail.com</h3>
+                  </UserInfoMenu>
 
-                <Logout
-                  onClick={() => {
-                    saveChanges();
-                    setToggleMenu(!toggleMenu);
-                  }}>
-                  <p>Salvar Board</p>
-                </Logout>
+                  <Logout
+                    onClick={() => {
+                      saveChanges();
+                      setToggleMenu(!toggleMenu);
+                    }}>
+                    <p>Salvar Board</p>
+                  </Logout>
 
-                <Logout
-                  onClick={() => {
-                    setShowModal(true);
-                    setToggleMenu(!toggleMenu);
-                  }}>
-                  <p>Escolher Board</p>
-                </Logout>
+                  <Logout
+                    onClick={() => {
+                      setShowModal(true);
+                      setToggleMenu(!toggleMenu);
+                    }}>
+                    <p>Escolher Board</p>
+                  </Logout>
 
-                <Logout onClick={handleLogout}>
-                  <p>Fazer Logout</p>
-                </Logout>
-              </UserMenu>
-            )}
-          </UserInfo>
-        </Bar>
-      </TopContainer>
+                  <Logout onClick={handleLogout}>
+                    <p>Fazer Logout</p>
+                  </Logout>
+                </UserMenu>
+              )}
+            </UserInfo>
+          </Bar>
+        </TopContainer>
 
-      <Modal
-        title="Boards"
-        data={[showModal, setShowModal]}
-        styles={{ size: 'medium', fontSize: 'large' }}>
-        <div>
-          {boards &&
-            boards.map((board: Interface.UserBoards, key: number) => (
-              <div key={key}>
-                <button onClick={() => currentBoard(board)}>{board.title}</button>
-              </div>
+        <Modal
+          title="Boards"
+          data={[showModal, setShowModal]}
+          styles={{ size: 'medium', fontSize: 'large' }}>
+          <div>
+            {boards &&
+              boards.map((board: Interface.UserBoards, key: number) => (
+                <div key={key}>
+                  <button onClick={() => currentBoard(board)}>{board.title}</button>
+                </div>
+              ))}
+          </div>
+        </Modal>
+        <InnerBoardContainer>
+          <SideMenuContainer drag dragMomentum={false}>
+            <CreationMenu />
+          </SideMenuContainer>
+
+          {cards &&
+            cards.map((card: Interface.CardInterface, key: number) => (
+              <CardContainer
+                key={key}
+                drag
+                dragMomentum={false}
+                onDragEnd={(e: any) => {
+                  /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
+                  if (e && e.target && e.target.offsetParent) {
+                    const position = e.target.offsetParent.getBoundingClientRect();
+                    console.log(position);
+
+                    card.position = {
+                      x: position.x,
+                      y: position.y - 28, // tive que fazer esse ajuste em pixels
+                    };
+                  }
+                }}
+                style={{ x: card.position.x, y: card.position.y }}>
+                <DefaultCard data={card.data} />
+              </CardContainer>
             ))}
-        </div>
-      </Modal>
-      <InnerBoardContainer>
-        <SideMenuContainer drag dragMomentum={false}>
-          <CreationMenu />
-        </SideMenuContainer>
-
-        {cards &&
-          cards.map((card: Interface.CardInterface, key: number) => (
-            <CardContainer
-              key={key}
-              drag
-              dragMomentum={false}
-              onDragEnd={(e: any) => {
-                /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
-                if (e && e.target && e.target.offsetParent) {
-                  const position = e.target.offsetParent.getBoundingClientRect();
-                  console.log(position);
-
-                  card.position = {
-                    x: position.x,
-                    y: position.y - 28, // tive que fazer esse ajuste em pixels
-                  };
-                }
-              }}
-              style={{ x: card.position.x, y: card.position.y }}>
-              <DefaultCard data={card.data} />
-            </CardContainer>
-          ))}
-        <CardContainer>
-          <BacklogCard />
-        </CardContainer>
-      </InnerBoardContainer>
-    </BoardPage>
+          <CardContainer>
+            <BacklogCard />
+          </CardContainer>
+        </InnerBoardContainer>
+      </BoardPage>
+    </PageTransition>
   );
 };
 
