@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard } from '../../components';
 import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
-import { UserBoards, CardInterface } from '../../redux/actions/interface.action';
+import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { icons, images } from '../../utils/importAll';
@@ -19,8 +19,15 @@ interface BoardPageProps {
 
 const Board = ({ history }: BoardPageProps) => {
   const dispatch = useDispatch();
+  // const [{ user, token }, boards, chosenBoard, cards] = useSelector((state: RootStoreType): [
+  //   Interface.PropsLogin,
+  //   Interface.UserBoards[],
+  //   Interface.UserBoards,
+  //   Interface.CardInterface[]
+  // ] => [state.service, state.boards.boards, state.boards.chosenBoard, state.boards.cards]);
+
+  const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
-  const id = useSelector((state: RootStoreType) => state.service.user.id);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const chosenBoard = useSelector((state: RootStoreType) => state.boards.chosenBoard);
   const cards = useSelector((state: RootStoreType) => state.boards.cards);
@@ -35,33 +42,30 @@ const Board = ({ history }: BoardPageProps) => {
   };
 
   const saveChanges = () => {
+    console.warn('saveChanges');
     // dispatch(updateBoardAPI({ token, board: boards[0] }));
   };
 
-  const currentBoard = (board: UserBoards) => {
+  const currentBoard = (board: Interface.UserBoards) => {
     dispatch(getUserCards(board, token));
   };
 
   useEffect(() => {
-    dispatch(getUserBoards({ id, token }));
+    dispatch(getUserBoards({ user, token }));
     return () => {
       console.log('useEffect: Board Unmounted');
     };
   }, []);
 
-  useEffect(() => {
-    // AUTO SAVE, 10s | undefined error in boards[0] some reason
-    const timer = setTimeout(saveChanges, 5000);
-    return () => clearInterval(timer);
-  });
+  // useEffect(() => {
+  //   // AUTO SAVE, 10s | undefined error in boards[0] some reason
+  //   const timer = setTimeout(saveChanges, 10000);
+  //   return () => clearInterval(timer);
+  // }, []);
 
   useEffect(() => {
     dispatch(getUserCards(chosenBoard, token));
   }, [chosenBoard]);
-
-  useEffect(() => {
-    console.log(cards);
-  }, [cards]);
 
   return (
     <BoardPage>
@@ -134,11 +138,12 @@ const Board = ({ history }: BoardPageProps) => {
         data={[showModal, setShowModal]}
         styles={{ size: 'medium', fontSize: 'large' }}>
         <div>
-          {boards.map((board: UserBoards, key: number) => (
-            <div key={key}>
-              <button onClick={() => currentBoard(board)}>{board.title}</button>
-            </div>
-          ))}
+          {boards &&
+            boards.map((board: Interface.UserBoards, key: number) => (
+              <div key={key}>
+                <button onClick={() => currentBoard(board)}>{board.title}</button>
+              </div>
+            ))}
         </div>
       </Modal>
       <InnerBoardContainer>
@@ -146,27 +151,28 @@ const Board = ({ history }: BoardPageProps) => {
           <CreationMenu />
         </SideMenuContainer>
 
-        {cards.map((card: CardInterface, key: number) => (
-          <CardContainer
-            key={key}
-            drag
-            dragMomentum={false}
-            onDragEnd={(e: any) => {
-              /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
-              if (e && e.target && e.target.offsetParent) {
-                const position = e.target.offsetParent.getBoundingClientRect();
-                console.log(position);
+        {cards &&
+          cards.map((card: Interface.CardInterface, key: number) => (
+            <CardContainer
+              key={key}
+              drag
+              dragMomentum={false}
+              onDragEnd={(e: any) => {
+                /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
+                if (e && e.target && e.target.offsetParent) {
+                  const position = e.target.offsetParent.getBoundingClientRect();
+                  // console.log(position);
 
-                card.position = {
-                  x: position.x,
-                  y: position.y - 28, // tive que fazer esse ajuste em pixels
-                };
-              }
-            }}
-            style={{ x: card.position.x, y: card.position.y }}>
-            <DefaultCard data={card.data} />
-          </CardContainer>
-        ))}
+                  card.position = {
+                    x: position.x,
+                    y: position.y - 28, // tive que fazer esse ajuste em pixels
+                  };
+                }
+              }}
+              style={{ x: card.position.x, y: card.position.y }}>
+              <DefaultCard data={card.data} />
+            </CardContainer>
+          ))}
       </InnerBoardContainer>
     </BoardPage>
   );

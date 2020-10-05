@@ -1,12 +1,4 @@
-import {
-  LOGIN,
-  SET_BOARDS,
-  LOGOUT,
-  CLEAR_BOARD,
-  UPDATE_BOARD,
-  SET_CHOSEN_BOARD,
-  SET_CURRENT_CARDS,
-} from './type.action';
+import * as TYPE from './type.action';
 
 // DECODE TOKEN TYPES
 
@@ -20,7 +12,7 @@ export interface DecodeToken {
 // INTERFACE TO LOGIN
 
 export interface LoginAction {
-  type: typeof LOGIN;
+  type: typeof TYPE.LOGIN;
   payload: {
     user: {
       email: string;
@@ -66,19 +58,23 @@ export interface PropsResponseRegister {
 // INTERFACE LOGOUT
 
 export interface LogoutAction {
-  type: typeof LOGOUT;
+  type: typeof TYPE.LOGOUT;
 }
 
 // INTERFACE CLEAR_BOARD
 
 export interface ClearBoardAction {
-  type: typeof CLEAR_BOARD;
+  type: typeof TYPE.CLEAR_BOARD;
 }
 
 // INTERFACE TO USERS BOARDS
 
 export interface PropsGetUserBoards {
-  id: number | string;
+  user: {
+    email: string;
+    name: string;
+    id: number;
+  };
   token: string;
 }
 
@@ -148,22 +144,30 @@ export interface CardDataInterface {
 }
 
 export interface SetUserBoardsAction {
-  type: typeof SET_BOARDS;
+  type: typeof TYPE.SET_BOARDS;
   payload: UserBoards[];
 }
 
 // INTERFACE UPDATE BOARD
 
 export interface UpdateBoardAction {
-  type: typeof UPDATE_BOARD;
+  type: typeof TYPE.UPDATE_BOARD;
   payload: UserBoards;
 }
 export interface ChosenBoardAction {
-  type: typeof SET_CHOSEN_BOARD;
+  type: typeof TYPE.SET_CHOSEN_BOARD;
   payload: UserBoards;
 }
 
 export interface CurrentCardsAction {
-  type: typeof SET_CURRENT_CARDS;
+  type: typeof TYPE.SET_CURRENT_CARDS;
   payload: CardInterface[];
+}
+
+// REDUX INTERFACES
+
+export interface BoardState {
+  boards: UserBoards[];
+  chosenBoard: UserBoards;
+  cards: CardInterface[];
 }

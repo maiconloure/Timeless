@@ -6,7 +6,7 @@ import { ThunkAction } from 'redux-thunk';
 import api from '../../services/api';
 import { RootStoreType } from '../store/store';
 import * as Interface from './interface.action';
-import { LOGIN, LOGOUT, CLEAR_BOARD } from './type.action';
+import * as TYPE from './type.action';
 
 export const requestLogin = ({
   email,
@@ -98,7 +98,7 @@ const getUser = (
 };
 
 const loginAction = ({ user, status, token }: Interface.PropsLogin): Interface.LoginAction => ({
-  type: LOGIN,
+  type: TYPE.LOGIN,
   payload: { user, status, token },
 });
 
@@ -108,11 +108,11 @@ export const signOut = () => (dispatch: Dispatch) => {
 };
 
 const clearBoard = (): Interface.ClearBoardAction => ({
-  type: CLEAR_BOARD,
+  type: TYPE.CLEAR_BOARD,
 });
 
 const logout = (): Interface.LogoutAction => ({
-  type: LOGOUT,
+  type: TYPE.LOGOUT,
 });
 
 export type ServiceAction = Interface.LoginAction | Interface.LogoutAction;

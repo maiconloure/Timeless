@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PropsLogin } from '../actions/interface.action';
 import { ServiceAction } from '../actions/service.action';
-import { LOGIN, LOGOUT } from '../actions/type.action';
+import * as TYPE from '../actions/type.action';
 const initialState: PropsLogin = JSON.parse(
   localStorage.getItem('service') ||
     `{
@@ -17,11 +17,11 @@ const initialState: PropsLogin = JSON.parse(
 
 const service = (state = initialState, action: ServiceAction): PropsLogin => {
   switch (action.type) {
-    case LOGIN:
+    case TYPE.LOGIN:
       localStorage.setItem('service', JSON.stringify({ ...state, ...action.payload }));
       return { ...state, ...action.payload };
 
-    case LOGOUT:
+    case TYPE.LOGOUT:
       localStorage.clear();
       return initialState;
 

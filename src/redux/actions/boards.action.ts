@@ -4,10 +4,10 @@ import { ThunkAction } from 'redux-thunk';
 import api from '../../services/api';
 import { RootStoreType } from '../store/store';
 import * as Interface from './interface.action';
-import { SET_BOARDS, UPDATE_BOARD, SET_CHOSEN_BOARD, SET_CURRENT_CARDS } from './type.action';
+import * as TYPE from './type.action';
 
 export const getUserBoards = ({
-  id,
+  user,
   token,
 }: Interface.PropsGetUserBoards): ThunkAction<
   void,
@@ -21,7 +21,7 @@ export const getUserBoards = ({
     },
   };
   api
-    .get(`users/${id}/boards`, headers)
+    .get(`users/${user.id}/boards`, headers)
     .then((response) => {
       if (response.status !== 200) {
         console.error(`getUserBoards ==> ERROR: ${response.data} Status: ${response.status}`);
@@ -38,7 +38,7 @@ export const getUserBoards = ({
 };
 
 const setUserBoards = (boards: Interface.UserBoards[]): Interface.SetUserBoardsAction => ({
-  type: SET_BOARDS,
+  type: TYPE.SET_BOARDS,
   payload: boards,
 });
 
@@ -76,7 +76,7 @@ export const updateBoardAPI = ({
 };
 
 const updateBoard = (board: Interface.UserBoards): Interface.UpdateBoardAction => ({
-  type: UPDATE_BOARD,
+  type: TYPE.UPDATE_BOARD,
   payload: board,
 });
 
@@ -104,8 +104,6 @@ export const getUserCards = (
         console.error(`getUserCards ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`getUserCards ==> Status: ${response.status}`);
-        console.log(response);
-
         dispatch(setCurrentCards(response.data));
       }
     })
@@ -117,12 +115,12 @@ export const getUserCards = (
 };
 
 const setChosenBoard = (board: Interface.UserBoards): Interface.ChosenBoardAction => ({
-  type: SET_CHOSEN_BOARD,
+  type: TYPE.SET_CHOSEN_BOARD,
   payload: board,
 });
 
 const setCurrentCards = (cards: Interface.CardInterface[]): Interface.CurrentCardsAction => ({
-  type: SET_CURRENT_CARDS,
+  type: TYPE.SET_CURRENT_CARDS,
   payload: cards,
 });
 
