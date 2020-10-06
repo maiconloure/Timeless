@@ -1,33 +1,18 @@
 import styled from 'styled-components';
 
-export {
-  WriteableContent,
-  WriteableTop,
-  WriteableBox,
-  ContentContainer,
-  Main,
-  Labels,
-  LabelTitle,
-  IdLabel,
-  HourglassLabel,
-  Icon,
-  ClockLabel,
-  ActionLabels,
-  IconSmall,
-  FeedbackButton,
-  ChecklistContainer,
-  Checklist,
-  ChecklistTitle,
-  ChecklistBox,
-};
-
 const WriteableContent = styled.div`
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   justify-content: center;
   width: 75%;
   height: 100%;
   box-shadow: 8px 8px 12px 0 rgba(0, 0, 0, 0.4);
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 `;
 
 const WriteableTop = styled.div`
@@ -41,6 +26,10 @@ const WriteableTop = styled.div`
   height: 8%;
   background: #f0f0f0;
   color: #555;
+
+  @media (max-width: 720px) {
+    height: fit-content;
+  }
 `;
 
 const WriteableBox = styled.div`
@@ -60,21 +49,58 @@ const WriteableBox = styled.div`
 
 const ContentContainer = styled.div`
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 700px;
+
+  @media (max-width: 720px) {
+    width: 500px;
+  }
+
+  @media (max-width: 580px) {
+    width: 400px;
+  }
+
+  @media (max-width: 420px) {
+    width: 300px;
+  }
 `;
 
 const Main = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
 `;
 
 const Labels = styled.div`
   width: 22%;
   height: 100%;
+
+  @media (max-width: 720px) {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+const TimingLabel = styled.div`
+  @media (max-width: 720px) {
+    width: 46%;
+    flex-direction: column;
+  }
+`;
+
+const ActionDiv = styled.div`
+  @media (max-width: 720px) {
+    width: 46%;
+    flex-direction: column;
+  }
 `;
 
 const LabelTitle = styled.h2`
@@ -201,6 +227,10 @@ const Checklist = styled.div`
   width: 75%;
   display: flex;
   flex-flow: column;
+
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 `;
 
 const ChecklistTitle = styled.h2`
@@ -221,3 +251,26 @@ const ChecklistBox = styled.div`
   background-color: white;
   height: 100px;
 `;
+
+export {
+  WriteableContent,
+  WriteableTop,
+  WriteableBox,
+  ContentContainer,
+  Main,
+  Labels,
+  TimingLabel,
+  ActionDiv,
+  LabelTitle,
+  IdLabel,
+  HourglassLabel,
+  Icon,
+  ClockLabel,
+  ActionLabels,
+  IconSmall,
+  FeedbackButton,
+  ChecklistContainer,
+  Checklist,
+  ChecklistTitle,
+  ChecklistBox,
+};

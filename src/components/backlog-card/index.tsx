@@ -17,11 +17,12 @@ export default function BacklogCard({ usersArray = [{ image: '', user: '' }] }: 
   return (
     <CardLeandro
       title="Product Backlog"
-      boxWidth="700px"
+      titleUnderlineOffset="8px"
+      boxPadding="20px"
       avatars={usersArray}
       fontColor="#014D82"
       closeable
-      data={[showCard, () => setShowCard(!showCard)]}
+      minimizeDataPass={[showCard, () => setShowCard(!showCard)]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
       <Children />
