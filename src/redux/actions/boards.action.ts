@@ -3,17 +3,18 @@ import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
 import { RootStoreType } from '../store/store';
+import { getCard } from './cards.actions';
 import * as Interface from './interface.action';
 import * as TYPE from './type.action';
 
-export const getUserBoards = ({
+export const getBoardsAPI = ({
   user,
   token,
 }: Interface.PropsGetUserBoards): ThunkAction<
   void,
   RootStoreType,
   unknown,
-  Interface.SetUserBoardsAction
+  Interface.GetBoardsAction
 > => (dispatch) => {
   const headers = {
     headers: {
@@ -24,21 +25,19 @@ export const getUserBoards = ({
     .get(`users/${user.id}/boards`, headers)
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`getUserBoards ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`getBoardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`getUserBoards ==> Status: ${response.status}`);
-        dispatch(setUserBoards(response.data));
+        console.warn(`getBoardsAPI ==> Status: ${response.status}`);
+        dispatch(getBoards(response.data));
       }
     })
     .catch((error) =>
-      console.log(
-        `getUserBoards ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
+      console.log(`getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`)
     );
 };
 
-const setUserBoards = (boards: Interface.UserBoards[]): Interface.SetUserBoardsAction => ({
-  type: TYPE.SET_BOARDS,
+const getBoards = (boards: Interface.UserBoards[]): Interface.GetBoardsAction => ({
+  type: TYPE.GET_BOARDS,
   payload: boards,
 });
 
@@ -59,15 +58,15 @@ export const updateBoardAPI = ({
       .put(`/boards/${board.id}`, board, headers)
       .then((response) => {
         if (response.status !== 200) {
-          console.error(`updateBoard ==> ERROR: ${response.data} Status: ${response.status}`);
+          console.error(`updateBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
         } else {
-          console.warn(`updateBoard ==> Status: ${response.status}`);
+          console.warn(`updateBoardAPI ==> Status: ${response.status}`);
           dispatch(updateBoard(board));
         }
       })
       .catch((error) =>
         console.error(
-          `updateBoard ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+          `updateBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
         )
       );
   } else {
@@ -80,16 +79,16 @@ const updateBoard = (board: Interface.UserBoards): Interface.UpdateBoardAction =
   payload: board,
 });
 
-export const getUserCards = (
+export const getCardsAPI = (
   board: Interface.UserBoards,
   token: string
 ): ThunkAction<
   void,
   RootStoreType,
   unknown,
-  Interface.ChosenBoardAction | Interface.CurrentCardsAction
+  Interface.CurrentBoardAction | Interface.CurrentCardsAction | Interface.GetCardsAction
 > => (dispatch) => {
-  dispatch(setChosenBoard(board));
+  dispatch(setCurrentBoard(board));
 
   const headers = {
     headers: {
@@ -105,6 +104,7 @@ export const getUserCards = (
       } else {
         console.warn(`getUserCards ==> Status: ${response.status}`);
         dispatch(setCurrentCards(response.data));
+        dispatch(getCard(response.data));
       }
     })
     .catch((error) =>
@@ -114,19 +114,19 @@ export const getUserCards = (
     );
 };
 
-const setChosenBoard = (board: Interface.UserBoards): Interface.ChosenBoardAction => ({
-  type: TYPE.SET_CHOSEN_BOARD,
+const setCurrentBoard = (board: Interface.UserBoards): Interface.CurrentBoardAction => ({
+  type: TYPE.GET_CURRENT_BOARD,
   payload: board,
 });
 
 const setCurrentCards = (cards: Interface.CardInterface[]): Interface.CurrentCardsAction => ({
-  type: TYPE.SET_CURRENT_CARDS,
+  type: TYPE.GET_CURRENT_CARDS,
   payload: cards,
 });
 
 export type BoardsAction =
-  | Interface.SetUserBoardsAction
+  | Interface.GetBoardsAction
   | Interface.ClearBoardAction
   | Interface.UpdateBoardAction
-  | Interface.ChosenBoardAction
+  | Interface.CurrentBoardAction
   | Interface.CurrentCardsAction;

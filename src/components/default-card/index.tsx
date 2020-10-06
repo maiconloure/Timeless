@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
 
 import { CardDataInterface } from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
 
-const DefaultCard = ({ data }: CardDataInterface) => {
+const DefaultCard = ({ data }: { data: CardDataInterface }) => {
   return (
     <Card>
       <CardInside>

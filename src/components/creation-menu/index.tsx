@@ -1,15 +1,25 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.actions';
+import { RootStoreType } from '../../redux/store/store';
 import { icons } from '../../utils/importAll';
+import card from './card.json';
 
 const CreationMenu = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootStoreType) => state.service.user);
+  const token = useSelector((state: RootStoreType) => state.service.token);
+  const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
+  const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const groupButton = () => {
     console.log('groupButton');
   };
 
   const createCardButton = () => {
     console.log('createCardButton');
+    dispatch(createCardAPI({ currentBoard, token, user, card }));
   };
 
   const createFasterCardButton = () => {
@@ -22,6 +32,7 @@ const CreationMenu = () => {
 
   const removeCardButton = () => {
     console.log('removeCardButton');
+    dispatch(deleteCardAPI({ card: cards[0], token }));
   };
 
   const createTextButton = () => {

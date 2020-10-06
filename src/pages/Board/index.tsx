@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
 import PageTransition from '../../components/pageTransition';
-import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
+import { getBoardsAPI, updateBoardAPI, getCardsAPI } from '../../redux/actions/boards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -20,17 +20,10 @@ interface BoardPageProps {
 
 const Board = ({ history }: BoardPageProps) => {
   const dispatch = useDispatch();
-  // const [{ user, token }, boards, chosenBoard, cards] = useSelector((state: RootStoreType): [
-  //   Interface.PropsLogin,
-  //   Interface.UserBoards[],
-  //   Interface.UserBoards,
-  //   Interface.CardInterface[]
-  // ] => [state.service, state.boards.boards, state.boards.chosenBoard, state.boards.cards]);
-
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
-  const chosenBoard = useSelector((state: RootStoreType) => state.boards.chosenBoard);
+  const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.boards.cards);
 
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -47,26 +40,26 @@ const Board = ({ history }: BoardPageProps) => {
     // dispatch(updateBoardAPI({ token, board: boards[0] }));
   };
 
-  const currentBoard = (board: Interface.UserBoards) => {
-    dispatch(getUserCards(board, token));
+  const currentBoardHandler = (board: Interface.UserBoards) => {
+    dispatch(getCardsAPI(board, token));
   };
 
   useEffect(() => {
-    dispatch(getUserBoards({ user, token }));
+    dispatch(getBoardsAPI({ user, token }));
     return () => {
       console.log('useEffect: Board Unmounted');
     };
   }, []);
 
-  // useEffect(() => {
-  //   // AUTO SAVE, 10s | undefined error in boards[0] some reason
-  //   const timer = setTimeout(saveChanges, 10000);
-  //   return () => clearInterval(timer);
-  // }, []);
+  useEffect(() => {
+    // AUTO SAVE, 10s | undefined error in boards[0] some reason
+    const timer = setTimeout(saveChanges, 10000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
-    dispatch(getUserCards(chosenBoard, token));
-  }, [chosenBoard]);
+    dispatch(getCardsAPI(currentBoard, token));
+  }, [currentBoard]);
 
   return (
     <PageTransition>
@@ -143,7 +136,7 @@ const Board = ({ history }: BoardPageProps) => {
             {boards &&
               boards.map((board: Interface.UserBoards, key: number) => (
                 <div key={key}>
-                  <button onClick={() => currentBoard(board)}>{board.title}</button>
+                  <button onClick={() => currentBoardHandler(board)}>{board.title}</button>
                 </div>
               ))}
           </div>

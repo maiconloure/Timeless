@@ -5,7 +5,7 @@ import * as TYPE from '../actions/type.action';
 
 const initialState: BoardState = {
   boards: [],
-  chosenBoard: JSON.parse(
+  currentBoard: JSON.parse(
     localStorage.getItem('chosenBoard') ||
       `{
     "title": "",
@@ -20,7 +20,7 @@ const initialState: BoardState = {
 
 const boards = (state = initialState, action: BoardsAction): BoardState => {
   switch (action.type) {
-    case TYPE.SET_BOARDS:
+    case TYPE.GET_BOARDS:
       return { ...state, boards: action.payload };
 
     case TYPE.UPDATE_BOARD:
@@ -32,11 +32,11 @@ const boards = (state = initialState, action: BoardsAction): BoardState => {
     case TYPE.CLEAR_BOARD:
       return initialState;
 
-    case TYPE.SET_CHOSEN_BOARD:
+    case TYPE.GET_CURRENT_BOARD:
       localStorage.setItem('chosenBoard', JSON.stringify(action.payload));
-      return { ...state, chosenBoard: action.payload };
+      return { ...state, currentBoard: action.payload };
 
-    case TYPE.SET_CURRENT_CARDS:
+    case TYPE.GET_CURRENT_CARDS:
       return { ...state, cards: action.payload };
     default:
       return state;
