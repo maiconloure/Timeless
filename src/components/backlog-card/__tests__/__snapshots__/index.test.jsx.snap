@@ -1,116 +1,312 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Snapshot renderer false 1`] = `
-<div
-  className="sc-dIsAE bRTquH"
-  style={
-    Object {
-      "background": "rgba(58, 166, 242, 0.5)",
-      "border": "none",
-      "marginLeft": "0",
-      "marginTop": "0",
-      "padding": "1vh 2vw 1vh 2vw",
-      "width": "700px",
-    }
-  }
->
+<div>
   <div
-    className="sc-fFSRdu iXClUG"
-  >
-    <button
-      className="sc-crzoUp iPTyCq"
-      onClick={[Function]}
-    >
-      _
-    </button>
-  </div>
-  <div
-    className="sc-bqGHjH efLMGY"
+    className="sc-dIsAE bRTquH"
     style={
       Object {
-        "marginBottom": "0",
+        "background": "rgba(58, 166, 242, 0.5)",
+        "border": "none",
+        "marginLeft": "0",
+        "marginTop": "0",
+        "padding": "20px",
+        "width": "fit-content",
       }
     }
   >
-    <h1
-      className="sc-ksluoS hNkUcY"
+    <div>
+      <div>
+        <div
+          className="sc-fFSRdu cjdWoy"
+        >
+          <button
+            className="sc-crzoUp iPTyCq"
+            onClick={[Function]}
+          >
+            _
+          </button>
+        </div>
+        <div
+          className="sc-bkbjAj GJZuF"
+        >
+          <button
+            className="sc-crzoUp iPTyCq"
+            onClick={[Function]}
+          >
+            x
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-bqGHjH efLMGY"
       style={
         Object {
-          "borderBottom": "2px solid #014D82",
-          "color": "#014D82",
-          "fontSize": "1.8rem",
-          "paddingBottom": "4px",
+          "marginBottom": "0",
         }
       }
     >
-      Product Backlog
-    </h1>
+      <h1
+        className="sc-ksluoS hNkUcY"
+        style={
+          Object {
+            "borderBottom": "2px solid #014D82",
+            "color": "#014D82",
+            "fontSize": "1.8rem",
+            "paddingBottom": "8px",
+          }
+        }
+      >
+        Product Backlog
+      </h1>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Snapshot renderer true 1`] = `
-<div
-  className="sc-dIsAE bRTquH"
-  style={
-    Object {
-      "background": "rgba(58, 166, 242, 0.5)",
-      "border": "none",
-      "marginLeft": "0",
-      "marginTop": "0",
-      "padding": "1vh 2vw 1vh 2vw",
-      "width": "700px",
-    }
-  }
->
+<div>
   <div
-    className="sc-fFSRdu iXClUG"
-  >
-    <button
-      className="sc-crzoUp iPTyCq"
-      onClick={[Function]}
-    >
-      _
-    </button>
-  </div>
-  <div
-    className="sc-bqGHjH efLMGY"
+    className="sc-dIsAE bRTquH"
     style={
       Object {
-        "marginBottom": "0",
+        "background": "rgba(58, 166, 242, 0.5)",
+        "border": "none",
+        "marginLeft": "0",
+        "marginTop": "0",
+        "padding": "20px",
+        "width": "fit-content",
       }
     }
   >
-    <h1
-      className="sc-ksluoS hNkUcY"
+    <div>
+      <div>
+        <div
+          className="sc-fFSRdu cjdWoy"
+        >
+          <button
+            className="sc-crzoUp iPTyCq"
+            onClick={[Function]}
+          >
+            _
+          </button>
+        </div>
+        <div
+          className="sc-bkbjAj GJZuF"
+        >
+          <button
+            className="sc-crzoUp iPTyCq"
+            onClick={[Function]}
+          >
+            x
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-bqGHjH efLMGY"
       style={
         Object {
-          "borderBottom": "2px solid #014D82",
-          "color": "#014D82",
-          "fontSize": "1.8rem",
-          "paddingBottom": "4px",
+          "marginBottom": "0",
         }
       }
     >
-      Product Backlog
-    </h1>
-  </div>
-  <div
-    className="sc-hBMVcZ hBmSHu"
-  >
-    <div
-      className="sc-bkbjAj iOUaTI"
-    >
-      <img
-        className="sc-fnVYJo eKCOSX"
-        onClick={[Function]}
-        src=""
-        title=""
-      />
+      <h1
+        className="sc-ksluoS hNkUcY"
+        style={
+          Object {
+            "borderBottom": "2px solid #014D82",
+            "color": "#014D82",
+            "fontSize": "1.8rem",
+            "paddingBottom": "8px",
+          }
+        }
+      >
+        Product Backlog
+      </h1>
     </div>
     <div
-      className="sc-iemXMA eFkVwr"
-    />
+      className="sc-hBMVcZ hBmSHu"
+    >
+      <div
+        className="sc-iemXMA iyGxMX"
+      >
+        <img
+          className="sc-fnVYJo eKCOSX"
+          onClick={[Function]}
+          src=""
+          title=""
+        />
+      </div>
+      <div
+        className="sc-dIvqjp iLLGEK"
+      >
+        <div
+          className="sc-jcwofb dCPpVv"
+        >
+          <div
+            className="sc-carGAA kEawpg"
+          >
+            <div
+              className="sc-gXfWUo Gpztr"
+            >
+              <div
+                className="sc-cBoprd cVdwqx"
+                contentEditable="true"
+                suppressContentEditableWarning={true}
+              >
+                DESCRIÇÃO
+              </div>
+              <div
+                className="sc-ciSmjq iaKakI"
+                contentEditable="true"
+                suppressContentEditableWarning={true}
+              >
+                ...
+              </div>
+            </div>
+            <div
+              className="sc-iTVIwl faHJXY"
+            >
+              <div
+                className="sc-iBzFoy doqvKh"
+              >
+                <h2
+                  className="sc-cTJmaU jjhtfe"
+                >
+                  ETIQUETAS
+                </h2>
+                <div
+                  className="sc-jNnnWF jUxAmS"
+                >
+                  #Sprint1
+                </div>
+                <div
+                  className="sc-dPaNSN dDskxq"
+                >
+                  <img
+                    alt="Ícone de Ampulheta"
+                    className="sc-bBjRzc fNTcJP"
+                    onClick={[Function]}
+                  />
+                  <span>
+                    Tempo Execução
+                     
+                    <strong
+                      contentEditable="true"
+                      style={
+                        Object {
+                          "color": "red",
+                        }
+                      }
+                      suppressContentEditableWarning={true}
+                    >
+                      00:00
+                    </strong>
+                  </span>
+                </div>
+                <div
+                  className="sc-cOigif jWsFdL"
+                >
+                  <img
+                    alt="Ícone de Cronômetro"
+                    className="sc-bBjRzc fNTcJP"
+                    onClick={[Function]}
+                  />
+                  <span>
+                    Data Entrega 
+                    <strong
+                      style={
+                        Object {
+                          "color": "#ffbe00",
+                        }
+                      }
+                    >
+                      00/00/00
+                    </strong>
+                  </span>
+                </div>
+              </div>
+              <div
+                className="sc-efHXLn ctjlNB"
+              >
+                <h2
+                  className="sc-cTJmaU jjhtfe"
+                >
+                  AÇÕES
+                </h2>
+                <div
+                  className="sc-ArjOu hHnMrp"
+                >
+                  <img
+                    alt="Ícone de Porta"
+                    className="sc-khIgXV jGQfPJ"
+                    onClick={[Function]}
+                  />
+                  <span>
+                    Mover
+                  </span>
+                </div>
+                <div
+                  className="sc-ArjOu hHnMrp"
+                >
+                  <img
+                    alt="Ícone de Copiar"
+                    className="sc-khIgXV jGQfPJ"
+                    onClick={[Function]}
+                  />
+                  <span>
+                    Copiar
+                  </span>
+                </div>
+                <div
+                  className="sc-ArjOu hHnMrp"
+                >
+                  <img
+                    alt="Ícone de Excluir"
+                    className="sc-khIgXV jGQfPJ"
+                    onClick={[Function]}
+                  />
+                  <span>
+                    Excluir
+                  </span>
+                </div>
+                <button
+                  className="sc-hTRkEk edjiOp"
+                >
+                  feedback
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="sc-jgPznn hsAVJL"
+          >
+            <div
+              className="sc-gSYCTC wEJNH"
+            >
+              <h2
+                className="sc-laZMyp dKMa-DT"
+              >
+                <img
+                  alt="Ícone de Lista"
+                  className="sc-khIgXV jGQfPJ"
+                />
+                <span>
+                  Checklist
+                </span>
+              </h2>
+              <div
+                className="sc-iNiQeE bQahUB"
+              >
+                Teste
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
