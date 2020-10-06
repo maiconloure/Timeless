@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Modal } from 'capstone-project';
+import { Modal, Feed } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
@@ -14,6 +14,17 @@ import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { icons, images } from '../../utils/importAll';
 
+const FeedExample = [
+  'Christopher acabou a feature chat.',
+  'Leandro está trabalhando em testes, veja aqui!',
+  'João acabou de seguir seu board!',
+  'Guilherme mandou um aviso importante, veja aqui!',
+  'Christopher acabou a feature chat.',
+  'Leandro está trabalhando em testes, veja aqui!',
+  'João acabou de seguir seu board!',
+  'Guilherme mandou um aviso importante, veja aqui!',
+  'Christopher acabou de desenvolver um bug!!!',
+];
 interface BoardPageProps {
   history: History<LocationState>;
 }
@@ -152,7 +163,9 @@ const Board = ({ history }: BoardPageProps) => {
           <SideMenuContainer drag dragMomentum={false}>
             <CreationMenu />
           </SideMenuContainer>
-
+          <FeedBox drag dragMomentum={false}>
+            <Feed array={FeedExample} />
+          </FeedBox>
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <CardContainer
@@ -380,9 +393,15 @@ const InnerBoardContainer = styled.div`
 
 const SideMenuContainer = styled(motion.div)`
   position: absolute;
-  top: 100px;
-  left: 50px;
+  top: 80px;
+  left: 40px;
   width: 300px;
+`;
+
+const FeedBox = styled(motion.div)`
+  position: absolute;
+  top: 330px;
+  left: 40px;
 `;
 
 const CardContainer = styled(motion.div)`
