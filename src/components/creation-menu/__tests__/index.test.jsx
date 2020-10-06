@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 jest.mock('../../../utils/importAll', () => ({ icons: {} }));
 
 describe('Snapshot', () => {
-  it('renderer', () => {
+  it('renders', () => {
     const tree = renderer.create(<CreationMenu />).toJSON();
 
     expect(tree).toMatchSnapshot();

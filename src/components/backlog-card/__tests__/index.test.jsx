@@ -11,7 +11,7 @@ jest.mock('react', () => ({
 jest.mock('../../../utils/importAll', () => ({ icons: {} }));
 
 describe('Snapshot', () => {
-  it('renderer true', () => {
+  it('renders', () => {
     useStateMock.mockImplementation(() => [true, () => {}]);
 
     const tree = renderer.create(<BacklogCard />).toJSON();

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot renderer 1`] = `
+exports[`Snapshot renders 1`] = `
 <div
   style={
     Object {
