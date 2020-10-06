@@ -30,6 +30,10 @@ const Board = ({ history }: BoardPageProps) => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({
+    removeCard: true,
+    fastCard: true,
+  });
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
@@ -43,7 +47,7 @@ const Board = ({ history }: BoardPageProps) => {
   };
 
   const currentBoardHandler = (board: Interface.UserBoards) => {
-    dispatch(getCardsAPI(board, token));
+    dispatch(getCardsAPI(board, token, history));
   };
 
   useEffect(() => {
@@ -60,7 +64,7 @@ const Board = ({ history }: BoardPageProps) => {
   }, []);
 
   useEffect(() => {
-    dispatch(getCardsAPI(currentBoard, token));
+    dispatch(getCardsAPI(currentBoard, token, history));
   }, [currentBoard]);
 
   return (
@@ -145,7 +149,7 @@ const Board = ({ history }: BoardPageProps) => {
         </Modal>
         <InnerBoardContainer>
           <SideMenuContainer drag dragMomentum={false}>
-            <CreationMenu />
+            <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
 
           {cards &&
@@ -170,12 +174,21 @@ const Board = ({ history }: BoardPageProps) => {
                   x: card.position.x,
                   y: card.position.y,
                 }}>
-                <DefaultCard data={card.data} />
+                <Card>
+                  <DefaultCard data={card.data} />
+                  {selectedCard.removeCard ? (
+                    <CardButton onClick={() => dispatch(deleteCardAPI({ card, token }))}>
+                      Remove
+                    </CardButton>
+                  ) : (
+                    selectedCard.fastCard && (
+                      <CardButton onClick={() => console.log('fast Card')}>Fast Card</CardButton>
+                    )
+                  )}
+                </Card>
               </CardContainer>
             ))}
-          <CardContainer>
-            <BacklogCard />
-          </CardContainer>
+          <CardContainer>{/* <BacklogCard /> */}</CardContainer>
         </InnerBoardContainer>
       </BoardPage>
     </PageTransition>
@@ -183,6 +196,34 @@ const Board = ({ history }: BoardPageProps) => {
 };
 
 export default Board;
+
+const CardButton = styled.button`
+  background-color: var(--color-background);
+  color: var(--color-primary-4);
+  margin-left: 10px;
+  padding: 2px 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -10px;
+  /* box-shadow: 0 8px 6px -6px gray; */
+
+  :hover {
+    cursor: pointer;
+    color: var(--complement-color-2);
+    font-weight: bold;
+    border-top: none;
+  }
+
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+const Card = styled.div`
+  position: relative;
+`;
 
 const BoardPage = styled.div`
   width: 100vw;

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
@@ -81,7 +82,8 @@ const updateBoard = (board: Interface.UserBoards): Interface.UpdateBoardAction =
 
 export const getCardsAPI = (
   board: Interface.UserBoards,
-  token: string
+  token: string,
+  history: History<LocationState>
 ): ThunkAction<
   void,
   RootStoreType,
@@ -106,11 +108,16 @@ export const getCardsAPI = (
         dispatch(getCards(response.data));
       }
     })
-    .catch((error) =>
+    .catch((error) => {
+      if (['jwt expired', 'Missing token'].includes(error.response.data)) {
+        console.log('okne');
+        localStorage.clear();
+        history.push('/');
+      }
       console.error(
         `getUserCards ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+      );
+    });
 };
 
 const setCurrentBoard = (board: Interface.UserBoards): Interface.CurrentBoardAction => ({

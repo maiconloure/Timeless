@@ -74,6 +74,7 @@ const Card = styled.div`
   border-radius: 5px;
   position: relative;
   margin-top: 30px;
+  /* box-shadow: 1px 1px 16px 6px gray; */
 
   [contenteditable='true'] {
     cursor: pointer;

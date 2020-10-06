@@ -75,6 +75,11 @@ interface DataTimeInterface {
 }
 
 export interface CardDataInterface {
+  alert?: {
+    title?: string;
+    supTitle?: string;
+    data?: number | string;
+  };
   title: string;
   time: {
     finish: DataTimeInterface;
