@@ -7,13 +7,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
-import emptyCard from '../../components/creation-menu/empty-card.json';
 import PageTransition from '../../components/pageTransition';
 import { getBoardsAPI, updateBoardAPI, getCardsAPI } from '../../redux/actions/boards.action';
-import { deleteCardAPI } from '../../redux/actions/cards.action';
+import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
+import { fastCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
 
 interface BoardPageProps {
@@ -31,8 +31,8 @@ const Board = ({ history }: BoardPageProps) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
-    removeCard: true,
-    fastCard: true,
+    removeCard: false,
+    fastCard: false,
   });
 
   const handleLogout = () => {
@@ -182,7 +182,17 @@ const Board = ({ history }: BoardPageProps) => {
                     </CardButton>
                   ) : (
                     selectedCard.fastCard && (
-                      <CardButton onClick={() => console.log('fast Card')}>Fast Card</CardButton>
+                      <CardButton
+                        onClick={() =>
+                          dispatch(
+                            updateCardAPI({
+                              token,
+                              card: { ...card, data: { ...card.data, ...fastCard } },
+                            })
+                          )
+                        }>
+                        Card
+                      </CardButton>
                     )
                   )}
                 </Card>

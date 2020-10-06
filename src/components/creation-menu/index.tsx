@@ -5,8 +5,13 @@ import styled from 'styled-components';
 import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
+import { defaultCard } from '../../utils/defaults-json-cards';
 import { icons } from '../../utils/importAll';
-import card from './empty-card.json';
+
+const initialSelectCard = {
+  removeCard: false,
+  fastCard: false,
+};
 
 const CreationMenu = ({
   setSelectedCard,
@@ -27,28 +32,23 @@ const CreationMenu = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-  const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const groupButton = () => {
     console.log('groupButton');
   };
 
   const createCardButton = () => {
     console.log('createCardButton');
-    dispatch(createCardAPI({ currentBoard, token, user, card }));
+    dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard }));
   };
 
   const createFasterCardButton = () => {
     console.log('createFasterCardButton');
-    setSelectedCard({ removeCard: false, fastCard: !selectedCard.fastCard });
-  };
-
-  const createWarningCardButton = () => {
-    console.log('createWarningCardButton');
+    setSelectedCard({ ...initialSelectCard, fastCard: !selectedCard.fastCard });
   };
 
   const removeCardButton = () => {
     console.log('removeCardButton');
-    setSelectedCard({ fastCard: false, removeCard: !selectedCard.removeCard });
+    setSelectedCard({ ...initialSelectCard, removeCard: !selectedCard.removeCard });
   };
 
   const createTextButton = () => {
@@ -81,8 +81,7 @@ const CreationMenu = ({
         <MenuOptions selectedCard={selectedCard}>
           <img id="group" src={icons.group} onClick={groupButton} alt="group" />
           <img id="card" src={icons.card} onClick={createCardButton} alt="create" />
-          <img id="fastCard" src={icons.fastCard} onClick={createFasterCardButton} alt="fast" />
-          <img id="warning" src={icons.warning} onClick={createWarningCardButton} alt="warning" />
+          <img id="fast" src={icons.fastCard} onClick={createFasterCardButton} alt="fast" />
           <img id="trash" src={icons.trash} onClick={removeCardButton} alt="remove" />
         </MenuOptions>
       </MenuSection>
@@ -165,9 +164,23 @@ const MenuOptions = styled.div<{ selectedCard: any }>`
     cursor: pointer;
   }
 
+  img#card:active {
+    -webkit-filter: drop-shadow(5px 5px 5px gray);
+    filter: drop-shadow(5px 5px 5px gray);
+    transform: scale(1.2);
+  }
+
   ${(props) =>
     props.selectedCard.removeCard &&
     ` img#trash {
+      -webkit-filter: drop-shadow(5px 5px 5px gray);
+      filter: drop-shadow(5px 5px 5px gray);
+      transform: scale(1.2);
+  }`}
+
+  ${(props) =>
+    props.selectedCard.fastCard &&
+    ` img#fast {
       -webkit-filter: drop-shadow(5px 5px 5px gray);
       filter: drop-shadow(5px 5px 5px gray);
       transform: scale(1.2);

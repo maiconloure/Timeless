@@ -1,64 +1,72 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { CardDataInterface } from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
+import FastCard from './fast-card';
 
 const DefaultCard = ({ data }: { data: CardDataInterface }) => {
+  const [showWarning, setShowWarning] = useState(false);
+
   return (
-    <Card>
-      <CardInside>
-        <AlertImg>
-          <img src={icons.warning} alt="warning" />
-        </AlertImg>
-        <CardHeader>
-          <div>
-            {data.tags.map((tag: any, key: number) => (
-              <span
-                key={key}
-                contentEditable
-                suppressContentEditableWarning
-                style={{ color: tag.color }}>
-                {tag.text}
-              </span>
-            ))}
-          </div>
-          <div>
-            <InfoIcons>
-              <img src={icons.description} alt="Have description" />
-              <img src={icons.eye} alt="Someone follow" />
-            </InfoIcons>
-          </div>
-          <div>
-            <span>{data.time.start.date}</span>
-          </div>
-        </CardHeader>
-        <Description>
-          <div>
+    <>
+      <Card>
+        <CardInside>
+          <AlertImg>
+            {data.fastCard && data.fastCard.show && (
+              <img src={icons.warning} onClick={() => setShowWarning(!showWarning)} alt="warning" />
+            )}
+          </AlertImg>
+          <CardHeader>
             <div>
-              <DescriptionTitle contentEditable suppressContentEditableWarning>
-                {data.title}
-              </DescriptionTitle>
+              {data.tags.map((tag: any, key: number) => (
+                <span
+                  key={key}
+                  contentEditable
+                  suppressContentEditableWarning
+                  style={{ color: tag.color }}>
+                  {tag.text}
+                </span>
+              ))}
             </div>
             <div>
-              <p>{data.description}</p>
+              <InfoIcons>
+                <img src={icons.description} alt="Have description" />
+                <img src={icons.eye} alt="Someone follow" />
+              </InfoIcons>
             </div>
-          </div>
-          <div>
-            <input type="checkbox" />
-          </div>
-        </Description>
-        <CardFooter>
-          <CardUsers>
-            <img src={icons.user1} alt="user icon" />
-          </CardUsers>
-          <CardData>
-            <span>{data.time.finish.date}</span>
-          </CardData>
-        </CardFooter>
-      </CardInside>
-    </Card>
+            <div>
+              <span>{data.time.start.date}</span>
+            </div>
+          </CardHeader>
+          <Description>
+            <div>
+              <div>
+                <DescriptionTitle contentEditable suppressContentEditableWarning>
+                  {data.title}
+                </DescriptionTitle>
+              </div>
+              <div>
+                <p>{data.description}</p>
+              </div>
+            </div>
+            <div>
+              <input type="checkbox" />
+            </div>
+          </Description>
+          <CardFooter>
+            <CardUsers>
+              <img src={icons.user1} alt="user icon" />
+            </CardUsers>
+            <CardData>
+              <span>{data.time.finish.date}</span>
+            </CardData>
+          </CardFooter>
+        </CardInside>
+      </Card>
+      {showWarning && data.fastCard && <FastCard fastCard={data.fastCard} />}
+    </>
   );
 };
 

@@ -21,6 +21,9 @@ export const updateCardAPI = ({
   unknown,
   Interface.UpdateCardAction
 > => (dispatch) => {
+  console.log(card);
+
+  dispatch(updateCard(card));
   api
     .put(`/cards/${card.id}`, card, createHeader(token))
     .then((response) => {
@@ -28,7 +31,7 @@ export const updateCardAPI = ({
         console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
-        dispatch(updateCard(response.data));
+        console.log(response.data);
       }
     })
     .catch((error) =>

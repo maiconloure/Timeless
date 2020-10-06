@@ -73,13 +73,15 @@ interface DataTimeInterface {
   date: string;
   hour: number | string;
 }
+export interface FastCardDataInterface {
+  title?: string;
+  subTitle?: string;
+  date?: number | string;
+  show?: boolean;
+}
 
 export interface CardDataInterface {
-  alert?: {
-    title?: string;
-    supTitle?: string;
-    data?: number | string;
-  };
+  fastCard?: FastCardDataInterface;
   title: string;
   time: {
     finish: DataTimeInterface;
