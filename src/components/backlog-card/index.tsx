@@ -22,7 +22,7 @@ export default function BacklogCard({ usersArray = [{ image: '', user: '' }] }: 
       avatars={usersArray}
       fontColor="#014D82"
       closeable
-      minimizeDataPass={[showCard, () => setShowCard(!showCard)]}
+      closeDataPass={[showCard, () => setShowCard(false)]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
       <Children />

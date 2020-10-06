@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renderer 1`] = `
+<div
+  className="sc-bdnylx eZUlpd"
+>
+  <div
+    className="sc-hKFyIo gnBfdK"
+  >
+    <span />
+    <span />
+    <span />
+  </div>
+  <div
+    className="sc-gtssRu bgBLvI"
+  >
+    <div
+      className="sc-dlnjPT csVGFK"
+    >
+      <h4>
+        OBJETOS
+      </h4>
+    </div>
+    <div
+      className="sc-eCApGN flJDBH"
+    >
+      <img
+        alt="group"
+        onClick={[Function]}
+      />
+      <img
+        alt="create card"
+        onClick={[Function]}
+      />
+      <img
+        alt=" create fast card"
+        onClick={[Function]}
+      />
+      <img
+        alt="create warning card"
+        onClick={[Function]}
+      />
+      <img
+        alt=" remove card"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <div
+    className="sc-gtssRu bgBLvI"
+  >
+    <div
+      className="sc-dlnjPT csVGFK"
+    >
+      <h4>
+        FERRAMENTAS
+      </h4>
+    </div>
+    <div
+      className="sc-eCApGN flJDBH"
+    >
+      <img
+        alt="create text box"
+        onClick={[Function]}
+      />
+      <img
+        alt="connect cards"
+        onClick={[Function]}
+      />
+      <img
+        alt="pin/follow card"
+        onClick={[Function]}
+      />
+      <img
+        alt=" block card"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

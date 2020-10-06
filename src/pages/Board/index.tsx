@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Modal } from 'capstone-project';
+import { Modal, Feed } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import PageTransition from '../../components/pageTransition';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
 import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
@@ -13,6 +14,17 @@ import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { icons, images } from '../../utils/importAll';
 
+const FeedExample = [
+  'Christopher acabou a feature chat.',
+  'Leandro está trabalhando em testes, veja aqui!',
+  'João acabou de seguir seu board!',
+  'Guilherme mandou um aviso importante, veja aqui!',
+  'Christopher acabou a feature chat.',
+  'Leandro está trabalhando em testes, veja aqui!',
+  'João acabou de seguir seu board!',
+  'Guilherme mandou um aviso importante, veja aqui!',
+  'Christopher acabou de desenvolver um bug!!!',
+];
 interface BoardPageProps {
   history: History<LocationState>;
 }
@@ -68,116 +80,120 @@ const Board = ({ history }: BoardPageProps) => {
   }, [chosenBoard]);
 
   return (
-    <BoardPage>
-      <Background src={images.background} alt="background-image" />
+    <PageTransition>
+      <BoardPage>
+        <Background src={images.background} alt="background-image" />
 
-      <TopContainer>
-        <Bar>
-          <ProjectInfo>
-            <a href="https://kenzie.com.br/" target="_blank" rel="noopener noreferrer">
-              <img src={icons.kenzie} alt="Project icon" />
-            </a>
-            <h2> Kenzie Academy Brasil </h2>
-            <h4> &nbsp; | &nbsp; </h4>
-            <h3> Capstone Project </h3>
-          </ProjectInfo>
+        <TopContainer>
+          <Bar>
+            <ProjectInfo>
+              <a href="https://kenzie.com.br/" target="_blank" rel="noopener noreferrer">
+                <img src={icons.kenzie} alt="Project icon" />
+              </a>
+              <h2> Kenzie Academy Brasil </h2>
+              <h4> &nbsp; | &nbsp; </h4>
+              <h3> Capstone Project </h3>
+            </ProjectInfo>
 
-          <UserInfo>
-            <User>
-              <h2>Maicon Lourenço</h2>
-              <p>Online</p>
-            </User>
+            <UserInfo>
+              <User>
+                <h2>Maicon Lourenço</h2>
+                <p>Online</p>
+              </User>
 
-            <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
-              <img src={icons.user1} alt="User icon" />
-            </ProfileIcon>
+              <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
+                <img src={icons.user1} alt="User icon" />
+              </ProfileIcon>
 
-            {toggleMenu && (
-              <UserMenu>
-                <MainUserMenu>
-                  <h2>Conta</h2>
-                  <img
-                    onClick={() => setToggleMenu(!toggleMenu)}
-                    src={icons.closeIcon}
-                    alt="close icon"
-                  />
-                </MainUserMenu>
+              {toggleMenu && (
+                <UserMenu>
+                  <MainUserMenu>
+                    <h2>Conta</h2>
+                    <img
+                      onClick={() => setToggleMenu(!toggleMenu)}
+                      src={icons.closeIcon}
+                      alt="close icon"
+                    />
+                  </MainUserMenu>
 
-                <UserInfoMenu>
-                  <h2>Maicon Lourenço</h2>
-                  <h3>maiconloure@gmail.com</h3>
-                </UserInfoMenu>
+                  <UserInfoMenu>
+                    <h2>Maicon Lourenço</h2>
+                    <h3>maiconloure@gmail.com</h3>
+                  </UserInfoMenu>
 
-                <Logout
-                  onClick={() => {
-                    saveChanges();
-                    setToggleMenu(!toggleMenu);
-                  }}>
-                  <p>Salvar Board</p>
-                </Logout>
+                  <Logout
+                    onClick={() => {
+                      saveChanges();
+                      setToggleMenu(!toggleMenu);
+                    }}>
+                    <p>Salvar Board</p>
+                  </Logout>
 
-                <Logout
-                  onClick={() => {
-                    setShowModal(true);
-                    setToggleMenu(!toggleMenu);
-                  }}>
-                  <p>Escolher Board</p>
-                </Logout>
+                  <Logout
+                    onClick={() => {
+                      setShowModal(true);
+                      setToggleMenu(!toggleMenu);
+                    }}>
+                    <p>Escolher Board</p>
+                  </Logout>
 
-                <Logout onClick={handleLogout}>
-                  <p>Fazer Logout</p>
-                </Logout>
-              </UserMenu>
-            )}
-          </UserInfo>
-        </Bar>
-      </TopContainer>
+                  <Logout onClick={handleLogout}>
+                    <p>Fazer Logout</p>
+                  </Logout>
+                </UserMenu>
+              )}
+            </UserInfo>
+          </Bar>
+        </TopContainer>
 
-      <Modal
-        title="Boards"
-        data={[showModal, setShowModal]}
-        styles={{ size: 'medium', fontSize: 'large' }}>
-        <div>
-          {boards &&
-            boards.map((board: Interface.UserBoards, key: number) => (
-              <div key={key}>
-                <button onClick={() => currentBoard(board)}>{board.title}</button>
-              </div>
+        <Modal
+          title="Boards"
+          data={[showModal, setShowModal]}
+          styles={{ size: 'medium', fontSize: 'large' }}>
+          <div>
+            {boards &&
+              boards.map((board: Interface.UserBoards, key: number) => (
+                <div key={key}>
+                  <button onClick={() => currentBoard(board)}>{board.title}</button>
+                </div>
+              ))}
+          </div>
+        </Modal>
+        <InnerBoardContainer>
+          <SideMenuContainer drag dragMomentum={false}>
+            <CreationMenu />
+          </SideMenuContainer>
+          <FeedBox drag dragMomentum={false}>
+            <Feed array={FeedExample} />
+          </FeedBox>
+          {cards &&
+            cards.map((card: Interface.CardInterface, key: number) => (
+              <CardContainer
+                key={key}
+                drag
+                dragMomentum={false}
+                onDragEnd={(e: any) => {
+                  /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
+                  if (e && e.target && e.target.offsetParent) {
+                    const position = e.target.offsetParent.getBoundingClientRect();
+                    console.log(position);
+
+                    card.position = {
+                      x: position.x,
+                      y: position.y - 28, // tive que fazer esse ajuste em pixels
+                    };
+                  }
+                }}
+                style={{ x: card.position.x, y: card.position.y }}>
+                <DefaultCard data={card.data} />
+              </CardContainer>
             ))}
-        </div>
-      </Modal>
-      <InnerBoardContainer>
-        <SideMenuContainer drag dragMomentum={false}>
-          <CreationMenu />
-        </SideMenuContainer>
-
-        {cards &&
-          cards.map((card: Interface.CardInterface, key: number) => (
-            <CardContainer
-              key={key}
-              drag
-              dragMomentum={false}
-              onDragEnd={(e: any) => {
-                /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
-                if (e && e.target && e.target.offsetParent) {
-                  const position = e.target.offsetParent.getBoundingClientRect();
-                  console.log(position);
-
-                  card.position = {
-                    x: position.x,
-                    y: position.y - 28, // tive que fazer esse ajuste em pixels
-                  };
-                }
-              }}
-              style={{ x: card.position.x, y: card.position.y }}>
-              <DefaultCard data={card.data} />
-            </CardContainer>
-          ))}
-        <CardContainer drag dragMomentum={false}>
-          <BacklogCard />
-        </CardContainer>
-      </InnerBoardContainer>
-    </BoardPage>
+          <CardContainer drag dragMomentum={false}>
+            <BacklogCard />
+          </CardContainer>
+        </InnerBoardContainer>
+      </BoardPage>
+    </PageTransition>
   );
 };
 
@@ -377,9 +393,15 @@ const InnerBoardContainer = styled.div`
 
 const SideMenuContainer = styled(motion.div)`
   position: absolute;
-  top: 100px;
-  left: 50px;
+  top: 80px;
+  left: 40px;
   width: 300px;
+`;
+
+const FeedBox = styled(motion.div)`
+  position: absolute;
+  top: 330px;
+  left: 40px;
 `;
 
 const CardContainer = styled(motion.div)`

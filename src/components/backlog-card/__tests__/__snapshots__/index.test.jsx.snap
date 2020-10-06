@@ -1,70 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot renderer false 1`] = `
-<div>
-  <div
-    className="sc-dIsAE bRTquH"
-    style={
-      Object {
-        "background": "rgba(58, 166, 242, 0.5)",
-        "border": "none",
-        "marginLeft": "0",
-        "marginTop": "0",
-        "padding": "20px",
-        "width": "fit-content",
-      }
-    }
-  >
-    <div>
-      <div>
-        <div
-          className="sc-fFSRdu cjdWoy"
-        >
-          <button
-            className="sc-crzoUp iPTyCq"
-            onClick={[Function]}
-          >
-            _
-          </button>
-        </div>
-        <div
-          className="sc-bkbjAj GJZuF"
-        >
-          <button
-            className="sc-crzoUp iPTyCq"
-            onClick={[Function]}
-          >
-            x
-          </button>
-        </div>
-      </div>
-    </div>
-    <div
-      className="sc-bqGHjH efLMGY"
-      style={
-        Object {
-          "marginBottom": "0",
-        }
-      }
-    >
-      <h1
-        className="sc-ksluoS hNkUcY"
-        style={
-          Object {
-            "borderBottom": "2px solid #014D82",
-            "color": "#014D82",
-            "fontSize": "1.8rem",
-            "paddingBottom": "8px",
-          }
-        }
-      >
-        Product Backlog
-      </h1>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Snapshot renderer true 1`] = `
 <div>
   <div
@@ -81,27 +16,32 @@ exports[`Snapshot renderer true 1`] = `
     }
   >
     <div>
-      <div>
-        <div
-          className="sc-fFSRdu cjdWoy"
+      <div
+        className="sc-fFSRdu dxmWXw"
+      >
+        <button
+          className="sc-crzoUp iPTyCq"
+          onClick={[Function]}
         >
-          <button
-            className="sc-crzoUp iPTyCq"
-            onClick={[Function]}
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            _
-          </button>
-        </div>
-        <div
-          className="sc-bkbjAj GJZuF"
-        >
-          <button
-            className="sc-crzoUp iPTyCq"
-            onClick={[Function]}
-          >
-            x
-          </button>
-        </div>
+            <path
+              d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+            />
+          </svg>
+        </button>
       </div>
     </div>
     <div
@@ -130,7 +70,7 @@ exports[`Snapshot renderer true 1`] = `
       className="sc-hBMVcZ hBmSHu"
     >
       <div
-        className="sc-iemXMA iyGxMX"
+        className="sc-bkbjAj iOUaTI"
       >
         <img
           className="sc-fnVYJo eKCOSX"
@@ -140,26 +80,26 @@ exports[`Snapshot renderer true 1`] = `
         />
       </div>
       <div
-        className="sc-dIvqjp iLLGEK"
+        className="sc-iemXMA eFkVwr"
       >
         <div
-          className="sc-jcwofb dCPpVv"
+          className="sc-jNnnWF ggoOtv"
         >
           <div
-            className="sc-carGAA kEawpg"
+            className="sc-dPaNSN bfNwUl"
           >
             <div
-              className="sc-gXfWUo Gpztr"
+              className="sc-iBzFoy fXaTjK"
             >
               <div
-                className="sc-cBoprd cVdwqx"
+                className="sc-efHXLn kPzEyo"
                 contentEditable="true"
                 suppressContentEditableWarning={true}
               >
                 DESCRIÇÃO
               </div>
               <div
-                className="sc-ciSmjq iaKakI"
+                className="sc-cTJmaU tIgNv"
                 contentEditable="true"
                 suppressContentEditableWarning={true}
               >
@@ -167,27 +107,27 @@ exports[`Snapshot renderer true 1`] = `
               </div>
             </div>
             <div
-              className="sc-iTVIwl faHJXY"
+              className="sc-bBjRzc cGyVdI"
             >
               <div
-                className="sc-iBzFoy doqvKh"
+                className="sc-cOigif hwShjN"
               >
                 <h2
-                  className="sc-cTJmaU jjhtfe"
+                  className="sc-khIgXV edrdSF"
                 >
                   ETIQUETAS
                 </h2>
                 <div
-                  className="sc-jNnnWF jUxAmS"
+                  className="sc-hTRkEk egvMYA"
                 >
                   #Sprint1
                 </div>
                 <div
-                  className="sc-dPaNSN dDskxq"
+                  className="sc-jgPznn jexUXP"
                 >
                   <img
                     alt="Ícone de Ampulheta"
-                    className="sc-bBjRzc fNTcJP"
+                    className="sc-gSYCTC erUfDP"
                     onClick={[Function]}
                   />
                   <span>
@@ -207,11 +147,11 @@ exports[`Snapshot renderer true 1`] = `
                   </span>
                 </div>
                 <div
-                  className="sc-cOigif jWsFdL"
+                  className="sc-laZMyp jagPVZ"
                 >
                   <img
                     alt="Ícone de Cronômetro"
-                    className="sc-bBjRzc fNTcJP"
+                    className="sc-gSYCTC erUfDP"
                     onClick={[Function]}
                   />
                   <span>
@@ -229,19 +169,19 @@ exports[`Snapshot renderer true 1`] = `
                 </div>
               </div>
               <div
-                className="sc-efHXLn ctjlNB"
+                className="sc-ArjOu eMLHYn"
               >
                 <h2
-                  className="sc-cTJmaU jjhtfe"
+                  className="sc-khIgXV edrdSF"
                 >
                   AÇÕES
                 </h2>
                 <div
-                  className="sc-ArjOu hHnMrp"
+                  className="sc-iNiQeE cCqoxt"
                 >
                   <img
                     alt="Ícone de Porta"
-                    className="sc-khIgXV jGQfPJ"
+                    className="sc-jffIyK hMTDTH"
                     onClick={[Function]}
                   />
                   <span>
@@ -249,11 +189,11 @@ exports[`Snapshot renderer true 1`] = `
                   </span>
                 </div>
                 <div
-                  className="sc-ArjOu hHnMrp"
+                  className="sc-iNiQeE cCqoxt"
                 >
                   <img
                     alt="Ícone de Copiar"
-                    className="sc-khIgXV jGQfPJ"
+                    className="sc-jffIyK hMTDTH"
                     onClick={[Function]}
                   />
                   <span>
@@ -261,11 +201,11 @@ exports[`Snapshot renderer true 1`] = `
                   </span>
                 </div>
                 <div
-                  className="sc-ArjOu hHnMrp"
+                  className="sc-iNiQeE cCqoxt"
                 >
                   <img
                     alt="Ícone de Excluir"
-                    className="sc-khIgXV jGQfPJ"
+                    className="sc-jffIyK hMTDTH"
                     onClick={[Function]}
                   />
                   <span>
@@ -273,7 +213,7 @@ exports[`Snapshot renderer true 1`] = `
                   </span>
                 </div>
                 <button
-                  className="sc-hTRkEk edjiOp"
+                  className="sc-eJoaVz cFzXYX"
                 >
                   feedback
                 </button>
@@ -281,24 +221,24 @@ exports[`Snapshot renderer true 1`] = `
             </div>
           </div>
           <div
-            className="sc-jgPznn hsAVJL"
+            className="sc-oefIU hQlggo"
           >
             <div
-              className="sc-gSYCTC wEJNH"
+              className="sc-hhIhEF iwqTSM"
             >
               <h2
-                className="sc-laZMyp dKMa-DT"
+                className="sc-eirseW kikfOT"
               >
                 <img
                   alt="Ícone de Lista"
-                  className="sc-khIgXV jGQfPJ"
+                  className="sc-jffIyK hMTDTH"
                 />
                 <span>
                   Checklist
                 </span>
               </h2>
               <div
-                className="sc-iNiQeE bQahUB"
+                className="sc-lbVuaH klsAhm"
               >
                 Teste
               </div>

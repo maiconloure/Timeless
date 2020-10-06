@@ -18,14 +18,6 @@ describe('Snapshot', () => {
 
     expect(tree).toMatchSnapshot();
   });
-
-  it('renderer false', () => {
-    useStateMock.mockImplementation(() => [false, () => {}]);
-
-    const tree = renderer.create(<BacklogCard />).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
 });
 
 describe('Events', () => {
@@ -40,14 +32,14 @@ describe('Events', () => {
     expect(setStateSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('simulate opening', () => {
-    const setStateSpy = jest.fn();
+  // it('simulate opening', () => {
+  //   const setStateSpy = jest.fn();
 
-    useStateMock.mockImplementation(() => [false, setStateSpy]);
+  //   useStateMock.mockImplementation(() => [false, setStateSpy]);
 
-    const wrapper = mount(<BacklogCard />);
-    wrapper.find('button').at(0).simulate('click');
-    expect(setStateSpy).toHaveBeenCalledWith(true);
-    expect(setStateSpy).toHaveBeenCalledTimes(1);
-  });
+  //   const wrapper = mount(<BacklogCard />);
+  //   wrapper.find('button').at(0).simulate('click');
+  //   expect(setStateSpy).toHaveBeenCalledWith(true);
+  //   expect(setStateSpy).toHaveBeenCalledTimes(1);
+  // });
 });
