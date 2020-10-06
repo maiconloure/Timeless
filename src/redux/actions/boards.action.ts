@@ -3,7 +3,7 @@ import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
 import { RootStoreType } from '../store/store';
-import { getCard } from './cards.actions';
+import { getCards } from './cards.action';
 import * as Interface from './interface.action';
 import * as TYPE from './type.action';
 
@@ -86,7 +86,7 @@ export const getCardsAPI = (
   void,
   RootStoreType,
   unknown,
-  Interface.CurrentBoardAction | Interface.CurrentCardsAction | Interface.GetCardsAction
+  Interface.CurrentBoardAction | Interface.GetCardsAction
 > => (dispatch) => {
   dispatch(setCurrentBoard(board));
 
@@ -103,8 +103,7 @@ export const getCardsAPI = (
         console.error(`getUserCards ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`getUserCards ==> Status: ${response.status}`);
-        dispatch(setCurrentCards(response.data));
-        dispatch(getCard(response.data));
+        dispatch(getCards(response.data));
       }
     })
     .catch((error) =>
@@ -119,14 +118,8 @@ const setCurrentBoard = (board: Interface.UserBoards): Interface.CurrentBoardAct
   payload: board,
 });
 
-const setCurrentCards = (cards: Interface.CardInterface[]): Interface.CurrentCardsAction => ({
-  type: TYPE.GET_CURRENT_CARDS,
-  payload: cards,
-});
-
 export type BoardsAction =
   | Interface.GetBoardsAction
   | Interface.ClearBoardAction
   | Interface.UpdateBoardAction
-  | Interface.CurrentBoardAction
-  | Interface.CurrentCardsAction;
+  | Interface.CurrentBoardAction;

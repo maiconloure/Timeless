@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { CardAction } from '../actions/cards.actions';
+import { CardAction } from '../actions/cards.action';
 import { CardState } from '../actions/interface.action';
 import * as TYPE from '../actions/type.action';
 
@@ -18,8 +18,6 @@ const cards = (state = initialState, action: CardAction): CardState => {
         cards: [...state.cards.filter((card) => card.id !== action.payload.id), action.payload],
       };
     case TYPE.CREATE_CARD:
-      console.log({ ...state, cards: [...state.cards, action.payload] });
-
       return { ...state, cards: [...state.cards, action.payload] };
     case TYPE.DELETE_CARD:
       return { ...state, cards: [...state.cards.filter((card) => card.id !== action.payload.id)] };

@@ -60,7 +60,6 @@ export interface UserBoards {
 export interface BoardState {
   boards: UserBoards[];
   currentBoard: UserBoards;
-  cards: CardInterface[];
 }
 
 // --------------CARD INTERFACES--------------
@@ -174,5 +173,5 @@ export interface DeleteCardAction {
 
 export interface GetCardsAction {
   type: typeof TYPE.GET_CARDS;
-  payload: CardInterface;
+  payload: CardInterface[];
 }

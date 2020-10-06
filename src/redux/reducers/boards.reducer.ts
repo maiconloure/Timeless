@@ -15,7 +15,6 @@ const initialState: BoardState = {
     "id": ""
   }`
   ),
-  cards: [],
 };
 
 const boards = (state = initialState, action: BoardsAction): BoardState => {
@@ -36,8 +35,6 @@ const boards = (state = initialState, action: BoardsAction): BoardState => {
       localStorage.setItem('chosenBoard', JSON.stringify(action.payload));
       return { ...state, currentBoard: action.payload };
 
-    case TYPE.GET_CURRENT_CARDS:
-      return { ...state, cards: action.payload };
     default:
       return state;
   }

@@ -57,7 +57,6 @@ export const createCardAPI = ({
         console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
-        console.log(response);
         dispatch(createCard(response.data));
       }
     })
@@ -109,9 +108,9 @@ const deleteCard = (card: Interface.CardInterface): Interface.DeleteCardAction =
   payload: card,
 });
 
-export const getCard = (card: Interface.CardInterface[]): Interface.GetCardsAction => ({
+export const getCards = (cards: Interface.CardInterface[]): Interface.GetCardsAction => ({
   type: TYPE.GET_CARDS,
-  payload: card,
+  payload: cards,
 });
 
 export type CardAction =

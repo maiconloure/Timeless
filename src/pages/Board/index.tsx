@@ -7,8 +7,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
+import emptyCard from '../../components/creation-menu/empty-card.json';
 import PageTransition from '../../components/pageTransition';
 import { getBoardsAPI, updateBoardAPI, getCardsAPI } from '../../redux/actions/boards.action';
+import { deleteCardAPI } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -24,7 +26,7 @@ const Board = ({ history }: BoardPageProps) => {
   const token = useSelector((state: RootStoreType) => state.service.token);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-  const cards = useSelector((state: RootStoreType) => state.boards.cards);
+  const cards = useSelector((state: RootStoreType) => state.cards.cards);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -156,7 +158,7 @@ const Board = ({ history }: BoardPageProps) => {
                   /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
                   if (e && e.target && e.target.offsetParent) {
                     const position = e.target.offsetParent.getBoundingClientRect();
-                    console.log(position);
+                    // console.log(position);
 
                     card.position = {
                       x: position.x,
@@ -164,7 +166,10 @@ const Board = ({ history }: BoardPageProps) => {
                     };
                   }
                 }}
-                style={{ x: card.position.x, y: card.position.y }}>
+                style={{
+                  x: card.position.x,
+                  y: card.position.y,
+                }}>
                 <DefaultCard data={card.data} />
               </CardContainer>
             ))}

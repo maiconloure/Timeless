@@ -2,10 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.actions';
+import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { icons } from '../../utils/importAll';
-import card from './card.json';
+import card from './empty-card.json';
 
 const CreationMenu = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ const CreationMenu = () => {
 
   const removeCardButton = () => {
     console.log('removeCardButton');
-    dispatch(deleteCardAPI({ card: cards[0], token }));
+    if (cards[0]) {
+      dispatch(deleteCardAPI({ card: cards[0], token }));
+    }
   };
 
   const createTextButton = () => {
