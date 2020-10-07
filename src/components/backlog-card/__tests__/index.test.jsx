@@ -8,8 +8,6 @@ jest.mock('react', () => ({
   useState: jest.fn(),
 }));
 
-jest.mock('../../../utils/importAll', () => ({ icons: {} }));
-
 describe('Snapshot', () => {
   it('renders', () => {
     useStateMock.mockImplementation(() => [true, () => {}]);

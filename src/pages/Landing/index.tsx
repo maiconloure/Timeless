@@ -16,7 +16,6 @@ interface LandingPageProps {
 
 const Landing = ({ history }: LandingPageProps) => {
   const dispatch = useDispatch();
-  const { status } = useSelector((state: RootStoreType) => state.service);
   const [handleForm, setHandleForm] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
