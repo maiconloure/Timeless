@@ -17,6 +17,7 @@ interface LandingPageProps {
 const Landing = ({ history }: LandingPageProps) => {
   const dispatch = useDispatch();
   const [handleForm, setHandleForm] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentFrame, setCurrentFrame] = useState('main');
@@ -32,6 +33,16 @@ const Landing = ({ history }: LandingPageProps) => {
     });
   };
 
+  const handleKeyDown = (evt: any) => {
+    if (evt.key === 'Enter') {
+      if (handleForm) {
+        OnFinishRegister();
+      } else {
+        OnFinishLogin();
+      }
+    }
+  };
+
   const OnFinishLogin = () => {
     console.log('OnFinishLogin');
     dispatch(requestLogin({ email, password }));
@@ -39,7 +50,7 @@ const Landing = ({ history }: LandingPageProps) => {
 
   const OnFinishRegister = () => {
     console.log('OnFinishRegister');
-    dispatch(registerUser({ email, password }));
+    dispatch(registerUser({ name, email, password }));
   };
 
   useEffect(() => {
@@ -62,8 +73,8 @@ const Landing = ({ history }: LandingPageProps) => {
             </St.LinksContainer>
           </St.LeftMenu>
 
-          {(!handleForm || windowSize.width > 550) && (
-            <St.LoginMenu>
+          {(!handleForm || windowSize.width > 968) && (
+            <St.LoginMenu onKeyDown={handleKeyDown}>
               <Input
                 type="email"
                 placeholder="email"
@@ -133,16 +144,23 @@ const Landing = ({ history }: LandingPageProps) => {
           {windowSize.width < 968 && handleForm && (
             <St.RegisterMenu>
               <Input
+                type="text"
+                placeholder="nome"
+                width={windowSize.width < 550 ? '300px' : '400px'}
+                height={windowSize.height > 550 ? '50px' : '40px'}
+                onTextChange={(evt: any) => setName(evt)}
+              />
+              <Input
                 type="email"
                 placeholder="email"
                 width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '55px' : '44px'}
+                height={windowSize.height > 550 ? '50px' : '40px'}
                 onTextChange={(evt: any) => setEmail(evt)}
               />
               <PasswordInput
                 placeholder="senha"
                 width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '55px' : '44px'}
+                height={windowSize.height > 550 ? '50px' : '40px'}
                 onTextChange={(evt: any) => setPassword(evt)}
               />
               <Button
@@ -156,34 +174,44 @@ const Landing = ({ history }: LandingPageProps) => {
 
           {windowSize.width > 968 && handleForm && (
             <St.ModalBackground>
-              <St.RegisterModal>
-                <St.ReturnModal onClick={() => setHandleForm(false)}>
-                  <img src={icons.return} alt="return-icon" />
-                </St.ReturnModal>
-                <St.Text>
-                  <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
-                </St.Text>
-                <St.Form>
-                  <Input
-                    type="text"
-                    placeholder="email"
-                    width="300px"
-                    fontSize="2rem"
-                    height="48px"
-                    onTextChange={(evt: any) => setEmail(evt)}
-                  />
-                  <PasswordInput
-                    placeholder="senha"
-                    width="300px"
-                    fontSize="2rem"
-                    height="48px"
-                    onTextChange={(evt: any) => setPassword(evt)}
-                  />
-                  <Button fontSize="2.6rem" height="44px" weight={600} onClick={OnFinishRegister}>
-                    Começar
-                  </Button>
-                </St.Form>
-              </St.RegisterModal>
+              <PageTransition>
+                <St.RegisterModal>
+                  <St.ReturnModal onClick={() => setHandleForm(false)}>
+                    <img src={icons.return} alt="return-icon" />
+                  </St.ReturnModal>
+                  <St.Text>
+                    <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
+                  </St.Text>
+                  <St.Form>
+                    <Input
+                      type="text"
+                      placeholder="nome"
+                      width="300px"
+                      fontSize="2rem"
+                      height="48px"
+                      onTextChange={(evt: any) => setName(evt)}
+                    />
+                    <Input
+                      type="email"
+                      placeholder="email"
+                      width="300px"
+                      fontSize="2rem"
+                      height="48px"
+                      onTextChange={(evt: any) => setEmail(evt)}
+                    />
+                    <PasswordInput
+                      placeholder="senha"
+                      width="300px"
+                      fontSize="2rem"
+                      height="48px"
+                      onTextChange={(evt: any) => setPassword(evt)}
+                    />
+                    <Button fontSize="2.6rem" height="44px" weight={600} onClick={OnFinishRegister}>
+                      Começar
+                    </Button>
+                  </St.Form>
+                </St.RegisterModal>
+              </PageTransition>
             </St.ModalBackground>
           )}
 

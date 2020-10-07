@@ -1,5 +1,5 @@
 import { CardLeandro } from 'capstone-project';
-import React, { useState } from 'react';
+import React from 'react';
 import Children from './content';
 
 interface Props {
@@ -22,8 +22,6 @@ const BacklogCard = ({
     currentCard: any;
   };
 }) => {
-  console.log('currentCard: ', currentCard);
-
   return (
     <CardLeandro
       title="Product Backlog"
