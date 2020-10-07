@@ -9,20 +9,20 @@ exports[`Snapshot renders 1`] = `
   }
 >
   <div
-    className="sc-iBzFoy cjnUDs"
+    className="sc-iTVIwl fWbDui"
   >
     <div
-      className="sc-efHXLn hQMBIU"
+      className="sc-iBzFoy fxpCVg"
     >
       <div
-        className="sc-cTJmaU UFWfc"
+        className="sc-efHXLn cDxJLF"
       >
         <img
           alt="logo"
           onClick={[Function]}
         />
         <div
-          className="sc-jNnnWF eujllH"
+          className="sc-cTJmaU gpSXEu"
         >
           <p
             onClick={[Function]}
@@ -42,7 +42,8 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-dPaNSN iNlJPo"
+        className="sc-jNnnWF kOGYSr"
+        onKeyDown={[Function]}
       >
         <div
           className="sc-dlnjPT"
@@ -115,14 +116,14 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-bBjRzc jmgqcz"
+        className="sc-dPaNSN hxrhiw"
       >
         <div
-          className="sc-cOigif hvHJux"
+          className="sc-bBjRzc eJvXEZ"
           onClick={[Function]}
         >
           <div
-            className="sc-ArjOu cuWtZn"
+            className="sc-cOigif jTgckp"
           />
           <h1>
             Time
@@ -132,7 +133,7 @@ exports[`Snapshot renders 1`] = `
           </h1>
         </div>
         <div
-          className="sc-khIgXV gscqbm"
+          className="sc-ArjOu fCCwi"
         >
           <p>
             simples, rápido e dinâmico!
@@ -140,13 +141,13 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-jgPznn nJByi"
+        className="sc-hTRkEk iFrrW"
       >
         <div
-          className="sc-gSYCTC ljjRPb"
+          className="sc-jgPznn klGkHh"
         >
           <div
-            className="sc-laZMyp iDJoDJ"
+            className="sc-gSYCTC cAilKT"
           >
             <div />
             <p>
@@ -167,7 +168,7 @@ exports[`Snapshot renders 1`] = `
             Começe agora
           </button>
           <div
-            className="sc-iNiQeE hVmAHK"
+            className="sc-laZMyp fdnrJO"
           >
             <div />
             <p>
@@ -180,7 +181,7 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-eJoaVz kJDQWk"
+        className="sc-jffIyK pVScU"
       >
         <div
           style={
@@ -196,14 +197,14 @@ exports[`Snapshot renders 1`] = `
       </div>
     </div>
     <div
-      className="sc-lbVuaH eBXNHR"
+      className="sc-eirseW isRqTX"
     >
       <img
         alt="wave background"
       />
     </div>
     <div
-      className="sc-gGLyOc koMqCK"
+      className="sc-lbVuaH kIBBHE"
     />
   </div>
 </div>
