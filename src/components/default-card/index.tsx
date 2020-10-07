@@ -19,26 +19,27 @@ const DefaultCard = ({ data }: { data: CardDataInterface }) => {
             )}
           </AlertImg>
           <CardHeader>
-            <div>
+            <MainTags>
               {data.tags.map((tag: any, key: number) => (
-                <span
+                <div
                   key={key}
-                  contentEditable
+                  contentEditable="true"
                   suppressContentEditableWarning
                   style={{ color: tag.color }}>
                   {tag.text}
-                </span>
+                </div>
               ))}
-            </div>
-            <div>
-              <InfoIcons>
-                <img src={icons.description} alt="Have description" />
-                <img src={icons.eye} alt="Someone follow" />
-              </InfoIcons>
-            </div>
-            <div>
+              <div>
+                <InfoIcons>
+                  <img src={icons.description} alt="Have description" />
+                  <img src={icons.eye} alt="Someone follow" />
+                </InfoIcons>
+              </div>
+            </MainTags>
+
+            <TimeExec>
               <span>{data.time.start.date}</span>
-            </div>
+            </TimeExec>
           </CardHeader>
           <Description>
             <div>
@@ -79,49 +80,59 @@ const Card = styled.div`
   width: 100%;
   min-width: 300px;
   max-width: 350px;
-  border-radius: 5px;
+  border-radius: 4px;
   position: relative;
   margin-top: 30px;
-  /* box-shadow: 1px 1px 16px 6px gray; */
+  box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
 
   [contenteditable='true'] {
     cursor: pointer;
     text-overflow: ellipsis;
   }
 
-  [contenteditable='true']:focus {
+  /* [contenteditable='true']:focus {
     background-color: #fff;
     padding: 2px 10px;
     font-size: 15px;
     margin: 2px;
     outline: none;
     border-radius: 4px;
-  }
+  } */
 `;
 
 const CardInside = styled.div`
-  padding: 15px;
+  padding: 12px 14px 5px 14px;
   font-family: 'Inter', sans-serif;
-  margin: 0 4px;
+  /* margin: 0 4px; */
 `;
 
 const CardHeader = styled.div`
   display: flex;
-  justify-content: space-between;
+  font: 700 1.8rem Inter;
+`;
 
-  span {
-    font-size: 1.8rem;
-    font-weight: bold;
-    font-style: italic;
-    width: 100px;
-    height: 1.9rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+const MainTags = styled.div`
+  flex: 2;
+  display: flex;
+  margin-bottom: 10px;
+  &:nth-child(1) {
+    div {
+      font-style: italic;
+      min-width: 80px;
+      max-width: 140px;
+      height: 2rem;
+      display: -webkit-box;
+      outline: none;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: var(--color-background);
+    }
   }
 `;
+
+const TimeExec = styled.div``;
 
 const AlertImg = styled.span`
   position: absolute;
@@ -193,8 +204,9 @@ const CardData = styled.div`
   border-radius: 2px;
   height: min-content;
   padding: 4px 6px;
+  margin-left: auto;
   span {
     font-weight: bold;
-    font-style: italic;
+    /* font-style: italic; */
   }
 `;

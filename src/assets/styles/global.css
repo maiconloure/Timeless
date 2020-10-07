@@ -68,7 +68,6 @@ textarea {
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-corner {
@@ -82,12 +81,11 @@ textarea {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-
-  border-radius: 4px;
+  background-color: var(--color-primary-3);
+  border-radius: 8px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background-color: var(--color-primary-4);
 }
