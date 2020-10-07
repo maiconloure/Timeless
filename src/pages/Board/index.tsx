@@ -8,10 +8,12 @@ import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
 import PageTransition from '../../components/pageTransition';
-import { getUserBoards, updateBoardAPI, getUserCards } from '../../redux/actions/boards.action';
+import { getBoardsAPI, updateBoardAPI, getCardsAPI } from '../../redux/actions/boards.action';
+import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
+import { fastCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
 
 const FeedExample = [
@@ -31,21 +33,18 @@ interface BoardPageProps {
 
 const Board = ({ history }: BoardPageProps) => {
   const dispatch = useDispatch();
-  // const [{ user, token }, boards, chosenBoard, cards] = useSelector((state: RootStoreType): [
-  //   Interface.PropsLogin,
-  //   Interface.UserBoards[],
-  //   Interface.UserBoards,
-  //   Interface.CardInterface[]
-  // ] => [state.service, state.boards.boards, state.boards.chosenBoard, state.boards.cards]);
-
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
-  const chosenBoard = useSelector((state: RootStoreType) => state.boards.chosenBoard);
-  const cards = useSelector((state: RootStoreType) => state.boards.cards);
+  const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
+  const cards = useSelector((state: RootStoreType) => state.cards.cards);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({
+    removeCard: false,
+    fastCard: false,
+  });
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
@@ -58,26 +57,26 @@ const Board = ({ history }: BoardPageProps) => {
     // dispatch(updateBoardAPI({ token, board: boards[0] }));
   };
 
-  const currentBoard = (board: Interface.UserBoards) => {
-    dispatch(getUserCards(board, token));
+  const currentBoardHandler = (board: Interface.UserBoards) => {
+    dispatch(getCardsAPI(board, token, history));
   };
 
   useEffect(() => {
-    dispatch(getUserBoards({ user, token }));
+    dispatch(getBoardsAPI({ user, token }));
     return () => {
       console.log('useEffect: Board Unmounted');
     };
   }, []);
 
-  // useEffect(() => {
-  //   // AUTO SAVE, 10s | undefined error in boards[0] some reason
-  //   const timer = setTimeout(saveChanges, 10000);
-  //   return () => clearInterval(timer);
-  // }, []);
+  useEffect(() => {
+    // AUTO SAVE, 10s | undefined error in boards[0] some reason
+    const timer = setTimeout(saveChanges, 10000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
-    dispatch(getUserCards(chosenBoard, token));
-  }, [chosenBoard]);
+    dispatch(getCardsAPI(currentBoard, token, history));
+  }, [currentBoard]);
 
   return (
     <PageTransition>
@@ -154,14 +153,14 @@ const Board = ({ history }: BoardPageProps) => {
             {boards &&
               boards.map((board: Interface.UserBoards, key: number) => (
                 <div key={key}>
-                  <button onClick={() => currentBoard(board)}>{board.title}</button>
+                  <button onClick={() => currentBoardHandler(board)}>{board.title}</button>
                 </div>
               ))}
           </div>
         </Modal>
         <InnerBoardContainer>
           <SideMenuContainer drag dragMomentum={false}>
-            <CreationMenu />
+            <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
           <FeedBox drag dragMomentum={false}>
             <Feed array={FeedExample} />
@@ -176,7 +175,7 @@ const Board = ({ history }: BoardPageProps) => {
                   /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
                   if (e && e.target && e.target.offsetParent) {
                     const position = e.target.offsetParent.getBoundingClientRect();
-                    console.log(position);
+                    // console.log(position);
 
                     card.position = {
                       x: position.x,
@@ -184,13 +183,35 @@ const Board = ({ history }: BoardPageProps) => {
                     };
                   }
                 }}
-                style={{ x: card.position.x, y: card.position.y }}>
-                <DefaultCard data={card.data} />
+                style={{
+                  x: card.position.x,
+                  y: card.position.y,
+                }}>
+                <Card>
+                  <DefaultCard data={card.data} />
+                  {selectedCard.removeCard ? (
+                    <CardButton onClick={() => dispatch(deleteCardAPI({ card, token }))}>
+                      Remove
+                    </CardButton>
+                  ) : (
+                    selectedCard.fastCard && (
+                      <CardButton
+                        onClick={() =>
+                          dispatch(
+                            updateCardAPI({
+                              token,
+                              card: { ...card, data: { ...card.data, ...fastCard } },
+                            })
+                          )
+                        }>
+                        Card
+                      </CardButton>
+                    )
+                  )}
+                </Card>
               </CardContainer>
             ))}
-          <CardContainer>
-            <BacklogCard />
-          </CardContainer>
+          <CardContainer>{/* <BacklogCard /> */}</CardContainer>
         </InnerBoardContainer>
       </BoardPage>
     </PageTransition>
@@ -198,6 +219,34 @@ const Board = ({ history }: BoardPageProps) => {
 };
 
 export default Board;
+
+const CardButton = styled.button`
+  background-color: var(--color-background);
+  color: var(--color-primary-4);
+  margin-left: 10px;
+  padding: 2px 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -10px;
+  /* box-shadow: 0 8px 6px -6px gray; */
+
+  :hover {
+    cursor: pointer;
+    color: var(--complement-color-2);
+    font-weight: bold;
+    border-top: none;
+  }
+
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+const Card = styled.div`
+  position: relative;
+`;
 
 const BoardPage = styled.div`
   width: 100vw;
