@@ -13,10 +13,11 @@ import {
   updateBoardAPI,
   getCardsAPI,
   createBoardAPI,
+  clearBoard,
 } from '../../redux/actions/boards.action';
 import { deleteCardAPI, updateCardAPI, createCardAPI } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';
-import { signOut } from '../../redux/actions/service.action';
+import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { fastCard, defaultBoard, defaultCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
@@ -63,7 +64,8 @@ const Board = ({ history }: BoardPageProps) => {
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
     history.push('/');
-    dispatch(signOut());
+    dispatch(clearBoard());
+    dispatch(logout());
   };
 
   const saveChanges = () => {

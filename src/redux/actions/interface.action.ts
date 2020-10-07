@@ -175,6 +175,11 @@ export interface CreateBoardAction {
   payload: UserBoards;
 }
 
+export interface DeleteBoardAction {
+  type: typeof TYPE.DELETE_BOARD;
+  payload: UserBoards;
+}
+
 // ACTIONS INTERFACES CARDS
 
 export interface UpdateCardAction {
