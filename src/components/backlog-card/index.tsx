@@ -1,9 +1,15 @@
 import { CardLeandro } from 'capstone-project';
 import React from 'react';
+
 import Children from './content';
 
-interface Props {
+interface BacklogCardProps {
   usersArray?: ImageProps[];
+  closeDataPass: {
+    showEditCard: boolean;
+    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
+    currentCard: any;
+  };
 }
 
 interface ImageProps {
@@ -14,14 +20,7 @@ interface ImageProps {
 const BacklogCard = ({
   usersArray = [{ image: '', user: '' }],
   closeDataPass: { showEditCard, setShowEditCard, currentCard },
-}: {
-  usersArray: ImageProps[];
-  closeDataPass: {
-    showEditCard: boolean;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
-    currentCard: any;
-  };
-}) => {
+}: BacklogCardProps) => {
   return (
     <CardLeandro
       title="Product Backlog"
