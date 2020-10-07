@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Modal, Feed } from 'capstone-project';
+import { Modal, Feed, Input, PasswordInput, Button } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
@@ -40,12 +40,13 @@ const Board = ({ history }: BoardPageProps) => {
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditCard, setShowEditCard] = useState(false);
+  const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
     removeCard: false,
     fastCard: false,
   });
-  console.log(user);
-  console.log(currentBoard);
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
@@ -151,26 +152,116 @@ const Board = ({ history }: BoardPageProps) => {
           </Bar>
         </TopContainer>
 
-        <Modal
+        <CardModal
           title="Boards"
           data={[showModal, setShowModal]}
-          styles={{ size: 'medium', fontSize: 'large' }}>
-          <div>
+          styles={{
+            size: 'normal',
+            fontSize: 'large',
+            bgColorPrimary: '#3aa6f2',
+            colorPrimary: '#014d82',
+          }}>
+          <>
+            {showEditModal ? (
+              <Form>
+                <Button onClick={() => setShowEditModal(false)}>Voltar</Button>
+              </Form>
+            ) : (
+              <ModalContent>
+                <MenuModal>
+                  <CardModalDescription>Novo Board</CardModalDescription>
+
+                  <CardModalButton
+                    onClick={() => {
+                      console.log('Criar Board');
+                      setShowEditModal(true);
+                    }}>
+                    Criar
+                  </CardModalButton>
+                </MenuModal>
+              </ModalContent>
+            )}
             {boards &&
-              boards.map((board: Interface.UserBoards, key: number) => (
-                <div key={key}>
-                  <button onClick={() => currentBoardHandler(board)}>{board.title}</button>
-                </div>
-              ))}
-          </div>
-        </Modal>
+              boards.map((board: Interface.UserBoards, key: number) =>
+                showEditModal ? (
+                  <Form key={key}>
+                    <Input
+                      type="text"
+                      placeholder="Título"
+                      width="220px"
+                      fontSize="2rem"
+                      height="40px"
+                      onTextChange={() => console.log('Título Mudou')}
+                    />
+                    <Input
+                      type="text"
+                      placeholder="Descrição"
+                      width="220px"
+                      fontSize="2rem"
+                      height="40px"
+                      onTextChange={() => console.log('Descrição Mudou')}
+                    />
+                    <Button
+                      fontSize="2.6rem"
+                      height="44px"
+                      weight={600}
+                      onClick={() => {
+                        console.log('Submit Board');
+                        setShowEditModal(false);
+                      }}>
+                      Modificar
+                    </Button>
+                  </Form>
+                ) : (
+                  <ModalContent key={key}>
+                    <h2>{board.title}</h2>
+
+                    <CardModalSection>
+                      <CardModalDescription>{board.description}</CardModalDescription>
+
+                      <div>
+                        <CardModalButton
+                          onClick={() => {
+                            console.log('Selecionar Board');
+
+                            currentBoardHandler(board);
+                            setShowModal(false);
+                          }}>
+                          Selecionar
+                        </CardModalButton>
+
+                        <CardModalButton
+                          onClick={() => {
+                            console.log('Modificar Board');
+
+                            setShowEditModal(true);
+                          }}>
+                          Modificar
+                        </CardModalButton>
+
+                        <CardModalButton
+                          onClick={() => {
+                            console.log('Remover Board');
+                          }}>
+                          Remover
+                        </CardModalButton>
+                      </div>
+                    </CardModalSection>
+                  </ModalContent>
+                )
+              )}
+          </>
+        </CardModal>
+
         <InnerBoardContainer>
           <SideMenuContainer drag dragMomentum={false}>
             <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
+
           <FeedBox drag dragMomentum={false}>
             <Feed array={FeedExample} />
           </FeedBox>
+
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <CardContainer
@@ -189,12 +280,19 @@ const Board = ({ history }: BoardPageProps) => {
                     };
                   }
                 }}
+                onDoubleClick={() => {
+                  if (!showEditCard) {
+                    setCurrentCard(card);
+                    setShowEditCard(true);
+                  }
+                }}
                 style={{
                   x: card.position.x,
                   y: card.position.y,
                 }}>
                 <Card>
                   <DefaultCard data={card.data} />
+
                   {selectedCard.removeCard ? (
                     <CardButton onClick={() => dispatch(deleteCardAPI({ card, token }))}>
                       Remove
@@ -217,7 +315,10 @@ const Board = ({ history }: BoardPageProps) => {
                 </Card>
               </CardContainer>
             ))}
-          <CardContainer>{/* <BacklogCard /> */}</CardContainer>
+
+          <CardContainer>
+            <BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
+          </CardContainer>
         </InnerBoardContainer>
       </BoardPage>
     </PageTransition>
@@ -225,6 +326,118 @@ const Board = ({ history }: BoardPageProps) => {
 };
 
 export default Board;
+
+const CardModal = styled(Modal)`
+  div {
+    &:last-child {
+      padding: 5px !important;
+    }
+  }
+`;
+
+const MenuModal = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CardModalButton = styled.button`
+  background-color: var(--complement-color-0);
+  color: var(--color-primary-4);
+  width: 90px;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin: 5px;
+
+  :hover {
+    background-color: var(--complement-color-1);
+    cursor: pointer;
+    font-weight: bold;
+    border-top: none;
+  }
+
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+const CardModalSection = styled.div`
+  color: var(--color-primary-4);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  @media (min-height: 768px) and (min-width: 968px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+
+  div {
+    padding: 10px;
+
+    input {
+      font-size: 1.8rem;
+      padding: 0px 10px;
+    }
+  }
+
+  button {
+    border-radius: 3px;
+    font-size: 2.6rem;
+    margin-top: 10px;
+    height: 50px;
+    width: 200px;
+
+    :hover {
+      color: var(--complement-color-0);
+    }
+  }
+
+  button:nth-child(3) {
+    background-color: var(--complement-color-0);
+    :hover {
+      background-color: var(--color-primary-4);
+    }
+  }
+`;
+
+const ModalContent = styled.div`
+  background-color: #fff;
+  padding: 10px;
+  width: 100%;
+  max-width: 230px;
+  min-width: 230px;
+  margin: 10px 0;
+
+  h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+`;
+
+const CardModalDescription = styled.p`
+  margin: 5px;
+  @media (min-height: 768px) and (min-width: 968px) {
+    display: inline-block;
+    font-size: 12px;
+  }
+`;
 
 const CardButton = styled.button`
   background-color: var(--color-background);
