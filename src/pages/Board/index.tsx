@@ -42,6 +42,8 @@ const Board = ({ history }: BoardPageProps) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditCard, setShowEditCard] = useState(false);
+  const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
     removeCard: false,
     fastCard: false,
@@ -255,6 +257,7 @@ const Board = ({ history }: BoardPageProps) => {
           <FeedBox drag dragMomentum={false}>
             <Feed array={FeedExample} />
           </FeedBox>
+
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <CardContainer
@@ -271,6 +274,12 @@ const Board = ({ history }: BoardPageProps) => {
                       x: position.x,
                       y: position.y - 28, // tive que fazer esse ajuste em pixels
                     };
+                  }
+                }}
+                onDoubleClick={() => {
+                  if (!showEditCard) {
+                    setCurrentCard(card);
+                    setShowEditCard(true);
                   }
                 }}
                 style={{
@@ -302,7 +311,10 @@ const Board = ({ history }: BoardPageProps) => {
                 </Card>
               </CardContainer>
             ))}
-          <CardContainer>{/* <BacklogCard /> */}</CardContainer>
+
+          <CardContainer>
+            <BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
+          </CardContainer>
         </InnerBoardContainer>
       </BoardPage>
     </PageTransition>
