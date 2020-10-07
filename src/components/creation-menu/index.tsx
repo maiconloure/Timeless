@@ -104,8 +104,7 @@ export default CreationMenu;
 
 const Menu = styled.div`
   background: #8ac0e9;
-  width: 300px;
-  min-width: 320px;
+  width: 260px;
   max-width: 400px;
   color: #fff;
   padding-bottom: 1px;

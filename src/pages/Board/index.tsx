@@ -38,13 +38,14 @@ const Board = ({ history }: BoardPageProps) => {
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
-
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
     removeCard: false,
     fastCard: false,
   });
+  console.log(user);
+  console.log(currentBoard);
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
@@ -91,17 +92,17 @@ const Board = ({ history }: BoardPageProps) => {
               </a>
               <h2> Kenzie Academy Brasil </h2>
               <h4> &nbsp; | &nbsp; </h4>
-              <h3> Capstone Project </h3>
+              <h3>{currentBoard.title}</h3>
             </ProjectInfo>
 
             <UserInfo>
               <User>
-                <h2>Maicon Lourenço</h2>
+                <h2>{user.name}</h2>
                 <p>Online</p>
               </User>
 
               <ProfileIcon onClick={() => setToggleMenu(!toggleMenu)}>
-                <img src={icons.user1} alt="User icon" />
+                <img src={user.image ? user.image : icons.user1} alt="User icon" />
               </ProfileIcon>
 
               {toggleMenu && (
@@ -116,29 +117,34 @@ const Board = ({ history }: BoardPageProps) => {
                   </MainUserMenu>
 
                   <UserInfoMenu>
-                    <h2>Maicon Lourenço</h2>
-                    <h3>maiconloure@gmail.com</h3>
+                    <h2>{user.name}</h2>
+                    <h3>{user.email}</h3>
+                    <p>{user.about}</p>
                   </UserInfoMenu>
 
-                  <Logout
+                  <MenuOption>
+                    <p>Editar perfil</p>
+                  </MenuOption>
+
+                  <MenuOption onClick={handleLogout}>
+                    <p>Fazer logout</p>
+                  </MenuOption>
+
+                  <MenuOption
                     onClick={() => {
                       saveChanges();
                       setToggleMenu(!toggleMenu);
                     }}>
-                    <p>Salvar Board</p>
-                  </Logout>
+                    <p>Salvar board</p>
+                  </MenuOption>
 
-                  <Logout
+                  <MenuOption
                     onClick={() => {
                       setShowModal(true);
                       setToggleMenu(!toggleMenu);
                     }}>
-                    <p>Escolher Board</p>
-                  </Logout>
-
-                  <Logout onClick={handleLogout}>
-                    <p>Fazer Logout</p>
-                  </Logout>
+                    <p>Selecionar board</p>
+                  </MenuOption>
                 </UserMenu>
               )}
             </UserInfo>
@@ -276,8 +282,8 @@ const Bar = styled.div`
   height: 70px;
   background-color: var(--color-primary-0);
 
-  @media (min-width: 1200px) and (min-height: 768px) {
-    height: 5vh;
+  @media (min-width: 1000px) and (min-height: 768px) {
+    height: 60px;
   }
 `;
 
@@ -285,7 +291,7 @@ const ProjectInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Fira Code';
+  font-family: 'Inter';
 
   h2,
   h3,
@@ -298,32 +304,41 @@ const ProjectInfo = styled.div`
     margin: 0 5px;
   }
 
-  @media (min-width: 1200px) and (min-height: 768px) {
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 1000px) and (min-height: 768px) {
     display: flex;
     align-items: center;
 
     h2 {
+      margin-left: 5px;
       display: block;
-      font-size: 0.9vw;
+      font-size: 1.8rem;
+      font-weight: 800;
       text-transform: uppercase;
       color: #fff;
     }
 
     h3 {
       display: block;
-      font-size: 0.8vw;
+      font-size: 1.6rem;
       color: #fff;
     }
 
     h4 {
       display: block;
-      font-size: 1.4vw;
+      font-size: 2.4rem;
+      font-weight: 900;
       color: #fff;
     }
 
     img {
-      margin: 0 10px;
-      width: 2vw;
+      margin: 0 5px;
+      width: 50px;
     }
   }
 `;
@@ -338,9 +353,8 @@ const UserInfo = styled.div`
 
 const User = styled.div`
   font-family: Inter;
-  font-style: italic;
   font-size: 1.4rem;
-  margin: 0 5px;
+  margin: 0 4px;
 
   p {
     text-align: right;
@@ -348,21 +362,20 @@ const User = styled.div`
 
   @media (min-width: 1200px) and (min-height: 768px) {
     h2 {
-      font-size: 1vw;
+      font-size: 2rem;
     }
     p {
-      font-style: italic;
-      font-size: 0.8vw;
+      font-size: 1.6rem;
     }
   }
 `;
 
 const UserMenu = styled.div`
   position: absolute;
-  top: 60px;
-  left: -5px;
+  top: 65px;
+  left: 0;
   width: 220px;
-  height: 280px;
+  height: 300px;
   padding: 10px;
   background: #ffffff;
   border-radius: 4px;
@@ -380,7 +393,7 @@ const MainUserMenu = styled.div`
 
   h2 {
     font: 500 1.8rem Fira Code;
-    opacity: 0.5;
+    opacity: 0.7;
   }
 
   img {
@@ -398,17 +411,26 @@ const UserInfoMenu = styled.div`
 
   h3 {
     font: 400 1.3rem Inter;
-    opacity: 0.6;
+    padding: 2px 0;
+    opacity: 0.7;
+  }
+
+  p {
+    font: 600 1.4rem Inter;
+    line-height: 1.6rem;
+    padding: 4px 0;
+    border-top: 2px solid #dfe1e7;
+    opacity: 0.9;
   }
 `;
 
-const Logout = styled.div`
+const MenuOption = styled.div`
   border-top: 2px solid #dfe1e7;
   cursor: pointer;
   p {
-    font: 500 1.5rem Fira Code;
-    opacity: 0.8;
-    margin: 4px 0;
+    font: 500 1.5rem Roboto;
+    opacity: 0.9;
+    margin: 6px 0;
   }
 `;
 
@@ -420,13 +442,15 @@ const ProfileIcon = styled.div`
   height: 55px;
 
   img {
-    width: 62px;
+    width: 60px;
+    margin-right: 5px;
+    border-radius: 50%;
   }
 
-  @media (min-width: 1200px) and (min-height: 768px) {
+  @media (min-width: 1000px) and (min-height: 768px) {
     img {
-      width: 2.5vw;
-      margin: 6px 14px;
+      width: 55px;
+      margin: 6px 10px;
     }
   }
 `;

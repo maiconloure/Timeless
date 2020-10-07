@@ -8,7 +8,9 @@ const initialState: PropsLogin = JSON.parse(
       "user": {
         "email": "",
         "name": "",
-        "id": "0"
+        "about": "",
+        "id": "0",
+        "image_url": ""
       },
       "status": "0",
       "token": ""

@@ -5,7 +5,7 @@ export const LandingPage = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
+  overflow-y: auto;
   /* IPHONE 5 ??? */
   @media (min-width: 550px) and (max-height: 330px) {
     overflow-y: scroll;
@@ -16,7 +16,7 @@ export const Container = styled.div`
   position: relative;
   z-index: 999;
   display: grid;
-  grid-gap: 16px;
+  grid-gap: 12px;
   height: 100vh;
   grid-template-columns: 100%;
   grid-template-rows: 12% 22% 13% 38%;
@@ -308,12 +308,12 @@ export const Return = styled.div`
     transform: scale(0.7);
   }
   img {
-    width: 80px;
+    width: 65px;
   }
 
   @media (min-width: 550px) and (max-height: 550px) {
     img {
-      width: 60px;
+      width: 65px;
     }
   }
 `;
@@ -456,14 +456,14 @@ export const RegisterMenu = styled.div`
   justify-content: center;
 
   div {
-    &:nth-child(2) {
-      /* margin-right: 17px; */
-    }
-    padding: 10px;
+    padding: 5px;
 
     input {
-      padding: 10px;
+      padding: 5px;
     }
+  }
+  button {
+    margin-top: 5px;
   }
 
   /* MOBILE HORIZONTAL */
@@ -595,7 +595,7 @@ export const AboutFrame = styled.div`
 export const Wave = styled.div`
   position: absolute;
   top: 11vh;
-  left: -1700px;
+  left: -1600px;
   z-index: 10;
 
   /* MOBILE HORIZONTAL */
@@ -632,7 +632,7 @@ export const BottomBar = styled.div`
 
   /* IPAD VERTICAL*/
   @media (min-width: 768px) and (max-width: 1100px) {
-    height: 80%;
+    height: 65%;
   }
 
   /* NOTEBOOK/PC */
@@ -701,7 +701,7 @@ export const Form = styled.div`
 
   div {
     padding: 10px;
-    &:nth-child(2) {
+    &:nth-child(3) {
       margin-right: 17px;
     }
     input {

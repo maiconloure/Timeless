@@ -15,6 +15,8 @@ interface UserInterface {
   email: string;
   name: string;
   id: number;
+  image: string;
+  about: string;
 }
 
 export interface PropsLogin {
@@ -31,6 +33,7 @@ export interface PropsRequestLogin {
 // --------------INTERFACE TO REGISTER--------------
 
 export interface PropsRegisterUser {
+  name: string;
   email: string;
   password: string;
 }
