@@ -21,8 +21,6 @@ export const updateCardAPI = ({
   unknown,
   Interface.UpdateCardAction
 > => (dispatch) => {
-  console.log(card);
-
   dispatch(updateCard(card));
   api
     .put(`/cards/${card.id}`, card, createHeader(token))
@@ -31,7 +29,6 @@ export const updateCardAPI = ({
         console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
-        console.log(response.data);
       }
     })
     .catch((error) =>
@@ -79,6 +76,7 @@ export const deleteCardAPI = ({
   unknown,
   Interface.DeleteCardAction
 > => (dispatch) => {
+  dispatch(deleteCard(card));
   api
     .delete(`/cards/${card.id}`, createHeader(token))
     .then((response) => {
@@ -86,7 +84,6 @@ export const deleteCardAPI = ({
         console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
-        dispatch(deleteCard(card));
       }
     })
     .catch((error) =>

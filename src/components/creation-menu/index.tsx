@@ -33,6 +33,13 @@ const CreationMenu = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
+  const random = () => Math.floor(Math.random() * 400);
+
+  defaultCard.position = {
+    x: random(),
+    y: random(),
+  };
+
   const groupButton = () => {
     console.log('groupButton');
   };

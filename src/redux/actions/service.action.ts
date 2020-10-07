@@ -52,7 +52,6 @@ export const registerUser = ({
         console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
       } else {
         console.warn(`registerUser =>> Status: ${response.status}`);
-
         dispatch(getUser(response));
       }
     })

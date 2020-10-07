@@ -1,21 +1,19 @@
 export const fastCard = {
   fastCard: {
-    title: 'fast card title',
-    subTitle: 'fast card subtitle',
+    title: 'card rapido titulo',
+    subTitle: 'card rapido subtitulo',
     date: '00/00',
     show: true,
   },
 };
 
-const random = () => Math.floor(Math.random() * 400);
-
 export const defaultCard = {
   position: {
-    x: random(),
-    y: random(),
+    x: 50,
+    y: 50,
   },
   data: {
-    title: 'Title',
+    title: 'Titulo',
     time: {
       finish: {
         date: '00/00',
@@ -30,7 +28,7 @@ export const defaultCard = {
         hour: '00:00',
       },
     },
-    description: 'here here a new description',
+    description: 'aqui vai uma descrição',
     tags: [
       {
         color: '#000',
