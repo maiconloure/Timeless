@@ -24,7 +24,7 @@ const DefaultCard = ({ data }: { data: CardDataInterface }) => {
                 <div
                   key={key}
                   contentEditable="true"
-                  // suppressContentEditableWarning
+                  suppressContentEditableWarning
                   style={{ color: tag.color }}>
                   {tag.text}
                 </div>

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { notification } from 'antd';
 import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 
@@ -110,9 +111,17 @@ export const getCardsAPI = (
     })
     .catch((error) => {
       if (['jwt expired', 'Missing token'].includes(error.response.data)) {
-        console.log('okne');
-        localStorage.clear();
-        history.push('/');
+        notification.open({
+          message: 'Sessão expirada',
+          description: 'A pagina será recarregada, em breve, aguarde...',
+          onClick: () => {
+            console.log('Notification Clicked!');
+          },
+        });
+        setTimeout(() => {
+          localStorage.clear();
+          history.push('/');
+        }, 2000);
       }
       console.error(
         `getUserCards ==> ERROR: ${error.response.data} Status: ${error.response.status}`
