@@ -41,6 +41,8 @@ const Board = ({ history }: BoardPageProps) => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showEditCard, setShowEditCard] = useState(false);
+  const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
     removeCard: false,
     fastCard: false,
@@ -162,9 +164,11 @@ const Board = ({ history }: BoardPageProps) => {
           <SideMenuContainer drag dragMomentum={false}>
             <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
+
           <FeedBox drag dragMomentum={false}>
             <Feed array={FeedExample} />
           </FeedBox>
+
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <CardContainer
@@ -183,12 +187,19 @@ const Board = ({ history }: BoardPageProps) => {
                     };
                   }
                 }}
+                onDoubleClick={() => {
+                  if (!showEditCard) {
+                    setCurrentCard(card);
+                    setShowEditCard(true);
+                  }
+                }}
                 style={{
                   x: card.position.x,
                   y: card.position.y,
                 }}>
                 <Card>
                   <DefaultCard data={card.data} />
+
                   {selectedCard.removeCard ? (
                     <CardButton onClick={() => dispatch(deleteCardAPI({ card, token }))}>
                       Remove
@@ -211,7 +222,10 @@ const Board = ({ history }: BoardPageProps) => {
                 </Card>
               </CardContainer>
             ))}
-          <CardContainer>{/* <BacklogCard /> */}</CardContainer>
+
+          <CardContainer>
+            <BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
+          </CardContainer>
         </InnerBoardContainer>
       </BoardPage>
     </PageTransition>

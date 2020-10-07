@@ -4,8 +4,16 @@ import styled from 'styled-components';
 
 import { icons } from '../../utils/importAll';
 
-const BacklogCard = () => {
-  const [showCard, setShowCard] = useState(true);
+const BacklogCard = ({
+  closeDataPass: { showEditCard, setShowEditCard, currentCard },
+}: {
+  closeDataPass: {
+    showEditCard: boolean;
+    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
+    currentCard: any;
+  };
+}) => {
+  console.log('currentCard: ', currentCard);
 
   return (
     <CardLeandro
@@ -17,7 +25,7 @@ const BacklogCard = () => {
       ]}
       fontColor="#014D82"
       closeable
-      closeDataPass={[showCard, () => setShowCard(false)]}
+      closeDataPass={[showEditCard, setShowEditCard]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
       <ContentContainer>
