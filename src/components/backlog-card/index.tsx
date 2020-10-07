@@ -1,5 +1,5 @@
 import { CardLeandro } from 'capstone-project';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { icons } from '../../utils/importAll';
@@ -13,8 +13,6 @@ const BacklogCard = ({
     currentCard: any;
   };
 }) => {
-  console.log('currentCard: ', currentCard);
-
   return (
     <CardLeandro
       title="Product Backlog"

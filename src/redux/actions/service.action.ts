@@ -36,6 +36,7 @@ export const requestLogin = ({
 };
 
 export const registerUser = ({
+  name,
   email,
   password,
 }: Interface.PropsRegisterUser): ThunkAction<
@@ -45,7 +46,7 @@ export const registerUser = ({
   Interface.LoginAction
 > => (dispatch) => {
   api
-    .post('/register', { email, password })
+    .post('/register', { name, email, password })
     .then((response) => {
       if (response.status !== 201) {
         console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
@@ -78,13 +79,14 @@ const getUser = (
         console.error(`getUser =>> ERROR: ${response.data} ${response.status}`);
       } else {
         console.warn(`getUser =>> Status: ${response.status}`);
-
         dispatch(
           loginAction({
             user: {
+              name: response.data.name,
               email: response.data.email,
               id: response.data.id,
-              name: response.data.name,
+              image: response.data.image_url,
+              about: response.data.about,
             },
             status: data.status,
             token: data.data.accessToken,
