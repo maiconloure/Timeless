@@ -35,6 +35,15 @@ const boards = (state = initialState, action: BoardsAction): BoardState => {
       localStorage.setItem('chosenBoard', JSON.stringify(action.payload));
       return { ...state, currentBoard: action.payload };
 
+    case TYPE.CREATE_BOARD:
+      return { ...state, currentBoard: action.payload, boards: [...state.boards, action.payload] };
+
+    case TYPE.DELETE_BOARD:
+      return {
+        ...state,
+        boards: [...state.boards.filter((board) => board.id !== action.payload.id)],
+      };
+
     default:
       return state;
   }

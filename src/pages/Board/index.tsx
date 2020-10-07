@@ -8,12 +8,17 @@ import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
 import PageTransition from '../../components/pageTransition';
-import { getBoardsAPI, updateBoardAPI, getCardsAPI } from '../../redux/actions/boards.action';
-import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import {
+  getBoardsAPI,
+  updateBoardAPI,
+  getCardsAPI,
+  createBoardAPI,
+} from '../../redux/actions/boards.action';
+import { deleteCardAPI, updateCardAPI, createCardAPI } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-import { fastCard } from '../../utils/defaults-json-cards';
+import { fastCard, defaultBoard, defaultCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
 
 const FeedExample = [
@@ -47,6 +52,13 @@ const Board = ({ history }: BoardPageProps) => {
     removeCard: false,
     fastCard: false,
   });
+  const [boardTitle, setBoardTitle] = useState('');
+  const [boardDescription, setBoardDescription] = useState('');
+
+  useEffect(() => {
+    console.log(boardTitle);
+    console.log(boardDescription);
+  }, [boardDescription, boardTitle]);
 
   const handleLogout = () => {
     setToggleMenu(!toggleMenu);
@@ -173,7 +185,8 @@ const Board = ({ history }: BoardPageProps) => {
 
                   <CardModalButton
                     onClick={() => {
-                      console.log('Criar Board');
+                      dispatch(createBoardAPI(defaultBoard, token, user));
+                      dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard }));
                       setShowEditModal(true);
                     }}>
                     Criar
@@ -191,7 +204,7 @@ const Board = ({ history }: BoardPageProps) => {
                       width="220px"
                       fontSize="2rem"
                       height="40px"
-                      onTextChange={() => console.log('Título Mudou')}
+                      onTextChange={(event) => setBoardTitle(event)}
                     />
                     <Input
                       type="text"
@@ -199,14 +212,19 @@ const Board = ({ history }: BoardPageProps) => {
                       width="220px"
                       fontSize="2rem"
                       height="40px"
-                      onTextChange={() => console.log('Descrição Mudou')}
+                      onTextChange={(event) => setBoardDescription(event)}
                     />
                     <Button
                       fontSize="2.6rem"
                       height="44px"
                       weight={600}
                       onClick={() => {
-                        console.log('Submit Board');
+                        const newBoard = {
+                          ...currentBoard,
+                          title: boardTitle,
+                          description: boardDescription,
+                        };
+                        dispatch(updateBoardAPI({ token, board: newBoard }));
                         setShowEditModal(false);
                       }}>
                       Modificar

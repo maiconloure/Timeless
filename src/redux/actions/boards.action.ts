@@ -134,8 +134,77 @@ const setCurrentBoard = (board: Interface.UserBoards): Interface.CurrentBoardAct
   payload: board,
 });
 
+export const createBoardAPI = (
+  board: Interface.CreateUserBoards,
+  token: string,
+  user: Interface.UserInterface
+): ThunkAction<void, RootStoreType, unknown, Interface.CreateBoardAction> => (dispatch) => {
+  const headers = {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  };
+
+  api
+    .post(`/users/${user.id}/boards`, board, headers)
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+      } else {
+        console.warn(`createBoardAPI ==> Status: ${response.status}`);
+        console.log(response.data);
+        dispatch(createBoard(response.data));
+      }
+    })
+    .catch((error) =>
+      console.error(
+        `createBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+      )
+    );
+};
+
+const createBoard = (board: Interface.UserBoards): Interface.CreateBoardAction => ({
+  type: TYPE.CREATE_BOARD,
+  payload: board,
+});
+
+export const deleteBoardAPI = (
+  board: Interface.CreateUserBoards,
+  token: string,
+  user: Interface.UserInterface
+): ThunkAction<void, RootStoreType, unknown, Interface.CreateBoardAction> => (dispatch) => {
+  const headers = {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  };
+
+  api
+    .delete(`/boards/${board.id}`, headers)
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+      } else {
+        console.warn(`createBoardAPI ==> Status: ${response.status}`);
+        console.log(response.data);
+        dispatch(deleteBoard(response.data));
+      }
+    })
+    .catch((error) =>
+      console.error(
+        `createBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+      )
+    );
+};
+
+const deleteBoard = (board: Interface.UserBoards): Interface.CreateBoardAction => ({
+  type: TYPE.DELETE_BOARD,
+  payload: board,
+});
+
 export type BoardsAction =
   | Interface.GetBoardsAction
   | Interface.ClearBoardAction
   | Interface.UpdateBoardAction
-  | Interface.CurrentBoardAction;
+  | Interface.CurrentBoardAction
+  | Interface.CreateBoardAction;
