@@ -83,23 +83,23 @@ exports[`Snapshot renders 1`] = `
         className="sc-iemXMA eFkVwr"
       >
         <div
-          className="sc-jNnnWF ggoOtv"
+          className="sc-cTJmaU lctCOa"
         >
           <div
-            className="sc-dPaNSN bfNwUl"
+            className="sc-jNnnWF kELYci"
           >
             <div
-              className="sc-iBzFoy fXaTjK"
+              className="sc-iTVIwl fWNvVu"
             >
               <div
-                className="sc-efHXLn kPzEyo"
+                className="sc-iBzFoy jRvUTA"
                 contentEditable="true"
                 suppressContentEditableWarning={true}
               >
                 DESCRIÇÃO
               </div>
               <div
-                className="sc-cTJmaU tIgNv"
+                className="sc-efHXLn fPHbqe"
                 contentEditable="true"
                 suppressContentEditableWarning={true}
               >
@@ -107,27 +107,27 @@ exports[`Snapshot renders 1`] = `
               </div>
             </div>
             <div
-              className="sc-bBjRzc cGyVdI"
+              className="sc-dPaNSN bTmffv"
             >
               <div
-                className="sc-cOigif hwShjN"
+                className="sc-bBjRzc gKftSh"
               >
                 <h2
-                  className="sc-khIgXV edrdSF"
+                  className="sc-ArjOu hLqvQN"
                 >
                   ETIQUETAS
                 </h2>
                 <div
-                  className="sc-hTRkEk egvMYA"
+                  className="sc-khIgXV kShsik"
                 >
                   #Sprint1
                 </div>
                 <div
-                  className="sc-jgPznn jexUXP"
+                  className="sc-hTRkEk gXbirD"
                 >
                   <img
                     alt="Ícone de Ampulheta"
-                    className="sc-gSYCTC erUfDP"
+                    className="sc-jgPznn IaQut"
                     onClick={[Function]}
                   />
                   <span>
@@ -147,11 +147,11 @@ exports[`Snapshot renders 1`] = `
                   </span>
                 </div>
                 <div
-                  className="sc-laZMyp jagPVZ"
+                  className="sc-gSYCTC gqdZwD"
                 >
                   <img
                     alt="Ícone de Cronômetro"
-                    className="sc-gSYCTC erUfDP"
+                    className="sc-jgPznn IaQut"
                     onClick={[Function]}
                   />
                   <span>
@@ -169,19 +169,19 @@ exports[`Snapshot renders 1`] = `
                 </div>
               </div>
               <div
-                className="sc-ArjOu eMLHYn"
+                className="sc-cOigif hwShjN"
               >
                 <h2
-                  className="sc-khIgXV edrdSF"
+                  className="sc-ArjOu hLqvQN"
                 >
                   AÇÕES
                 </h2>
                 <div
-                  className="sc-iNiQeE cCqoxt"
+                  className="sc-laZMyp flfXut"
                 >
                   <img
                     alt="Ícone de Porta"
-                    className="sc-jffIyK hMTDTH"
+                    className="sc-iNiQeE hzPPeB"
                     onClick={[Function]}
                   />
                   <span>
@@ -189,11 +189,11 @@ exports[`Snapshot renders 1`] = `
                   </span>
                 </div>
                 <div
-                  className="sc-iNiQeE cCqoxt"
+                  className="sc-laZMyp flfXut"
                 >
                   <img
                     alt="Ícone de Copiar"
-                    className="sc-jffIyK hMTDTH"
+                    className="sc-iNiQeE hzPPeB"
                     onClick={[Function]}
                   />
                   <span>
@@ -201,11 +201,11 @@ exports[`Snapshot renders 1`] = `
                   </span>
                 </div>
                 <div
-                  className="sc-iNiQeE cCqoxt"
+                  className="sc-laZMyp flfXut"
                 >
                   <img
                     alt="Ícone de Excluir"
-                    className="sc-jffIyK hMTDTH"
+                    className="sc-iNiQeE hzPPeB"
                     onClick={[Function]}
                   />
                   <span>
@@ -213,7 +213,7 @@ exports[`Snapshot renders 1`] = `
                   </span>
                 </div>
                 <button
-                  className="sc-eJoaVz cFzXYX"
+                  className="sc-jffIyK lhgcxj"
                 >
                   feedback
                 </button>
@@ -221,24 +221,24 @@ exports[`Snapshot renders 1`] = `
             </div>
           </div>
           <div
-            className="sc-oefIU hQlggo"
+            className="sc-eJoaVz kJcIPN"
           >
             <div
-              className="sc-hhIhEF iwqTSM"
+              className="sc-oefIU hoplqe"
             >
               <h2
-                className="sc-eirseW kikfOT"
+                className="sc-hhIhEF lDxci"
               >
                 <img
                   alt="Ícone de Lista"
-                  className="sc-jffIyK hMTDTH"
+                  className="sc-iNiQeE hzPPeB"
                 />
                 <span>
                   Checklist
                 </span>
               </h2>
               <div
-                className="sc-lbVuaH klsAhm"
+                className="sc-eirseW cDxTV"
               >
                 Teste
               </div>

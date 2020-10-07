@@ -1,44 +1,21 @@
 import React, { useState as useStateMock } from 'react';
-import BacklogCard from '../index';
+import BacklogCard from '../';
 import renderer from 'react-test-renderer';
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useState: jest.fn(),
-}));
+// jest.mock('react', () => ({
+//   ...jest.requireActual('react'),
+//   useState: jest.fn(),
+// }));
 
 describe('Snapshot', () => {
   it('renders', () => {
     const showEditCard = true;
     const setShowEditCard = jest.fn();
-    const currentCard = {};
 
     const tree = renderer
-      .create(<BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />)
+      .create(<BacklogCard closeDataPass={{ showEditCard, setShowEditCard }} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
-
-// describe('Events', () => {
-//   it('simulate closing', () => {
-//     const setStateSpy = jest.fn();
-
-//     const wrapper = mount(<BacklogCard />);
-//     wrapper.find('button').at(0).simulate('click');
-//     expect(setStateSpy).toHaveBeenCalledWith(false);
-//     expect(setStateSpy).toHaveBeenCalledTimes(1);
-//   });
-
-// it('simulate opening', () => {
-//   const setStateSpy = jest.fn();
-
-//   useStateMock.mockImplementation(() => [false, setStateSpy]);
-
-//   const wrapper = mount(<BacklogCard />);
-//   wrapper.find('button').at(0).simulate('click');
-//   expect(setStateSpy).toHaveBeenCalledWith(true);
-//   expect(setStateSpy).toHaveBeenCalledTimes(1);
-// });
-// });

@@ -37,3 +37,5 @@ const BacklogCard = ({
     </CardLeandro>
   );
 };
+
+export default BacklogCard;

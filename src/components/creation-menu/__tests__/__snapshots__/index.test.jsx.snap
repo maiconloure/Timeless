@@ -2,7 +2,7 @@
 
 exports[`Snapshot renders 1`] = `
 <div
-  className="sc-bdnylx eZUlpd"
+  className="sc-bdnylx hOTwOI"
 >
   <div
     className="sc-hKFyIo gnBfdK"
@@ -22,26 +22,26 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN flJDBH"
+      className="sc-eCApGN ctEjtM"
     >
       <img
         alt="group"
+        id="group"
         onClick={[Function]}
       />
       <img
-        alt="create card"
+        alt="create"
+        id="card"
         onClick={[Function]}
       />
       <img
-        alt=" create fast card"
+        alt="fast"
+        id="fast"
         onClick={[Function]}
       />
       <img
-        alt="create warning card"
-        onClick={[Function]}
-      />
-      <img
-        alt=" remove card"
+        alt="remove"
+        id="trash"
         onClick={[Function]}
       />
     </div>
@@ -57,22 +57,26 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN flJDBH"
+      className="sc-eCApGN ctEjtM"
     >
       <img
-        alt="create text box"
+        alt="text"
+        id="addText"
         onClick={[Function]}
       />
       <img
-        alt="connect cards"
+        alt="connect"
+        id="connect"
         onClick={[Function]}
       />
       <img
-        alt="pin/follow card"
+        alt="pin/follow"
+        id="pin"
         onClick={[Function]}
       />
       <img
-        alt=" block card"
+        alt="block"
+        id="blocked"
         onClick={[Function]}
       />
     </div>
