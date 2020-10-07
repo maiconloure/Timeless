@@ -1532,9 +1532,9 @@
     loader-utils "^1.2.3"
 
 "@testing-library/dom@*":
-  version "7.24.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.24.4.tgz#95d82a42c8a7631fcff428d19829e0d8b90c4213"
-  integrity sha512-KXUgJ3LIhuQUxZA6jA9Q7ACPM13ztb8GAy2zm6CNHYjmMuCX8wCM/hJcd+qBJMLQPiVbG9wJp3g3WN5OR7cPTg==
+  version "7.24.5"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.24.5.tgz#862124eec8c37ad184716379f09742476b23815d"
+  integrity sha512-oyOp8R2rhmnkOjgrySb4iYc2q73dzvQUAGddpbmicGJdCf4jkLmf5U9zOyobLMLWXbIHHK4UUHHjDTH8tSPLsA==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.10.3"
@@ -3204,10 +3204,10 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001144.tgz#bca0fffde12f97e1127a351fec3bfc1971aa3b3d"
   integrity sha512-4GQTEWNMnVZVOFG3BK0xvGeaDAtiPAbG2N8yuMXuXzx/c2Vd4XoMPO8+E918zeXn5IF0FRVtGShBfkfQea2wHQ==
 
-capstone-project@^0.4.5:
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.6.tgz#f1745185a359b4ffbfd53370dfedd8b360bd9462"
-  integrity sha512-RtGxO/8W3BTewHR/D/nIi98Cy/nFxXAC7xe4O8TLP+8dv1Wgxj9z/Q6khKEZPDKHSX0hRLRBjuiTXWA3Zfrs1A==
+capstone-project@^0.4.7:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.7.tgz#8ebbe040183057e619a6a88bc67f8edd5d9a377e"
+  integrity sha512-1usPz3RBTgrgG5eS1pIj2vt3uoJQTLtAsN1UVcpS7m+XNztpRgeAPxuxPN2m3F3jeFyMRESvoOQyRSxLbWiszA==
   dependencies:
     "@types/history" "^4.7.8"
     "@types/react-router-dom" "^5.1.5"
@@ -4397,9 +4397,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.571:
-  version "1.3.577"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.577.tgz#9885f3f72c6e3367010b461ff6f2d9624a929720"
-  integrity sha512-dSb64JQSFif/pD8mpVAgSFkbVi6YHbK6JeEziwNNmXlr/Ne2rZtseFK5SM7JoWSLf6gP0gVvRGi4/2ZRhSX/rA==
+  version "1.3.578"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.578.tgz#e6671936f4571a874eb26e2e833aa0b2c0b776e0"
+  integrity sha512-z4gU6dA1CbBJsAErW5swTGAaU2TBzc2mPAonJb00zqW1rOraDo2zfBMDRvaz9cVic+0JEZiYbHWPw/fTaZlG2Q==
 
 elliptic@^6.5.3:
   version "6.5.3"

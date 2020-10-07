@@ -11,8 +11,18 @@ interface ImageProps {
   user: string;
 }
 
-export default function BacklogCard({ usersArray = [{ image: '', user: '' }] }: Props) {
-  const [showCard, setShowCard] = useState(true);
+const BacklogCard = ({
+  usersArray = [{ image: '', user: '' }],
+  closeDataPass: { showEditCard, setShowEditCard, currentCard },
+}: {
+  usersArray: ImageProps[];
+  closeDataPass: {
+    showEditCard: boolean;
+    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
+    currentCard: any;
+  };
+}) => {
+  console.log('currentCard: ', currentCard);
 
   return (
     <CardLeandro
@@ -22,10 +32,10 @@ export default function BacklogCard({ usersArray = [{ image: '', user: '' }] }: 
       avatars={usersArray}
       fontColor="#014D82"
       closeable
-      closeDataPass={[showCard, () => setShowCard(false)]}
+      closeDataPass={[showEditCard, setShowEditCard]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
       <Children />
     </CardLeandro>
   );
-}
+};
