@@ -77,9 +77,6 @@ const Board = ({ history }: BoardPageProps) => {
 
   useEffect(() => {
     dispatch(getBoardsAPI({ user, token }));
-    return () => {
-      console.log('useEffect: Board Unmounted');
-    };
   }, []);
 
   useEffect(() => {
@@ -247,7 +244,6 @@ const Board = ({ history }: BoardPageProps) => {
                     <div>
                       <CardModalButton
                         onClick={() => {
-                          console.log('Selecionar Board');
                           dispatch(getCardsAPI(board, token, history));
                           setShowBoardModal(false);
                         }}>
@@ -256,7 +252,8 @@ const Board = ({ history }: BoardPageProps) => {
 
                       <CardModalButton
                         onClick={() => {
-                          console.log('Modificar Board');
+                          setBoardTitle(board.title);
+                          setBoardDescription(board.description);
                           setSelectedBoard(board);
                           setShowEditModal(true);
                         }}>
@@ -266,7 +263,6 @@ const Board = ({ history }: BoardPageProps) => {
                       <CardModalButton
                         onClick={() => {
                           dispatch(deleteBoardAPI(board, token));
-                          console.log('Remover Board');
                         }}>
                         Remover
                       </CardModalButton>
