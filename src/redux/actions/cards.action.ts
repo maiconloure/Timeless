@@ -54,15 +54,15 @@ export const createCardAPI = ({
     .post(`/users/${user.id}/cards`, newCard, createHeader(token))
     .then((response) => {
       if (response.status !== 201) {
-        console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`createCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`updateCardAPI ==> Status: ${response.status}`);
+        console.warn(`createCardAPI ==> Status: ${response.status}`);
         dispatch(createCard(response.data));
       }
     })
     .catch((error) =>
       console.error(
-        `updateCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        `createCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       )
     );
 };
@@ -81,14 +81,14 @@ export const deleteCardAPI = ({
     .delete(`/cards/${card.id}`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`deleteCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
       }
     })
     .catch((error) =>
       console.error(
-        `updateCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        `deleteCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       )
     );
 };

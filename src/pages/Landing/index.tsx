@@ -125,7 +125,7 @@ const Landing = ({ history }: LandingPageProps) => {
                   onClick={() => setHandleForm(true)}
                   width="250px"
                   height={windowSize.height > 550 ? '70px' : '46px'}>
-                  Começe agora
+                  Comece agora
                 </Button>
               ) : (
                 <St.Return onClick={() => setHandleForm(false)}>
@@ -180,7 +180,7 @@ const Landing = ({ history }: LandingPageProps) => {
                     <img src={icons.return} alt="return-icon" />
                   </St.ReturnModal>
                   <St.Text>
-                    <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
+                    <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
                   </St.Text>
                   <St.Form onKeyDown={handleKeyDown}>
                     <Input
