@@ -11,7 +11,7 @@ export interface DecodeToken {
 
 // --------------INTERFACE TO LOGIN--------------
 
-interface UserInterface {
+export interface UserInterface {
   email: string;
   name: string;
   id: number;
@@ -129,7 +129,7 @@ export interface PropsCreatedCard {
 
 // --------------ACTIONS INTERFACES--------------
 
-// ACTIONS INTERFACES LOGIN
+// ACTIONS INTERFACES SERVICES
 
 export interface LoginAction {
   type: typeof TYPE.LOGIN;
@@ -138,6 +138,11 @@ export interface LoginAction {
 
 export interface LogoutAction {
   type: typeof TYPE.LOGOUT;
+}
+
+export interface UpdateUserAction {
+  type: typeof TYPE.UPDATE_USER;
+  payload: UserInterface;
 }
 
 // ACTIONS INTERFACES BOARDS

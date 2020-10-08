@@ -27,6 +27,9 @@ const service = (state = initialState, action: ServiceAction): PropsLogin => {
       localStorage.clear();
       return initialState;
 
+    case TYPE.UPDATE_USER:
+      return { ...state, user: action.payload };
+
     default:
       return state;
   }

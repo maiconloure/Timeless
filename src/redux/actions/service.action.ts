@@ -8,6 +8,12 @@ import { RootStoreType } from '../store/store';
 import * as Interface from './interface.action';
 import * as TYPE from './type.action';
 
+const createHeader = (token: string) => ({
+  headers: {
+    Authorization: 'Bearer ' + token,
+  },
+});
+
 export const requestLogin = ({
   email,
   password,
@@ -98,6 +104,37 @@ const getUser = (
     );
 };
 
+export const updateUserAPI = ({
+  user,
+  token,
+}: Interface.PropsGetUserBoards): ThunkAction<
+  void,
+  RootStoreType,
+  unknown,
+  Interface.UpdateUserAction
+> => (dispatch) => {
+  dispatch(updateUser(user));
+  api
+    .put(`/users/${user.id}`, user, createHeader(token))
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error(`updateUserAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+      } else {
+        console.warn(`updateUserAPI ==> Status: ${response.status}`);
+      }
+    })
+    .catch((error) =>
+      console.error(
+        `updateUserAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+      )
+    );
+};
+
+const updateUser = (user: Interface.UserInterface): Interface.UpdateUserAction => ({
+  type: TYPE.UPDATE_USER,
+  payload: user,
+});
+
 const loginAction = ({ user, status, token }: Interface.PropsLogin): Interface.LoginAction => ({
   type: TYPE.LOGIN,
   payload: { user, status, token },
@@ -116,4 +153,7 @@ const logout = (): Interface.LogoutAction => ({
   type: TYPE.LOGOUT,
 });
 
-export type ServiceAction = Interface.LoginAction | Interface.LogoutAction;
+export type ServiceAction =
+  | Interface.LoginAction
+  | Interface.LogoutAction
+  | Interface.UpdateUserAction;
