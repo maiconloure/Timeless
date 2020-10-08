@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
@@ -15,7 +16,7 @@ import { signOut } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { fastCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
-
+import 'react-toastify/dist/ReactToastify.css';
 const FeedExample = [
   'Christopher acabou a feature chat.',
   'Leandro está trabalhando em testes, veja aqui!',
@@ -256,7 +257,7 @@ const Board = ({ history }: BoardPageProps) => {
           </SideMenuContainer>
 
           <FeedBox drag dragMomentum={false}>
-            <Feed array={FeedExample} />
+            <Feed array={FeedExample} titleSize="1.8rem" fontSize="1.6rem" />
           </FeedBox>
 
           {cards &&
