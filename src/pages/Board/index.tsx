@@ -45,6 +45,7 @@ const Board = ({ history }: BoardPageProps) => {
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
+
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -68,8 +69,10 @@ const Board = ({ history }: BoardPageProps) => {
   };
 
   const saveChanges = () => {
-    console.warn('saveChanges');
-    // dispatch(updateBoardAPI({ token, board: boards[0] }));
+    cards.map((card: Interface.CardInterface) => {
+      // TODO ==> Filtrar Cards Não Modificados
+      dispatch(updateCardAPI({ card, token }));
+    });
   };
 
   useEffect(() => {
@@ -77,12 +80,6 @@ const Board = ({ history }: BoardPageProps) => {
     return () => {
       console.log('useEffect: Board Unmounted');
     };
-  }, []);
-
-  useEffect(() => {
-    // AUTO SAVE, 10s | undefined error in boards[0] some reason
-    const timer = setTimeout(saveChanges, 10000);
-    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -301,11 +298,11 @@ const Board = ({ history }: BoardPageProps) => {
                   if (e && e.target && e.target.offsetParent) {
                     const position = e.target.offsetParent.getBoundingClientRect();
                     // console.log(position);
-
                     card.position = {
                       x: position.x,
-                      y: position.y - 28, // tive que fazer esse ajuste em pixels
+                      y: position.y,
                     };
+                    dispatch(updateCardAPI({ card, token }));
                   }
                 }}
                 onDoubleClick={() => {
@@ -704,7 +701,7 @@ const InnerBoardContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   overflow: auto;
 `;
