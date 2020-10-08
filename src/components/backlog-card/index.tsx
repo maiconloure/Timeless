@@ -4,17 +4,12 @@ import React from 'react';
 import Children from './content';
 
 interface BacklogCardProps {
-  usersArray?: ImageProps[];
+  usersArray?: { image: string; user: string }[];
   closeDataPass: {
     showEditCard: boolean;
     setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
     currentCard: any;
   };
-}
-
-interface ImageProps {
-  image: string;
-  user: string;
 }
 
 const BacklogCard = ({
