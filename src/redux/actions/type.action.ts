@@ -5,6 +5,7 @@ export const LOGOUT = 'LOGOUT';
 
 // BOARDS ACTIONS
 
+export const NEW_ACTION = 'NEW_ACTION';
 export const GET_BOARDS = 'GET_BOARDS';
 export const CLEAR_BOARD = 'CLEAR_BOARD';
 export const UPDATE_BOARD = 'UPDATE_BOARD';

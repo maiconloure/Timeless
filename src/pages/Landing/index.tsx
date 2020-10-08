@@ -17,6 +17,7 @@ interface LandingPageProps {
 const Landing = ({ history }: LandingPageProps) => {
   const dispatch = useDispatch();
   const [handleForm, setHandleForm] = useState(false);
+  const user = useSelector((state: RootStoreType) => state.service.user);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,9 +57,8 @@ const Landing = ({ history }: LandingPageProps) => {
   useEffect(() => {
     if (localStorage.service !== undefined) {
       history.push('/board');
-    } else {
     }
-  });
+  }, [user]);
 
   return (
     <PageTransition>
@@ -125,7 +125,7 @@ const Landing = ({ history }: LandingPageProps) => {
                   onClick={() => setHandleForm(true)}
                   width="250px"
                   height={windowSize.height > 550 ? '70px' : '46px'}>
-                  Começe agora
+                  Comece agora
                 </Button>
               ) : (
                 <St.Return onClick={() => setHandleForm(false)}>
@@ -142,7 +142,7 @@ const Landing = ({ history }: LandingPageProps) => {
           </St.RegisterArea>
 
           {windowSize.width < 968 && handleForm && (
-            <St.RegisterMenu>
+            <St.RegisterMenu onKeyDown={handleKeyDown}>
               <Input
                 type="text"
                 placeholder="nome"
@@ -180,9 +180,9 @@ const Landing = ({ history }: LandingPageProps) => {
                     <img src={icons.return} alt="return-icon" />
                   </St.ReturnModal>
                   <St.Text>
-                    <h3>Começe hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
+                    <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
                   </St.Text>
-                  <St.Form>
+                  <St.Form onKeyDown={handleKeyDown}>
                     <Input
                       type="text"
                       placeholder="nome"

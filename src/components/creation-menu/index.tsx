@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
 import { icons } from '../../utils/importAll';
-
 const initialSelectCard = {
   removeCard: false,
   fastCard: false,
@@ -42,10 +42,12 @@ const CreationMenu = ({
 
   const groupButton = () => {
     console.log('groupButton');
+    dispatch(getNewAction(`${user.name} acabou de criar um grupo de cartões.`));
   };
 
   const createCardButton = () => {
     console.log('createCardButton');
+    dispatch(getNewAction(`${user.name} acabou de criar um cartão.`));
     dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard }));
   };
 
@@ -61,18 +63,22 @@ const CreationMenu = ({
 
   const createTextButton = () => {
     console.log('createTextButton');
+    dispatch(getNewAction(`${user.name} acabou de criar um texto.`));
   };
 
   const connectArrowButton = () => {
     console.log('conectArrowButton');
+    dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
   };
 
   const pinCardButton = () => {
     console.log('pinCardButton');
+    // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
   };
 
   const blockCardButton = () => {
     console.log('blockCardButton');
+    // dispatch(getNewAction(` ${user.name} bloqueou um cartão.`));
   };
 
   return (

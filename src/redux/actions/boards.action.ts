@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { notification } from 'antd';
 import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 
@@ -94,28 +93,19 @@ export const getCardsAPI = (
     .get(`/users/${board.userId}/cards?boardId=${board.id}`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`getUserCards ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`getCardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`getUserCards ==> Status: ${response.status}`);
+        console.warn(`getCardsAPI ==> Status: ${response.status}`);
         dispatch(getCards(response.data));
       }
     })
     .catch((error) => {
       if (['jwt expired', 'Missing token'].includes(error.response.data)) {
-        notification.open({
-          message: 'Sessão expirada',
-          description: 'A pagina será recarregada, em breve, aguarde...',
-          onClick: () => {
-            console.log('Notification Clicked!');
-          },
-        });
-        setTimeout(() => {
-          localStorage.clear();
-          history.push('/');
-        }, 2000);
+        localStorage.clear();
+        history.push('/');
       }
       console.error(
-        `getUserCards ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );
     });
 };
