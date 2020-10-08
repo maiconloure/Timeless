@@ -33,7 +33,7 @@ export const Container = styled.div`
   }
 
   /* IPAD */
-  @media (min-width: 968px) and (max-width: 1100px) {
+  @media (min-width: 968px) and (max-width: 1200px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
     grid-template-rows: 8% 8% 30% 8% auto;
@@ -45,7 +45,7 @@ export const Container = styled.div`
       'mainframe mainframe mainframe';
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 968px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
@@ -73,7 +73,7 @@ export const LeftMenu = styled.div`
     margin-top: 4px;
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     align-items: center;
     padding: 20px 2px;
@@ -110,7 +110,7 @@ export const LinksContainer = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     justify-content: flex-start;
 
@@ -155,7 +155,7 @@ export const LoginMenu = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     flex-direction: row;
     justify-content: flex-end;
@@ -220,7 +220,7 @@ export const Logo = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     h1 {
       font-size: 7rem;
@@ -249,7 +249,7 @@ export const LogoBox = styled.div`
     width: 148px;
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     left: -2px;
     width: 174px;
@@ -283,7 +283,7 @@ export const Slogan = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     p {
       font-size: 1.7vw;
@@ -343,7 +343,7 @@ export const RegisterArea = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/WIDESCREEN */
+  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     position: relative;
     flex-direction: row;
@@ -402,7 +402,7 @@ export const FeatOne = styled.div`
     display: block;
   }
 
-  /* WIDESCREEN */
+  /* ULTRAWIDE */
   @media (min-width: 2000px) and (min-height: 768px) {
     left: 32vw;
   }
@@ -442,7 +442,7 @@ export const FeatTwo = styled.div`
     display: block;
   }
 
-  /* WIDESCREEN */
+  /* ULTRAWIDE */
   @media (min-width: 2000px) and (min-height: 768px) {
     right: 33%;
   }
@@ -526,7 +526,7 @@ export const MainFrame = styled.div`
     }
   }
 
-  /* WIDESCREEN */
+  /* ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     display: inline-grid;
   }
@@ -546,8 +546,8 @@ export const ExamplesFrame = styled.div`
     }
   }
 
-  /* WIDESCREEN */
-  @media (min-height: 768px) and (min-width: 1100px) {
+  /* ULTRAWIDE */
+  @media (min-height: 768px) and (min-width: 1200px) {
     display: inline-grid;
   }
 `;
@@ -559,15 +559,15 @@ export const TeamFrame = styled.div`
   grid-area: mainframe;
 
   /* NOTEBOOK/PC */
-  @media (min-width: 968px) and (max-width: 1100px) {
+  @media (min-width: 968px) and (max-width: 1200px) {
     display: inline-grid;
     img {
       width: 700px;
     }
   }
 
-  /* WIDESCREEN */
-  @media (min-height: 768px) and (min-width: 1100px) {
+  /* ULTRAWIDE */
+  @media (min-height: 768px) and (min-width: 1200px) {
     display: inline-grid;
   }
 `;
@@ -586,7 +586,7 @@ export const AboutFrame = styled.div`
     }
   }
 
-  /* WIDESCREEN */
+  /* ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     display: inline-grid;
   }
@@ -632,7 +632,7 @@ export const BottomBar = styled.div`
 
   /* IPAD VERTICAL*/
   @media (min-width: 768px) and (max-width: 1100px) {
-    height: 65%;
+    height: 67%;
   }
 
   /* NOTEBOOK/PC */
@@ -640,7 +640,7 @@ export const BottomBar = styled.div`
     height: 72%;
   }
 
-  /* WIDESCREEN */
+  /* ULTRAWIDE */
   @media (min-width: 2000px) {
     height: 70%;
   }

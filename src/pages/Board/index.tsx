@@ -4,29 +4,28 @@ import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
 import PageTransition from '../../components/pageTransition';
-import { getBoardsAPI, updateBoardAPI, getCardsAPI } from '../../redux/actions/boards.action';
-import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import {
+  getBoardsAPI,
+  updateBoardAPI,
+  getCardsAPI,
+  createBoardAPI,
+  clearBoard,
+  deleteBoardAPI,
+} from '../../redux/actions/boards.action';
+import { deleteCardAPI, updateCardAPI, createCardAPI } from '../../redux/actions/cards.action';
+import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
-import { signOut } from '../../redux/actions/service.action';
+import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-import { fastCard } from '../../utils/defaults-json-cards';
+import { fastCard, defaultBoard, defaultCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
+import 'react-toastify/dist/ReactToastify.css';
 
-const FeedExample = [
-  'Christopher acabou a feature chat.',
-  'Leandro está trabalhando em testes, veja aqui!',
-  'João acabou de seguir seu board!',
-  'Guilherme mandou um aviso importante, veja aqui!',
-  'Christopher acabou a feature chat.',
-  'Leandro está trabalhando em testes, veja aqui!',
-  'João acabou de seguir seu board!',
-  'Guilherme mandou um aviso importante, veja aqui!',
-  'Christopher acabou de desenvolver um bug!!!',
-];
 interface BoardPageProps {
   history: History<LocationState>;
 }
@@ -38,9 +37,9 @@ const Board = ({ history }: BoardPageProps) => {
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
-
+  const actions = useSelector((state: RootStoreType) => state.feed.actions);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showEditCard, setShowEditCard] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
@@ -48,11 +47,29 @@ const Board = ({ history }: BoardPageProps) => {
     removeCard: false,
     fastCard: false,
   });
+  const [boardTitle, setBoardTitle] = useState('Título do Board');
+  const [boardDescription, setBoardDescription] = useState('Descrição do Board');
+  const [selectedBoard, setSelectedBoard] = useState<
+    Interface.UserBoards | Interface.CreateUserBoards
+  >(defaultBoard);
 
   const handleLogout = () => {
+    toast.info('Saindo... vamos sentir sua falta!😭', {
+      position: 'bottom-left',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
     setToggleMenu(!toggleMenu);
-    history.push('/');
-    dispatch(signOut());
+    setTimeout(() => {
+      history.push('/');
+      dispatch(clearBoard());
+      dispatch(logout());
+    }, 3200);
   };
 
   const saveChanges = () => {
@@ -62,15 +79,8 @@ const Board = ({ history }: BoardPageProps) => {
     });
   };
 
-  const currentBoardHandler = (board: Interface.UserBoards) => {
-    dispatch(getCardsAPI(board, token, history));
-  };
-
   useEffect(() => {
     dispatch(getBoardsAPI({ user, token }));
-    return () => {
-      console.log('useEffect: Board Unmounted');
-    };
   }, []);
 
   useEffect(() => {
@@ -81,6 +91,17 @@ const Board = ({ history }: BoardPageProps) => {
     <PageTransition>
       <BoardPage>
         <Background src={images.background} alt="background-image" />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
 
         <TopContainer>
           <Bar>
@@ -90,7 +111,7 @@ const Board = ({ history }: BoardPageProps) => {
               </a>
               <h2> Kenzie Academy Brasil </h2>
               <h4> &nbsp; | &nbsp; </h4>
-              <h3>{currentBoard.title}</h3>
+              <h3 onClick={() => setShowBoardModal(!showBoardModal)}>{currentBoard.title}</h3>
             </ProjectInfo>
 
             <UserInfo>
@@ -120,7 +141,18 @@ const Board = ({ history }: BoardPageProps) => {
                     <p>{user.about}</p>
                   </UserInfoMenu>
 
-                  <MenuOption>
+                  <MenuOption
+                    onClick={() => {
+                      toast.info('Saindo... vamos sentir sua falta!', {
+                        position: 'bottom-left',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                      });
+                    }}>
                     <p>Editar perfil</p>
                   </MenuOption>
 
@@ -138,7 +170,7 @@ const Board = ({ history }: BoardPageProps) => {
 
                   <MenuOption
                     onClick={() => {
-                      setShowModal(true);
+                      setShowBoardModal(true);
                       setToggleMenu(!toggleMenu);
                     }}>
                     <p>Selecionar board</p>
@@ -150,8 +182,9 @@ const Board = ({ history }: BoardPageProps) => {
         </TopContainer>
 
         <CardModal
+          icon={icons.closeWindow}
           title="Boards"
-          data={[showModal, setShowModal]}
+          data={[showBoardModal, setShowBoardModal]}
           styles={{
             size: 'normal',
             fontSize: 'large',
@@ -161,7 +194,14 @@ const Board = ({ history }: BoardPageProps) => {
           <>
             {showEditModal ? (
               <Form>
-                <Button onClick={() => setShowEditModal(false)}>Voltar</Button>
+                <Button
+                  onClick={() => {
+                    setBoardTitle('Título do Board');
+                    setBoardDescription('Descrição do Board');
+                    setShowEditModal(false);
+                  }}>
+                  Voltar
+                </Button>
               </Form>
             ) : (
               <ModalContent>
@@ -170,83 +210,94 @@ const Board = ({ history }: BoardPageProps) => {
 
                   <CardModalButton
                     onClick={() => {
-                      console.log('Criar Board');
                       setShowEditModal(true);
+                      setSelectedBoard(defaultBoard);
                     }}>
                     Criar
                   </CardModalButton>
                 </MenuModal>
               </ModalContent>
             )}
-            {boards &&
-              boards.map((board: Interface.UserBoards, key: number) =>
-                showEditModal ? (
-                  <Form key={key}>
-                    <Input
-                      type="text"
-                      placeholder="Título"
-                      width="220px"
-                      fontSize="2rem"
-                      height="40px"
-                      onTextChange={() => console.log('Título Mudou')}
-                    />
-                    <Input
-                      type="text"
-                      placeholder="Descrição"
-                      width="220px"
-                      fontSize="2rem"
-                      height="40px"
-                      onTextChange={() => console.log('Descrição Mudou')}
-                    />
-                    <Button
-                      fontSize="2.6rem"
-                      height="44px"
-                      weight={600}
-                      onClick={() => {
-                        console.log('Submit Board');
-                        setShowEditModal(false);
-                      }}>
-                      Modificar
-                    </Button>
-                  </Form>
-                ) : (
-                  <ModalContent key={key}>
-                    <h2>{board.title}</h2>
+            {showEditModal ? (
+              <Form>
+                <Input
+                  type="text"
+                  placeholder={boardTitle}
+                  width="220px"
+                  fontSize="2rem"
+                  height="40px"
+                  onTextChange={(event) => setBoardTitle(event)}
+                />
+                <Input
+                  type="text"
+                  placeholder={boardDescription}
+                  width="220px"
+                  fontSize="2rem"
+                  height="40px"
+                  onTextChange={(event) => setBoardDescription(event)}
+                />
+                <Button
+                  fontSize="2.6rem"
+                  height="44px"
+                  weight={600}
+                  onClick={() => {
+                    if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
+                      dispatch(createBoardAPI(selectedBoard, token, user));
+                    } else {
+                      const newBoard: any = {
+                        ...selectedBoard,
+                        title: boardTitle,
+                        description: boardDescription,
+                      };
+                      dispatch(updateBoardAPI({ token, board: newBoard }));
+                    }
 
-                    <CardModalSection>
-                      <CardModalDescription>{board.description}</CardModalDescription>
+                    setBoardTitle('Título do Board');
+                    setBoardDescription('Descrição do Board');
+                    setShowEditModal(false);
+                  }}>
+                  Modificar
+                </Button>
+              </Form>
+            ) : (
+              boards &&
+              boards.map((board: Interface.UserBoards, key: number) => (
+                <ModalContent key={key}>
+                  <h2>{board.title}</h2>
 
-                      <div>
-                        <CardModalButton
-                          onClick={() => {
-                            console.log('Selecionar Board');
+                  <CardModalSection>
+                    <CardModalDescription>{board.description}</CardModalDescription>
 
-                            currentBoardHandler(board);
-                            setShowModal(false);
-                          }}>
-                          Selecionar
-                        </CardModalButton>
+                    <div>
+                      <CardModalButton
+                        onClick={() => {
+                          dispatch(getCardsAPI(board, token, history));
+                          setShowBoardModal(false);
+                        }}>
+                        Selecionar
+                      </CardModalButton>
 
-                        <CardModalButton
-                          onClick={() => {
-                            console.log('Modificar Board');
+                      <CardModalButton
+                        onClick={() => {
+                          setBoardTitle(board.title);
+                          setBoardDescription(board.description);
+                          setSelectedBoard(board);
+                          setShowEditModal(true);
+                        }}>
+                        Modificar
+                      </CardModalButton>
 
-                            setShowEditModal(true);
-                          }}>
-                          Modificar
-                        </CardModalButton>
-
-                        <CardModalButton
-                          onClick={() => {
-                            console.log('Remover Board');
-                          }}>
-                          Remover
-                        </CardModalButton>
-                      </div>
-                    </CardModalSection>
-                  </ModalContent>
-                )
-              )}
+                      <CardModalButton
+                        onClick={() => {
+                          dispatch(deleteBoardAPI(board, token));
+                        }}>
+                        Remover
+                      </CardModalButton>
+                    </div>
+                  </CardModalSection>
+                </ModalContent>
+              ))
+            )}
           </>
         </CardModal>
 
@@ -256,7 +307,7 @@ const Board = ({ history }: BoardPageProps) => {
           </SideMenuContainer>
 
           <FeedBox drag dragMomentum={false}>
-            <Feed array={FeedExample} />
+            <Feed array={actions} titleSize="1.8rem" fontSize="1.6rem" />
           </FeedBox>
 
           {cards &&
@@ -269,7 +320,7 @@ const Board = ({ history }: BoardPageProps) => {
                   /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
                   if (e && e.target && e.target.offsetParent) {
                     const position = e.target.offsetParent.getBoundingClientRect();
-                    // console.log(position);
+                    console.log(position);
                     card.position = {
                       x: position.x,
                       y: position.y,
@@ -291,21 +342,26 @@ const Board = ({ history }: BoardPageProps) => {
                   <DefaultCard data={card.data} />
 
                   {selectedCard.removeCard ? (
-                    <CardButton onClick={() => dispatch(deleteCardAPI({ card, token }))}>
-                      Remove
+                    <CardButton
+                      onClick={() => {
+                        dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
+                        dispatch(deleteCardAPI({ card, token }));
+                      }}>
+                      remover
                     </CardButton>
                   ) : (
                     selectedCard.fastCard && (
                       <CardButton
-                        onClick={() =>
+                        onClick={() => {
+                          dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
                           dispatch(
                             updateCardAPI({
                               token,
                               card: { ...card, data: { ...card.data, ...fastCard } },
                             })
-                          )
-                        }>
-                        Card
+                          );
+                        }}>
+                        cartão rápido
                       </CardButton>
                     )
                   )}
@@ -509,6 +565,10 @@ const ProjectInfo = styled.div`
     display: none;
   }
 
+  h3 {
+    cursor: pointer;
+  }
+
   img {
     width: 60px;
     margin: 0 5px;
@@ -520,7 +580,7 @@ const ProjectInfo = styled.div`
     justify-content: center;
   }
 
-  @media (min-width: 1000px) and (min-height: 768px) {
+  @media (min-width: 800px) {
     display: flex;
     align-items: center;
 

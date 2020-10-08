@@ -5,11 +5,14 @@ export const LOGOUT = 'LOGOUT';
 
 // BOARDS ACTIONS
 
+export const NEW_ACTION = 'NEW_ACTION';
 export const GET_BOARDS = 'GET_BOARDS';
 export const CLEAR_BOARD = 'CLEAR_BOARD';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
 export const GET_CURRENT_BOARD = 'GET_CURRENT_BOARD';
 export const GET_CURRENT_CARDS = 'GET_CURRENT_CARDS';
+export const CREATE_BOARD = 'CREATE_BOARD';
+export const DELETE_BOARD = 'DELETE_BOARD';
 
 // CARDS ACTIONS
 
