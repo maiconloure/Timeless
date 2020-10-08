@@ -3200,14 +3200,14 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001135:
-  version "1.0.30001144"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001144.tgz#bca0fffde12f97e1127a351fec3bfc1971aa3b3d"
-  integrity sha512-4GQTEWNMnVZVOFG3BK0xvGeaDAtiPAbG2N8yuMXuXzx/c2Vd4XoMPO8+E918zeXn5IF0FRVtGShBfkfQea2wHQ==
+  version "1.0.30001146"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001146.tgz#c61fcb1474520c1462913689201fb292ba6f447c"
+  integrity sha512-VAy5RHDfTJhpxnDdp2n40GPPLp3KqNrXz1QqFv4J64HvArKs8nuNMOWkB3ICOaBTU/Aj4rYAo/ytdQDDFF/Pug==
 
-capstone-project@^0.4.7:
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.7.tgz#8ebbe040183057e619a6a88bc67f8edd5d9a377e"
-  integrity sha512-1usPz3RBTgrgG5eS1pIj2vt3uoJQTLtAsN1UVcpS7m+XNztpRgeAPxuxPN2m3F3jeFyMRESvoOQyRSxLbWiszA==
+capstone-project@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.8.tgz#14d14fd124983ba0dbf7c244b27b20591e0e3a4c"
+  integrity sha512-kzavp1APYuqOe3CqBBnxmu465fwXGGwRSMA92cW20QxTjZI3JDmpYAXOHR1T/JkzIYd8wA2tjR7T6LulahUlLw==
   dependencies:
     "@types/history" "^4.7.8"
     "@types/react-router-dom" "^5.1.5"
@@ -5435,9 +5435,9 @@ fragment-cache@^0.2.1:
     map-cache "^0.2.2"
 
 framer-motion@^2.7.7:
-  version "2.7.8"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.8.tgz#3bc607200642b4a331df1d5e44eec8e2f4a0dcaf"
-  integrity sha512-PKfkSlpN1i7XTYNMuU5X/efgtBUoSc1APM0n4VDl+5wX+Ch5sPVyQP4wNyQKZM4sJL8Eb/HPLH0CE7KcAgKwqg==
+  version "2.7.9"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.9.tgz#52eeea6323e0500e82a6f2ada1142e60944ac679"
+  integrity sha512-rQEz9mjDLu0A6BtOFRh0T2Jg0dxtP06WKLobHLuvHWwg7LZQ/fbVKa5u4VyP5USgLnkLZEHkCHqC2XX9D5ggXw==
   dependencies:
     framesync "^4.1.0"
     hey-listen "^1.0.8"

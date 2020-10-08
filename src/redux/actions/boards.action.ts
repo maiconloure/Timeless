@@ -102,9 +102,9 @@ export const getCardsAPI = (
     .get(`/users/${board.userId}/cards?boardId=${board.id}`, headers)
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`getUserCards ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`getCardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`getUserCards ==> Status: ${response.status}`);
+        console.warn(`getCardsAPI ==> Status: ${response.status}`);
         dispatch(getCards(response.data));
       }
     })
@@ -114,7 +114,7 @@ export const getCardsAPI = (
         history.push('/');
       }
       console.error(
-        `getUserCards ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );
     });
 };
