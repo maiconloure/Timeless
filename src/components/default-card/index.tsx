@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { getNewAction } from '../../redux/actions/feed.action';
 import { CardDataInterface } from '../../redux/actions/interface.action';
+import { RootStoreType } from '../../redux/store/store';
 import { icons } from '../../utils/importAll';
 import FastCard from './fast-card';
 
 const DefaultCard = ({ data }: { data: CardDataInterface }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootStoreType) => state.service.user);
   const [showWarning, setShowWarning] = useState(false);
 
   return (
@@ -53,7 +58,14 @@ const DefaultCard = ({ data }: { data: CardDataInterface }) => {
               </div>
             </div>
             <div>
-              <input type="checkbox" />
+              <input
+                onClick={(evt: any) => {
+                  if (evt.target.checked) {
+                    dispatch(getNewAction(`${user.name} terminou o cartãol ${data.title}.`));
+                  }
+                }}
+                type="checkbox"
+              />
             </div>
           </Description>
           <CardFooter>

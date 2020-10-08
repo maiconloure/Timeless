@@ -55,9 +55,15 @@ export interface PropsGetUserBoards {
 export interface UserBoards {
   title: string;
   description: string;
-  user: { name: string; id: number | string }[];
+  users: { name: string; id: number | string }[];
   userId: number | string;
   id: number | string;
+}
+
+export interface CreateUserBoards {
+  title: string;
+  description: string;
+  users: { name: string; id: number | string }[];
 }
 
 export interface BoardState {
@@ -167,6 +173,16 @@ export interface CurrentBoardAction {
 export interface CurrentCardsAction {
   type: typeof TYPE.GET_CURRENT_CARDS;
   payload: CardInterface[];
+}
+
+export interface CreateBoardAction {
+  type: typeof TYPE.CREATE_BOARD;
+  payload: UserBoards;
+}
+
+export interface DeleteBoardAction {
+  type: typeof TYPE.DELETE_BOARD;
+  payload: UserBoards;
 }
 
 // ACTIONS INTERFACES CARDS

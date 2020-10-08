@@ -37,3 +37,9 @@ export const defaultCard = {
     ],
   },
 };
+
+export const defaultBoard = {
+  title: 'titulo do board',
+  description: 'descrição do board',
+  users: [],
+};
