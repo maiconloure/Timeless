@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Modal, Feed, Input, PasswordInput, Button } from 'capstone-project';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 
-import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
-import PageTransition from '../../components/pageTransition';
+import { CreationMenu, DefaultCard, BacklogCard, PageTransition } from '../../components';
 import {
   getBoardsAPI,
   updateBoardAPI,
@@ -312,61 +311,41 @@ const Board = ({ history }: BoardPageProps) => {
 
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
-              <CardContainer
+              <Card
                 key={key}
-                drag
-                dragMomentum={false}
-                onDragEnd={(e: any) => {
-                  /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
-                  if (e && e.target && e.target.offsetParent) {
-                    const position = e.target.offsetParent.getBoundingClientRect();
-                    console.log(position);
-                    card.position = {
-                      x: position.x,
-                      y: position.y,
-                    };
-                    dispatch(updateCardAPI({ card, token }));
-                  }
-                }}
                 onDoubleClick={() => {
                   if (!showEditCard) {
                     setCurrentCard(card);
                     setShowEditCard(true);
                   }
-                }}
-                style={{
-                  x: card.position.x,
-                  y: card.position.y,
                 }}>
-                <Card>
-                  <DefaultCard data={card.data} />
+                <DefaultCard card={card} />
 
-                  {selectedCard.removeCard ? (
+                {selectedCard.removeCard ? (
+                  <CardButton
+                    onClick={() => {
+                      dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
+                      dispatch(deleteCardAPI({ card, token }));
+                    }}>
+                    remover
+                  </CardButton>
+                ) : (
+                  selectedCard.fastCard && (
                     <CardButton
                       onClick={() => {
-                        dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-                        dispatch(deleteCardAPI({ card, token }));
+                        dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
+                        dispatch(
+                          updateCardAPI({
+                            token,
+                            card: { ...card, data: { ...card.data, ...fastCard } },
+                          })
+                        );
                       }}>
-                      remover
+                      cartão rápido
                     </CardButton>
-                  ) : (
-                    selectedCard.fastCard && (
-                      <CardButton
-                        onClick={() => {
-                          dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
-                          dispatch(
-                            updateCardAPI({
-                              token,
-                              card: { ...card, data: { ...card.data, ...fastCard } },
-                            })
-                          );
-                        }}>
-                        cartão rápido
-                      </CardButton>
-                    )
-                  )}
-                </Card>
-              </CardContainer>
+                  )
+                )}
+              </Card>
             ))}
 
           <CardContainer>
@@ -490,34 +469,6 @@ const CardModalDescription = styled.p`
     display: inline-block;
     font-size: 12px;
   }
-`;
-
-const CardButton = styled.button`
-  background-color: var(--color-background);
-  color: var(--color-primary-4);
-  margin-left: 10px;
-  padding: 2px 10px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  position: absolute;
-  bottom: -10px;
-  /* box-shadow: 0 8px 6px -6px gray; */
-
-  :hover {
-    cursor: pointer;
-    color: var(--complement-color-2);
-    font-weight: bold;
-    border-top: none;
-  }
-
-  :active {
-    opacity: 0.5;
-  }
-`;
-
-const Card = styled.div`
-  position: relative;
 `;
 
 const BoardPage = styled.div`
@@ -745,6 +696,34 @@ const FeedBox = styled(motion.div)`
   position: absolute;
   top: 330px;
   left: 40px;
+`;
+
+const CardButton = styled.button`
+  background-color: var(--color-background);
+  color: var(--color-primary-4);
+  margin-left: 10px;
+  padding: 2px 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -10px;
+  /* box-shadow: 0 8px 6px -6px gray; */
+
+  :hover {
+    cursor: pointer;
+    color: var(--complement-color-2);
+    font-weight: bold;
+    border-top: none;
+  }
+
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+const Card = styled.div`
+  position: relative;
 `;
 
 const CardContainer = styled(motion.div)`

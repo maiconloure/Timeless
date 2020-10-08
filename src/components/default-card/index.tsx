@@ -1,31 +1,53 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { motion, useMotionValue } from 'framer-motion';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { updateCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
-import { CardDataInterface } from '../../redux/actions/interface.action';
+import { CardInterface } from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { icons } from '../../utils/importAll';
 import FastCard from './fast-card';
 
-const DefaultCard = ({ data }: { data: CardDataInterface }) => {
+const DefaultCard = ({ card }: { card: CardInterface }) => {
   const dispatch = useDispatch();
+  const x = useMotionValue(card.position.x);
+  const y = useMotionValue(card.position.y);
+  const token = useSelector((state: RootStoreType) => state.service.token);
   const user = useSelector((state: RootStoreType) => state.service.user);
   const [showWarning, setShowWarning] = useState(false);
 
   return (
-    <>
+    <motion.div
+      drag
+      dragMomentum={false}
+      onDragEnd={() => {
+        dispatch(
+          updateCardAPI({
+            card: {
+              ...card,
+              position: {
+                x: x.get(),
+                y: y.get(),
+              },
+            },
+            token,
+          })
+        );
+      }}
+      style={{ x, y }}>
       <Card>
         <CardInside>
           <AlertImg>
-            {data.fastCard && data.fastCard.show && (
+            {card.data.fastCard && card.data.fastCard.show && (
               <img src={icons.warning} onClick={() => setShowWarning(!showWarning)} alt="warning" />
             )}
           </AlertImg>
           <CardHeader>
             <MainTags>
-              {data.tags.map((tag: any, key: number) => (
+              {card.data.tags.map((tag: any, key: number) => (
                 <div
                   key={key}
                   contentEditable="true"
@@ -43,25 +65,25 @@ const DefaultCard = ({ data }: { data: CardDataInterface }) => {
             </MainTags>
 
             <TimeExec>
-              <span>{data.time.start.date}</span>
+              <span>{card.data.time.start.date}</span>
             </TimeExec>
           </CardHeader>
           <Description>
             <div>
               <div>
                 <DescriptionTitle contentEditable suppressContentEditableWarning>
-                  {data.title}
+                  {card.data.title}
                 </DescriptionTitle>
               </div>
               <div>
-                <p>{data.description}</p>
+                <p>{card.data.description}</p>
               </div>
             </div>
             <div>
               <input
                 onClick={(evt: any) => {
                   if (evt.target.checked) {
-                    dispatch(getNewAction(`${user.name} terminou o cartãol ${data.title}.`));
+                    dispatch(getNewAction(`${user.name} terminou o cartãol ${card.data.title}.`));
                   }
                 }}
                 type="checkbox"
@@ -73,13 +95,13 @@ const DefaultCard = ({ data }: { data: CardDataInterface }) => {
               <img src={icons.user1} alt="user icon" />
             </CardUsers>
             <CardData>
-              <span>{data.time.finish.date}</span>
+              <span>{card.data.time.finish.date}</span>
             </CardData>
           </CardFooter>
         </CardInside>
       </Card>
-      {showWarning && data.fastCard && <FastCard fastCard={data.fastCard} />}
-    </>
+      {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import BacklogCard from './backlog-card';
 import CreationMenu from './creation-menu';
 import DefaultCard from './default-card';
-export { CreationMenu, DefaultCard, BacklogCard };
+import PageTransition from './pageTransition';
+export { CreationMenu, DefaultCard, BacklogCard, PageTransition };
