@@ -12,17 +12,17 @@ exports[`Snapshot renders 1`] = `
     className="sc-iTVIwl fWbDui"
   >
     <div
-      className="sc-iBzFoy fxpCVg"
+      className="sc-iBzFoy kWngoR"
     >
       <div
-        className="sc-efHXLn cDxJLF"
+        className="sc-efHXLn lbMqbT"
       >
         <img
           alt="logo"
           onClick={[Function]}
         />
         <div
-          className="sc-cTJmaU gpSXEu"
+          className="sc-cTJmaU iokyIg"
         >
           <p
             onClick={[Function]}
@@ -42,7 +42,7 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-jNnnWF kOGYSr"
+        className="sc-jNnnWF eypalx"
         onKeyDown={[Function]}
       >
         <div
@@ -119,11 +119,11 @@ exports[`Snapshot renders 1`] = `
         className="sc-dPaNSN hxrhiw"
       >
         <div
-          className="sc-bBjRzc eJvXEZ"
+          className="sc-bBjRzc ibedlD"
           onClick={[Function]}
         >
           <div
-            className="sc-cOigif jTgckp"
+            className="sc-cOigif eZslXb"
           />
           <h1>
             Time
@@ -133,7 +133,7 @@ exports[`Snapshot renders 1`] = `
           </h1>
         </div>
         <div
-          className="sc-ArjOu fCCwi"
+          className="sc-ArjOu beLmaY"
         >
           <p>
             simples, rápido e dinâmico!
@@ -141,13 +141,13 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-hTRkEk iFrrW"
+        className="sc-hTRkEk jmXTNk"
       >
         <div
           className="sc-jgPznn klGkHh"
         >
           <div
-            className="sc-gSYCTC cAilKT"
+            className="sc-gSYCTC gDQmhZ"
           >
             <div />
             <p>
@@ -165,10 +165,10 @@ exports[`Snapshot renders 1`] = `
             onClick={[Function]}
             width="250px"
           >
-            Começe agora
+            Comece agora
           </button>
           <div
-            className="sc-laZMyp fdnrJO"
+            className="sc-laZMyp kDOnrI"
           >
             <div />
             <p>
@@ -181,7 +181,7 @@ exports[`Snapshot renders 1`] = `
         </div>
       </div>
       <div
-        className="sc-jffIyK pVScU"
+        className="sc-jffIyK kDoTUC"
       >
         <div
           style={
@@ -204,7 +204,7 @@ exports[`Snapshot renders 1`] = `
       />
     </div>
     <div
-      className="sc-lbVuaH kIBBHE"
+      className="sc-lbVuaH frLorE"
     />
   </div>
 </div>
