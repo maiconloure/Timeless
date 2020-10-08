@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import jwt_decode from 'jwt-decode';
-import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
 import { RootStoreType } from '../store/store';
 import * as Interface from './interface.action';
 import * as TYPE from './type.action';
+
+const createHeader = (token: string) => ({
+  headers: {
+    Authorization: 'Bearer ' + token,
+  },
+});
 
 export const requestLogin = ({
   email,
@@ -65,14 +70,8 @@ const getUser = (
 ): ThunkAction<void, RootStoreType, unknown, Interface.LoginAction> => async (dispatch) => {
   const decodedToken: Interface.DecodeToken = await jwt_decode(data.data.accessToken);
 
-  const headers = {
-    headers: {
-      Authorization: 'Bearer ' + data.data.accessToken,
-    },
-  };
-
   api
-    .get(`/users/${decodedToken.sub}`, headers)
+    .get(`/users/${decodedToken.sub}`, createHeader(data.data.accessToken))
     .then((response) => {
       if (response.status !== 200) {
         console.error(`getUser =>> ERROR: ${response.data} ${response.status}`);
@@ -103,16 +102,7 @@ const loginAction = ({ user, status, token }: Interface.PropsLogin): Interface.L
   payload: { user, status, token },
 });
 
-export const signOut = () => (dispatch: Dispatch) => {
-  dispatch(clearBoard());
-  dispatch(logout());
-};
-
-const clearBoard = (): Interface.ClearBoardAction => ({
-  type: TYPE.CLEAR_BOARD,
-});
-
-const logout = (): Interface.LogoutAction => ({
+export const logout = (): Interface.LogoutAction => ({
   type: TYPE.LOGOUT,
 });
 
