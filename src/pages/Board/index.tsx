@@ -55,20 +55,21 @@ const Board = ({ history }: BoardPageProps) => {
   const handleLogout = () => {
     toast.info('Saindo... vamos sentir sua falta!😭', {
       position: 'bottom-left',
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
     });
+
     dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
     setToggleMenu(!toggleMenu);
     setTimeout(() => {
       history.push('/');
       dispatch(clearBoard());
       dispatch(logout());
-    }, 3200);
+    }, 2200);
   };
 
   const saveChanges = () => {
@@ -90,18 +91,6 @@ const Board = ({ history }: BoardPageProps) => {
     <PageTransition>
       <BoardPage>
         <Background src={images.background} alt="background-image" />
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-
         <TopContainer>
           <Bar>
             <ProjectInfo>
@@ -311,41 +300,13 @@ const Board = ({ history }: BoardPageProps) => {
 
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
-              <Card
-                key={key}
-                onDoubleClick={() => {
-                  if (!showEditCard) {
-                    setCurrentCard(card);
-                    setShowEditCard(true);
-                  }
-                }}>
-                <DefaultCard card={card} />
-
-                {selectedCard.removeCard ? (
-                  <CardButton
-                    onClick={() => {
-                      dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-                      dispatch(deleteCardAPI({ card, token }));
-                    }}>
-                    remover
-                  </CardButton>
-                ) : (
-                  selectedCard.fastCard && (
-                    <CardButton
-                      onClick={() => {
-                        dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
-                        dispatch(
-                          updateCardAPI({
-                            token,
-                            card: { ...card, data: { ...card.data, ...fastCard } },
-                          })
-                        );
-                      }}>
-                      cartão rápido
-                    </CardButton>
-                  )
-                )}
-              </Card>
+              <DefaultCard
+                card={card}
+                showEditCard={showEditCard}
+                setCurrentCard={setCurrentCard}
+                setShowEditCard={setShowEditCard}
+                selectedCard={selectedCard}
+              />
             ))}
 
           <CardContainer>
@@ -472,19 +433,31 @@ const CardModalDescription = styled.p`
 `;
 
 const BoardPage = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 72px auto;
+  grid-template-areas:
+    'top'
+    'board';
+  align-items: center;
+
+  @media (min-width: 1000px) and (min-height: 768px) {
+    grid-template-rows: 61px auto;
+  }
 `;
 
 const Background = styled.img`
+  grid-area: board;
+  height: 100%;
   background-repeat: repeat;
-  /* position: absolute; */
-  /* top: 0; */
-  /* left: 0; */
 `;
 
 const TopContainer = styled.div`
+  grid-area: top;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -677,12 +650,14 @@ const ProfileIcon = styled.div`
 `;
 
 const InnerBoardContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative;
+  grid-area: board;
+  align-self: center;
+  justify-self: center;
+  margin: 10px;
+  width: 99.4%;
   height: 100%;
-  overflow: auto;
+  overflow: scroll;
 `;
 
 const SideMenuContainer = styled(motion.div)`
