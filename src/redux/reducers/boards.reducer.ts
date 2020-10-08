@@ -20,7 +20,10 @@ const initialState: BoardState = {
 const boards = (state = initialState, action: BoardsAction): BoardState => {
   switch (action.type) {
     case TYPE.GET_BOARDS:
-      return { ...state, boards: action.payload };
+      if (!localStorage.getItem('chosenBoard')) {
+        localStorage.setItem('chosenBoard', JSON.stringify(action.payload[0]));
+      }
+      return { ...state, boards: action.payload, currentBoard: action.payload[0] };
 
     case TYPE.UPDATE_BOARD:
       return {

@@ -108,7 +108,7 @@ export const updateUserAPI = ({
 > => (dispatch) => {
   dispatch(updateUser(user));
   api
-    .put(`/users/${user.id}`, user, createHeader(token))
+    .patch(`/users/${user.id}`, user, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
         console.error(`updateUserAPI ==> ERROR: ${response.data} Status: ${response.status}`);

@@ -28,6 +28,11 @@ const service = (state = initialState, action: ServiceAction): PropsLogin => {
       return initialState;
 
     case TYPE.UPDATE_USER:
+      // localStorage.clear();
+      localStorage.setItem(
+        'service',
+        JSON.stringify({ ...state, user: action.payload } || initialState)
+      );
       return { ...state, user: action.payload };
 
     default:
