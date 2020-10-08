@@ -31,6 +31,21 @@ export const getBoardsAPI = ({
         console.error(`getBoardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
         console.warn(`getBoardsAPI ==> Status: ${response.status}`);
+        if (response.data.length === 0) {
+          console.log('vazio', response.data);
+
+          dispatch(
+            createBoardAPI(
+              {
+                title: 'titulo do board',
+                description: 'descrição do board',
+                users: [],
+              },
+              token,
+              user
+            )
+          );
+        }
         dispatch(getBoards(response.data));
       }
     })
@@ -118,6 +133,7 @@ export const createBoardAPI = (
       } else {
         console.warn(`createBoardAPI ==> Status: ${response.status}`);
         dispatch(createBoard(response.data));
+        dispatch(getBoardsAPI({ user, token }));
       }
     })
     .catch((error) =>
@@ -137,14 +153,14 @@ export const deleteBoardAPI = (
     .delete(`/boards/${board.id}`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`deleteBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`createBoardAPI ==> Status: ${response.status}`);
+        console.warn(`deleteBoardAPI ==> Status: ${response.status}`);
       }
     })
     .catch((error) =>
       console.error(
-        `createBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        `deleteBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       )
     );
 };
