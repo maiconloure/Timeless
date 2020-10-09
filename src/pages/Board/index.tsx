@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Modal, Feed, Input, PasswordInput, Button } from 'capstone-project';
+import { Modal, Input, PasswordInput, Button } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 
-import { CreationMenu, DefaultCard, BacklogCard } from '../../components';
+import { CreationMenu, DefaultCard, BacklogCard, FeedContainer } from '../../components';
 import PageTransition from '../../components/pageTransition';
 import {
   getBoardsAPI,
@@ -37,7 +37,6 @@ const Board = ({ history }: BoardPageProps) => {
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
-  const actions = useSelector((state: RootStoreType) => state.feed.actions);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -54,7 +53,7 @@ const Board = ({ history }: BoardPageProps) => {
   >(defaultBoard);
 
   const handleLogout = () => {
-    toast.info('Saindo... vamos sentir sua falta!😭', {
+    toast.info('Saindo... vamos sentir sua falta! 😭', {
       position: 'bottom-left',
       autoClose: 3000,
       hideProgressBar: false,
@@ -307,7 +306,7 @@ const Board = ({ history }: BoardPageProps) => {
           </SideMenuContainer>
 
           <FeedBox drag dragMomentum={false}>
-            <Feed array={actions} titleSize="1.8rem" fontSize="1.6rem" />
+            <FeedContainer />
           </FeedBox>
 
           {cards &&

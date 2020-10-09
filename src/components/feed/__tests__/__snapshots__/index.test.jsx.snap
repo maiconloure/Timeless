@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renders component 1`] = `
+<div
+  className="sc-hiKfjK kmjzEC"
+  height="450px"
+  width="280px"
+>
+  <div
+    className="sc-gXfWUo hUXhUB"
+  >
+    <h2>
+      Notificações recentes
+    </h2>
+  </div>
+  <div
+    className="sc-cBoprd sc-ciSmjq kjoiua dkScBe"
+  >
+    <div
+      className="sc-jcwofb guvYnY"
+    >
+      <p
+        className="sc-carGAA mvVjk"
+        color="#014D82"
+        fontSize="1.6rem"
+      >
+        Está muito parado por aqui... crie novos cartões!
+      </p>
+    </div>
+  </div>
+</div>
+`;
