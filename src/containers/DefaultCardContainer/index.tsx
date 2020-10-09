@@ -71,6 +71,13 @@ const DefaultCardContainer = ({
     );
   };
 
+  const DoubleClick = () => {
+    if (!showEditCard) {
+      setCurrentCard(card);
+      setShowEditCard(true);
+    }
+  };
+
   return (
     <DefaultCard
       card={card}
@@ -87,6 +94,7 @@ const DefaultCardContainer = ({
       handleCheckBox={handleCheckBox}
       removeCard={removeCard}
       creationCard={creationCard}
+      DoubleClick={DoubleClick}
     />
   );
 };
