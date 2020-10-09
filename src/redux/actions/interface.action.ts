@@ -52,10 +52,22 @@ export interface PropsGetUserBoards {
   token: string;
 }
 
+export interface DataBoard {
+  text: {
+    text: string;
+    position: PositionInterface;
+  }[];
+  comments: {
+    text: string;
+    position: PositionInterface;
+  }[];
+}
+
 export interface UserBoards {
   title: string;
   description: string;
   users: { name: string; id: number | string }[];
+  data: DataBoard;
   userId: number | string;
   id: number | string;
 }
@@ -73,7 +85,7 @@ export interface BoardState {
 
 // --------------CARD INTERFACES--------------
 
-interface CardPositionInterface {
+interface PositionInterface {
   x: number | string;
   y: number | string;
 }
@@ -90,6 +102,15 @@ export interface FastCardDataInterface {
 }
 
 export interface CardDataInterface {
+  checked: boolean;
+  group: {
+    color: string;
+    number: number;
+  };
+  users: { name: string; id: number | string }[];
+  connected: number[];
+  followers: { name: string; id: number }[];
+  blocked: boolean;
   fastCard?: FastCardDataInterface;
   title: string;
   time: {
@@ -105,7 +126,7 @@ export interface CardDataInterface {
 }
 
 export interface CardInterface {
-  position: CardPositionInterface;
+  position: PositionInterface;
   data: CardDataInterface;
   boardId: number | string;
   userId: number | string;
@@ -113,7 +134,7 @@ export interface CardInterface {
 }
 
 export interface CardCreateInterface {
-  position: CardPositionInterface;
+  position: PositionInterface;
   data: CardDataInterface;
 }
 

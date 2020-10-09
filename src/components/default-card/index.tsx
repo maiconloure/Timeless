@@ -99,7 +99,11 @@ const DefaultCard = ({
                 </div>
               </div>
               <div>
-                <input onClick={handleCheckBox} type="checkbox" />
+                <input
+                  onClick={handleCheckBox}
+                  type="checkbox"
+                  defaultChecked={card.data.checked}
+                />
               </div>
             </Description>
             <CardFooter>
