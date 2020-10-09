@@ -113,8 +113,13 @@ export const getCards = (cards: Interface.CardInterface[]): Interface.GetCardsAc
   payload: cards,
 });
 
+export const clearCards = (): Interface.ClearCardsAction => ({
+  type: TYPE.CLEAR_CARDS,
+});
+
 export type CardAction =
   | Interface.UpdateCardAction
   | Interface.CreateCardAction
   | Interface.DeleteCardAction
-  | Interface.GetCardsAction;
+  | Interface.GetCardsAction
+  | Interface.ClearCardsAction;

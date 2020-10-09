@@ -22,7 +22,12 @@ import {
   clearBoard,
   deleteBoardAPI,
 } from '../../redux/actions/boards.action';
-import { deleteCardAPI, updateCardAPI, createCardAPI } from '../../redux/actions/cards.action';
+import {
+  deleteCardAPI,
+  updateCardAPI,
+  createCardAPI,
+  clearCards,
+} from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { logout, updateUserAPI } from '../../redux/actions/service.action';
@@ -78,6 +83,7 @@ const Board = ({ history }: BoardPageProps) => {
     setTimeout(() => {
       history.push('/');
       dispatch(clearBoard());
+      dispatch(clearCards());
       dispatch(logout());
     }, 3300);
   };
