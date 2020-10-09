@@ -13,6 +13,15 @@ export const defaultCard = {
     y: 50,
   },
   data: {
+    checked: false,
+    group: {
+      color: '',
+      number: 0,
+    },
+    users: [],
+    connected: [],
+    followers: [],
+    blocked: false,
     title: 'Titulo',
     time: {
       finish: {
@@ -42,4 +51,8 @@ export const defaultBoard = {
   title: 'titulo do board',
   description: 'descrição do board',
   users: [],
+  data: {
+    text: [],
+    comments: [],
+  },
 };

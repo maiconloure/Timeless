@@ -17,6 +17,7 @@ export const DELETE_BOARD = 'DELETE_BOARD';
 // CARDS ACTIONS
 
 export const GET_CARDS = 'GET_CARDS';
+export const CLEAR_CARDS = 'CLEAR_CARDS';
 export const UPDATE_CARD = 'UPDATE_CARD';
 export const DELETE_CARD = 'DELETE_CARD';
 export const CREATE_CARD = 'CREATE_CARD';
