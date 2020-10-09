@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
-import FastCard from '../../components/default-card/fast-card';
 import { CardInterface, UserInterface } from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
+import FastCard from './fast-card';
 
 interface DefaultCardProps {
   card: CardInterface;

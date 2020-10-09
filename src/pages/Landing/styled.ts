@@ -5,9 +5,8 @@ export const LandingPage = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  overflow-y: auto;
   /* IPHONE 5 ??? */
-  @media (min-width: 550px) and (max-height: 330px) {
+  @media (min-width: 550px) and (max-height: 400px) {
     overflow-y: scroll;
   }
 `;
@@ -46,7 +45,7 @@ export const Container = styled.div`
   }
 
   /* NOTEBOOK/PC/ULTRAWIDE */
-  @media (min-height: 768px) and (min-width: 968px) {
+  @media (min-height: 600px) and (min-width: 968px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
     grid-template-rows: 8% 30% 8% auto;
@@ -122,7 +121,7 @@ export const LinksContainer = styled.div`
   }
 `;
 
-export const LoginMenu = styled.div`
+export const LoginMenu = styled.form`
   grid-area: login;
   display: flex;
   flex-direction: column;
@@ -130,10 +129,10 @@ export const LoginMenu = styled.div`
   justify-content: center;
 
   div {
-    padding: 10px;
+    padding: 5px;
 
     input {
-      padding: 10px;
+      padding: 5px;
     }
   }
 
@@ -160,11 +159,12 @@ export const LoginMenu = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 28px;
+    min-height: 100px;
     div {
-      padding: 10px;
+      padding: 5px;
 
       input {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         padding: 10px;
         height: 32px;
         width: 200px;
@@ -181,6 +181,31 @@ export const LoginMenu = styled.div`
       height: 36px;
       width: 120px;
     }
+  }
+`;
+
+export const LoginForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80px;
+
+  @media (min-width: 550px) and (max-height: 550px) {
+    min-height: 50px;
+  }
+
+  @media (min-width: 968px) and (min-height: 550px) {
+  }
+`;
+
+export const Error = styled.p`
+  font: 600 1.7rem Inter;
+  color: #a52a2a;
+
+  @media (min-width: 968px) and (min-height: 550px) {
+    padding: 0 10px;
+    font: 600 1.4rem Inter;
+    align-self: flex-start;
   }
 `;
 
@@ -286,7 +311,7 @@ export const Slogan = styled.div`
   /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     p {
-      font-size: 1.7vw;
+      font-size: 3rem;
     }
 
     display: flex;
@@ -362,10 +387,16 @@ export const RegisterArea = styled.div`
 
 export const TopFrame = styled.div`
   @media (min-width: 968px) and (min-height: 550px) {
-    width: 900px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  @media (min-width: 968px) and (min-height: 768px) {
+    width: 600px;
+  }
+
+  @media (min-width: 1100px) and (min-height: 768px) {
+    width: 900px;
   }
 `;
 
@@ -448,7 +479,7 @@ export const FeatTwo = styled.div`
   }
 `;
 
-export const RegisterMenu = styled.div`
+export const RegisterMenu = styled.form`
   grid-area: login;
   display: flex;
   flex-direction: column;
@@ -526,9 +557,20 @@ export const MainFrame = styled.div`
     }
   }
 
-  /* ULTRAWIDE */
-  @media (min-height: 768px) and (min-width: 1100px) {
+  @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
+    img {
+      margin-top: 20px;
+      width: 800px;
+    }
+  }
+
+  /* WIDESCREEN / ULTRAWIDE */
+  @media (min-height: 768px) and (min-width: 1150px) {
+    display: inline-grid;
+    img {
+      min-width: 1150px;
+    }
   }
 `;
 
@@ -538,7 +580,6 @@ export const ExamplesFrame = styled.div`
   justify-content: center;
   grid-area: mainframe;
 
-  /* NOTEBOOK/PC */
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
@@ -546,9 +587,20 @@ export const ExamplesFrame = styled.div`
     }
   }
 
-  /* ULTRAWIDE */
-  @media (min-height: 768px) and (min-width: 1200px) {
+  @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
+    img {
+      margin-top: 20px;
+      width: 800px;
+    }
+  }
+
+  /* WIDESCREEN / ULTRAWIDE */
+  @media (min-height: 768px) and (min-width: 1150px) {
+    display: inline-grid;
+    img {
+      min-width: 1150px;
+    }
   }
 `;
 
@@ -558,17 +610,27 @@ export const TeamFrame = styled.div`
   justify-content: center;
   grid-area: mainframe;
 
-  /* NOTEBOOK/PC */
-  @media (min-width: 968px) and (max-width: 1200px) {
+  @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
       width: 700px;
     }
   }
 
-  /* ULTRAWIDE */
-  @media (min-height: 768px) and (min-width: 1200px) {
+  @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
+    img {
+      margin-top: 20px;
+      width: 800px;
+    }
+  }
+
+  /* WIDESCREEN / ULTRAWIDE */
+  @media (min-height: 768px) and (min-width: 1150px) {
+    display: inline-grid;
+    img {
+      min-width: 1150px;
+    }
   }
 `;
 
@@ -578,7 +640,6 @@ export const AboutFrame = styled.div`
   justify-content: center;
   grid-area: mainframe;
 
-  /* NOTEBOOK/PC */
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
@@ -586,9 +647,20 @@ export const AboutFrame = styled.div`
     }
   }
 
-  /* ULTRAWIDE */
-  @media (min-height: 768px) and (min-width: 1100px) {
+  @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
+    img {
+      margin-top: 20px;
+      width: 800px;
+    }
+  }
+
+  /* WIDESCREEN / ULTRAWIDE */
+  @media (min-height: 768px) and (min-width: 1150px) {
+    display: inline-grid;
+    img {
+      min-width: 1150px;
+    }
   }
 `;
 
@@ -627,12 +699,13 @@ export const BottomBar = styled.div`
   background-color: var(--color-primary-0);
 
   @media (min-width: 550px) and (max-height: 550px) {
-    height: 40%;
+    top: 50vh;
+    height: 150vh;
   }
 
   /* IPAD VERTICAL*/
-  @media (min-width: 768px) and (max-width: 1100px) {
-    height: 67%;
+  @media (min-height: 768px) and (max-width: 1100px) {
+    height: 70%;
   }
 
   /* NOTEBOOK/PC */
@@ -648,7 +721,9 @@ export const BottomBar = styled.div`
 
 export const ModalBackground = styled.div`
   position: absolute;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  z-index: 99999;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
@@ -693,16 +768,15 @@ export const RegisterModal = styled.div`
   justify-content: space-between;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 80px;
 
   div {
-    padding: 10px;
     &:nth-child(3) {
-      margin-right: 17px;
+      margin-right: 10px;
     }
     input {
       font-size: 1.8rem;
@@ -722,4 +796,25 @@ export const Form = styled.div`
     height: 50px;
     width: 200px;
   }
+`;
+
+export const RegisterForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 70px;
+`;
+
+export const RegForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 70px;
+`;
+
+export const RegError = styled.p`
+  color: #a52a2a;
+  padding: 0 10px;
+  font: 600 1.6rem Inter;
+  align-self: center;
 `;

@@ -5,7 +5,7 @@ import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast, useToast } from 'react-toastify';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { PageTransition } from '../../components';
 import {
@@ -67,9 +67,9 @@ const Board = ({ history }: BoardPageProps) => {
   const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
-    toast('Saindo... vamos sentir sua falta! 😭', {
+    toast.info('Saindo... vamos sentir sua falta! 😭', {
       position: 'top-left',
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -85,13 +85,13 @@ const Board = ({ history }: BoardPageProps) => {
       dispatch(clearBoard());
       dispatch(clearCards());
       dispatch(logout());
-    }, 3300);
+    }, 2200);
   };
 
   const saveBoard = () => {
-    toast('Salvando seu board...', {
+    toast.info('Salvando seu board...', {
       position: 'top-left',
-      autoClose: 2000,
+      autoClose: 1800,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -123,7 +123,7 @@ const Board = ({ history }: BoardPageProps) => {
         <ToastContainer />
       </Notification>
       <BoardPage>
-        <Background src={images.background} alt="background-image" />
+        {/* <Background src={images.background} alt="background-image" /> */}
         <TopContainer>
           <Bar>
             <ProjectInfo>
@@ -411,6 +411,8 @@ const Board = ({ history }: BoardPageProps) => {
 export default Board;
 
 const BoardPage = styled.div`
+  background-image: url(${images.background});
+
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -433,16 +435,21 @@ const Notification = styled.div`
   z-index: 999999999;
 
   div {
-    font-weight: 700;
-    color: #000;
+    font-weight: 800;
+    color: #fff;
   }
 `;
 
-const Background = styled.img`
-  grid-area: board;
-  height: 100%;
-  background-repeat: repeat;
-`;
+// const Background = styled.img`
+//   display: inline-block;
+//   width: 100%;
+//   font-size: 0;
+//   line-height: 0;
+//   background-size: 100%;
+//   background-position: 50% 50%;
+//   background-repeat: no-repeat;
+//   background-image: url(image.jpg);
+// `;
 
 const TopContainer = styled.div`
   grid-area: top;

@@ -35,9 +35,10 @@ export const requestLogin = ({
         dispatch(getUser(response));
       }
     })
-    .catch((error) =>
-      console.error(`requestLogin =>> ERROR: ${error.response.data} ${error.response.status}`)
-    );
+    .catch((error) => {
+      localStorage.setItem('Error', error.response.status);
+      console.error(`requestLogin =>> ERROR: ${error.response.data} ${error.response.status}`);
+    });
 };
 
 export const registerUser = ({

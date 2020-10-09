@@ -3300,10 +3300,10 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001146.tgz#c61fcb1474520c1462913689201fb292ba6f447c"
   integrity sha512-VAy5RHDfTJhpxnDdp2n40GPPLp3KqNrXz1QqFv4J64HvArKs8nuNMOWkB3ICOaBTU/Aj4rYAo/ytdQDDFF/Pug==
 
-capstone-project@^0.4.9:
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.4.9.tgz#ee97d8df7db82de9da78b17c1e4b7df0c8ca6104"
-  integrity sha512-DlErCd6pBTL/FpBjOTPhPFLgKSnfroKnjKts3OdYhsA5vScNoKAGNlY4IQqTdgkiHFCVif805WDasoXZVCICyw==
+capstone-project@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.5.1.tgz#2c06cb35e69dfa3765e9347db73a6ec2985a8b11"
+  integrity sha512-OAB2b+kcBSfLeVsX+VBgeeTWCdNwyMHjvTCsJUEqVxbFRNLflyFB0jGBkQ9kWksmBv0SUvo5AZSjATX6QO0rww==
   dependencies:
     "@types/history" "^4.7.8"
     "@types/react-router-dom" "^5.1.5"
@@ -10124,6 +10124,11 @@ react-error-overlay@^6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
+
+react-hook-form@^6.9.2:
+  version "6.9.2"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.9.2.tgz#9512cd424e62235fda13c8fc1821f88c352e3d23"
+  integrity sha512-vCPEbHVCRvsoqrQARgQ7a3VrXzqbFOO53gHFRdQzLzHMT9kxum3wfcSi8A1b49KPRsomvsqexH4tBUJMneEu+Q==
 
 react-icons@^3.11.0:
   version "3.11.0"

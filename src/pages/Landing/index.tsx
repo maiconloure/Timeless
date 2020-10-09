@@ -2,6 +2,7 @@
 import { Input, PasswordInput, Button } from 'capstone-project';
 import { History, LocationState } from 'history';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PageTransition from '../../components/pageTransition';
@@ -9,6 +10,8 @@ import { requestLogin, registerUser } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { icons, images } from '../../utils/importAll';
 import * as St from './styled';
+
+import src from '*.bmp';
 
 interface LandingPageProps {
   history: History<LocationState>;
@@ -27,6 +30,38 @@ const Landing = ({ history }: LandingPageProps) => {
     height: window.innerHeight,
   });
 
+  const { register, unregister, handleSubmit, setValue, errors } = useForm();
+
+  useEffect(() => {
+    register('name', {
+      required: 'nome é obrigatório',
+      pattern: {
+        value: /^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}\[\]|\/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}\[\]|\/<>#“.,])\S+(?: \S+){1,5}$/,
+        message: 'Por favor, digite seu nome e sobrenome',
+      },
+    });
+    register('email', {
+      required: 'email obrigatório',
+      pattern: {
+        value: /[a-z0-9\._%+!$&*=^|~#%{}/\-]+@([a-z0-9\-]+\.){1,}([a-z]{2,22})/,
+        message: 'email inválido',
+      },
+    });
+    register('password', {
+      required: 'digite sua senha',
+      pattern: {
+        value: /^.{3,}$/, // REGEX PARA SENHA SEGURA>>> /(?=.*[}{,^?~=+\\-_*\\-+|!@#$%&-+¨´\"'])/
+        message: 'senha inválida',
+      },
+    });
+
+    return () => {
+      unregister('name');
+      unregister('email');
+      unregister('password');
+    };
+  }, [register, unregister]);
+
   window.onresize = () => {
     setWindowSize({
       width: window.innerWidth,
@@ -34,19 +69,9 @@ const Landing = ({ history }: LandingPageProps) => {
     });
   };
 
-  const handleKeyDown = (evt: any) => {
-    if (evt.key === 'Enter') {
-      if (handleForm) {
-        OnFinishRegister();
-      } else {
-        OnFinishLogin();
-      }
-    }
-  };
-
-  const OnFinishLogin = () => {
+  const OnFinishLogin = (data: any) => {
     console.log('OnFinishLogin');
-    dispatch(requestLogin({ email, password }));
+    dispatch(requestLogin({ email: data.email, password: data.password }));
   };
 
   const OnFinishRegister = () => {
@@ -74,29 +99,37 @@ const Landing = ({ history }: LandingPageProps) => {
           </St.LeftMenu>
 
           {(!handleForm || windowSize.width > 968) && (
-            <St.LoginMenu onKeyDown={handleKeyDown}>
-              <Input
-                type="email"
-                name="email"
-                placeholder="email"
-                width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '55px' : '44px'}
-                onTextChange={(evt: any) => setEmail(evt)}
-              />
-              <PasswordInput
-                placeholder="senha"
-                width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '55px' : '44px'}
-                onTextChange={(evt: any) => setPassword(evt)}
-              />
-              <div>
+            <St.LoginMenu onSubmit={handleSubmit(OnFinishLogin)}>
+              <St.LoginForm>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  width={windowSize.width < 550 ? '300px' : '400px'}
+                  height={windowSize.height > 550 ? '55px' : '44px'}
+                  onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                />
+                {errors.email && !handleForm && <St.Error>{errors.email.message}</St.Error>}
+              </St.LoginForm>
+
+              <St.LoginForm>
+                <PasswordInput
+                  placeholder="senha"
+                  width={windowSize.width < 550 ? '300px' : '400px'}
+                  height={windowSize.height > 550 ? '55px' : '44px'}
+                  onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                />
+                {errors.password && !handleForm && <St.Error>{errors.password.message}</St.Error>}
+              </St.LoginForm>
+
+              <St.LoginForm>
                 <Button
                   fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
                   height={windowSize.height > 550 ? '55px' : '44px'}
-                  onClick={OnFinishLogin}>
+                  onClick={handleSubmit(OnFinishLogin)}>
                   Entrar
                 </Button>
-              </div>
+              </St.LoginForm>
             </St.LoginMenu>
           )}
 
@@ -126,7 +159,7 @@ const Landing = ({ history }: LandingPageProps) => {
                   onClick={() => setHandleForm(true)}
                   width="250px"
                   height={windowSize.height > 550 ? '70px' : '46px'}>
-                  Comece agora
+                  comece agora
                 </Button>
               ) : (
                 <St.Return onClick={() => setHandleForm(false)}>
@@ -143,33 +176,46 @@ const Landing = ({ history }: LandingPageProps) => {
           </St.RegisterArea>
 
           {windowSize.width < 968 && handleForm && (
-            <St.RegisterMenu onKeyDown={handleKeyDown}>
-              <Input
-                type="text"
-                placeholder="nome"
-                width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '50px' : '40px'}
-                onTextChange={(evt: any) => setName(evt)}
-              />
-              <Input
-                type="email"
-                placeholder="email"
-                width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '50px' : '40px'}
-                onTextChange={(evt: any) => setEmail(evt)}
-              />
-              <PasswordInput
-                placeholder="senha"
-                width={windowSize.width < 550 ? '300px' : '400px'}
-                height={windowSize.height > 550 ? '50px' : '40px'}
-                onTextChange={(evt: any) => setPassword(evt)}
-              />
-              <Button
-                fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
-                height={windowSize.height > 550 ? '55px' : '44px'}
-                onClick={OnFinishRegister}>
-                Começar
-              </Button>
+            <St.RegisterMenu onSubmit={handleSubmit(OnFinishRegister)}>
+              <St.RegisterForm>
+                <Input
+                  type="text"
+                  placeholder="nome"
+                  width={windowSize.width < 550 ? '300px' : '400px'}
+                  height={windowSize.height > 550 ? '50px' : '40px'}
+                  onTextChange={(evt: any) => setValue('name', evt.currentTarget.value)}
+                />
+                {errors.name && <St.Error>{errors.name.message}</St.Error>}
+              </St.RegisterForm>
+
+              <St.RegisterForm>
+                <Input
+                  type="email"
+                  placeholder="email"
+                  width={windowSize.width < 550 ? '300px' : '400px'}
+                  height={windowSize.height > 550 ? '50px' : '40px'}
+                  onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                />
+                {errors.email && <St.Error>{errors.email.message}</St.Error>}
+              </St.RegisterForm>
+
+              <St.RegisterForm>
+                <PasswordInput
+                  placeholder="senha"
+                  width={windowSize.width < 550 ? '300px' : '400px'}
+                  height={windowSize.height > 550 ? '50px' : '40px'}
+                  onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                />
+                {errors.password && <St.Error>{errors.password.message}</St.Error>}
+              </St.RegisterForm>
+              <St.RegisterForm>
+                <Button
+                  fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
+                  height={windowSize.height > 550 ? '55px' : '44px'}
+                  onClick={handleSubmit(OnFinishRegister)}>
+                  Começar
+                </Button>
+              </St.RegisterForm>
             </St.RegisterMenu>
           )}
 
@@ -183,33 +229,50 @@ const Landing = ({ history }: LandingPageProps) => {
                   <St.Text>
                     <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
                   </St.Text>
-                  <St.Form onKeyDown={handleKeyDown}>
-                    <Input
-                      type="text"
-                      placeholder="nome"
-                      width="300px"
-                      fontSize="2rem"
-                      height="48px"
-                      onTextChange={(evt: any) => setName(evt)}
-                    />
-                    <Input
-                      type="email"
-                      placeholder="email"
-                      width="300px"
-                      fontSize="2rem"
-                      height="48px"
-                      onTextChange={(evt: any) => setEmail(evt)}
-                    />
-                    <PasswordInput
-                      placeholder="senha"
-                      width="300px"
-                      fontSize="2rem"
-                      height="48px"
-                      onTextChange={(evt: any) => setPassword(evt)}
-                    />
-                    <Button fontSize="2.6rem" height="44px" weight={600} onClick={OnFinishRegister}>
-                      Começar
-                    </Button>
+                  <St.Form onSubmit={handleSubmit(OnFinishRegister)}>
+                    <St.RegForm>
+                      <Input
+                        type="text"
+                        placeholder="nome"
+                        width="300px"
+                        fontSize="2rem"
+                        height="48px"
+                        onTextChange={(evt: any) => setValue('name', evt.currentTarget.value)}
+                      />
+                      {errors.name && <St.RegError>{errors.name.message}</St.RegError>}
+                    </St.RegForm>
+
+                    <St.RegForm>
+                      <Input
+                        type="email"
+                        placeholder="email"
+                        width="300px"
+                        fontSize="2rem"
+                        height="48px"
+                        onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                      />
+                      {errors.email && <St.RegError>{errors.email.message}</St.RegError>}
+                    </St.RegForm>
+
+                    <St.RegForm>
+                      <PasswordInput
+                        placeholder="senha"
+                        width="300px"
+                        fontSize="2rem"
+                        height="48px"
+                        onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                      />
+                      {errors.password && <St.RegError>{errors.password.message}</St.RegError>}
+                    </St.RegForm>
+                    <St.RegForm>
+                      <Button
+                        fontSize="2.6rem"
+                        height="44px"
+                        weight={600}
+                        onClick={handleSubmit(OnFinishRegister)}>
+                        Começar
+                      </Button>
+                    </St.RegForm>
                   </St.Form>
                 </St.RegisterModal>
               </PageTransition>
