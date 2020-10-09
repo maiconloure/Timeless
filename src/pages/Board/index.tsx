@@ -4,11 +4,16 @@ import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, useToast } from 'react-toastify';
 import styled from 'styled-components';
 
-import { CreationMenu, DefaultCard, BacklogCard, FeedContainer } from '../../components';
-import PageTransition from '../../components/pageTransition';
+import { PageTransition } from '../../components';
+import {
+  CreationMenuContainer,
+  FeedContainer,
+  DefaultCardContainer,
+  BacklogCardContainer,
+} from '../../containers';
 import {
   getBoardsAPI,
   updateBoardAPI,
@@ -57,8 +62,8 @@ const Board = ({ history }: BoardPageProps) => {
   const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
-    toast.info('Saindo... vamos sentir sua falta! 😭', {
-      position: 'bottom-left',
+    toast('Saindo... vamos sentir sua falta! 😭', {
+      position: 'top-left',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -66,13 +71,29 @@ const Board = ({ history }: BoardPageProps) => {
       draggable: true,
       progress: undefined,
     });
+
     dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
     setToggleMenu(!toggleMenu);
+
     setTimeout(() => {
       history.push('/');
       dispatch(clearBoard());
       dispatch(logout());
-    }, 3200);
+    }, 3300);
+  };
+
+  const saveBoard = () => {
+    toast('Salvando seu board...', {
+      position: 'top-left',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    saveChanges();
+    setToggleMenu(!toggleMenu);
   };
 
   const saveChanges = () => {
@@ -92,20 +113,11 @@ const Board = ({ history }: BoardPageProps) => {
 
   return (
     <PageTransition>
+      <Notification>
+        <ToastContainer />
+      </Notification>
       <BoardPage>
         <Background src={images.background} alt="background-image" />
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-
         <TopContainer>
           <Bar>
             <ProjectInfo>
@@ -157,11 +169,7 @@ const Board = ({ history }: BoardPageProps) => {
                     <p>Fazer logout</p>
                   </MenuOption>
 
-                  <MenuOption
-                    onClick={() => {
-                      saveChanges();
-                      setToggleMenu(!toggleMenu);
-                    }}>
+                  <MenuOption onClick={saveBoard}>
                     <p>Salvar board</p>
                   </MenuOption>
 
@@ -364,7 +372,7 @@ const Board = ({ history }: BoardPageProps) => {
 
         <InnerBoardContainer>
           <SideMenuContainer drag dragMomentum={false}>
-            <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
+            <CreationMenuContainer setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
 
           <FeedBox drag dragMomentum={false}>
@@ -373,65 +381,18 @@ const Board = ({ history }: BoardPageProps) => {
 
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
-              <CardContainer
+              <DefaultCardContainer
                 key={key}
-                drag
-                dragMomentum={false}
-                onDragEnd={(e: any) => {
-                  /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
-                  if (e && e.target && e.target.offsetParent) {
-                    const position = e.target.offsetParent.getBoundingClientRect();
-                    console.log(position);
-                    card.position = {
-                      x: position.x,
-                      y: position.y,
-                    };
-                    dispatch(updateCardAPI({ card, token }));
-                  }
-                }}
-                onDoubleClick={() => {
-                  if (!showEditCard) {
-                    setCurrentCard(card);
-                    setShowEditCard(true);
-                  }
-                }}
-                style={{
-                  x: card.position.x,
-                  y: card.position.y,
-                }}>
-                <Card>
-                  <DefaultCard data={card.data} />
-
-                  {selectedCard.removeCard ? (
-                    <CardButton
-                      onClick={() => {
-                        dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-                        dispatch(deleteCardAPI({ card, token }));
-                      }}>
-                      remover
-                    </CardButton>
-                  ) : (
-                    selectedCard.fastCard && (
-                      <CardButton
-                        onClick={() => {
-                          dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
-                          dispatch(
-                            updateCardAPI({
-                              token,
-                              card: { ...card, data: { ...card.data, ...fastCard } },
-                            })
-                          );
-                        }}>
-                        cartão rápido
-                      </CardButton>
-                    )
-                  )}
-                </Card>
-              </CardContainer>
+                card={card}
+                showEditCard={showEditCard}
+                setCurrentCard={setCurrentCard}
+                setShowEditCard={setShowEditCard}
+                selectedCard={selectedCard}
+              />
             ))}
 
           <CardContainer>
-            <BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
+            <BacklogCardContainer closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
           </CardContainer>
         </InnerBoardContainer>
       </BoardPage>
@@ -440,6 +401,236 @@ const Board = ({ history }: BoardPageProps) => {
 };
 
 export default Board;
+
+const BoardPage = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 72px auto;
+  grid-template-areas:
+    'top'
+    'board';
+  align-items: center;
+
+  @media (min-width: 1000px) and (min-height: 768px) {
+    grid-template-rows: 61px auto;
+  }
+`;
+
+const Notification = styled.div`
+  position: absolute;
+  z-index: 999999999;
+
+  div {
+    font-weight: 700;
+    color: #000;
+  }
+`;
+
+const Background = styled.img`
+  grid-area: board;
+  height: 100%;
+  background-repeat: repeat;
+`;
+
+const TopContainer = styled.div`
+  grid-area: top;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  width: 100vw;
+`;
+
+const Bar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: var(--color-primary-0);
+
+  @media (min-width: 1000px) and (min-height: 768px) {
+    height: 60px;
+  }
+`;
+
+const ProjectInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter';
+
+  h2,
+  h3,
+  h4 {
+    display: none;
+  }
+
+  h3 {
+    cursor: pointer;
+  }
+
+  img {
+    width: 60px;
+    margin: 0 5px;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      margin-left: 5px;
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    h3 {
+      display: block;
+      font-size: 1.6rem;
+      color: #fff;
+    }
+
+    h4 {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    img {
+      margin: 0 5px;
+      width: 50px;
+    }
+  }
+`;
+
+const UserInfo = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  width: 240px;
+`;
+
+const User = styled.div`
+  font-family: Inter;
+  font-size: 1.4rem;
+  margin: 0 4px;
+
+  p {
+    text-align: right;
+  }
+
+  @media (min-width: 1200px) and (min-height: 768px) {
+    h2 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.6rem;
+    }
+  }
+`;
+
+const UserMenu = styled.div`
+  position: absolute;
+  top: 65px;
+  left: -10px;
+  min-width: 220px;
+  height: 300px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 4px;
+  color: #12254e;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MainUserMenu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  border-bottom: 2px solid #dfe1e7;
+
+  h2 {
+    font: 500 1.8rem Fira Code;
+    opacity: 0.7;
+  }
+
+  img {
+    cursor: pointer;
+    width: 2rem;
+  }
+`;
+
+const UserInfoMenu = styled.div`
+  margin: 10px 5px;
+  height: 70%;
+  h2 {
+    font: 500 2rem Inter;
+  }
+
+  h3 {
+    font: 400 1.3rem Inter;
+    padding: 2px 0;
+    opacity: 0.7;
+  }
+
+  p {
+    font: 600 1.4rem Inter;
+    line-height: 1.6rem;
+    padding: 4px 0;
+    border-top: 2px solid #dfe1e7;
+    opacity: 0.9;
+  }
+`;
+
+const MenuOption = styled.div`
+  border-top: 2px solid #dfe1e7;
+  cursor: pointer;
+  p {
+    font: 500 1.5rem Roboto;
+    opacity: 0.9;
+    margin: 6px 0;
+  }
+`;
+
+const ProfileIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+    border-radius: 50%;
+  }
+
+  @media (min-width: 1000px) and (min-height: 768px) {
+    img {
+      width: 55px;
+      height: 55px;
+    }
+  }
+`;
 
 const CardModal = styled(Modal)`
   div {
@@ -558,246 +749,15 @@ const CardModalDescription = styled.p`
   }
 `;
 
-const CardButton = styled.button`
-  background-color: var(--color-background);
-  color: var(--color-primary-4);
-  margin-left: 10px;
-  padding: 2px 10px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  position: absolute;
-  bottom: -10px;
-  /* box-shadow: 0 8px 6px -6px gray; */
-
-  :hover {
-    cursor: pointer;
-    color: var(--complement-color-2);
-    font-weight: bold;
-    border-top: none;
-  }
-
-  :active {
-    opacity: 0.5;
-  }
-`;
-
-const Card = styled.div`
-  position: relative;
-`;
-
-const BoardPage = styled.div`
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-`;
-
-const Background = styled.img`
-  background-repeat: repeat;
-  /* position: absolute; */
-  /* top: 0; */
-  /* left: 0; */
-`;
-
-const TopContainer = styled.div`
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  width: 100vw;
-`;
-
-const Bar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 70px;
-  background-color: var(--color-primary-0);
-
-  @media (min-width: 1000px) and (min-height: 768px) {
-    height: 60px;
-  }
-`;
-
-const ProjectInfo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Inter';
-
-  h2,
-  h3,
-  h4 {
-    display: none;
-  }
-
-  h3 {
-    cursor: pointer;
-  }
-
-  img {
-    width: 60px;
-    margin: 0 5px;
-  }
-
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (min-width: 800px) {
-    display: flex;
-    align-items: center;
-
-    h2 {
-      margin-left: 5px;
-      display: block;
-      font-size: 1.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: #fff;
-    }
-
-    h3 {
-      display: block;
-      font-size: 1.6rem;
-      color: #fff;
-    }
-
-    h4 {
-      display: block;
-      font-size: 2.4rem;
-      font-weight: 900;
-      color: #fff;
-    }
-
-    img {
-      margin: 0 5px;
-      width: 50px;
-    }
-  }
-`;
-
-const UserInfo = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-`;
-
-const User = styled.div`
-  font-family: Inter;
-  font-size: 1.4rem;
-  margin: 0 4px;
-
-  p {
-    text-align: right;
-  }
-
-  @media (min-width: 1200px) and (min-height: 768px) {
-    h2 {
-      font-size: 2rem;
-    }
-    p {
-      font-size: 1.6rem;
-    }
-  }
-`;
-
-const UserMenu = styled.div`
-  position: absolute;
-  top: 65px;
-  left: 0;
-  width: 220px;
-  height: 300px;
-  padding: 10px;
-  background: #ffffff;
-  border-radius: 4px;
-  color: #12254e;
-  display: flex;
-  flex-direction: column;
-`;
-
-const MainUserMenu = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2px;
-  border-bottom: 2px solid #dfe1e7;
-
-  h2 {
-    font: 500 1.8rem Fira Code;
-    opacity: 0.7;
-  }
-
-  img {
-    cursor: pointer;
-    width: 2rem;
-  }
-`;
-
-const UserInfoMenu = styled.div`
-  margin: 10px 5px;
-  height: 70%;
-  h2 {
-    font: 500 2rem Inter;
-  }
-
-  h3 {
-    font: 400 1.3rem Inter;
-    padding: 2px 0;
-    opacity: 0.7;
-  }
-
-  p {
-    font: 600 1.4rem Inter;
-    line-height: 1.6rem;
-    padding: 4px 0;
-    border-top: 2px solid #dfe1e7;
-    opacity: 0.9;
-  }
-`;
-
-const MenuOption = styled.div`
-  border-top: 2px solid #dfe1e7;
-  cursor: pointer;
-  p {
-    font: 500 1.5rem Roboto;
-    opacity: 0.9;
-    margin: 6px 0;
-  }
-`;
-
-const ProfileIcon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  height: 55px;
-
-  img {
-    width: 60px;
-    margin-right: 5px;
-    border-radius: 50%;
-  }
-
-  @media (min-width: 1000px) and (min-height: 768px) {
-    img {
-      width: 55px;
-      margin: 6px 10px;
-    }
-  }
-`;
-
 const InnerBoardContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative;
+  grid-area: board;
+  align-self: center;
+  justify-self: center;
+  margin: 10px;
+  width: 99.4%;
   height: 100%;
-  overflow: auto;
+  overflow: scroll;
 `;
 
 const SideMenuContainer = styled(motion.div)`

@@ -1,35 +1,91 @@
-import { CardLeandro } from 'capstone-project';
 import React from 'react';
 
-import Children from './content';
+import { icons } from '../../utils/importAll';
+import {
+  WriteableContent,
+  WriteableTop,
+  WriteableBox,
+  ContentContainer,
+  Main,
+  Labels,
+  TimingLabel,
+  ActionDiv,
+  LabelTitle,
+  IdLabel,
+  HourglassLabel,
+  Icon,
+  ClockLabel,
+  ActionLabels,
+  IconSmall,
+  FeedbackButton,
+  ChecklistContainer,
+  Checklist,
+  ChecklistTitle,
+  ChecklistBox,
+} from './style';
 
-interface BacklogCardProps {
-  usersArray?: { image: string; user: string }[];
-  closeDataPass: {
-    showEditCard: boolean;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
-    currentCard: any;
-  };
-}
-
-const BacklogCard = ({
-  usersArray = [{ image: '', user: '' }],
-  closeDataPass: { showEditCard, setShowEditCard, currentCard },
-}: BacklogCardProps) => {
+export default function Content() {
   return (
-    <CardLeandro
-      title="Product Backlog"
-      titleUnderlineOffset="8px"
-      boxPadding="20px"
-      avatars={usersArray}
-      fontColor="#014D82"
-      closeable
-      closeDataPass={[showEditCard, setShowEditCard]}
-      backgroundColor="rgba(58, 166, 242, 0.5)"
-      borderDetails="none">
-      <Children />
-    </CardLeandro>
+    <ContentContainer>
+      <Main>
+        <WriteableContent>
+          <WriteableTop contentEditable="true" suppressContentEditableWarning>
+            DESCRIÇÃO
+          </WriteableTop>
+          <WriteableBox contentEditable="true" suppressContentEditableWarning>
+            ...
+          </WriteableBox>
+        </WriteableContent>
+        <Labels>
+          <TimingLabel>
+            <LabelTitle>ETIQUETAS</LabelTitle>
+            <IdLabel>#Sprint1</IdLabel>
+            <HourglassLabel>
+              <Icon src={icons.hourglass} alt="Ícone de Ampulheta" onClick={() => {}} />
+              <span>
+                Tempo Execução{' '}
+                <strong
+                  contentEditable="true"
+                  suppressContentEditableWarning
+                  style={{ color: 'red' }}>
+                  00:00
+                </strong>
+              </span>
+            </HourglassLabel>
+            <ClockLabel>
+              <Icon src={icons.clock} alt="Ícone de Cronômetro" onClick={() => {}} />
+              <span>
+                Data Entrega <strong style={{ color: '#ffbe00' }}>00/00/00</strong>
+              </span>
+            </ClockLabel>
+          </TimingLabel>
+          <ActionDiv>
+            <LabelTitle>AÇÕES</LabelTitle>
+            <ActionLabels>
+              <IconSmall src={icons.signOut} alt="Ícone de Porta" onClick={() => {}} />
+              <span>Mover</span>
+            </ActionLabels>
+            <ActionLabels>
+              <IconSmall src={icons.copy} alt="Ícone de Copiar" onClick={() => {}} />
+              <span>Copiar</span>
+            </ActionLabels>
+            <ActionLabels>
+              <IconSmall src={icons.deleteCard} alt="Ícone de Excluir" onClick={() => {}} />
+              <span>Excluir</span>
+            </ActionLabels>
+            <FeedbackButton>feedback</FeedbackButton>
+          </ActionDiv>
+        </Labels>
+      </Main>
+      <ChecklistContainer>
+        <Checklist>
+          <ChecklistTitle>
+            <IconSmall src={icons.checkboxList} alt="Ícone de Lista" />
+            <span>Checklist</span>
+          </ChecklistTitle>
+          <ChecklistBox>Teste</ChecklistBox>
+        </Checklist>
+      </ChecklistContainer>
+    </ContentContainer>
   );
-};
-
-export default BacklogCard;
+}

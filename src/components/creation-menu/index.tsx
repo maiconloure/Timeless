@@ -1,201 +1,99 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 
-import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
-import { getNewAction } from '../../redux/actions/feed.action';
-import * as Interface from '../../redux/actions/interface.action';
-import { RootStoreType } from '../../redux/store/store';
-import { defaultCard } from '../../utils/defaults-json-cards';
 import { icons } from '../../utils/importAll';
-const initialSelectCard = {
-  removeCard: false,
-  fastCard: false,
-};
+import * as Styled from './styled';
 
-const CreationMenu = ({
-  setSelectedCard,
-  selectedCard,
-}: {
-  setSelectedCard: React.Dispatch<
-    React.SetStateAction<{
-      removeCard: boolean;
-      fastCard: boolean;
-    }>
-  >;
+interface CreationMenuProps {
   selectedCard: {
     removeCard: boolean;
     fastCard: boolean;
   };
-}) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootStoreType) => state.service.user);
-  const token = useSelector((state: RootStoreType) => state.service.token);
-  const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-  const random = () => Math.floor(Math.random() * 400);
+  groupButton: () => void;
+  createCardButton: () => void;
+  createFasterCardButton: () => void;
+  removeCardButton: () => void;
+  createTextButton: () => void;
+  connectArrowButton: () => void;
+  pinCardButton: () => void;
+  blockCardButton: () => void;
+}
 
-  defaultCard.position = {
-    x: random(),
-    y: random(),
-  };
-
-  const groupButton = () => {
-    console.log('groupButton');
-    dispatch(getNewAction(`${user.name} acabou de criar um grupo de cartões.`));
-  };
-
-  const createCardButton = () => {
-    console.log('createCardButton');
-    dispatch(getNewAction(`${user.name} acabou de criar um cartão.`));
-    dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard }));
-  };
-
-  const createFasterCardButton = () => {
-    console.log('createFasterCardButton');
-    setSelectedCard({ ...initialSelectCard, fastCard: !selectedCard.fastCard });
-  };
-
-  const removeCardButton = () => {
-    console.log('removeCardButton');
-    setSelectedCard({ ...initialSelectCard, removeCard: !selectedCard.removeCard });
-  };
-
-  const createTextButton = () => {
-    console.log('createTextButton');
-    dispatch(getNewAction(`${user.name} acabou de criar um texto.`));
-  };
-
-  const connectArrowButton = () => {
-    console.log('conectArrowButton');
-    dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
-  };
-
-  const pinCardButton = () => {
-    console.log('pinCardButton');
-    // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
-  };
-
-  const blockCardButton = () => {
-    console.log('blockCardButton');
-    // dispatch(getNewAction(` ${user.name} bloqueou um cartão.`));
-  };
-
+const CreationMenu = ({
+  selectedCard,
+  groupButton,
+  createCardButton,
+  createFasterCardButton,
+  removeCardButton,
+  createTextButton,
+  connectArrowButton,
+  pinCardButton,
+  blockCardButton,
+}: CreationMenuProps) => {
   return (
-    <Menu>
-      <MenuTitle>
+    <Styled.Menu>
+      <Styled.MenuTitle>
         <span />
         <span />
         <span />
-      </MenuTitle>
-      <MenuSection>
-        <SectionTitle>
+      </Styled.MenuTitle>
+
+      <Styled.MenuSection>
+        <Styled.SectionTitle>
           <h4>OBJETOS</h4>
-        </SectionTitle>
-        <MenuOptions selectedCard={selectedCard}>
-          <img id="group" src={icons.group} onClick={groupButton} alt="group" />
-          <img id="card" src={icons.card} onClick={createCardButton} alt="create" />
-          <img id="fast" src={icons.fastCard} onClick={createFasterCardButton} alt="fast" />
-          <img id="trash" src={icons.trash} onClick={removeCardButton} alt="remove" />
-        </MenuOptions>
-      </MenuSection>
-      <MenuSection>
-        <SectionTitle>
+        </Styled.SectionTitle>
+
+        <Styled.MenuOptions selectedCard={selectedCard}>
+          <div className="tooltip">
+            <img id="group" src={icons.group} onClick={groupButton} alt="group" />
+            <span className="tooltiptext">Agrupar cartões</span>
+          </div>
+
+          <div className="tooltip">
+            <img id="card" src={icons.card} onClick={createCardButton} alt="create" />
+            <span className="tooltiptext">Cartão padrão</span>
+          </div>
+
+          <div className="tooltip">
+            <img id="fast" src={icons.fastCard} onClick={createFasterCardButton} alt="fast" />
+            <span className="tooltiptext">Cartão Rápido</span>
+          </div>
+
+          <div className="tooltip">
+            <img id="trash" src={icons.trash} onClick={removeCardButton} alt="remove" />
+            <span className="tooltiptext">Habilitar lixeira</span>
+          </div>
+        </Styled.MenuOptions>
+      </Styled.MenuSection>
+
+      <Styled.MenuSection>
+        <Styled.SectionTitle>
           <h4>FERRAMENTAS</h4>
-        </SectionTitle>
-        <MenuOptions selectedCard={selectedCard}>
-          <img id="addText" src={icons.addText} onClick={createTextButton} alt="text" />
-          <img id="connect" src={icons.connect} onClick={connectArrowButton} alt="connect" />
-          <img id="pin" src={icons.pin} onClick={pinCardButton} alt="pin/follow" />
-          <img id="blocked" src={icons.blocked} onClick={blockCardButton} alt="block" />
-        </MenuOptions>
-      </MenuSection>
-    </Menu>
+        </Styled.SectionTitle>
+
+        <Styled.MenuOptions selectedCard={selectedCard}>
+          <div className="tooltip">
+            <img id="addText" src={icons.addText} onClick={createTextButton} alt="text" />
+            <span className="tooltiptext">Adicionar Texto</span>
+          </div>
+
+          <div className="tooltip">
+            <img id="connect" src={icons.connect} onClick={connectArrowButton} alt="connect" />
+            <span className="tooltiptext">Conectar cartão</span>
+          </div>
+
+          <div className="tooltip">
+            <img id="pin" src={icons.pin} onClick={pinCardButton} alt="pin/follow" />
+            <span className="tooltiptext">Seguir cartão</span>
+          </div>
+
+          <div className="tooltip">
+            <img id="blocked" src={icons.blocked} onClick={blockCardButton} alt="block" />
+            <span className="tooltiptext">Bloquear cartão</span>
+          </div>
+        </Styled.MenuOptions>
+      </Styled.MenuSection>
+    </Styled.Menu>
   );
 };
 
 export default CreationMenu;
-
-const Menu = styled.div`
-  background: #8ac0e9;
-  width: 260px;
-  max-width: 400px;
-  color: #fff;
-  padding-bottom: 1px;
-  /* box-shadow: 1px 1px 16px 6px gray; */
-`;
-
-const MenuSection = styled.div`
-  background-color: #fff;
-  margin: 10px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-`;
-
-const SectionTitle = styled.div`
-  font-family: Fira Code;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.5rem;
-  line-height: 1.6rem;
-  background-color: var(--color-primary-4);
-  padding: 2px 4px;
-  border-radius: 2px 2px 0px 0px;
-`;
-
-const MenuTitle = styled.div`
-  background-color: var(--color-primary-1);
-  text-align: right;
-  span {
-    vertical-align: middle;
-    display: inline-block;
-    margin: 4px;
-    height: 20px;
-    width: 20px;
-    border-radius: 100%;
-  }
-
-  span:nth-child(1) {
-    cursor: pointer;
-    background-color: #f59439;
-  }
-  span:nth-child(2) {
-    cursor: pointer;
-    background-color: #0c395c;
-  }
-  span:nth-child(3) {
-    cursor: pointer;
-    background-color: #da0000;
-  }
-`;
-
-const MenuOptions = styled.div<{ selectedCard: any }>`
-  img {
-    cursor: pointer;
-    width: 55px;
-    padding: 4px;
-    cursor: pointer;
-  }
-
-  img#card:active {
-    -webkit-filter: drop-shadow(5px 5px 5px gray);
-    filter: drop-shadow(5px 5px 5px gray);
-    transform: scale(1.2);
-  }
-
-  ${(props) =>
-    props.selectedCard.removeCard &&
-    ` img#trash {
-      -webkit-filter: drop-shadow(5px 5px 5px gray);
-      filter: drop-shadow(5px 5px 5px gray);
-      transform: scale(1.2);
-  }`}
-
-  ${(props) =>
-    props.selectedCard.fastCard &&
-    ` img#fast {
-      -webkit-filter: drop-shadow(5px 5px 5px gray);
-      filter: drop-shadow(5px 5px 5px gray);
-      transform: scale(1.2);
-  }`}
-`;
