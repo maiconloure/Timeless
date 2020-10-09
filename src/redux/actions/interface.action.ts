@@ -227,3 +227,7 @@ export interface GetCardsAction {
   type: typeof TYPE.GET_CARDS;
   payload: CardInterface[];
 }
+
+export interface ClearCardsAction {
+  type: typeof TYPE.CLEAR_CARDS;
+}
