@@ -1,7 +1,9 @@
-import FeedCard from './index';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { RootStoreType } from '../../redux/store/store';
 import { useSelector } from 'react-redux';
+
+import FeedCard from '../../components/feed';
+import { RootStoreType } from '../../redux/store/store';
 
 const FeedContainer = () => {
   const actions = useSelector((state: RootStoreType) => state.feed.actions);

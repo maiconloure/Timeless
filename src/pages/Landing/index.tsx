@@ -77,6 +77,7 @@ const Landing = ({ history }: LandingPageProps) => {
             <St.LoginMenu onKeyDown={handleKeyDown}>
               <Input
                 type="email"
+                name="email"
                 placeholder="email"
                 width={windowSize.width < 550 ? '300px' : '400px'}
                 height={windowSize.height > 550 ? '55px' : '44px'}

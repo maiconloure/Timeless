@@ -1,42 +1,48 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { motion, useMotionValue } from 'framer-motion';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+import React from 'react';
 import styled from 'styled-components';
 
-import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
-import { getNewAction } from '../../redux/actions/feed.action';
-import { CardInterface } from '../../redux/actions/interface.action';
-import { RootStoreType } from '../../redux/store/store';
-import { fastCard } from '../../utils/defaults-json-cards';
+import FastCard from '../../components/default-card/fast-card';
+import { CardInterface, UserInterface } from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
-import FastCard from './fast-card';
 
 interface DefaultCardProps {
   card: CardInterface;
+  user: UserInterface;
   showEditCard: boolean;
   setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
   setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
+  onDragEndFunction: () => void;
+  x: any;
+  y: any;
+  showWarning: boolean;
+  setShowWarning: React.Dispatch<React.SetStateAction<boolean>>;
   selectedCard: {
     removeCard: boolean;
     fastCard: boolean;
   };
+  handleCheckBox: any;
+  removeCard: any;
+  creationCard: any;
 }
 
 const DefaultCard = ({
   card,
+  user,
   showEditCard,
   setCurrentCard,
   setShowEditCard,
+  onDragEndFunction,
+  x,
+  y,
+  showWarning,
+  setShowWarning,
   selectedCard,
+  handleCheckBox,
+  removeCard,
+  creationCard,
 }: DefaultCardProps) => {
-  const dispatch = useDispatch();
-  const x = useMotionValue(card.position.x);
-  const y = useMotionValue(card.position.y);
-  const token = useSelector((state: RootStoreType) => state.service.token);
-  const user = useSelector((state: RootStoreType) => state.service.user);
-  const [showWarning, setShowWarning] = useState(false);
-
   return (
     <CardContainer
       onDoubleClick={() => {
@@ -45,24 +51,7 @@ const DefaultCard = ({
           setShowEditCard(true);
         }
       }}>
-      <motion.div
-        drag
-        dragMomentum={false}
-        onDragEnd={() => {
-          dispatch(
-            updateCardAPI({
-              card: {
-                ...card,
-                position: {
-                  x: x.get(),
-                  y: y.get(),
-                },
-              },
-              token,
-            })
-          );
-        }}
-        style={{ x, y }}>
+      <motion.div drag dragMomentum={false} onDragEnd={onDragEndFunction} style={{ x, y }}>
         <Card>
           <CardInside>
             <AlertImg>
@@ -77,82 +66,67 @@ const DefaultCard = ({
             <CardHeader>
               <MainTags>
                 {card.data.tags.map((tag: any, key: number) => (
-                  <div
-                    key={key}
-                    contentEditable="true"
-                    suppressContentEditableWarning
-                    style={{ color: tag.color }}>
+                  <Tag key={key} style={{ color: tag.color }}>
                     {tag.text}
-                  </div>
+                  </Tag>
                 ))}
+
                 <div>
                   <InfoIcons>
-                    <img src={icons.description} alt="Have description" />
-                    <img src={icons.eye} alt="Someone follow" />
+                    <div className="tooltip">
+                      <img src={icons.description} alt="Have description" />
+                      <span className="tooltiptext">Possui descrição</span>
+                    </div>
+
+                    <div className="tooltip">
+                      <img src={icons.eye} alt="Someone follow" />
+                      <span className="tooltiptext">Seguindo</span>
+                    </div>
                   </InfoIcons>
                 </div>
               </MainTags>
 
               <TimeExec>
-                <span>{card.data.time.start.date}</span>
+                <div className="tooltip">
+                  <span>{card.data.time.start.date}</span>
+                  <span className="tooltiptext">Tempo Estimado</span>
+                </div>
               </TimeExec>
             </CardHeader>
             <Description>
               <div>
                 <div>
-                  <DescriptionTitle contentEditable suppressContentEditableWarning>
-                    {card.data.title}
-                  </DescriptionTitle>
+                  <DescriptionTitle>{card.data.title}</DescriptionTitle>
                 </div>
                 <div>
                   <p>{card.data.description}</p>
                 </div>
               </div>
               <div>
-                <input
-                  onClick={(evt: any) => {
-                    if (evt.target.checked) {
-                      dispatch(getNewAction(`${user.name} terminou o cartão ${card.data.title}.`));
-                    }
-                  }}
-                  type="checkbox"
-                />
+                <input onClick={handleCheckBox} type="checkbox" />
               </div>
             </Description>
             <CardFooter>
               <CardUsers>
-                <img src={user.image ? user.image : icons.user1} alt="user icon" />
+                <div className="tooltip">
+                  <img src={user.image ? user.image : icons.user1} alt="user icon" />
+                  <span className="tooltiptext">{user.name}</span>
+                </div>
               </CardUsers>
               <CardData>
-                <span>{card.data.time.finish.date}</span>
+                <div className="tooltip">
+                  <span>{card.data.time.finish.date}</span>
+                  <span className="tooltiptext">Data de Entrega</span>
+                </div>
               </CardData>
             </CardFooter>
           </CardInside>
         </Card>
         {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
         {selectedCard.removeCard ? (
-          <CardButton
-            onClick={() => {
-              dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-              dispatch(deleteCardAPI({ card, token }));
-            }}>
-            remover
-          </CardButton>
+          <CardButton onClick={removeCard}>remover</CardButton>
         ) : (
-          selectedCard.fastCard && (
-            <CardButton
-              onClick={() => {
-                dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
-                dispatch(
-                  updateCardAPI({
-                    token,
-                    card: { ...card, data: { ...card.data, ...fastCard } },
-                  })
-                );
-              }}>
-              cartão rápido
-            </CardButton>
-          )
+          selectedCard.fastCard && <CardButton onClick={creationCard}>cartão rápido</CardButton>
         )}
       </motion.div>
     </CardContainer>
@@ -168,6 +142,28 @@ const CardContainer = styled(motion.div)`
   width: 10px;
   height: 10px;
   z-index: 1;
+
+  .tooltip {
+    &:hover .tooltiptext {
+      visibility: visible;
+    }
+  }
+
+  .tooltiptext {
+    font: 500 1.5rem Inter;
+    visibility: hidden;
+    min-width: 40px;
+    max-width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 4px 8px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 99999;
+  }
 `;
 
 const CardButton = styled.button`
@@ -180,10 +176,8 @@ const CardButton = styled.button`
   border-radius: 5px;
   position: absolute;
   bottom: -10px;
-  /* box-shadow: 0 8px 6px -6px gray; */
 
   :hover {
-    cursor: pointer;
     color: var(--complement-color-2);
     font-weight: bold;
     border-top: none;
@@ -205,24 +199,13 @@ const Card = styled.div`
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
 
   [contenteditable='true'] {
-    cursor: pointer;
     text-overflow: ellipsis;
   }
-
-  /* [contenteditable='true']:focus {
-    background-color: #fff;
-    padding: 2px 10px;
-    font-size: 15px;
-    margin: 2px;
-    outline: none;
-    border-radius: 4px;
-  } */
 `;
 
 const CardInside = styled.div`
   padding: 12px 14px 5px 14px;
   font-family: 'Inter', sans-serif;
-  /* margin: 0 4px; */
 `;
 
 const CardHeader = styled.div`
@@ -236,19 +219,27 @@ const MainTags = styled.div`
   margin-bottom: 10px;
   &:nth-child(1) {
     div {
-      font-style: italic;
-      min-width: 80px;
-      max-width: 140px;
+      min-width: 35px;
+      max-width: 100px;
       height: 2rem;
-      display: -webkit-box;
       outline: none;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
       background-color: var(--color-background);
     }
   }
+`;
+
+const Tag = styled.div`
+  min-width: 35px;
+  max-width: 50px;
+  height: 2rem;
+  display: -webkit-box;
+  outline: none;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: var(--color-background);
 `;
 
 const TimeExec = styled.div``;
@@ -260,16 +251,23 @@ const AlertImg = styled.span`
   z-index: 99999;
   img {
     width: 45px;
-    /* height: 45px; */
-    cursor: pointer;
   }
 `;
 
 const InfoIcons = styled.figure`
+  display: flex;
   img {
     width: 25px;
     height: 25px;
     margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .tooltip {
+    width: 25px;
+    &:hover .tooltiptext {
+      visibility: visible;
+    }
   }
 `;
 
@@ -300,6 +298,7 @@ const DescriptionTitle = styled.h4`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -325,8 +324,8 @@ const CardData = styled.div`
   height: min-content;
   padding: 4px 6px;
   margin-left: auto;
+
   span {
     font-weight: bold;
-    /* font-style: italic; */
   }
 `;

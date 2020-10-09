@@ -7,13 +7,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast, useToast } from 'react-toastify';
 import styled from 'styled-components';
 
+import { PageTransition } from '../../components';
 import {
-  PageTransition,
-  CreationMenu,
-  DefaultCard,
-  BacklogCard,
+  CreationMenuContainer,
   FeedContainer,
-} from '../../components';
+  DefaultCardContainer,
+  BacklogCardContainer,
+} from '../../containers';
 import {
   getBoardsAPI,
   updateBoardAPI,
@@ -80,6 +80,20 @@ const Board = ({ history }: BoardPageProps) => {
       dispatch(clearBoard());
       dispatch(logout());
     }, 3300);
+  };
+
+  const saveBoard = () => {
+    toast('Salvando seu board...', {
+      position: 'top-left',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    saveChanges();
+    setToggleMenu(!toggleMenu);
   };
 
   const saveChanges = () => {
@@ -155,11 +169,7 @@ const Board = ({ history }: BoardPageProps) => {
                     <p>Fazer logout</p>
                   </MenuOption>
 
-                  <MenuOption
-                    onClick={() => {
-                      saveChanges();
-                      setToggleMenu(!toggleMenu);
-                    }}>
+                  <MenuOption onClick={saveBoard}>
                     <p>Salvar board</p>
                   </MenuOption>
 
@@ -362,7 +372,7 @@ const Board = ({ history }: BoardPageProps) => {
 
         <InnerBoardContainer>
           <SideMenuContainer drag dragMomentum={false}>
-            <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
+            <CreationMenuContainer setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
 
           <FeedBox drag dragMomentum={false}>
@@ -371,7 +381,7 @@ const Board = ({ history }: BoardPageProps) => {
 
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
-              <DefaultCard
+              <DefaultCardContainer
                 key={key}
                 card={card}
                 showEditCard={showEditCard}
@@ -382,7 +392,7 @@ const Board = ({ history }: BoardPageProps) => {
             ))}
 
           <CardContainer>
-            <BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
+            <BacklogCardContainer closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
           </CardContainer>
         </InnerBoardContainer>
       </BoardPage>
@@ -511,8 +521,9 @@ const UserInfo = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   color: #fff;
+  width: 240px;
 `;
 
 const User = styled.div`
@@ -537,8 +548,8 @@ const User = styled.div`
 const UserMenu = styled.div`
   position: absolute;
   top: 65px;
-  left: 0;
-  width: 220px;
+  left: -10px;
+  min-width: 220px;
   height: 300px;
   padding: 10px;
   background: #ffffff;
@@ -603,10 +614,12 @@ const ProfileIcon = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  width: 55px;
   height: 55px;
 
   img {
     width: 60px;
+    height: 60px;
     margin-right: 5px;
     border-radius: 50%;
   }
@@ -614,7 +627,7 @@ const ProfileIcon = styled.div`
   @media (min-width: 1000px) and (min-height: 768px) {
     img {
       width: 55px;
-      margin: 6px 10px;
+      height: 55px;
     }
   }
 `;
