@@ -2,7 +2,7 @@
 
 exports[`Snapshot renders 1`] = `
 <div
-  className="sc-bdnylx hOTwOI"
+  className="sc-bdnylx gOyGLT"
 >
   <div
     className="sc-hKFyIo gnBfdK"
@@ -22,28 +22,60 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN ctEjtM"
+      className="sc-eCApGN leDWvJ"
     >
-      <img
-        alt="group"
-        id="group"
-        onClick={[Function]}
-      />
-      <img
-        alt="create"
-        id="card"
-        onClick={[Function]}
-      />
-      <img
-        alt="fast"
-        id="fast"
-        onClick={[Function]}
-      />
-      <img
-        alt="remove"
-        id="trash"
-        onClick={[Function]}
-      />
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="group"
+          id="group"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Agrupar cartões
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="create"
+          id="card"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Cartão padrão
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="fast"
+          id="fast"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Cartão Rápido
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="remove"
+          id="trash"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Habilitar lixeira
+        </span>
+      </div>
     </div>
   </div>
   <div
@@ -57,28 +89,60 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN ctEjtM"
+      className="sc-eCApGN leDWvJ"
     >
-      <img
-        alt="text"
-        id="addText"
-        onClick={[Function]}
-      />
-      <img
-        alt="connect"
-        id="connect"
-        onClick={[Function]}
-      />
-      <img
-        alt="pin/follow"
-        id="pin"
-        onClick={[Function]}
-      />
-      <img
-        alt="block"
-        id="blocked"
-        onClick={[Function]}
-      />
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="text"
+          id="addText"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Adicionar Texto
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="connect"
+          id="connect"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Conectar cartão
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="pin/follow"
+          id="pin"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Seguir cartão
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="block"
+          id="blocked"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Bloquear cartão
+        </span>
+      </div>
     </div>
   </div>
 </div>

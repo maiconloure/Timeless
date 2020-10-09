@@ -4,11 +4,16 @@ import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, useToast } from 'react-toastify';
 import styled from 'styled-components';
 
-import { CreationMenu, DefaultCard, BacklogCard, FeedContainer } from '../../components';
-import PageTransition from '../../components/pageTransition';
+import { PageTransition } from '../../components';
+import {
+  CreationMenuContainer,
+  FeedContainer,
+  DefaultCardContainer,
+  BacklogCardContainer,
+} from '../../containers';
 import {
   getBoardsAPI,
   updateBoardAPI,
@@ -20,7 +25,7 @@ import {
 import { deleteCardAPI, updateCardAPI, createCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
-import { logout } from '../../redux/actions/service.action';
+import { logout, updateUserAPI } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { fastCard, defaultBoard, defaultCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
@@ -41,6 +46,7 @@ const Board = ({ history }: BoardPageProps) => {
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showEditCard, setShowEditCard] = useState(false);
+  const [showEditUser, setShowEditUser] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
     removeCard: false,
@@ -51,10 +57,13 @@ const Board = ({ history }: BoardPageProps) => {
   const [selectedBoard, setSelectedBoard] = useState<
     Interface.UserBoards | Interface.CreateUserBoards
   >(defaultBoard);
+  const [userName, setUserName] = useState(user.name || 'Nome');
+  const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
+  const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
-    toast.info('Saindo... vamos sentir sua falta! 😭', {
-      position: 'bottom-left',
+    toast('Saindo... vamos sentir sua falta! 😭', {
+      position: 'top-left',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -62,17 +71,33 @@ const Board = ({ history }: BoardPageProps) => {
       draggable: true,
       progress: undefined,
     });
+
     dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
     setToggleMenu(!toggleMenu);
+
     setTimeout(() => {
       history.push('/');
       dispatch(clearBoard());
       dispatch(logout());
-    }, 3200);
+    }, 3300);
+  };
+
+  const saveBoard = () => {
+    toast('Salvando seu board...', {
+      position: 'top-left',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    saveChanges();
+    setToggleMenu(!toggleMenu);
   };
 
   const saveChanges = () => {
-    cards.map((card: Interface.CardInterface) => {
+    cards.forEach((card: Interface.CardInterface) => {
       // TODO ==> Filtrar Cards Não Modificados
       dispatch(updateCardAPI({ card, token }));
     });
@@ -88,20 +113,11 @@ const Board = ({ history }: BoardPageProps) => {
 
   return (
     <PageTransition>
+      <Notification>
+        <ToastContainer />
+      </Notification>
       <BoardPage>
         <Background src={images.background} alt="background-image" />
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-
         <TopContainer>
           <Bar>
             <ProjectInfo>
@@ -142,15 +158,9 @@ const Board = ({ history }: BoardPageProps) => {
 
                   <MenuOption
                     onClick={() => {
-                      toast.info('Saindo... vamos sentir sua falta!', {
-                        position: 'bottom-left',
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                      });
+                      setShowEditUser(true);
+                      setShowBoardModal(false);
+                      setToggleMenu(!toggleMenu);
                     }}>
                     <p>Editar perfil</p>
                   </MenuOption>
@@ -159,17 +169,14 @@ const Board = ({ history }: BoardPageProps) => {
                     <p>Fazer logout</p>
                   </MenuOption>
 
-                  <MenuOption
-                    onClick={() => {
-                      saveChanges();
-                      setToggleMenu(!toggleMenu);
-                    }}>
+                  <MenuOption onClick={saveBoard}>
                     <p>Salvar board</p>
                   </MenuOption>
 
                   <MenuOption
                     onClick={() => {
                       setShowBoardModal(true);
+                      setShowEditUser(false);
                       setToggleMenu(!toggleMenu);
                     }}>
                     <p>Selecionar board</p>
@@ -179,6 +186,69 @@ const Board = ({ history }: BoardPageProps) => {
             </UserInfo>
           </Bar>
         </TopContainer>
+
+        <CardModal
+          icon={icons.closeWindow}
+          title="Editar"
+          data={[showEditUser, setShowEditUser]}
+          styles={{
+            size: 'normal',
+            fontSize: 'large',
+            bgColorPrimary: '#3aa6f2',
+            colorPrimary: '#014d82',
+          }}>
+          <div>
+            <Form>
+              <Input
+                type="text"
+                placeholder={userName}
+                width="220px"
+                fontSize="2rem"
+                height="40px"
+                onTextChange={(event) => setUserName(event)}
+              />
+              <Input
+                type="text"
+                placeholder={userAbout}
+                width="220px"
+                fontSize="2rem"
+                height="40px"
+                onTextChange={(event) => setUserAbout(event)}
+              />
+
+              <Input
+                type="text"
+                placeholder={userImage}
+                width="220px"
+                fontSize="2rem"
+                height="40px"
+                onTextChange={(event) => setUserImage(event)}
+              />
+
+              <Button
+                fontSize="2.6rem"
+                height="44px"
+                weight={600}
+                onClick={() => {
+                  dispatch(
+                    updateUserAPI({
+                      user: {
+                        ...user,
+                        name: userName,
+                        image: userImage,
+                        about: userAbout,
+                      },
+                      token,
+                    })
+                  );
+
+                  setShowEditModal(false);
+                }}>
+                Modificar
+              </Button>
+            </Form>
+          </div>
+        </CardModal>
 
         <CardModal
           icon={icons.closeWindow}
@@ -302,7 +372,7 @@ const Board = ({ history }: BoardPageProps) => {
 
         <InnerBoardContainer>
           <SideMenuContainer drag dragMomentum={false}>
-            <CreationMenu setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
+            <CreationMenuContainer setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
           </SideMenuContainer>
 
           <FeedBox drag dragMomentum={false}>
@@ -311,65 +381,18 @@ const Board = ({ history }: BoardPageProps) => {
 
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
-              <CardContainer
+              <DefaultCardContainer
                 key={key}
-                drag
-                dragMomentum={false}
-                onDragEnd={(e: any) => {
-                  /// https://pt.stackoverflow.com/questions/192610/como-pegar-a-posi%C3%A7%C3%A3o-x-e-y-de-um-elemento-relativo-%C3%A0-tela
-                  if (e && e.target && e.target.offsetParent) {
-                    const position = e.target.offsetParent.getBoundingClientRect();
-                    console.log(position);
-                    card.position = {
-                      x: position.x,
-                      y: position.y,
-                    };
-                    dispatch(updateCardAPI({ card, token }));
-                  }
-                }}
-                onDoubleClick={() => {
-                  if (!showEditCard) {
-                    setCurrentCard(card);
-                    setShowEditCard(true);
-                  }
-                }}
-                style={{
-                  x: card.position.x,
-                  y: card.position.y,
-                }}>
-                <Card>
-                  <DefaultCard data={card.data} />
-
-                  {selectedCard.removeCard ? (
-                    <CardButton
-                      onClick={() => {
-                        dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-                        dispatch(deleteCardAPI({ card, token }));
-                      }}>
-                      remover
-                    </CardButton>
-                  ) : (
-                    selectedCard.fastCard && (
-                      <CardButton
-                        onClick={() => {
-                          dispatch(getNewAction(` ${user.name} acabou de criar um cartão rápido.`));
-                          dispatch(
-                            updateCardAPI({
-                              token,
-                              card: { ...card, data: { ...card.data, ...fastCard } },
-                            })
-                          );
-                        }}>
-                        cartão rápido
-                      </CardButton>
-                    )
-                  )}
-                </Card>
-              </CardContainer>
+                card={card}
+                showEditCard={showEditCard}
+                setCurrentCard={setCurrentCard}
+                setShowEditCard={setShowEditCard}
+                selectedCard={selectedCard}
+              />
             ))}
 
           <CardContainer>
-            <BacklogCard closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
+            <BacklogCardContainer closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
           </CardContainer>
         </InnerBoardContainer>
       </BoardPage>
@@ -379,160 +402,42 @@ const Board = ({ history }: BoardPageProps) => {
 
 export default Board;
 
-const CardModal = styled(Modal)`
-  div {
-    &:last-child {
-      padding: 5px !important;
-    }
-  }
-`;
-
-const MenuModal = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const CardModalButton = styled.button`
-  background-color: var(--complement-color-0);
-  color: var(--color-primary-4);
-  width: 90px;
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  margin: 5px;
-
-  :hover {
-    background-color: var(--complement-color-1);
-    cursor: pointer;
-    font-weight: bold;
-    border-top: none;
-  }
-
-  :active {
-    opacity: 0.5;
-  }
-`;
-
-const CardModalSection = styled.div`
-  color: var(--color-primary-4);
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  @media (min-height: 768px) and (min-width: 968px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 50px;
-
-  div {
-    padding: 10px;
-
-    input {
-      font-size: 1.8rem;
-      padding: 0px 10px;
-    }
-  }
-
-  button {
-    border-radius: 3px;
-    font-size: 2.6rem;
-    margin-top: 10px;
-    height: 50px;
-    width: 200px;
-
-    :hover {
-      color: var(--complement-color-0);
-    }
-  }
-
-  button:nth-child(3) {
-    background-color: var(--complement-color-0);
-    :hover {
-      background-color: var(--color-primary-4);
-    }
-  }
-`;
-
-const ModalContent = styled.div`
-  background-color: #fff;
-  padding: 10px;
-  width: 100%;
-  max-width: 230px;
-  min-width: 230px;
-  margin: 10px 0;
-
-  h2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-`;
-
-const CardModalDescription = styled.p`
-  margin: 5px;
-  @media (min-height: 768px) and (min-width: 968px) {
-    display: inline-block;
-    font-size: 12px;
-  }
-`;
-
-const CardButton = styled.button`
-  background-color: var(--color-background);
-  color: var(--color-primary-4);
-  margin-left: 10px;
-  padding: 2px 10px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  position: absolute;
-  bottom: -10px;
-  /* box-shadow: 0 8px 6px -6px gray; */
-
-  :hover {
-    cursor: pointer;
-    color: var(--complement-color-2);
-    font-weight: bold;
-    border-top: none;
-  }
-
-  :active {
-    opacity: 0.5;
-  }
-`;
-
-const Card = styled.div`
-  position: relative;
-`;
-
 const BoardPage = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 72px auto;
+  grid-template-areas:
+    'top'
+    'board';
+  align-items: center;
+
+  @media (min-width: 1000px) and (min-height: 768px) {
+    grid-template-rows: 61px auto;
+  }
+`;
+
+const Notification = styled.div`
+  position: absolute;
+  z-index: 999999999;
+
+  div {
+    font-weight: 700;
+    color: #000;
+  }
 `;
 
 const Background = styled.img`
+  grid-area: board;
+  height: 100%;
   background-repeat: repeat;
-  /* position: absolute; */
-  /* top: 0; */
-  /* left: 0; */
 `;
 
 const TopContainer = styled.div`
+  grid-area: top;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -616,8 +521,9 @@ const UserInfo = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   color: #fff;
+  width: 240px;
 `;
 
 const User = styled.div`
@@ -642,8 +548,8 @@ const User = styled.div`
 const UserMenu = styled.div`
   position: absolute;
   top: 65px;
-  left: 0;
-  width: 220px;
+  left: -10px;
+  min-width: 220px;
   height: 300px;
   padding: 10px;
   background: #ffffff;
@@ -708,10 +614,12 @@ const ProfileIcon = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  width: 55px;
   height: 55px;
 
   img {
     width: 60px;
+    height: 60px;
     margin-right: 5px;
     border-radius: 50%;
   }
@@ -719,18 +627,137 @@ const ProfileIcon = styled.div`
   @media (min-width: 1000px) and (min-height: 768px) {
     img {
       width: 55px;
-      margin: 6px 10px;
+      height: 55px;
     }
   }
 `;
 
-const InnerBoardContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+const CardModal = styled(Modal)`
+  div {
+    &:last-child {
+      padding: 5px !important;
+    }
+  }
+`;
+
+const MenuModal = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CardModalButton = styled.button`
+  background-color: var(--complement-color-0);
+  color: var(--color-primary-4);
+  width: 90px;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin: 5px;
+
+  :hover {
+    background-color: var(--complement-color-1);
+    cursor: pointer;
+    font-weight: bold;
+    border-top: none;
+  }
+
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+const CardModalSection = styled.div`
+  color: var(--color-primary-4);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  @media (min-height: 768px) and (min-width: 968px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+
+  div {
+    padding: 10px;
+    &:nth-child(4) {
+      margin-right: 17px;
+    }
+    input {
+      font-size: 1.8rem;
+      padding: 0px 10px;
+    }
+    svg {
+      width: 1.8rem;
+    }
+  }
+
+  button {
+    border-radius: 3px;
+    font-size: 2.6rem;
+    margin-top: 10px;
+    height: 50px;
+    width: 200px;
+
+    :hover {
+      color: var(--complement-color-0);
+    }
+  }
+
+  button:nth-child(3) {
+    background-color: var(--complement-color-0);
+    :hover {
+      background-color: var(--color-primary-4);
+    }
+  }
+`;
+
+const ModalContent = styled.div`
+  background-color: #fff;
+  padding: 10px;
   width: 100%;
+  max-width: 230px;
+  min-width: 230px;
+  margin: 10px 0;
+
+  h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+`;
+
+const CardModalDescription = styled.p`
+  margin: 5px;
+  @media (min-height: 768px) and (min-width: 968px) {
+    display: inline-block;
+    font-size: 12px;
+  }
+`;
+
+const InnerBoardContainer = styled.div`
+  position: relative;
+  grid-area: board;
+  align-self: center;
+  justify-self: center;
+  margin: 10px;
+  width: 99.4%;
   height: 100%;
-  overflow: auto;
+  overflow: scroll;
 `;
 
 const SideMenuContainer = styled(motion.div)`
