@@ -24,6 +24,7 @@ const cards = (state = initialState, action: CardAction): CardState => {
       };
     case TYPE.CREATE_CARD:
       return { ...state, cards: [...state.cards, action.payload].sort(sortCards) };
+
     case TYPE.DELETE_CARD:
       return {
         ...state,

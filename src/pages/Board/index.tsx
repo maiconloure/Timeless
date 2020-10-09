@@ -20,7 +20,7 @@ import {
 import { deleteCardAPI, updateCardAPI, createCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
-import { logout } from '../../redux/actions/service.action';
+import { logout, updateUserAPI } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { fastCard, defaultBoard, defaultCard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
@@ -41,6 +41,7 @@ const Board = ({ history }: BoardPageProps) => {
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showEditCard, setShowEditCard] = useState(false);
+  const [showEditUser, setShowEditUser] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
     removeCard: false,
@@ -51,6 +52,9 @@ const Board = ({ history }: BoardPageProps) => {
   const [selectedBoard, setSelectedBoard] = useState<
     Interface.UserBoards | Interface.CreateUserBoards
   >(defaultBoard);
+  const [userName, setUserName] = useState(user.name || 'Nome');
+  const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
+  const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
     toast.info('Saindo... vamos sentir sua falta! 😭', {
@@ -72,7 +76,7 @@ const Board = ({ history }: BoardPageProps) => {
   };
 
   const saveChanges = () => {
-    cards.map((card: Interface.CardInterface) => {
+    cards.forEach((card: Interface.CardInterface) => {
       // TODO ==> Filtrar Cards Não Modificados
       dispatch(updateCardAPI({ card, token }));
     });
@@ -142,15 +146,9 @@ const Board = ({ history }: BoardPageProps) => {
 
                   <MenuOption
                     onClick={() => {
-                      toast.info('Saindo... vamos sentir sua falta!', {
-                        position: 'bottom-left',
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                      });
+                      setShowEditUser(true);
+                      setShowBoardModal(false);
+                      setToggleMenu(!toggleMenu);
                     }}>
                     <p>Editar perfil</p>
                   </MenuOption>
@@ -170,6 +168,7 @@ const Board = ({ history }: BoardPageProps) => {
                   <MenuOption
                     onClick={() => {
                       setShowBoardModal(true);
+                      setShowEditUser(false);
                       setToggleMenu(!toggleMenu);
                     }}>
                     <p>Selecionar board</p>
@@ -179,6 +178,69 @@ const Board = ({ history }: BoardPageProps) => {
             </UserInfo>
           </Bar>
         </TopContainer>
+
+        <CardModal
+          icon={icons.closeWindow}
+          title="Editar"
+          data={[showEditUser, setShowEditUser]}
+          styles={{
+            size: 'normal',
+            fontSize: 'large',
+            bgColorPrimary: '#3aa6f2',
+            colorPrimary: '#014d82',
+          }}>
+          <div>
+            <Form>
+              <Input
+                type="text"
+                placeholder={userName}
+                width="220px"
+                fontSize="2rem"
+                height="40px"
+                onTextChange={(event) => setUserName(event)}
+              />
+              <Input
+                type="text"
+                placeholder={userAbout}
+                width="220px"
+                fontSize="2rem"
+                height="40px"
+                onTextChange={(event) => setUserAbout(event)}
+              />
+
+              <Input
+                type="text"
+                placeholder={userImage}
+                width="220px"
+                fontSize="2rem"
+                height="40px"
+                onTextChange={(event) => setUserImage(event)}
+              />
+
+              <Button
+                fontSize="2.6rem"
+                height="44px"
+                weight={600}
+                onClick={() => {
+                  dispatch(
+                    updateUserAPI({
+                      user: {
+                        ...user,
+                        name: userName,
+                        image: userImage,
+                        about: userAbout,
+                      },
+                      token,
+                    })
+                  );
+
+                  setShowEditModal(false);
+                }}>
+                Modificar
+              </Button>
+            </Form>
+          </div>
+        </CardModal>
 
         <CardModal
           icon={icons.closeWindow}
@@ -438,10 +500,15 @@ const Form = styled.div`
 
   div {
     padding: 10px;
-
+    &:nth-child(4) {
+      margin-right: 17px;
+    }
     input {
       font-size: 1.8rem;
       padding: 0px 10px;
+    }
+    svg {
+      width: 1.8rem;
     }
   }
 
