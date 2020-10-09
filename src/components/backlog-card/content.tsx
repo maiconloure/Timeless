@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { icons } from '../../utils/importAll';
 import {
@@ -24,7 +24,7 @@ import {
   ChecklistBox,
 } from './style';
 
-export default function Content() {
+const Content = () => {
   return (
     <ContentContainer>
       <Main>
@@ -77,7 +77,7 @@ export default function Content() {
           </ActionDiv>
         </Labels>
       </Main>
-      {/* <ChecklistContainer>
+      <ChecklistContainer>
         <Checklist>
           <ChecklistTitle>
             <IconSmall src={icons.checkboxList} alt="Ícone de Lista" />
@@ -85,7 +85,9 @@ export default function Content() {
           </ChecklistTitle>
           <ChecklistBox>Teste</ChecklistBox>
         </Checklist>
-      </ChecklistContainer> */}
+      </ChecklistContainer>
     </ContentContainer>
   );
-}
+};
+
+export default Content;

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, useToast } from 'react-toastify';
 import styled from 'styled-components';
 
 import {
@@ -62,9 +62,9 @@ const Board = ({ history }: BoardPageProps) => {
   const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
-    toast.info('Saindo... vamos sentir sua falta! 😭', {
-      position: 'bottom-left',
-      autoClose: 2000,
+    toast('Saindo... vamos sentir sua falta! 😭', {
+      position: 'top-left',
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -74,11 +74,12 @@ const Board = ({ history }: BoardPageProps) => {
 
     dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
     setToggleMenu(!toggleMenu);
+
     setTimeout(() => {
       history.push('/');
       dispatch(clearBoard());
       dispatch(logout());
-    }, 2200);
+    }, 3300);
   };
 
   const saveChanges = () => {
@@ -98,6 +99,9 @@ const Board = ({ history }: BoardPageProps) => {
 
   return (
     <PageTransition>
+      <Notification>
+        <ToastContainer />
+      </Notification>
       <BoardPage>
         <Background src={images.background} alt="background-image" />
         <TopContainer>
@@ -368,6 +372,7 @@ const Board = ({ history }: BoardPageProps) => {
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <DefaultCard
+                key={key}
                 card={card}
                 showEditCard={showEditCard}
                 setCurrentCard={setCurrentCard}
@@ -402,6 +407,16 @@ const BoardPage = styled.div`
 
   @media (min-width: 1000px) and (min-height: 768px) {
     grid-template-rows: 61px auto;
+  }
+`;
+
+const Notification = styled.div`
+  position: absolute;
+  z-index: 999999999;
+
+  div {
+    font-weight: 700;
+    color: #000;
   }
 `;
 
