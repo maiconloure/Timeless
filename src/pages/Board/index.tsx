@@ -108,7 +108,7 @@ const Board = ({ history }: BoardPageProps) => {
   }, []);
 
   useEffect(() => {
-    dispatch(getCardsAPI(currentBoard, token, history));
+    currentBoard && dispatch(getCardsAPI(currentBoard, token, history));
   }, [currentBoard]);
 
   return (
@@ -126,7 +126,9 @@ const Board = ({ history }: BoardPageProps) => {
               </a>
               <h2> Kenzie Academy Brasil </h2>
               <h4> &nbsp; | &nbsp; </h4>
-              <h3 onClick={() => setShowBoardModal(!showBoardModal)}>{currentBoard.title}</h3>
+              <h3 onClick={() => setShowBoardModal(!showBoardModal)}>
+                {currentBoard && currentBoard.title}
+              </h3>
             </ProjectInfo>
 
             <UserInfo>
