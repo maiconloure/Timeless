@@ -39,7 +39,7 @@ const DefaultCardContainer = ({
   useEffect(() => {
     x.set(card.position.x);
     y.set(card.position.y);
-  }, [cards]);
+  }, [cards.length]);
 
   const onDragEndFunction = () => {
     dispatch(
