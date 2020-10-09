@@ -86,8 +86,8 @@ export interface BoardState {
 // --------------CARD INTERFACES--------------
 
 interface PositionInterface {
-  x: number | string;
-  y: number | string;
+  x: number;
+  y: number;
 }
 
 interface DataTimeInterface {
