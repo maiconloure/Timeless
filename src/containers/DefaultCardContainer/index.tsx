@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultCard from '../../components/default-card';
@@ -33,7 +33,13 @@ const DefaultCardContainer = ({
   const y = useMotionValue(card.position.y);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const user = useSelector((state: RootStoreType) => state.service.user);
+  const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    x.set(card.position.x);
+    y.set(card.position.y);
+  }, [cards]);
 
   const onDragEndFunction = () => {
     dispatch(

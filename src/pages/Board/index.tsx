@@ -108,6 +108,7 @@ const Board = ({ history }: BoardPageProps) => {
       dispatch(updateCardAPI({ card, token }));
     });
   };
+  console.log(cards);
 
   useEffect(() => {
     dispatch(getBoardsAPI({ user, token }));
