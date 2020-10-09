@@ -87,27 +87,29 @@ export const getCardsAPI = (
   unknown,
   Interface.CurrentBoardAction | Interface.GetCardsAction
 > => (dispatch) => {
-  dispatch(setCurrentBoard(board));
+  if (board.id) {
+    dispatch(setCurrentBoard(board));
 
-  api
-    .get(`/users/${board.userId}/cards?boardId=${board.id}`, createHeader(token))
-    .then((response) => {
-      if (response.status !== 200) {
-        console.error(`getCardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
-      } else {
-        console.warn(`getCardsAPI ==> Status: ${response.status}`);
-        dispatch(getCards(response.data));
-      }
-    })
-    .catch((error) => {
-      if (['jwt expired', 'Missing token'].includes(error.response.data)) {
-        localStorage.clear();
-        history.push('/');
-      }
-      console.error(
-        `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      );
-    });
+    api
+      .get(`/users/${board.userId}/cards?boardId=${board.id}`, createHeader(token))
+      .then((response) => {
+        if (response.status !== 200) {
+          console.error(`getCardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        } else {
+          console.warn(`getCardsAPI ==> Status: ${response.status}`);
+          dispatch(getCards(response.data));
+        }
+      })
+      .catch((error) => {
+        if (['jwt expired', 'Missing token'].includes(error.response.data)) {
+          localStorage.clear();
+          history.push('/');
+        }
+        console.error(
+          `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        );
+      });
+  }
 };
 
 export const createBoardAPI = (
