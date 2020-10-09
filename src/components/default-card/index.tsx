@@ -25,6 +25,7 @@ interface DefaultCardProps {
   handleCheckBox: any;
   removeCard: any;
   creationCard: any;
+  DoubleClick: any;
 }
 
 const DefaultCard = ({
@@ -42,15 +43,10 @@ const DefaultCard = ({
   handleCheckBox,
   removeCard,
   creationCard,
+  DoubleClick,
 }: DefaultCardProps) => {
   return (
-    <CardContainer
-      onDoubleClick={() => {
-        if (!showEditCard) {
-          setCurrentCard(card);
-          setShowEditCard(true);
-        }
-      }}>
+    <CardContainer onDoubleClick={DoubleClick}>
       <motion.div drag dragMomentum={false} onDragEnd={onDragEndFunction} style={{ x, y }}>
         <Card>
           <CardInside>
