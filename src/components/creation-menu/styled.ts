@@ -7,6 +7,10 @@ export const Menu = styled.div`
   color: #fff;
   padding-bottom: 1px;
 
+  &:active {
+    cursor: grabbing;
+  }
+
   .tooltip {
     &:hover .tooltiptext {
       visibility: visible;

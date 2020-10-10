@@ -14,10 +14,7 @@ const initialSelectCard = {
   fastCard: false,
 };
 
-const CreationMenuContainer = ({
-  setSelectedCard,
-  selectedCard,
-}: {
+interface CreationMenuContainerProps {
   setSelectedCard: React.Dispatch<
     React.SetStateAction<{
       removeCard: boolean;
@@ -28,15 +25,22 @@ const CreationMenuContainer = ({
     removeCard: boolean;
     fastCard: boolean;
   };
-}) => {
+  className: string;
+}
+
+const CreationMenuContainer = ({
+  setSelectedCard,
+  selectedCard,
+  className,
+}: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-  const random = () => Math.floor(Math.random() * 400);
+  const random = () => Math.random() * (600 - 200) + 200;
 
   defaultCard.position = {
-    x: random(),
+    x: random() + 400,
     y: random(),
   };
 
@@ -85,6 +89,7 @@ const CreationMenuContainer = ({
       connectArrowButton={connectArrowButton}
       pinCardButton={pinCardButton}
       blockCardButton={blockCardButton}
+      className={className}
     />
   );
 };

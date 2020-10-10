@@ -11,6 +11,16 @@ export const LandingPage = styled.div`
   }
 `;
 
+export const Notification = styled.div`
+  position: absolute;
+  z-index: 999999999;
+
+  div {
+    font-weight: 800;
+    color: #fff;
+  }
+`;
+
 export const Container = styled.div`
   position: relative;
   z-index: 999;
@@ -596,7 +606,7 @@ export const ExamplesFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      margin-top: 20px;
+      /* margin-top: 20px; */
       width: 800px;
     }
   }
@@ -626,7 +636,7 @@ export const TeamFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      margin-top: 20px;
+      /* margin-top: 20px; */
       width: 800px;
     }
   }
@@ -656,7 +666,7 @@ export const AboutFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      margin-top: 20px;
+      /* margin-top: 20px; */
       width: 800px;
     }
   }

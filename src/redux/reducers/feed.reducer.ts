@@ -10,7 +10,7 @@ export interface feedProps {
 }
 
 const defaultState: feedProps = {
-  actions: ['Aqui aparecerá as novas atualizações no seu board!'],
+  actions: ['Aqui aparecerá as novas atualizações do seu board!'],
 };
 
 const feed = (state = defaultState, action: feedAction): feedProps => {

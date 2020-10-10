@@ -28,6 +28,7 @@ export const requestLogin = ({
       password,
     })
     .then((response) => {
+      localStorage.setItem('Error', `${response.status}`);
       if (response.status !== 200) {
         console.error(`requestLogin =>> ERROR: ${response.data} ${response.status}`);
       } else {
@@ -36,7 +37,7 @@ export const requestLogin = ({
       }
     })
     .catch((error) => {
-      localStorage.setItem('Error', error.response.status);
+      localStorage.setItem('Error', `${error.response.status}`);
       console.error(`requestLogin =>> ERROR: ${error.response.data} ${error.response.status}`);
     });
 };
@@ -54,6 +55,7 @@ export const registerUser = ({
   api
     .post('/register', { name, email, password })
     .then((response) => {
+      localStorage.setItem('Error', `${response.status}`);
       if (response.status !== 201) {
         console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
       } else {
@@ -61,9 +63,10 @@ export const registerUser = ({
         dispatch(getUser(response));
       }
     })
-    .catch((error) =>
-      console.error(`registerUser =>> ERROR: ${error.response.data} ${error.response.status}`)
-    );
+    .catch((error) => {
+      localStorage.setItem('Error', `${error.response.status}`);
+      console.error(`registerUser =>> ERROR: ${error.response.data} ${error.response.status}`);
+    });
 };
 
 const getUser = (

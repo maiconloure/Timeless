@@ -4,6 +4,7 @@ import { History, LocationState } from 'history';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast, useToast } from 'react-toastify';
 
 import PageTransition from '../../components/pageTransition';
 import { requestLogin, registerUser } from '../../redux/actions/service.action';
@@ -32,29 +33,15 @@ const Landing = ({ history }: LandingPageProps) => {
 
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
 
-  useEffect(() => {
-    register('logEmail', {
-      required: 'email obrigatório',
-      pattern: {
-        value: /[a-z0-9._%+!$&*=^|~#%{}/-]+@([a-z0-9-]+\.){1,}([a-z]{2,22})/,
-        message: 'email inválido',
-      },
-    });
-    register('logPassword', {
-      required: 'digite sua senha',
-      pattern: {
-        value: /^.{5,}$/, // REGEX PARA SENHA SEGURA>>> /(?=.*[}{,^?~=+\\-_*\\-+|!@#$%&-+¨´\"'])/
-        message: 'senha inválida',
-      },
-    });
+  const {
+    register: register2,
+    unregister: unregister2,
+    handleSubmit: handleSubmit2,
+    setValue: setValue2,
+    errors: errors2,
+  } = useForm();
 
-    register('name', {
-      required: 'nome é obrigatório',
-      pattern: {
-        value: /^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}[\]|/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}[\]|/<>#“.,])\S+(?: \S+){1,5}$/,
-        message: 'Por favor, digite seu nome e sobrenome',
-      },
-    });
+  useEffect(() => {
     register('email', {
       required: 'email obrigatório',
       pattern: {
@@ -65,19 +52,44 @@ const Landing = ({ history }: LandingPageProps) => {
     register('password', {
       required: 'digite sua senha',
       pattern: {
-        value: /^.{5,}$/, // REGEX PARA SENHA SEGURA>>> /(?=.*[}{,^?~=+\\-_*\\-+|!@#$%&-+¨´\"'])/
+        value: /^.{5,}$/,
         message: 'senha inválida',
       },
     });
-
     return () => {
-      unregister('logEmail');
-      unregister('logPassword');
-      unregister('name');
       unregister('email');
       unregister('password');
     };
   }, [register, unregister]);
+
+  useEffect(() => {
+    register2('name', {
+      required: 'digite seu nome',
+      pattern: {
+        value: /^.{3,}$/,
+        message: 'nome inválido',
+      },
+    });
+    register2('email', {
+      required: 'email obrigatório',
+      pattern: {
+        value: /[a-z0-9._%+!$&*=^|~#%{}/-]+@([a-z0-9-]+\.){1,}([a-z]{2,22})/,
+        message: 'email inválido',
+      },
+    });
+    register2('password', {
+      required: 'digite sua senha',
+      pattern: {
+        value: /^.{5,}$/,
+        message: 'senha inválida',
+      },
+    });
+    return () => {
+      unregister2('name');
+      unregister2('email');
+      unregister2('password');
+    };
+  }, [register2, unregister2]);
 
   window.onresize = () => {
     setWindowSize({
@@ -87,13 +99,40 @@ const Landing = ({ history }: LandingPageProps) => {
   };
 
   const OnFinishLogin = (data: any) => {
-    console.log('OnFinishLogin');
-    dispatch(requestLogin({ email: data.logEmail, password: data.logPassword }));
+    dispatch(requestLogin({ email: data.email, password: data.password }));
+    setTimeout(() => {
+      if (localStorage.getItem('Error') !== '200') {
+        toast.error('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.', {
+          position: 'top-center',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }, 1000);
   };
 
   const OnFinishRegister = (data: any) => {
-    console.log('OnFinishRegister');
     dispatch(registerUser({ name: data.name, email: data.email, password: data.password }));
+    setTimeout(() => {
+      if (localStorage.getItem('Error') !== '200') {
+        toast.error(
+          'Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.',
+          {
+            position: 'top-center',
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+      }
+    }, 1000);
   };
 
   useEffect(() => {
@@ -104,6 +143,9 @@ const Landing = ({ history }: LandingPageProps) => {
 
   return (
     <PageTransition>
+      <St.Notification>
+        <ToastContainer />
+      </St.Notification>
       <St.LandingPage>
         <St.Container>
           <St.LeftMenu>
@@ -124,12 +166,9 @@ const Landing = ({ history }: LandingPageProps) => {
                   placeholder="email"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '55px' : '44px'}
-                  onTextChange={(evt: any) => {
-                    console.log(evt.currentTarget.value);
-                    setValue('logEmail', evt.currentTarget.value);
-                  }}
+                  onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
                 />
-                {errors.logEmail && !handleForm && <St.Error>{errors.logEmail.message}</St.Error>}
+                {errors.email && <St.Error>{errors.email.message}</St.Error>}
               </St.LoginForm>
 
               <St.LoginForm>
@@ -137,14 +176,9 @@ const Landing = ({ history }: LandingPageProps) => {
                   placeholder="senha"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '55px' : '44px'}
-                  onTextChange={(evt: any) => {
-                    console.log(evt.currentTarget.value);
-                    setValue('logPassword', evt.currentTarget.value);
-                  }}
+                  onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
                 />
-                {errors.logPassword && !handleForm && (
-                  <St.Error>{errors.logPassword.message}</St.Error>
-                )}
+                {errors.password && <St.Error>{errors.password.message}</St.Error>}
               </St.LoginForm>
 
               <St.LoginForm>
@@ -201,16 +235,16 @@ const Landing = ({ history }: LandingPageProps) => {
           </St.RegisterArea>
 
           {windowSize.width < 968 && handleForm && (
-            <St.RegisterMenu onSubmit={handleSubmit(OnFinishRegister)}>
+            <St.RegisterMenu onSubmit={handleSubmit2(OnFinishRegister)}>
               <St.RegisterForm>
                 <Input
                   type="text"
                   placeholder="nome"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '50px' : '40px'}
-                  onTextChange={(evt: any) => setValue('name', evt.currentTarget.value)}
+                  onTextChange={(evt: any) => setValue2('name', evt.currentTarget.value)}
                 />
-                {errors.name && <St.Error>{errors.name.message}</St.Error>}
+                {errors2.name && <St.Error>{errors2.name.message}</St.Error>}
               </St.RegisterForm>
 
               <St.RegisterForm>
@@ -219,9 +253,9 @@ const Landing = ({ history }: LandingPageProps) => {
                   placeholder="email"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '50px' : '40px'}
-                  onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                  onTextChange={(evt: any) => setValue2('email', evt.currentTarget.value)}
                 />
-                {errors.email && <St.Error>{errors.email.message}</St.Error>}
+                {errors2.email && <St.Error>{errors2.email.message}</St.Error>}
               </St.RegisterForm>
 
               <St.RegisterForm>
@@ -229,15 +263,15 @@ const Landing = ({ history }: LandingPageProps) => {
                   placeholder="senha"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '50px' : '40px'}
-                  onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                  onTextChange={(evt: any) => setValue2('password', evt.currentTarget.value)}
                 />
-                {errors.password && <St.Error>{errors.password.message}</St.Error>}
+                {errors2.password && <St.Error>{errors2.password.message}</St.Error>}
               </St.RegisterForm>
               <St.RegisterForm>
                 <Button
                   fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
                   height={windowSize.height > 550 ? '55px' : '44px'}
-                  onClick={handleSubmit(OnFinishRegister)}>
+                  onClick={handleSubmit2(OnFinishRegister)}>
                   Começar
                 </Button>
               </St.RegisterForm>
@@ -254,7 +288,7 @@ const Landing = ({ history }: LandingPageProps) => {
                   <St.Text>
                     <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
                   </St.Text>
-                  <St.Form onSubmit={handleSubmit(OnFinishRegister)}>
+                  <St.Form onSubmit={handleSubmit2(OnFinishRegister)}>
                     <St.RegForm>
                       <Input
                         type="text"
@@ -262,9 +296,9 @@ const Landing = ({ history }: LandingPageProps) => {
                         width="300px"
                         fontSize="2rem"
                         height="48px"
-                        onTextChange={(evt: any) => setValue('name', evt.currentTarget.value)}
+                        onTextChange={(evt: any) => setValue2('name', evt.currentTarget.value)}
                       />
-                      {errors.name && <St.RegError>{errors.name.message}</St.RegError>}
+                      {errors2.name && <St.RegError>{errors2.name.message}</St.RegError>}
                     </St.RegForm>
 
                     <St.RegForm>
@@ -274,9 +308,9 @@ const Landing = ({ history }: LandingPageProps) => {
                         width="300px"
                         fontSize="2rem"
                         height="48px"
-                        onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                        onTextChange={(evt: any) => setValue2('email', evt.currentTarget.value)}
                       />
-                      {errors.email && <St.RegError>{errors.email.message}</St.RegError>}
+                      {errors2.email && <St.RegError>{errors2.email.message}</St.RegError>}
                     </St.RegForm>
 
                     <St.RegForm>
@@ -285,16 +319,16 @@ const Landing = ({ history }: LandingPageProps) => {
                         width="300px"
                         fontSize="2rem"
                         height="48px"
-                        onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                        onTextChange={(evt: any) => setValue2('password', evt.currentTarget.value)}
                       />
-                      {errors.password && <St.RegError>{errors.password.message}</St.RegError>}
+                      {errors2.password && <St.RegError>{errors2.password.message}</St.RegError>}
                     </St.RegForm>
                     <St.RegForm>
                       <Button
                         fontSize="2.6rem"
                         height="44px"
                         weight={600}
-                        onClick={handleSubmit(OnFinishRegister)}>
+                        onClick={handleSubmit2(OnFinishRegister)}>
                         Começar
                       </Button>
                     </St.RegForm>

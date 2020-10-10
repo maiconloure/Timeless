@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
-import * as Styled from './styled';
+import * as ST from './styled';
 
 interface CreationMenuProps {
   selectedCard: {
@@ -16,6 +16,7 @@ interface CreationMenuProps {
   connectArrowButton: () => void;
   pinCardButton: () => void;
   blockCardButton: () => void;
+  className: string;
 }
 
 const CreationMenu = ({
@@ -28,21 +29,22 @@ const CreationMenu = ({
   connectArrowButton,
   pinCardButton,
   blockCardButton,
+  className,
 }: CreationMenuProps) => {
   return (
-    <Styled.Menu>
-      <Styled.MenuTitle>
+    <ST.Menu className={className}>
+      <ST.MenuTitle>
         <span />
         <span />
         <span />
-      </Styled.MenuTitle>
+      </ST.MenuTitle>
 
-      <Styled.MenuSection>
-        <Styled.SectionTitle>
+      <ST.MenuSection>
+        <ST.SectionTitle>
           <h4>OBJETOS</h4>
-        </Styled.SectionTitle>
+        </ST.SectionTitle>
 
-        <Styled.MenuOptions selectedCard={selectedCard}>
+        <ST.MenuOptions selectedCard={selectedCard}>
           <div className="tooltip">
             <img id="group" src={icons.group} onClick={groupButton} alt="group" />
             <span className="tooltiptext">Agrupar cartões</span>
@@ -62,15 +64,15 @@ const CreationMenu = ({
             <img id="trash" src={icons.trash} onClick={removeCardButton} alt="remove" />
             <span className="tooltiptext">Habilitar lixeira</span>
           </div>
-        </Styled.MenuOptions>
-      </Styled.MenuSection>
+        </ST.MenuOptions>
+      </ST.MenuSection>
 
-      <Styled.MenuSection>
-        <Styled.SectionTitle>
+      <ST.MenuSection>
+        <ST.SectionTitle>
           <h4>FERRAMENTAS</h4>
-        </Styled.SectionTitle>
+        </ST.SectionTitle>
 
-        <Styled.MenuOptions selectedCard={selectedCard}>
+        <ST.MenuOptions selectedCard={selectedCard}>
           <div className="tooltip">
             <img id="addText" src={icons.addText} onClick={createTextButton} alt="text" />
             <span className="tooltiptext">Adicionar Texto</span>
@@ -90,9 +92,9 @@ const CreationMenu = ({
             <img id="blocked" src={icons.blocked} onClick={blockCardButton} alt="block" />
             <span className="tooltiptext">Bloquear cartão</span>
           </div>
-        </Styled.MenuOptions>
-      </Styled.MenuSection>
-    </Styled.Menu>
+        </ST.MenuOptions>
+      </ST.MenuSection>
+    </ST.Menu>
   );
 };
 

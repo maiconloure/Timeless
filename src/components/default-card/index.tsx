@@ -143,6 +143,11 @@ const CardContainer = styled(motion.div)`
   height: 10px;
   z-index: 1;
 
+  &:active {
+    transition-delay: 0.5s;
+    cursor: grabbing;
+  }
+
   .tooltip {
     &:hover .tooltiptext {
       visibility: visible;

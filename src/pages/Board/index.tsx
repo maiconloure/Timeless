@@ -3,9 +3,10 @@ import { Modal, Input, PasswordInput, Button } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer, toast, useToast } from 'react-toastify';
-import styled, { createGlobalStyle } from 'styled-components';
+import { ToastContainer, toast, useToast, Slide } from 'react-toastify';
+import styled from 'styled-components';
 
 import { PageTransition } from '../../components';
 import {
@@ -67,9 +68,9 @@ const Board = ({ history }: BoardPageProps) => {
   const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
-    toast.info('Saindo... vamos sentir sua falta! 😭', {
-      position: 'top-left',
-      autoClose: 2000,
+    toast.dark('Efetuando logout...  vamos sentir sua falta! 😭', {
+      position: 'top-center',
+      autoClose: 1800,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -85,13 +86,13 @@ const Board = ({ history }: BoardPageProps) => {
       dispatch(clearBoard());
       dispatch(clearCards());
       dispatch(logout());
-    }, 2200);
+    }, 2100);
   };
 
   const saveBoard = () => {
-    toast.info('Salvando seu board...', {
-      position: 'top-left',
-      autoClose: 1800,
+    toast.dark('Salvando board...', {
+      position: 'top-center',
+      autoClose: 1300,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -120,10 +121,9 @@ const Board = ({ history }: BoardPageProps) => {
   return (
     <PageTransition>
       <Notification>
-        <ToastContainer />
+        <ToastContainer transition={Slide} />
       </Notification>
       <BoardPage>
-        {/* <Background src={images.background} alt="background-image" /> */}
         <TopContainer>
           <Bar>
             <ProjectInfo>
@@ -377,32 +377,43 @@ const Board = ({ history }: BoardPageProps) => {
             )}
           </>
         </CardModal>
-
-        <InnerBoardContainer>
-          <SideMenuContainer drag dragMomentum={false}>
-            <CreationMenuContainer setSelectedCard={setSelectedCard} selectedCard={selectedCard} />
-          </SideMenuContainer>
-
-          <FeedBox drag dragMomentum={false}>
-            <FeedContainer />
-          </FeedBox>
-
-          {cards &&
-            cards.map((card: Interface.CardInterface, key: number) => (
-              <DefaultCardContainer
-                key={key}
-                card={card}
-                showEditCard={showEditCard}
-                setCurrentCard={setCurrentCard}
-                setShowEditCard={setShowEditCard}
+        <DragScroll
+          ignoreElements=".DefaultCard, .CardContainer, .FeedContainer, .CreationMenu"
+          hideScrollbars={false}
+          className="container">
+          <InnerBoardContainer>
+            <SideMenuContainer drag dragMomentum={false}>
+              <CreationMenuContainer
+                className="CreationMenu"
+                setSelectedCard={setSelectedCard}
                 selectedCard={selectedCard}
               />
-            ))}
+            </SideMenuContainer>
 
-          <CardContainer>
-            <BacklogCardContainer closeDataPass={{ showEditCard, setShowEditCard, currentCard }} />
-          </CardContainer>
-        </InnerBoardContainer>
+            <FeedBox className="FeedContainer" drag dragMomentum={false}>
+              <FeedContainer />
+            </FeedBox>
+            <div className="DefaultCard">
+              {cards &&
+                cards.map((card: Interface.CardInterface, key: number) => (
+                  <DefaultCardContainer
+                    key={key}
+                    card={card}
+                    showEditCard={showEditCard}
+                    setCurrentCard={setCurrentCard}
+                    setShowEditCard={setShowEditCard}
+                    selectedCard={selectedCard}
+                  />
+                ))}
+            </div>
+
+            <CardContainer className="CardContainer">
+              <BacklogCardContainer
+                closeDataPass={{ showEditCard, setShowEditCard, currentCard }}
+              />
+            </CardContainer>
+          </InnerBoardContainer>
+        </DragScroll>
       </BoardPage>
     </PageTransition>
   );
@@ -412,7 +423,6 @@ export default Board;
 
 const BoardPage = styled.div`
   background-image: url(${images.background});
-
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -439,17 +449,6 @@ const Notification = styled.div`
     color: #fff;
   }
 `;
-
-// const Background = styled.img`
-//   display: inline-block;
-//   width: 100%;
-//   font-size: 0;
-//   line-height: 0;
-//   background-size: 100%;
-//   background-position: 50% 50%;
-//   background-repeat: no-repeat;
-//   background-image: url(image.jpg);
-// `;
 
 const TopContainer = styled.div`
   grid-area: top;
@@ -769,10 +768,30 @@ const InnerBoardContainer = styled.div`
   grid-area: board;
   align-self: center;
   justify-self: center;
-  margin: 10px;
-  width: 99.4%;
-  height: 100%;
+  margin: 5px;
+  /* width: 99.4%; */
+  /* height: 99%; */
+  width: 5000px;
+  height: 5000px;
+
   overflow: scroll;
+
+  &:active {
+    cursor: grabbing;
+  }
+`;
+
+const DragScroll = styled(ScrollContainer)`
+  grid-area: board;
+  /* position: absolute; */
+  height: calc(100vh - 20px);
+  max-height: 100vh;
+  width: 100vw !important;
+  max-width: 100vw !important;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 const SideMenuContainer = styled(motion.div)`
@@ -786,6 +805,10 @@ const FeedBox = styled(motion.div)`
   position: absolute;
   top: 330px;
   left: 40px;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 const CardContainer = styled(motion.div)`
