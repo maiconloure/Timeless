@@ -14,6 +14,8 @@ import {
   FeedContainer,
   DefaultCardContainer,
   BacklogCardContainer,
+  ModalEditBoardContainer,
+  ModalEditUserContainer,
 } from '../../containers';
 import {
   getBoardsAPI,
@@ -213,189 +215,22 @@ const Board = ({ history }: BoardPageProps) => {
           </Bar>
         </TopContainer>
 
-        <CardModal
-          icon={icons.closeWindow}
-          title="Editar"
-          data={[showEditUser, setShowEditUser]}
-          styles={{
-            size: 'normal',
-            fontSize: 'large',
-            bgColorPrimary: '#3aa6f2',
-            colorPrimary: '#014d82',
-          }}>
-          <div>
-            <Form>
-              <Input
-                type="text"
-                placeholder={userName}
-                width="220px"
-                fontSize="2rem"
-                height="40px"
-                onTextChange={(event) => setUserName(event)}
-              />
-              <Input
-                type="text"
-                placeholder={userAbout}
-                width="220px"
-                fontSize="2rem"
-                height="40px"
-                onTextChange={(event) => setUserAbout(event)}
-              />
+        <ModalEditUserContainer
+          showState={{ setShowEditModal, showEditUser, setShowEditUser }}
+          selected={{ selectedBoard, setSelectedBoard }}
+        />
 
-              <Input
-                type="text"
-                placeholder={userImage}
-                width="220px"
-                fontSize="2rem"
-                height="40px"
-                onTextChange={(event) => setUserImage(event)}
-              />
+        <ModalEditBoardContainer
+          showState={{
+            showBoardModal,
+            setShowBoardModal,
+            showEditModal,
+            setShowEditModal,
+            setShowEditUser,
+          }}
+          selected={{ selectedBoard, setSelectedBoard }}
+        />
 
-              <Button
-                fontSize="2.6rem"
-                height="44px"
-                weight={600}
-                onClick={() => {
-                  dispatch(
-                    updateUserAPI({
-                      user: {
-                        ...user,
-                        name: userName,
-                        image: userImage,
-                        about: userAbout,
-                      },
-                      token,
-                      history,
-                    })
-                  );
-
-                  setShowEditModal(false);
-                }}>
-                Modificar
-              </Button>
-            </Form>
-          </div>
-        </CardModal>
-
-        <CardModal
-          icon={icons.closeWindow}
-          title="Boards"
-          data={[showBoardModal, setShowBoardModal]}
-          styles={{
-            size: 'normal',
-            fontSize: 'large',
-            bgColorPrimary: '#3aa6f2',
-            colorPrimary: '#014d82',
-          }}>
-          <>
-            {showEditModal ? (
-              <Form>
-                <Button
-                  onClick={() => {
-                    setBoardTitle('Título do Board');
-                    setBoardDescription('Descrição do Board');
-                    setShowEditModal(false);
-                  }}>
-                  Voltar
-                </Button>
-              </Form>
-            ) : (
-              <ModalContent>
-                <MenuModal>
-                  <CardModalDescription>Novo Board</CardModalDescription>
-
-                  <CardModalButton
-                    onClick={() => {
-                      setShowEditModal(true);
-                      setSelectedBoard(defaultBoard);
-                    }}>
-                    Criar
-                  </CardModalButton>
-                </MenuModal>
-              </ModalContent>
-            )}
-            {showEditModal ? (
-              <Form>
-                <Input
-                  type="text"
-                  placeholder={boardTitle}
-                  width="220px"
-                  fontSize="2rem"
-                  height="40px"
-                  onTextChange={(event) => setBoardTitle(event)}
-                />
-                <Input
-                  type="text"
-                  placeholder={boardDescription}
-                  width="220px"
-                  fontSize="2rem"
-                  height="40px"
-                  onTextChange={(event) => setBoardDescription(event)}
-                />
-                <Button
-                  fontSize="2.6rem"
-                  height="44px"
-                  weight={600}
-                  onClick={() => {
-                    if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
-                      dispatch(createBoardAPI(selectedBoard, token, user, history));
-                    } else {
-                      const newBoard: any = {
-                        ...selectedBoard,
-                        title: boardTitle,
-                        description: boardDescription,
-                      };
-                      dispatch(updateBoardAPI({ token, board: newBoard, history }));
-                    }
-
-                    setBoardTitle('Título do Board');
-                    setBoardDescription('Descrição do Board');
-                    setShowEditModal(false);
-                  }}>
-                  Modificar
-                </Button>
-              </Form>
-            ) : (
-              boards &&
-              boards.map((board: Interface.UserBoards, key: number) => (
-                <ModalContent key={key}>
-                  <h2>{board.title}</h2>
-
-                  <CardModalSection>
-                    <CardModalDescription>{board.description}</CardModalDescription>
-
-                    <div>
-                      <CardModalButton
-                        onClick={() => {
-                          dispatch(getCardsAPI(board, token, history));
-                          setShowBoardModal(false);
-                        }}>
-                        Selecionar
-                      </CardModalButton>
-
-                      <CardModalButton
-                        onClick={() => {
-                          setBoardTitle(board.title);
-                          setBoardDescription(board.description);
-                          setSelectedBoard(board);
-                          setShowEditModal(true);
-                        }}>
-                        Modificar
-                      </CardModalButton>
-
-                      <CardModalButton
-                        onClick={() => {
-                          dispatch(deleteBoardAPI(board, token, history));
-                        }}>
-                        Remover
-                      </CardModalButton>
-                    </div>
-                  </CardModalSection>
-                </ModalContent>
-              ))
-            )}
-          </>
-        </CardModal>
         <DragScroll
           ignoreElements=".DefaultCard, .CardContainer, .FeedContainer, .CreationMenu"
           hideScrollbars={false}

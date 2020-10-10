@@ -1,0 +1,65 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Input, PasswordInput, Button } from 'capstone-project';
+import { History, LocationState } from 'history';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast, useToast } from 'react-toastify';
+
+import PageTransition from '../../components/pageTransition';
+import Landing from '../../pages/Landing';
+import { requestLogin, registerUser } from '../../redux/actions/service.action';
+import { RootStoreType } from '../../redux/store/store';
+
+interface LandingContainerProps {
+  history: History<LocationState>;
+}
+
+const LandingContainer = ({ history }: LandingContainerProps) => {
+  const dispatch = useDispatch();
+  const [handleForm, setHandleForm] = useState(false);
+  const user = useSelector((state: RootStoreType) => state.service.user);
+  const [currentFrame, setCurrentFrame] = useState('main');
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  window.onresize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
+  const handleError = (message: string) => {
+    toast.error(message, {
+      position: 'top-center',
+      autoClose: 2200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  useEffect(() => {
+    if (localStorage.service !== undefined) {
+      history.push('/board');
+    }
+  }, [user]);
+
+  return (
+    <Landing
+      currentFrame={currentFrame}
+      setCurrentFrame={setCurrentFrame}
+      handleError={handleError}
+      windowSize={windowSize}
+      handleForm={handleForm}
+      setHandleForm={setHandleForm}
+    />
+  );
+};
+
+export default LandingContainer;
