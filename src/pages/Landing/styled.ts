@@ -32,7 +32,7 @@ export const Container = styled.div`
   }
 
   /* IPAD */
-  @media (min-width: 968px) and (max-width: 1200px) {
+  @media (min-width: 968px) and (max-width: 1200px) and (min-height: 768px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
     grid-template-rows: 8% 8% 30% 8% auto;
@@ -45,7 +45,7 @@ export const Container = styled.div`
   }
 
   /* NOTEBOOK/PC/ULTRAWIDE */
-  @media (min-height: 600px) and (min-width: 968px) {
+  @media (min-height: 768px) and (min-width: 968px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
     grid-template-rows: 8% 30% 8% auto;
@@ -155,7 +155,7 @@ export const LoginMenu = styled.form`
   }
 
   /* NOTEBOOK/PC/ULTRAWIDE */
-  @media (min-width: 968px) and (min-height: 550px) {
+  @media (min-width: 968px) and (min-height: 768px) {
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 28px;
@@ -192,9 +192,6 @@ export const LoginForm = styled.div`
 
   @media (min-width: 550px) and (max-height: 550px) {
     min-height: 50px;
-  }
-
-  @media (min-width: 968px) and (min-height: 550px) {
   }
 `;
 
@@ -385,12 +382,22 @@ export const RegisterArea = styled.div`
   }
 `;
 
-export const TopFrame = styled.div`
-  @media (min-width: 968px) and (min-height: 550px) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+export const RegisterForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80px;
+
+  @media (min-width: 550px) and (max-height: 550px) {
+    min-height: 50px;
   }
+`;
+
+export const TopFrame = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   @media (min-width: 968px) and (min-height: 768px) {
     width: 600px;
   }
@@ -560,7 +567,6 @@ export const MainFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      margin-top: 20px;
       width: 800px;
     }
   }
@@ -673,7 +679,7 @@ export const Wave = styled.div`
   /* MOBILE HORIZONTAL */
   @media (min-width: 550px) and (max-height: 550px) {
     top: 4vh;
-    left: -1550px;
+    left: -1450px;
   }
 
   /* NOTEBOOK/PC */
@@ -796,13 +802,6 @@ export const Form = styled.form`
     height: 50px;
     width: 200px;
   }
-`;
-
-export const RegisterForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 70px;
 `;
 
 export const RegForm = styled.div`

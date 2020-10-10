@@ -33,29 +33,46 @@ const Landing = ({ history }: LandingPageProps) => {
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
 
   useEffect(() => {
+    register('logEmail', {
+      required: 'email obrigatório',
+      pattern: {
+        value: /[a-z0-9._%+!$&*=^|~#%{}/-]+@([a-z0-9-]+\.){1,}([a-z]{2,22})/,
+        message: 'email inválido',
+      },
+    });
+    register('logPassword', {
+      required: 'digite sua senha',
+      pattern: {
+        value: /^.{5,}$/, // REGEX PARA SENHA SEGURA>>> /(?=.*[}{,^?~=+\\-_*\\-+|!@#$%&-+¨´\"'])/
+        message: 'senha inválida',
+      },
+    });
+
     register('name', {
       required: 'nome é obrigatório',
       pattern: {
-        value: /^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}\[\]|\/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}\[\]|\/<>#“.,])\S+(?: \S+){1,5}$/,
+        value: /^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}[\]|/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}[\]|/<>#“.,])\S+(?: \S+){1,5}$/,
         message: 'Por favor, digite seu nome e sobrenome',
       },
     });
     register('email', {
       required: 'email obrigatório',
       pattern: {
-        value: /[a-z0-9\._%+!$&*=^|~#%{}/\-]+@([a-z0-9\-]+\.){1,}([a-z]{2,22})/,
+        value: /[a-z0-9._%+!$&*=^|~#%{}/-]+@([a-z0-9-]+\.){1,}([a-z]{2,22})/,
         message: 'email inválido',
       },
     });
     register('password', {
       required: 'digite sua senha',
       pattern: {
-        value: /^.{3,}$/, // REGEX PARA SENHA SEGURA>>> /(?=.*[}{,^?~=+\\-_*\\-+|!@#$%&-+¨´\"'])/
+        value: /^.{5,}$/, // REGEX PARA SENHA SEGURA>>> /(?=.*[}{,^?~=+\\-_*\\-+|!@#$%&-+¨´\"'])/
         message: 'senha inválida',
       },
     });
 
     return () => {
+      unregister('logEmail');
+      unregister('logPassword');
       unregister('name');
       unregister('email');
       unregister('password');
@@ -71,12 +88,12 @@ const Landing = ({ history }: LandingPageProps) => {
 
   const OnFinishLogin = (data: any) => {
     console.log('OnFinishLogin');
-    dispatch(requestLogin({ email: data.email, password: data.password }));
+    dispatch(requestLogin({ email: data.logEmail, password: data.logPassword }));
   };
 
-  const OnFinishRegister = () => {
+  const OnFinishRegister = (data: any) => {
     console.log('OnFinishRegister');
-    dispatch(registerUser({ name, email, password }));
+    dispatch(registerUser({ name: data.name, email: data.email, password: data.password }));
   };
 
   useEffect(() => {
@@ -107,9 +124,12 @@ const Landing = ({ history }: LandingPageProps) => {
                   placeholder="email"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '55px' : '44px'}
-                  onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                  onTextChange={(evt: any) => {
+                    console.log(evt.currentTarget.value);
+                    setValue('logEmail', evt.currentTarget.value);
+                  }}
                 />
-                {errors.email && !handleForm && <St.Error>{errors.email.message}</St.Error>}
+                {errors.logEmail && !handleForm && <St.Error>{errors.logEmail.message}</St.Error>}
               </St.LoginForm>
 
               <St.LoginForm>
@@ -117,9 +137,14 @@ const Landing = ({ history }: LandingPageProps) => {
                   placeholder="senha"
                   width={windowSize.width < 550 ? '300px' : '400px'}
                   height={windowSize.height > 550 ? '55px' : '44px'}
-                  onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                  onTextChange={(evt: any) => {
+                    console.log(evt.currentTarget.value);
+                    setValue('logPassword', evt.currentTarget.value);
+                  }}
                 />
-                {errors.password && !handleForm && <St.Error>{errors.password.message}</St.Error>}
+                {errors.logPassword && !handleForm && (
+                  <St.Error>{errors.logPassword.message}</St.Error>
+                )}
               </St.LoginForm>
 
               <St.LoginForm>
