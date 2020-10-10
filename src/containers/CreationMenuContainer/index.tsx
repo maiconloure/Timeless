@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { History, LocationState } from 'history';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,12 +27,14 @@ interface CreationMenuContainerProps {
     fastCard: boolean;
   };
   className: string;
+  history: History<LocationState>;
 }
 
 const CreationMenuContainer = ({
   setSelectedCard,
   selectedCard,
   className,
+  history,
 }: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
@@ -51,7 +54,7 @@ const CreationMenuContainer = ({
   const createCardButton = () => {
     console.log('createCardButton');
     dispatch(getNewAction(`${user.name} acabou de criar um cartão.`));
-    dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard }));
+    dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard, history }));
   };
   const createFasterCardButton = () => {
     console.log('createFasterCardButton');

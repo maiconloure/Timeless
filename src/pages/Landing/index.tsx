@@ -31,7 +31,7 @@ const Landing = ({ history }: LandingPageProps) => {
     height: window.innerHeight,
   });
 
-  const { register, unregister, handleSubmit, setValue, errors } = useForm();
+  const { register, unregister, handleSubmit, setValue, errors, clearErrors } = useForm();
 
   const {
     register: register2,
@@ -39,6 +39,7 @@ const Landing = ({ history }: LandingPageProps) => {
     handleSubmit: handleSubmit2,
     setValue: setValue2,
     errors: errors2,
+    clearErrors: clearErrors2,
   } = useForm();
 
   useEffect(() => {
@@ -98,41 +99,46 @@ const Landing = ({ history }: LandingPageProps) => {
     });
   };
 
+  const handleError = (message: string) => {
+    toast.error(message, {
+      position: 'top-center',
+      autoClose: 2200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const OnFinishLogin = (data: any) => {
     dispatch(requestLogin({ email: data.email, password: data.password }));
-    setTimeout(() => {
-      if (localStorage.getItem('Error') !== '200') {
-        toast.error('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.', {
-          position: 'top-center',
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    }, 1000);
+    if (localStorage.getItem('Error') === '400') {
+      handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
+    } else {
+      setTimeout(() => {
+        if (localStorage.getItem('Error') !== '200') {
+          handleError(
+            'Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.'
+          );
+        }
+      }, 1000);
+    }
   };
 
   const OnFinishRegister = (data: any) => {
     dispatch(registerUser({ name: data.name, email: data.email, password: data.password }));
-    setTimeout(() => {
-      if (localStorage.getItem('Error') !== '200') {
-        toast.error(
-          'Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.',
-          {
-            position: 'top-center',
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          }
-        );
-      }
-    }, 1000);
+    if (localStorage.getItem('Error') === '400') {
+      handleError('Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.');
+    } else {
+      setTimeout(() => {
+        if (localStorage.getItem('Error') !== '200') {
+          handleError(
+            'Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.'
+          );
+        }
+      }, 1000);
+    }
   };
 
   useEffect(() => {

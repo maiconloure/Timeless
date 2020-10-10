@@ -67,6 +67,7 @@ const Board = ({ history }: BoardPageProps) => {
   const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
   const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
+  console.log(localStorage.getItem('Status'));
   const handleLogout = () => {
     toast.dark('Efetuando logout...  vamos sentir sua falta! 😭', {
       position: 'top-center',
@@ -106,17 +107,34 @@ const Board = ({ history }: BoardPageProps) => {
   const saveChanges = () => {
     cards.forEach((card: Interface.CardInterface) => {
       // TODO ==> Filtrar Cards Não Modificados
-      dispatch(updateCardAPI({ card, token }));
+      dispatch(updateCardAPI({ card, token, history }));
     });
   };
 
   useEffect(() => {
-    dispatch(getBoardsAPI({ user, token }));
+    dispatch(getBoardsAPI({ user, token, history }));
   }, []);
 
   useEffect(() => {
     currentBoard && dispatch(getCardsAPI(currentBoard, token, history));
   }, [currentBoard]);
+
+  useEffect(() => {
+    if (localStorage.Status && localStorage.Status === 'jwt expired') {
+      toast.dark(
+        'Sessão expirada... Redirecionando para a página inicial. Fique tranquilo seu trabalho foi salvo!',
+        {
+          position: 'top-left',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    }
+  }, [localStorage.Status]);
 
   return (
     <PageTransition>
@@ -247,6 +265,7 @@ const Board = ({ history }: BoardPageProps) => {
                         about: userAbout,
                       },
                       token,
+                      history,
                     })
                   );
 
@@ -319,14 +338,14 @@ const Board = ({ history }: BoardPageProps) => {
                   weight={600}
                   onClick={() => {
                     if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
-                      dispatch(createBoardAPI(selectedBoard, token, user));
+                      dispatch(createBoardAPI(selectedBoard, token, user, history));
                     } else {
                       const newBoard: any = {
                         ...selectedBoard,
                         title: boardTitle,
                         description: boardDescription,
                       };
-                      dispatch(updateBoardAPI({ token, board: newBoard }));
+                      dispatch(updateBoardAPI({ token, board: newBoard, history }));
                     }
 
                     setBoardTitle('Título do Board');
@@ -366,7 +385,7 @@ const Board = ({ history }: BoardPageProps) => {
 
                       <CardModalButton
                         onClick={() => {
-                          dispatch(deleteBoardAPI(board, token));
+                          dispatch(deleteBoardAPI(board, token, history));
                         }}>
                         Remover
                       </CardModalButton>
@@ -387,6 +406,7 @@ const Board = ({ history }: BoardPageProps) => {
                 className="CreationMenu"
                 setSelectedCard={setSelectedCard}
                 selectedCard={selectedCard}
+                history={history}
               />
             </SideMenuContainer>
 
@@ -403,6 +423,7 @@ const Board = ({ history }: BoardPageProps) => {
                     setCurrentCard={setCurrentCard}
                     setShowEditCard={setShowEditCard}
                     selectedCard={selectedCard}
+                    history={history}
                   />
                 ))}
             </div>
@@ -422,7 +443,7 @@ const Board = ({ history }: BoardPageProps) => {
 export default Board;
 
 const BoardPage = styled.div`
-  background-image: url(${images.background});
+  background-image: url(${images.reactWallpaper});
   position: relative;
   width: 100vw;
   height: 100vh;

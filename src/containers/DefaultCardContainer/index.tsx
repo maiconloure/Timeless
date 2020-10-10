@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue } from 'framer-motion';
+import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +20,7 @@ interface DefaultCardProps {
     removeCard: boolean;
     fastCard: boolean;
   };
+  history: History<LocationState>;
 }
 
 const DefaultCardContainer = ({
@@ -27,6 +29,7 @@ const DefaultCardContainer = ({
   setCurrentCard,
   setShowEditCard,
   selectedCard,
+  history,
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -46,6 +49,7 @@ const DefaultCardContainer = ({
           },
         },
         token,
+        history,
       })
     );
   };
@@ -58,7 +62,7 @@ const DefaultCardContainer = ({
 
   const removeCard = () => {
     dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-    dispatch(deleteCardAPI({ card, token }));
+    dispatch(deleteCardAPI({ card, token, history }));
   };
 
   const creationCard = () => {
@@ -67,6 +71,7 @@ const DefaultCardContainer = ({
       updateCardAPI({
         token,
         card: { ...card, data: { ...card.data, ...fastCard } },
+        history,
       })
     );
   };

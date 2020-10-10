@@ -50,6 +50,7 @@ export interface PropsResponseRegister {
 export interface PropsGetUserBoards {
   user: UserInterface;
   token: string;
+  history: any;
 }
 
 export interface DataBoard {
@@ -145,6 +146,7 @@ export interface CardState {
 export interface PropsUpdatedCard {
   token: string;
   card: CardInterface;
+  history: any;
 }
 
 export interface PropsCreatedCard {
@@ -152,6 +154,7 @@ export interface PropsCreatedCard {
   user: UserInterface;
   token: string;
   card: CardCreateInterface;
+  history: any;
 }
 
 // --------------ACTIONS INTERFACES--------------
