@@ -2,6 +2,7 @@
 import { PropsLogin } from '../actions/interface.action';
 import { ServiceAction } from '../actions/service.action';
 import * as TYPE from '../actions/type.action';
+
 const initialState: PropsLogin = JSON.parse(
   localStorage.getItem('service') ||
     `{
@@ -28,12 +29,18 @@ const service = (state = initialState, action: ServiceAction): PropsLogin => {
       return initialState;
 
     case TYPE.UPDATE_USER:
-      // localStorage.clear();
       localStorage.setItem(
         'service',
         JSON.stringify({ ...state, user: action.payload } || initialState)
       );
       return { ...state, user: action.payload };
+
+    case TYPE.UPDATE_STATUS:
+      localStorage.setItem(
+        'status',
+        JSON.stringify({ ...state, status: action.payload } || initialState)
+      );
+      return { ...state, status: action.payload };
 
     default:
       return state;

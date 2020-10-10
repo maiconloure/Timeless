@@ -7,14 +7,13 @@ interface LandingPageProps {
 }
 
 const expiredSession = ({ error, history }: LandingPageProps) => {
-  localStorage.setItem('Status', `${error.response.data}`);
-
-  if (['jwt expired', 'Missing token'].includes(error.response.data)) {
-    setTimeout(() => {
-      localStorage.clear();
-      history.push('/');
-    }, 5500);
-  }
+  // localStorage.setItem('Status', `${error.response.data}`);
+  // if (['jwt expired', 'Missing token'].includes(error.response.data)) {
+  //   setTimeout(() => {
+  //     localStorage.clear();
+  //     history.push('/');
+  //   }, 5500);
+  // }
 };
 
 export default expiredSession;

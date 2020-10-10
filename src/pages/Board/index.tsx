@@ -14,8 +14,6 @@ import {
   FeedContainer,
   DefaultCardContainer,
   BacklogCardContainer,
-  ModalEditBoardContainer,
-  ModalEditUserContainer,
 } from '../../containers';
 import {
   getBoardsAPI,
@@ -60,16 +58,15 @@ const Board = ({ history }: BoardPageProps) => {
     removeCard: false,
     fastCard: false,
   });
-  const [boardTitle, setBoardTitle] = useState('Título do Board');
-  const [boardDescription, setBoardDescription] = useState('Descrição do Board');
-  const [selectedBoard, setSelectedBoard] = useState<
-    Interface.UserBoards | Interface.CreateUserBoards
-  >(defaultBoard);
-  const [userName, setUserName] = useState(user.name || 'Nome');
-  const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
-  const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
+  // const [boardTitle, setBoardTitle] = useState('Título do Board');
+  // const [boardDescription, setBoardDescription] = useState('Descrição do Board');
+  // const [selectedBoard, setSelectedBoard] = useState<
+  //   Interface.UserBoards | Interface.CreateUserBoards
+  // >(defaultBoard);
+  // const [userName, setUserName] = useState(user.name || 'Nome');
+  // const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
+  // const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
-  console.log(localStorage.getItem('Status'));
   const handleLogout = () => {
     toast.dark('Efetuando logout...  vamos sentir sua falta! 😭', {
       position: 'top-center',
@@ -121,22 +118,22 @@ const Board = ({ history }: BoardPageProps) => {
     currentBoard && dispatch(getCardsAPI(currentBoard, token, history));
   }, [currentBoard]);
 
-  useEffect(() => {
-    if (localStorage.Status && localStorage.Status === 'jwt expired') {
-      toast.dark(
-        'Sessão expirada... Redirecionando para a página inicial. Fique tranquilo seu trabalho foi salvo!',
-        {
-          position: 'top-left',
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-    }
-  }, [localStorage.Status]);
+  // useEffect(() => {
+  //   if (localStorage.Status && localStorage.Status === 'jwt expired') {
+  //     toast.dark(
+  //       'Sessão expirada... Redirecionando para a página inicial. Fique tranquilo seu trabalho foi salvo!',
+  //       {
+  //         position: 'top-left',
+  //         autoClose: 4000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       }
+  //     );
+  //   }
+  // }, [localStorage.Status]);
 
   return (
     <PageTransition>
@@ -214,22 +211,6 @@ const Board = ({ history }: BoardPageProps) => {
             </UserInfo>
           </Bar>
         </TopContainer>
-
-        <ModalEditUserContainer
-          showState={{ setShowEditModal, showEditUser, setShowEditUser }}
-          selected={{ selectedBoard, setSelectedBoard }}
-        />
-
-        <ModalEditBoardContainer
-          showState={{
-            showBoardModal,
-            setShowBoardModal,
-            showEditModal,
-            setShowEditModal,
-            setShowEditUser,
-          }}
-          selected={{ selectedBoard, setSelectedBoard }}
-        />
 
         <DragScroll
           ignoreElements=".DefaultCard, .CardContainer, .FeedContainer, .CreationMenu"

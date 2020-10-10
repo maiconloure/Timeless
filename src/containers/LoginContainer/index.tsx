@@ -22,8 +22,8 @@ interface LoginContainerProps {
 
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();
+  // const status = useSelector((state: RootStoreType) => state.service.status);
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
-
   useEffect(() => {
     register('email', {
       required: 'email obrigatório',
@@ -32,6 +32,7 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
         message: 'email inválido',
       },
     });
+
     register('password', {
       required: 'digite sua senha',
       pattern: {
@@ -47,11 +48,15 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
 
   const OnFinishLogin = (data: any) => {
     dispatch(requestLogin({ email: data.email, password: data.password }));
-    if (localStorage.getItem('Error') === '400') {
+
+    if (localStorage.Status === '400') {
+      console.log('CHAMADO1');
+
       handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
     } else {
       setTimeout(() => {
-        if (localStorage.getItem('Error') !== '200') {
+        console.log('CHAMADO2');
+        if (localStorage.Status !== '200') {
           handleError(
             'Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.'
           );
