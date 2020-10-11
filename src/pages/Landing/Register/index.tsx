@@ -1,15 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, PasswordInput, Button } from 'capstone-project';
-import { History, LocationState } from 'history';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast, useToast } from 'react-toastify';
+import React from 'react';
 
 import PageTransition from '../../../components/pageTransition';
-import { requestLogin, registerUser } from '../../../redux/actions/service.action';
-import { RootStoreType } from '../../../redux/store/store';
-import { icons, images } from '../../../utils/importAll';
+import { icons } from '../../../utils/importAll';
 import * as St from '../styled';
 
 interface RegisterProps {
@@ -99,6 +92,7 @@ const Register = ({
             />
             {errors.password && <St.Error>{errors.password.message}</St.Error>}
           </St.RegisterForm>
+
           <St.RegisterForm>
             <Button
               fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
@@ -117,9 +111,11 @@ const Register = ({
               <St.ReturnModal onClick={() => setHandleForm(false)}>
                 <img src={icons.return} alt="return-icon" />
               </St.ReturnModal>
+
               <St.Text>
                 <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
               </St.Text>
+
               <St.Form onSubmit={handleSubmit(OnFinishRegister)}>
                 <St.RegForm>
                   <Input
@@ -155,6 +151,7 @@ const Register = ({
                   />
                   {errors.password && <St.RegError>{errors.password.message}</St.RegError>}
                 </St.RegForm>
+
                 <St.RegForm>
                   <Button
                     fontSize="2.6rem"

@@ -5,7 +5,7 @@ import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer, toast, useToast, Slide } from 'react-toastify';
+import { ToastContainer, toast, Slide } from 'react-toastify';
 import styled from 'styled-components';
 
 import { PageTransition } from '../../components';
@@ -15,25 +15,13 @@ import {
   DefaultCardContainer,
   BacklogCardContainer,
 } from '../../containers';
-import {
-  getBoardsAPI,
-  updateBoardAPI,
-  getCardsAPI,
-  createBoardAPI,
-  clearBoard,
-  deleteBoardAPI,
-} from '../../redux/actions/boards.action';
-import {
-  deleteCardAPI,
-  updateCardAPI,
-  createCardAPI,
-  clearCards,
-} from '../../redux/actions/cards.action';
+import { getBoardsAPI, getCardsAPI, clearBoard } from '../../redux/actions/boards.action';
+import { updateCardAPI, clearCards } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
-import { logout, updateUserAPI } from '../../redux/actions/service.action';
+import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-import { fastCard, defaultBoard, defaultCard } from '../../utils/defaults-json-cards';
+import { defaultBoard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -58,14 +46,14 @@ const Board = ({ history }: BoardPageProps) => {
     removeCard: false,
     fastCard: false,
   });
-  // const [boardTitle, setBoardTitle] = useState('Título do Board');
-  // const [boardDescription, setBoardDescription] = useState('Descrição do Board');
-  // const [selectedBoard, setSelectedBoard] = useState<
-  //   Interface.UserBoards | Interface.CreateUserBoards
-  // >(defaultBoard);
-  // const [userName, setUserName] = useState(user.name || 'Nome');
-  // const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
-  // const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
+  const [boardTitle, setBoardTitle] = useState('Título do Board');
+  const [boardDescription, setBoardDescription] = useState('Descrição do Board');
+  const [selectedBoard, setSelectedBoard] = useState<
+    Interface.UserBoards | Interface.CreateUserBoards
+  >(defaultBoard);
+  const [userName, setUserName] = useState(user.name || 'Nome');
+  const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
+  const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
     toast.dark('Efetuando logout...  vamos sentir sua falta! 😭', {
@@ -118,22 +106,22 @@ const Board = ({ history }: BoardPageProps) => {
     currentBoard && dispatch(getCardsAPI(currentBoard, token, history));
   }, [currentBoard]);
 
-  // useEffect(() => {
-  //   if (localStorage.Status && localStorage.Status === 'jwt expired') {
-  //     toast.dark(
-  //       'Sessão expirada... Redirecionando para a página inicial. Fique tranquilo seu trabalho foi salvo!',
-  //       {
-  //         position: 'top-left',
-  //         autoClose: 4000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       }
-  //     );
-  //   }
-  // }, [localStorage.Status]);
+  useEffect(() => {
+    if (localStorage.Status && localStorage.Status === 'jwt expired') {
+      toast.dark(
+        'Sessão expirada... Redirecionando para a página inicial. Fique tranquilo seu trabalho foi salvo!',
+        {
+          position: 'top-left',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    }
+  }, [localStorage.Status]);
 
   return (
     <PageTransition>

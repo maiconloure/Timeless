@@ -1,15 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Input, PasswordInput, Button } from 'capstone-project';
-import { History, LocationState } from 'history';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast, useToast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
-import PageTransition from '../../components/pageTransition';
 import Login from '../../pages/Landing/Login';
-import { requestLogin, registerUser } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store/store';
+import { requestLogin } from '../../redux/actions/service.action';
 
 interface LoginContainerProps {
   handleError: (message: string) => void;
@@ -23,7 +17,9 @@ interface LoginContainerProps {
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();
   // const status = useSelector((state: RootStoreType) => state.service.status);
+
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
+
   useEffect(() => {
     register('email', {
       required: 'email obrigatório',
@@ -53,15 +49,6 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
       console.log('CHAMADO1');
 
       handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
-    } else {
-      setTimeout(() => {
-        console.log('CHAMADO2');
-        if (localStorage.Status !== '200') {
-          handleError(
-            'Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.'
-          );
-        }
-      }, 1000);
     }
   };
 

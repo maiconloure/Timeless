@@ -1,16 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Input, PasswordInput, Button } from 'capstone-project';
-import { History, LocationState } from 'history';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast, useToast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
-import PageTransition from '../../components/pageTransition';
 import Register from '../../pages/Landing/Register';
-import { requestLogin, registerUser } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store/store';
-import { icons, images } from '../../utils/importAll';
+import { registerUser } from '../../redux/actions/service.action';
 
 interface RegisterContainerProps {
   handleError: (message: string) => void;
@@ -39,6 +32,7 @@ const RegisterContainer = ({
         message: 'nome inválido',
       },
     });
+
     register('email', {
       required: 'email obrigatório',
       pattern: {
@@ -46,6 +40,7 @@ const RegisterContainer = ({
         message: 'email inválido',
       },
     });
+
     register('password', {
       required: 'digite sua senha',
       pattern: {
@@ -53,6 +48,7 @@ const RegisterContainer = ({
         message: 'senha inválida',
       },
     });
+
     return () => {
       unregister('name');
       unregister('email');
@@ -64,14 +60,6 @@ const RegisterContainer = ({
     dispatch(registerUser({ name: data.name, email: data.email, password: data.password }));
     if (localStorage.getItem('Error') === '400') {
       handleError('Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.');
-    } else {
-      setTimeout(() => {
-        if (localStorage.getItem('Error') !== '200') {
-          handleError(
-            'Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.'
-          );
-        }
-      }, 1000);
     }
   };
 

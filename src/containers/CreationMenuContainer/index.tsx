@@ -4,9 +4,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CreationMenu from '../../components/creation-menu';
-import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import { createCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
-import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
 
