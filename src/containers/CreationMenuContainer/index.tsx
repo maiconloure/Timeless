@@ -14,21 +14,24 @@ const initialSelectCard = {
   fastCard: false,
 };
 
-const CreationMenuContainer = ({
-  setSelectedCard,
-  selectedCard,
-}: {
-  setSelectedCard: React.Dispatch<
-    React.SetStateAction<{
+interface CreationMenuContainerProps {
+  data: {
+    selectedCard: {
       removeCard: boolean;
       fastCard: boolean;
-    }>
-  >;
-  selectedCard: {
-    removeCard: boolean;
-    fastCard: boolean;
+    };
+    setSelectedCard: React.Dispatch<
+      React.SetStateAction<{
+        removeCard: boolean;
+        fastCard: boolean;
+      }>
+    >;
   };
-}) => {
+}
+
+const CreationMenuContainer = ({
+  data: { setSelectedCard, selectedCard },
+}: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);

@@ -5,7 +5,7 @@ import Children from '../../components/backlog-card';
 
 interface BacklogCardProps {
   usersArray?: { image: string; user: string }[];
-  closeDataPass: {
+  data: {
     showEditCard: boolean;
     setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
     currentCard: any;
@@ -14,7 +14,7 @@ interface BacklogCardProps {
 
 const BacklogCardContainer = ({
   usersArray = [{ image: '', user: '' }],
-  closeDataPass: { showEditCard, setShowEditCard, currentCard },
+  data: { showEditCard, setShowEditCard, currentCard },
 }: BacklogCardProps) => {
   return (
     <CardLeandro
