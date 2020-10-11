@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Modal, Input, PasswordInput, Button } from 'capstone-project';
 import { motion } from 'framer-motion';
 import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
@@ -9,19 +8,13 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import styled from 'styled-components';
 
 import { PageTransition } from '../../components';
-import {
-  CreationMenuContainer,
-  FeedContainer,
-  DefaultCardContainer,
-  BacklogCardContainer,
-} from '../../containers';
+import * as Container from '../../containers';
 import { getBoardsAPI, getCardsAPI, clearBoard } from '../../redux/actions/boards.action';
 import { updateCardAPI, clearCards } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultBoard } from '../../utils/defaults-json-cards';
 import { icons, images } from '../../utils/importAll';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,7 +26,6 @@ const Board = ({ history }: BoardPageProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
-  const boards = useSelector((state: RootStoreType) => state.boards.boards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -46,14 +38,6 @@ const Board = ({ history }: BoardPageProps) => {
     removeCard: false,
     fastCard: false,
   });
-  const [boardTitle, setBoardTitle] = useState('Título do Board');
-  const [boardDescription, setBoardDescription] = useState('Descrição do Board');
-  const [selectedBoard, setSelectedBoard] = useState<
-    Interface.UserBoards | Interface.CreateUserBoards
-  >(defaultBoard);
-  const [userName, setUserName] = useState(user.name || 'Nome');
-  const [userAbout, setUserAbout] = useState(user.about || 'Descrição');
-  const [userImage, setUserImage] = useState(user.image || 'Url da Imagem');
 
   const handleLogout = () => {
     toast.dark('Efetuando logout...  vamos sentir sua falta! 😭', {
@@ -200,13 +184,28 @@ const Board = ({ history }: BoardPageProps) => {
           </Bar>
         </TopContainer>
 
+        <Container.EditUserModalContainer
+          showEditUser={showEditUser}
+          setShowEditUser={setShowEditUser}
+          setShowEditModal={setShowEditModal}
+          history={history}
+        />
+
+        <Container.EditBoardModalContainer
+          setShowEditModal={setShowEditModal}
+          showBoardModal={showBoardModal}
+          showEditModal={showEditModal}
+          setShowBoardModal={setShowBoardModal}
+          history={history}
+        />
+
         <DragScroll
           ignoreElements=".DefaultCard, .CardContainer, .FeedContainer, .CreationMenu"
           hideScrollbars={false}
           className="container">
           <InnerBoardContainer>
             <SideMenuContainer drag dragMomentum={false}>
-              <CreationMenuContainer
+              <Container.CreationMenuContainer
                 className="CreationMenu"
                 setSelectedCard={setSelectedCard}
                 selectedCard={selectedCard}
@@ -214,26 +213,25 @@ const Board = ({ history }: BoardPageProps) => {
               />
             </SideMenuContainer>
 
-            <FeedBox className="FeedContainer" drag dragMomentum={false}>
-              <FeedContainer />
+            <FeedBox drag dragMomentum={false}>
+              <Container.FeedContainer />
             </FeedBox>
-            <div className="DefaultCard">
-              {cards &&
-                cards.map((card: Interface.CardInterface, key: number) => (
-                  <DefaultCardContainer
-                    key={key}
-                    card={card}
-                    showEditCard={showEditCard}
-                    setCurrentCard={setCurrentCard}
-                    setShowEditCard={setShowEditCard}
-                    selectedCard={selectedCard}
-                    history={history}
-                  />
-                ))}
-            </div>
 
-            <CardContainer className="CardContainer">
-              <BacklogCardContainer
+            {cards &&
+              cards.map((card: Interface.CardInterface, key: number) => (
+                <Container.DefaultCardContainer
+                  key={key}
+                  card={card}
+                  showEditCard={showEditCard}
+                  setCurrentCard={setCurrentCard}
+                  setShowEditCard={setShowEditCard}
+                  selectedCard={selectedCard}
+                  history={history}
+                />
+              ))}
+
+            <CardContainer>
+              <Container.BacklogCardContainer
                 closeDataPass={{ showEditCard, setShowEditCard, currentCard }}
               />
             </CardContainer>
@@ -468,123 +466,6 @@ const ProfileIcon = styled.div`
       width: 55px;
       height: 55px;
     }
-  }
-`;
-
-const CardModal = styled(Modal)`
-  div {
-    &:last-child {
-      padding: 5px !important;
-    }
-  }
-`;
-
-const MenuModal = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const CardModalButton = styled.button`
-  background-color: var(--complement-color-0);
-  color: var(--color-primary-4);
-  width: 90px;
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  margin: 5px;
-
-  :hover {
-    background-color: var(--complement-color-1);
-    cursor: pointer;
-    font-weight: bold;
-    border-top: none;
-  }
-
-  :active {
-    opacity: 0.5;
-  }
-`;
-
-const CardModalSection = styled.div`
-  color: var(--color-primary-4);
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  @media (min-height: 768px) and (min-width: 968px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 50px;
-
-  div {
-    padding: 10px;
-    &:nth-child(4) {
-      margin-right: 17px;
-    }
-    input {
-      font-size: 1.8rem;
-      padding: 0px 10px;
-    }
-    svg {
-      width: 1.8rem;
-    }
-  }
-
-  button {
-    border-radius: 3px;
-    font-size: 2.6rem;
-    margin-top: 10px;
-    height: 50px;
-    width: 200px;
-
-    :hover {
-      color: var(--complement-color-0);
-    }
-  }
-
-  button:nth-child(3) {
-    background-color: var(--complement-color-0);
-    :hover {
-      background-color: var(--color-primary-4);
-    }
-  }
-`;
-
-const ModalContent = styled.div`
-  background-color: #fff;
-  padding: 10px;
-  width: 100%;
-  max-width: 230px;
-  min-width: 230px;
-  margin: 10px 0;
-
-  h2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-`;
-
-const CardModalDescription = styled.p`
-  margin: 5px;
-  @media (min-height: 768px) and (min-width: 968px) {
-    display: inline-block;
-    font-size: 12px;
   }
 `;
 
