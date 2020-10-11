@@ -21,6 +21,7 @@ interface DefaultCardProps {
   setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
   setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
   history: History<LocationState>;
+  className: string;
 }
 
 const DefaultCardContainer = ({
@@ -30,6 +31,7 @@ const DefaultCardContainer = ({
   setShowEditCard,
   selectedCard,
   history,
+  className,
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -91,6 +93,7 @@ const DefaultCardContainer = ({
 
   return (
     <DefaultCard
+      className={className}
       card={card}
       user={user}
       showEditCard={showEditCard}

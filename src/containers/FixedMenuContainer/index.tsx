@@ -33,8 +33,8 @@ const FixedMenuContainer = ({
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleLogout = () => {
-    toast('Saindo... vamos sentir sua falta! 😭', {
-      position: 'top-left',
+    toast.dark('Saindo... vamos sentir sua falta! 😭', {
+      position: 'top-center',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -62,8 +62,8 @@ const FixedMenuContainer = ({
   };
 
   const handlerSaveBoard = () => {
-    toast('Salvando seu board...', {
-      position: 'top-left',
+    toast.dark('Salvando seu board...', {
+      position: 'top-center',
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,

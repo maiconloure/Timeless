@@ -57,6 +57,12 @@ const Board = ({ history }: BoardPageProps) => {
     }
   }, [localStorage.Status]);
 
+  useEffect(() => {
+    if (!localStorage.service) {
+      history.push('/');
+    }
+  });
+
   return (
     <PageTransition>
       <St.Notification>
@@ -105,13 +111,14 @@ const Board = ({ history }: BoardPageProps) => {
               />
             </St.SideMenuContainer>
 
-            <St.FeedBox drag dragMomentum={false}>
+            <St.FeedBox drag dragMomentum={false} className="FeedContainer">
               <Container.FeedContainer />
             </St.FeedBox>
 
             {cards &&
               cards.map((card: Interface.CardInterface, key: number) => (
                 <Container.DefaultCardContainer
+                  className="DefaultCard"
                   key={key}
                   card={card}
                   showEditCard={showEditCard}
@@ -122,7 +129,7 @@ const Board = ({ history }: BoardPageProps) => {
                 />
               ))}
 
-            <St.CardContainer>
+            <St.CardContainer className="CardContainer">
               <Container.BacklogCardContainer
                 data={{ showEditCard, setShowEditCard, currentCard }}
               />

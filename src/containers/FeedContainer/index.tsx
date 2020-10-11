@@ -7,7 +7,6 @@ import { RootStoreType } from '../../redux/store/store';
 
 const FeedContainer = () => {
   const actions = useSelector((state: RootStoreType) => state.feed.actions);
-
   return <FeedCard prop={actions} />;
 };
 

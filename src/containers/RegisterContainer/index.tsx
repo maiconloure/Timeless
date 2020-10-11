@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Register from '../../pages/Landing/Register';
 import { registerUser } from '../../redux/actions/service.action';
+import { RootStoreType } from '../../redux/store/store';
 
 interface RegisterContainerProps {
   handleError: (message: string) => void;
@@ -22,6 +24,7 @@ const RegisterContainer = ({
   setHandleForm,
 }: RegisterContainerProps) => {
   const dispatch = useDispatch();
+  const status = useSelector((state: RootStoreType) => state.service.status);
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
 
   useEffect(() => {
@@ -58,10 +61,17 @@ const RegisterContainer = ({
 
   const OnFinishRegister = (data: any) => {
     dispatch(registerUser({ name: data.name, email: data.email, password: data.password }));
-    if (localStorage.getItem('Error') === '400') {
+  };
+
+  useEffect(() => {
+    if (status !== 200 && status !== 0) {
       handleError('Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.');
     }
-  };
+  }, [status]);
+
+  const handleChangeName = (evt: any) => setValue('name', evt.currentTarget.value);
+  const handleChangeEmail = (evt: any) => setValue('email', evt.currentTarget.value);
+  const handleChangePassword = (evt: any) => setValue('password', evt.currentTarget.value);
 
   return (
     <Register
@@ -70,8 +80,10 @@ const RegisterContainer = ({
       setHandleForm={setHandleForm}
       handleSubmit={handleSubmit}
       OnFinishRegister={OnFinishRegister}
-      setValue={setValue}
       errors={errors}
+      handleChangeName={handleChangeName}
+      handleChangeEmail={handleChangeEmail}
+      handleChangePassword={handleChangePassword}
     />
   );
 };

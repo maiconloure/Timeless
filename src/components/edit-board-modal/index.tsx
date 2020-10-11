@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, Button } from 'capstone-project';
 import React from 'react';
 
@@ -8,8 +9,8 @@ import * as St from '../EditModalStyles';
 interface EditBoardModalProps {
   boards: Interface.UserBoards[];
   values: {
-    boardTitle: string;
-    boardDescription: string;
+    boardTitle: any;
+    boardDescription: any;
   };
   showModal: {
     showEditModal: boolean;

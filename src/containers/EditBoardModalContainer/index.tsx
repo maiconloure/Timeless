@@ -57,8 +57,8 @@ const EditBoardModalContainer = ({
       dispatch(updateBoardAPI({ token, board: newBoard, history }));
     }
 
-    setBoardTitle('Título do Board');
-    setBoardDescription('Descrição do Board');
+    setBoardTitle(boardTitle);
+    setBoardDescription(boardDescription);
     setShowEditModal(false);
   };
 
@@ -83,9 +83,9 @@ const EditBoardModalContainer = ({
     dispatch(deleteBoardAPI(board, token, history));
   };
 
-  const handlerTitle = (text: string) => setBoardTitle(text);
+  const handlerTitle = (event: any) => setBoardTitle(event.currentTarget.value);
 
-  const handlerDescription = (text: string) => setBoardDescription(text);
+  const handlerDescription = (event: any) => setBoardDescription(event.currentTarget.value);
 
   return (
     <EditBoardModal

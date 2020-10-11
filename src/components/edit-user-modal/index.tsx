@@ -11,9 +11,9 @@ interface EditUserModalProps {
   userAbout: string;
   userImage: string;
   submitNotification: () => void;
-  handleUserName: (value: any) => void;
-  handleUserAbout: (value: any) => void;
-  handleUserImage: (value: any) => void;
+  handleUserName: (evt: any) => void;
+  handleUserAbout: (evt: any) => void;
+  handleUserImage: (evt: any) => void;
 }
 
 const EditUserModal = ({

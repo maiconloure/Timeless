@@ -36,10 +36,7 @@ const service = (state = initialState, action: ServiceAction): PropsLogin => {
       return { ...state, user: action.payload };
 
     case TYPE.UPDATE_STATUS:
-      localStorage.setItem(
-        'status',
-        JSON.stringify({ ...state, status: action.payload } || initialState)
-      );
+      localStorage.setItem('status', JSON.stringify({ status: action.payload } || initialState));
       return { ...state, status: action.payload };
 
     default:

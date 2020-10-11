@@ -14,8 +14,10 @@ interface RegisterProps {
   setHandleForm: any;
   handleSubmit: any;
   OnFinishRegister: (data: any) => void;
-  setValue: any;
   errors: any;
+  handleChangeName: (evt: any) => void;
+  handleChangeEmail: (evt: any) => void;
+  handleChangePassword: (evt: any) => void;
 }
 
 const Register = ({
@@ -24,8 +26,10 @@ const Register = ({
   setHandleForm,
   handleSubmit,
   OnFinishRegister,
-  setValue,
   errors,
+  handleChangeName,
+  handleChangeEmail,
+  handleChangePassword,
 }: RegisterProps) => {
   return (
     <>
@@ -67,7 +71,7 @@ const Register = ({
               placeholder="nome"
               width={windowSize.width < 550 ? '300px' : '400px'}
               height={windowSize.height > 550 ? '50px' : '40px'}
-              onTextChange={(evt: any) => setValue('name', evt.currentTarget.value)}
+              onTextChange={handleChangeName}
             />
             {errors.name && <St.Error>{errors.name.message}</St.Error>}
           </St.RegisterForm>
@@ -78,7 +82,7 @@ const Register = ({
               placeholder="email"
               width={windowSize.width < 550 ? '300px' : '400px'}
               height={windowSize.height > 550 ? '50px' : '40px'}
-              onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+              onTextChange={handleChangeEmail}
             />
             {errors.email && <St.Error>{errors.email.message}</St.Error>}
           </St.RegisterForm>
@@ -88,7 +92,7 @@ const Register = ({
               placeholder="senha"
               width={windowSize.width < 550 ? '300px' : '400px'}
               height={windowSize.height > 550 ? '50px' : '40px'}
-              onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+              onTextChange={handleChangePassword}
             />
             {errors.password && <St.Error>{errors.password.message}</St.Error>}
           </St.RegisterForm>
@@ -124,7 +128,7 @@ const Register = ({
                     width="300px"
                     fontSize="2rem"
                     height="48px"
-                    onTextChange={(evt: any) => setValue('name', evt.currentTarget.value)}
+                    onTextChange={handleChangeName}
                   />
                   {errors.name && <St.RegError>{errors.name.message}</St.RegError>}
                 </St.RegForm>
@@ -136,7 +140,7 @@ const Register = ({
                     width="300px"
                     fontSize="2rem"
                     height="48px"
-                    onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+                    onTextChange={handleChangeEmail}
                   />
                   {errors.email && <St.RegError>{errors.email.message}</St.RegError>}
                 </St.RegForm>
@@ -147,7 +151,7 @@ const Register = ({
                     width="300px"
                     fontSize="2rem"
                     height="48px"
-                    onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+                    onTextChange={handleChangePassword}
                   />
                   {errors.password && <St.RegError>{errors.password.message}</St.RegError>}
                 </St.RegForm>

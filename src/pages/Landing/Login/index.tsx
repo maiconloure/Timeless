@@ -10,9 +10,10 @@ interface LoginProps {
     width: number;
     height: number;
   };
-  setValue: any;
   errors: any;
   handleForm: boolean;
+  handleChangeEmail: any;
+  handleChangePassword: any;
 }
 
 const Login = ({
@@ -20,8 +21,9 @@ const Login = ({
   handleForm,
   OnFinishLogin,
   windowSize,
-  setValue,
   errors,
+  handleChangeEmail,
+  handleChangePassword,
 }: LoginProps) => {
   return (
     <>
@@ -34,7 +36,7 @@ const Login = ({
               placeholder="email"
               width={windowSize.width < 550 ? '300px' : '400px'}
               height={windowSize.height > 550 ? '55px' : '44px'}
-              onTextChange={(evt: any) => setValue('email', evt.currentTarget.value)}
+              onTextChange={handleChangeEmail}
             />
             {errors.email && <St.Error>{errors.email.message}</St.Error>}
           </St.LoginForm>
@@ -44,7 +46,7 @@ const Login = ({
               placeholder="senha"
               width={windowSize.width < 550 ? '300px' : '400px'}
               height={windowSize.height > 550 ? '55px' : '44px'}
-              onTextChange={(evt: any) => setValue('password', evt.currentTarget.value)}
+              onTextChange={handleChangePassword}
             />
             {errors.password && <St.Error>{errors.password.message}</St.Error>}
           </St.LoginForm>

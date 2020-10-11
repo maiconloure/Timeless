@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { images } from '../../utils/importAll';
 
 export const BoardPage = styled.div`
-  background-image: url(${images.background});
+  background-image: url(https://media.giphy.com/media/MtJwM5N4fuMgw/giphy.gif);
+  background-size: cover;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -237,8 +238,8 @@ export const InnerBoardContainer = styled.div`
   margin: 5px;
   /* width: 99.4%; */
   /* height: 99%; */
-  width: 5000px;
-  height: 5000px;
+  width: 4000px;
+  height: 4000px;
 
   overflow: scroll;
 

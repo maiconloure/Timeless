@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Login from '../../pages/Landing/Login';
 import { requestLogin } from '../../redux/actions/service.action';
+import { RootStoreType } from '../../redux/store/store';
 
 interface LoginContainerProps {
   handleError: (message: string) => void;
@@ -16,8 +18,7 @@ interface LoginContainerProps {
 
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();
-  // const status = useSelector((state: RootStoreType) => state.service.status);
-
+  const status = useSelector((state: RootStoreType) => state.service.status);
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
     register('password', {
       required: 'digite sua senha',
       pattern: {
-        value: /^.{5,}$/,
+        value: /^.{3,}$/,
         message: 'senha inválida',
       },
     });
@@ -44,22 +45,26 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
 
   const OnFinishLogin = (data: any) => {
     dispatch(requestLogin({ email: data.email, password: data.password }));
+  };
 
-    if (localStorage.Status === '400') {
-      console.log('CHAMADO1');
-
+  useEffect(() => {
+    if (status !== 200 && status !== 0) {
       handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
     }
-  };
+  }, [status]);
+
+  const handleChangeEmail = (evt: any) => setValue('email', evt.currentTarget.value);
+  const handleChangePassword = (evt: any) => setValue('password', evt.currentTarget.value);
 
   return (
     <Login
       handleSubmit={handleSubmit}
       OnFinishLogin={OnFinishLogin}
       windowSize={windowSize}
-      setValue={setValue}
       errors={errors}
       handleForm={handleForm}
+      handleChangeEmail={handleChangeEmail}
+      handleChangePassword={handleChangePassword}
     />
   );
 };

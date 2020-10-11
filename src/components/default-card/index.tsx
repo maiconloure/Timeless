@@ -26,6 +26,7 @@ interface DefaultCardProps {
   removeCard: any;
   creationCard: any;
   DoubleClick: any;
+  className: string;
 }
 
 const DefaultCard = ({
@@ -44,9 +45,10 @@ const DefaultCard = ({
   removeCard,
   creationCard,
   DoubleClick,
+  className,
 }: DefaultCardProps) => {
   return (
-    <CardContainer onDoubleClick={DoubleClick}>
+    <CardContainer onDoubleClick={DoubleClick} className={className}>
       <motion.div drag dragMomentum={false} onDragEnd={onDragEndFunction} style={{ x, y }}>
         <Card>
           <CardInside>

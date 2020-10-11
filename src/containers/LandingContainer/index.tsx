@@ -19,7 +19,6 @@ const LandingContainer = ({ history }: LandingContainerProps) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
   window.onresize = () => {
     setWindowSize({
       width: window.innerWidth,

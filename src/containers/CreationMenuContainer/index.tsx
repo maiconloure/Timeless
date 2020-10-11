@@ -40,7 +40,6 @@ const CreationMenuContainer = ({
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const random = () => Math.random() * (600 - 200) + 200;
-
   defaultCard.position = {
     x: random() + 400,
     y: random(),

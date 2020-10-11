@@ -45,9 +45,9 @@ const EditUserModalContainer = ({
     setShowEditModal(false);
   };
 
-  const handleUserName = (value: any) => setUserName(value);
-  const handleUserAbout = (value: any) => setUserAbout(value);
-  const handleUserImage = (value: any) => setUserImage(value);
+  const handleUserName = (evt: any) => setUserName(evt.currentTarget.value);
+  const handleUserAbout = (evt: any) => setUserAbout(evt.currentTarget.value);
+  const handleUserImage = (evt: any) => setUserImage(evt.currentTarget.value);
 
   return (
     <EditUserModal
