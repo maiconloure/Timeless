@@ -45,7 +45,7 @@ const Landing = ({ history }: LandingPageProps) => {
   };
 
   const OnFinishLogin = () => {
-    console.log('OnFinishLogin');
+    console.log('OnFinishLogin', { email, password });
     dispatch(requestLogin({ email, password }));
   };
 
@@ -81,13 +81,13 @@ const Landing = ({ history }: LandingPageProps) => {
                 placeholder="email"
                 width={windowSize.width < 550 ? '300px' : '400px'}
                 height={windowSize.height > 550 ? '55px' : '44px'}
-                onTextChange={(evt: any) => setEmail(evt)}
+                onTextChange={(evt: any) => setEmail(evt.currentTarget.value)}
               />
               <PasswordInput
                 placeholder="senha"
                 width={windowSize.width < 550 ? '300px' : '400px'}
                 height={windowSize.height > 550 ? '55px' : '44px'}
-                onTextChange={(evt: any) => setPassword(evt)}
+                onTextChange={(evt: any) => setPassword(evt.currentTarget.value)}
               />
               <div>
                 <Button
@@ -149,20 +149,20 @@ const Landing = ({ history }: LandingPageProps) => {
                 placeholder="nome"
                 width={windowSize.width < 550 ? '300px' : '400px'}
                 height={windowSize.height > 550 ? '50px' : '40px'}
-                onTextChange={(evt: any) => setName(evt)}
+                onTextChange={(evt: any) => setName(evt.currentTarget.value)}
               />
               <Input
                 type="email"
                 placeholder="email"
                 width={windowSize.width < 550 ? '300px' : '400px'}
                 height={windowSize.height > 550 ? '50px' : '40px'}
-                onTextChange={(evt: any) => setEmail(evt)}
+                onTextChange={(evt: any) => setEmail(evt.currentTarget.value)}
               />
               <PasswordInput
                 placeholder="senha"
                 width={windowSize.width < 550 ? '300px' : '400px'}
                 height={windowSize.height > 550 ? '50px' : '40px'}
-                onTextChange={(evt: any) => setPassword(evt)}
+                onTextChange={(evt: any) => setPassword(evt.currentTarget.value)}
               />
               <Button
                 fontSize={windowSize.height > 550 ? '3.2rem' : '2.8rem'}
@@ -190,7 +190,7 @@ const Landing = ({ history }: LandingPageProps) => {
                       width="300px"
                       fontSize="2rem"
                       height="48px"
-                      onTextChange={(evt: any) => setName(evt)}
+                      onTextChange={(evt: any) => setName(evt.currentTarget.value)}
                     />
                     <Input
                       type="email"
@@ -198,14 +198,14 @@ const Landing = ({ history }: LandingPageProps) => {
                       width="300px"
                       fontSize="2rem"
                       height="48px"
-                      onTextChange={(evt: any) => setEmail(evt)}
+                      onTextChange={(evt: any) => setEmail(evt.currentTarget.value)}
                     />
                     <PasswordInput
                       placeholder="senha"
                       width="300px"
                       fontSize="2rem"
                       height="48px"
-                      onTextChange={(evt: any) => setPassword(evt)}
+                      onTextChange={(evt: any) => setPassword(evt.currentTarget.value)}
                     />
                     <Button fontSize="2.6rem" height="44px" weight={600} onClick={OnFinishRegister}>
                       Começar
