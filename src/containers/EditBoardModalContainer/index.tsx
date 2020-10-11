@@ -15,18 +15,17 @@ import { RootStoreType } from '../../redux/store/store';
 import { defaultBoard } from '../../utils/defaults-json-cards';
 
 interface EditBoardModalContainerProps {
-  showBoardModal: boolean;
-  showEditModal: boolean;
-  setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
+  data: {
+    showEditModal: boolean;
+    showBoardModal: boolean;
+    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
+  };
   history: History<LocationState>;
 }
 
 const EditBoardModalContainer = ({
-  showBoardModal,
-  showEditModal,
-  setShowEditModal,
-  setShowBoardModal,
+  data: { showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },
   history,
 }: EditBoardModalContainerProps) => {
   const dispatch = useDispatch();

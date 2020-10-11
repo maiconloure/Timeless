@@ -12,21 +12,20 @@ import { fastCard } from '../../utils/defaults-json-cards';
 
 interface DefaultCardProps {
   card: CardInterface;
-  showEditCard: boolean;
-  setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
-  setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedCard: {
-    removeCard: boolean;
-    fastCard: boolean;
+  data: {
+    showEditCard: boolean;
+    selectedCard: {
+      removeCard: boolean;
+      fastCard: boolean;
+    };
+    setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
+    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
 
 const DefaultCardContainer = ({
+  data: { showEditCard, setCurrentCard, setShowEditCard, selectedCard },
   card,
-  showEditCard,
-  setCurrentCard,
-  setShowEditCard,
-  selectedCard,
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);

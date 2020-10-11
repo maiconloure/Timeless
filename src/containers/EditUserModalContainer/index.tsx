@@ -8,16 +8,16 @@ import { updateUserAPI } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 
 interface EditUserModalContainerProps {
-  showEditUser: boolean;
-  setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+  data: {
+    showEditUser: boolean;
+    setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+  };
   history: History<LocationState>;
 }
 
 const EditUserModalContainer = ({
-  showEditUser,
-  setShowEditUser,
-  setShowEditModal,
+  data: { showEditUser, setShowEditUser, setShowEditModal },
   history,
 }: EditUserModalContainerProps) => {
   const dispatch = useDispatch();
