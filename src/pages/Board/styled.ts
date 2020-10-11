@@ -1,8 +1,11 @@
-import { Modal } from 'capstone-project';
 import { motion } from 'framer-motion';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import styled from 'styled-components';
 
+import { images } from '../../utils/importAll';
+
 export const BoardPage = styled.div`
+  background-image: url(${images.background});
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -25,15 +28,9 @@ export const Notification = styled.div`
   z-index: 999999999;
 
   div {
-    font-weight: 700;
-    color: #000;
+    font-weight: 800;
+    color: #fff;
   }
-`;
-
-export const Background = styled.img`
-  grid-area: board;
-  height: 100%;
-  background-repeat: repeat;
 `;
 
 export const TopContainer = styled.div`
@@ -232,132 +229,35 @@ export const ProfileIcon = styled.div`
   }
 `;
 
-export const CardModal = styled(Modal)`
-  div {
-    &:last-child {
-      padding: 5px !important;
-    }
-  }
-`;
-
-export const MenuModal = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const CardModalButton = styled.button`
-  background-color: var(--complement-color-0);
-  color: var(--color-primary-4);
-  width: 90px;
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  margin: 5px;
-
-  :hover {
-    background-color: var(--complement-color-1);
-    cursor: pointer;
-    font-weight: bold;
-    border-top: none;
-  }
-
-  :active {
-    opacity: 0.5;
-  }
-`;
-
-export const CardModalSection = styled.div`
-  color: var(--color-primary-4);
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  @media (min-height: 768px) and (min-width: 968px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 50px;
-
-  div {
-    padding: 10px;
-    &:nth-child(4) {
-      margin-right: 17px;
-    }
-    input {
-      font-size: 1.8rem;
-      padding: 0px 10px;
-    }
-    svg {
-      width: 1.8rem;
-    }
-  }
-
-  button {
-    border-radius: 3px;
-    font-size: 2.6rem;
-    margin-top: 10px;
-    height: 50px;
-    width: 200px;
-
-    :hover {
-      color: var(--complement-color-0);
-    }
-  }
-
-  button:nth-child(3) {
-    background-color: var(--complement-color-0);
-    :hover {
-      background-color: var(--color-primary-4);
-    }
-  }
-`;
-
-export const ModalContent = styled.div`
-  background-color: #fff;
-  padding: 10px;
-  width: 100%;
-  max-width: 230px;
-  min-width: 230px;
-  margin: 10px 0;
-
-  h2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-`;
-
-export const CardModalDescription = styled.p`
-  margin: 5px;
-  @media (min-height: 768px) and (min-width: 968px) {
-    display: inline-block;
-    font-size: 12px;
-  }
-`;
-
 export const InnerBoardContainer = styled.div`
   position: relative;
   grid-area: board;
   align-self: center;
   justify-self: center;
-  margin: 10px;
-  width: 99.4%;
-  height: 100%;
+  margin: 5px;
+  /* width: 99.4%; */
+  /* height: 99%; */
+  width: 5000px;
+  height: 5000px;
+
   overflow: scroll;
+
+  &:active {
+    cursor: grabbing;
+  }
+`;
+
+export const DragScroll = styled(ScrollContainer)`
+  grid-area: board;
+  /* position: absolute; */
+  height: calc(100vh - 20px);
+  max-height: 100vh;
+  width: 100vw !important;
+  max-width: 100vw !important;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 export const SideMenuContainer = styled(motion.div)`
@@ -371,6 +271,10 @@ export const FeedBox = styled(motion.div)`
   position: absolute;
   top: 330px;
   left: 40px;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 export const CardContainer = styled(motion.div)`
