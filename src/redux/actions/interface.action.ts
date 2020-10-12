@@ -21,7 +21,7 @@ export interface UserInterface {
 
 export interface PropsLogin {
   user: UserInterface;
-  status: number;
+  status: number | string;
   token: string;
 }
 
@@ -42,7 +42,7 @@ export interface PropsResponseRegister {
   data: {
     accessToken: string;
   };
-  status: number;
+  status: number | string;
 }
 
 // --------------INTERFACE BOARD--------------
@@ -50,6 +50,7 @@ export interface PropsResponseRegister {
 export interface PropsGetUserBoards {
   user: UserInterface;
   token: string;
+  history: any;
 }
 
 export interface DataBoard {
@@ -145,6 +146,7 @@ export interface CardState {
 export interface PropsUpdatedCard {
   token: string;
   card: CardInterface;
+  history: any;
 }
 
 export interface PropsCreatedCard {
@@ -152,6 +154,7 @@ export interface PropsCreatedCard {
   user: UserInterface;
   token: string;
   card: CardCreateInterface;
+  history: any;
 }
 
 // --------------ACTIONS INTERFACES--------------
@@ -170,6 +173,11 @@ export interface LogoutAction {
 export interface UpdateUserAction {
   type: typeof TYPE.UPDATE_USER;
   payload: UserInterface;
+}
+
+export interface UpdateStatusAction {
+  type: typeof TYPE.UPDATE_STATUS;
+  payload: number | string;
 }
 
 // ACTIONS INTERFACES BOARDS

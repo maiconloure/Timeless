@@ -1,6 +1,7 @@
 import React, { useState as useStateMock } from 'react';
-import BacklogCard from '../';
 import renderer from 'react-test-renderer';
+
+import BacklogCard from '..';
 
 // jest.mock('react', () => ({
 //   ...jest.requireActual('react'),

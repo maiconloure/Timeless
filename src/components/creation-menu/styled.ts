@@ -7,8 +7,13 @@ export const Menu = styled.div`
   color: #fff;
   padding-bottom: 1px;
 
+  &:active {
+    cursor: grabbing;
+  }
+
   .tooltip {
     &:hover .tooltiptext {
+      transition-delay: 0.5s;
       visibility: visible;
     }
   }
@@ -93,6 +98,14 @@ export const MenuOptions = styled.div<{ selectedCard: any }>`
   }
 
   ${(props) =>
+    props.selectedCard.group &&
+    ` img#group {
+      -webkit-filter: drop-shadow(5px 5px 5px gray);
+      filter: drop-shadow(5px 5px 5px gray);
+      transform: scale(1.2);
+  }`}
+
+  ${(props) =>
     props.selectedCard.removeCard &&
     ` img#trash {
       -webkit-filter: drop-shadow(5px 5px 5px gray);
@@ -103,6 +116,39 @@ export const MenuOptions = styled.div<{ selectedCard: any }>`
   ${(props) =>
     props.selectedCard.fastCard &&
     ` img#fast {
+      -webkit-filter: drop-shadow(5px 5px 5px gray);
+      filter: drop-shadow(5px 5px 5px gray);
+      transform: scale(1.2);
+  }`}
+
+${(props) =>
+    props.selectedCard.addText &&
+    ` img#addText {
+      -webkit-filter: drop-shadow(5px 5px 5px gray);
+      filter: drop-shadow(5px 5px 5px gray);
+      transform: scale(1.2);
+  }`}
+
+${(props) =>
+    props.selectedCard.connect &&
+    ` img#connect {
+      -webkit-filter: drop-shadow(5px 5px 5px gray);
+      filter: drop-shadow(5px 5px 5px gray);
+      transform: scale(1.2);
+  }`}
+
+${(props) =>
+    props.selectedCard.pin &&
+    ` img#pin {
+      -webkit-filter: drop-shadow(5px 5px 5px gray);
+      filter: drop-shadow(5px 5px 5px gray);
+      transform: scale(1.2);
+  }`}
+  
+
+${(props) =>
+    props.selectedCard.blockedCard &&
+    ` img#blocked {
       -webkit-filter: drop-shadow(5px 5px 5px gray);
       filter: drop-shadow(5px 5px 5px gray);
       transform: scale(1.2);

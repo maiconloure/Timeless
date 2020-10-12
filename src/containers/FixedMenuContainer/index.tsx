@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,7 +7,7 @@ import { toast } from 'react-toastify';
 import { FixedMenu } from '../../components';
 import { clearBoard } from '../../redux/actions/boards.action';
 import { updateCardAPI, clearCards } from '../../redux/actions/cards.action';
-import { getNewAction } from '../../redux/actions/feed.action';
+import { clearFeed, getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -32,16 +33,15 @@ const FixedMenuContainer = ({
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleLogout = () => {
-    toast('Saindo... vamos sentir sua falta! 😭', {
-      position: 'top-left',
-      autoClose: 3000,
+    toast.dark('Saindo... vamos sentir sua falta! 😭', {
+      position: 'top-center',
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
     });
-
     dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
     setToggleMenu(!toggleMenu);
 
@@ -49,6 +49,7 @@ const FixedMenuContainer = ({
       history.push('/');
       dispatch(clearBoard());
       dispatch(clearCards());
+      dispatch(clearFeed());
       dispatch(logout());
     }, 3300);
   };
@@ -56,13 +57,13 @@ const FixedMenuContainer = ({
   const saveChanges = () => {
     cards.forEach((card: Interface.CardInterface) => {
       // TODO ==> Filtrar Cards Não Modificados
-      dispatch(updateCardAPI({ card, token }));
+      dispatch(updateCardAPI({ card, token, history }));
     });
   };
 
   const handlerSaveBoard = () => {
-    toast('Salvando seu board...', {
-      position: 'top-left',
+    toast.dark('Salvando seu board...', {
+      position: 'top-center',
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,

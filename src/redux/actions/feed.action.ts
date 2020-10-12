@@ -3,14 +3,19 @@ import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import { RootStoreType } from '../store/store';
+import * as TYPE from './type.action';
 export const NEW_ACTION = 'NEW_ACTION';
 
 export interface feedNewAction {
   newAction: string;
 }
 
-interface GetAction {
-  type: typeof NEW_ACTION;
+export interface clearFeed {
+  type: typeof TYPE.LOGOUT;
+}
+
+export interface GetAction {
+  type: typeof TYPE.NEW_ACTION;
   payload: string;
 }
 
@@ -22,9 +27,15 @@ export const getNewAction = (
 
 export const newFeedAction = (newAction: string): GetAction => {
   return {
-    type: NEW_ACTION,
+    type: TYPE.NEW_ACTION,
     payload: newAction,
   };
 };
 
-export type feedAction = GetAction;
+export const clearFeed = (): clearFeed => {
+  return {
+    type: TYPE.LOGOUT,
+  };
+};
+
+export type feedAction = GetAction | clearFeed;

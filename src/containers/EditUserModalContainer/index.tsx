@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { EditUserModal } from '../../components';
@@ -38,6 +38,7 @@ const EditUserModalContainer = ({
           about: userAbout,
         },
         token,
+        history,
       })
     );
 

@@ -2,6 +2,7 @@
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
+import expiredSession from '../../utils/expire-session';
 import { RootStoreType } from '../store/store';
 import * as Interface from './interface.action';
 import * as TYPE from './type.action';
@@ -15,6 +16,7 @@ const createHeader = (token: string) => ({
 export const updateCardAPI = ({
   token,
   card,
+  history,
 }: Interface.PropsUpdatedCard): ThunkAction<
   void,
   RootStoreType,
@@ -31,11 +33,12 @@ export const updateCardAPI = ({
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
       }
     })
-    .catch((error) =>
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
       console.error(
         `updateCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+      );
+    });
 };
 
 export const createCardAPI = ({
@@ -43,6 +46,7 @@ export const createCardAPI = ({
   token,
   user,
   card,
+  history,
 }: Interface.PropsCreatedCard): ThunkAction<
   void,
   RootStoreType,
@@ -60,16 +64,18 @@ export const createCardAPI = ({
         dispatch(createCard(response.data));
       }
     })
-    .catch((error) =>
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
       console.error(
         `createCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+      );
+    });
 };
 
 export const deleteCardAPI = ({
   card,
   token,
+  history,
 }: Interface.PropsUpdatedCard): ThunkAction<
   void,
   RootStoreType,
@@ -86,11 +92,12 @@ export const deleteCardAPI = ({
         console.warn(`updateCardAPI ==> Status: ${response.status}`);
       }
     })
-    .catch((error) =>
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
       console.error(
         `deleteCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+      );
+    });
 };
 
 const updateCard = (card: Interface.CardInterface): Interface.UpdateCardAction => ({

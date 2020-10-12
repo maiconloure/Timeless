@@ -3,9 +3,9 @@ import CreationMenu from './creation-menu';
 import DefaultCard from './default-card';
 import EditBoardModal from './edit-board-modal';
 import EditUserModal from './edit-user-modal';
+import Feedback from './feedback';
 import FixedMenu from './fixed-menu';
 import PageTransition from './pageTransition';
-
 export {
   FixedMenu,
   PageTransition,
@@ -14,4 +14,5 @@ export {
   CreationMenu,
   DefaultCard,
   BacklogCard,
+  Feedback,
 };
