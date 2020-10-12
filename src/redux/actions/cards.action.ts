@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
