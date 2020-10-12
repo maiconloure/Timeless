@@ -2,34 +2,10 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { CardInterface, UserInterface } from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
+import { DefaultCardProps } from '../ComponentsInterface';
 import FastCard from './fast-card';
 import * as St from './styled';
-
-interface DefaultCardProps {
-  card: CardInterface;
-  user: UserInterface;
-  showEditCard: boolean;
-  setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
-  setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
-  onDragEndFunction: () => void;
-  x: any;
-  y: any;
-  showWarning: boolean;
-  setShowWarning: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedCard: {
-    removeCard: boolean;
-    fastCard: boolean;
-    blockedCard: boolean;
-  };
-  handleCheckBox: any;
-  removeCard: any;
-  creationCard: any;
-  DoubleClick: any;
-  className: string;
-  blockCard: (res: boolean) => void;
-}
 
 const DefaultCard = ({
   card,

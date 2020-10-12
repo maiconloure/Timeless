@@ -1,25 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
-import * as Interface from '../../redux/actions/interface.action';
 import { icons, images } from '../../utils/importAll';
+import { FixedMenuProps } from '../ComponentsInterface';
 import * as St from './styled';
-
-interface FixedMenuProps {
-  values: {
-    user: Interface.UserInterface;
-    currentBoard: Interface.UserBoards;
-    toggleMenu: boolean;
-  };
-  handlers: {
-    handleLogout: () => void;
-    handlerSaveBoard: () => void;
-    handleOpenEditProfile: () => void;
-    handleOpenEditBoard: () => void;
-    handlerToggleBoard: () => any;
-    handleToggleMenu: () => any;
-  };
-}
 
 const FixedMenu = ({
   values: { user, currentBoard, toggleMenu },

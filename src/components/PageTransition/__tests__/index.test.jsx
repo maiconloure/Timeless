@@ -1,6 +1,7 @@
 import React from 'react';
-import PageTransition from '../index';
 import renderer from 'react-test-renderer';
+
+import PageTransition from '../index';
 
 describe('Snapshot', () => {
   it('renders', () => {

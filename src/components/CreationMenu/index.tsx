@@ -1,23 +1,8 @@
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
+import { CreationMenuProps } from '../ComponentsInterface';
 import * as St from './styled';
-
-interface CreationMenuProps {
-  selectedCard: {
-    removeCard: boolean;
-    fastCard: boolean;
-  };
-  groupButton: () => void;
-  createCardButton: () => void;
-  createFasterCardButton: () => void;
-  removeCardButton: () => void;
-  createTextButton: () => void;
-  connectArrowButton: () => void;
-  pinCardButton: () => void;
-  blockCardButton: () => void;
-  className: string;
-}
 
 const CreationMenu = ({
   selectedCard,

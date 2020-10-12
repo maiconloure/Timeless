@@ -1,29 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue } from 'framer-motion';
-import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import DefaultCard from '../../components/default-card';
+import { Card } from '../../components';
 import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
-import { CardInterface } from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { fastCard } from '../../utils/defaults-json-cards';
-
-interface DefaultCardProps {
-  card: CardInterface;
-  showEditCard: boolean;
-  selectedCard: {
-    removeCard: boolean;
-    fastCard: boolean;
-    blockedCard: boolean;
-  };
-  setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
-  setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
-  history: History<LocationState>;
-  className: string;
-}
+import { DefaultCardProps } from '../ContainerInterface';
 
 const DefaultCardContainer = ({
   card,
@@ -112,7 +97,7 @@ const DefaultCardContainer = ({
   };
 
   return (
-    <DefaultCard
+    <Card
       className={className}
       card={card}
       user={user}

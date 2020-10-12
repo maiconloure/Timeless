@@ -6,15 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Login from '../../pages/Landing/Login';
 import { requestLogin, updateStatus } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-
-interface LoginContainerProps {
-  handleError: (message: string) => void;
-  windowSize: {
-    width: number;
-    height: number;
-  };
-  handleForm: boolean;
-}
+import { LoginContainerProps } from '../ContainerInterface';
 
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();

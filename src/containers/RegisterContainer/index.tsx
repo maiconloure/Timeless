@@ -6,16 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Register from '../../pages/Landing/Register';
 import { registerUser, updateStatus } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-
-interface RegisterContainerProps {
-  handleError: (message: string) => void;
-  windowSize: {
-    width: number;
-    height: number;
-  };
-  handleForm: boolean;
-  setHandleForm: any;
-}
+import { RegisterContainerProps } from '../ContainerInterface';
 
 const RegisterContainer = ({
   handleError,
