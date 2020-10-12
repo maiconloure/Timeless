@@ -43,6 +43,12 @@ export const Editable = styled.div<{ blocked: any }>`
   }
 `;
 
+export const MotionBox = styled(motion.div)`
+  position: absolute;
+  width: 1%;
+  height: 1%;
+`;
+
 export const Card = styled.div`
   background-color: var(--color-background);
   color: var(--color-primary-4);
@@ -139,15 +145,24 @@ export const Description = styled.section`
   justify-content: space-between;
   background-color: #fff;
   min-height: 85px;
+  max-height: 90px;
   padding: 5px;
+  overflow: hidden;
 
   div p {
     display: block;
     max-height: 100px;
-    font-size: 1.2rem;
+    max-width: 220px;
+    font-size: 1.3rem;
     font-weight: 300;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    outline: none;
     overflow: hidden;
+    text-overflow: ellipsis;
   }
+
   div input[type='checkbox'] {
     transform: scale(2);
     margin: 10px;
@@ -156,8 +171,9 @@ export const Description = styled.section`
 `;
 
 export const DescriptionTitle = styled.h4`
-  width: 200px;
+  max-width: 220px;
   height: 1.9rem;
+  font-weight: 800;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -198,19 +214,24 @@ export const CardData = styled.div`
 export const CardButton = styled.button`
   background-color: var(--color-background);
   color: var(--color-primary-4);
+  color: #8b4513;
+  font-size: 1.8rem;
+  font-weight: 700;
   margin-left: 10px;
   padding: 2px 10px;
   outline: none;
   border: none;
   border-radius: 5px;
   position: absolute;
-  bottom: -10px;
-  width: 120px;
+  bottom: -200px;
+
+  transition: 0.2s;
 
   :hover {
     color: var(--complement-color-2);
-    font-weight: bold;
+    font-weight: 900;
     border-top: none;
+    font-size: 2.2rem;
   }
 
   :active {
