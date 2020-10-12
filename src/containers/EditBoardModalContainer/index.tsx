@@ -47,7 +47,17 @@ const EditBoardModalContainer = ({
 
   const handlerSubmitForm = () => {
     if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
+<<<<<<< HEAD
       dispatch(createBoardAPI(selectedBoard, token, user, history));
+=======
+      dispatch(
+        createBoardAPI(
+          { ...defaultBoard, title: boardTitle, description: boardDescription },
+          token,
+          user
+        )
+      );
+>>>>>>> master
     } else {
       const newBoard: any = {
         ...selectedBoard,
@@ -83,9 +93,15 @@ const EditBoardModalContainer = ({
     dispatch(deleteBoardAPI(board, token, history));
   };
 
+<<<<<<< HEAD
   const handlerTitle = (event: any) => setBoardTitle(event.currentTarget.value);
 
   const handlerDescription = (event: any) => setBoardDescription(event.currentTarget.value);
+=======
+  const handlerTitle = (evt: any) => setBoardTitle(evt.currentTarget.value);
+
+  const handlerDescription = (evt: any) => setBoardDescription(evt.currentTarget.value);
+>>>>>>> master
 
   return (
     <EditBoardModal
