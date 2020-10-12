@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 
-import { PageTransition } from '../../components';
+import { PageTransition, Feedback } from '../../components';
 import * as Container from '../../containers';
 import { getBoardsAPI, getCardsAPI } from '../../redux/actions/boards.action';
 import * as Interface from '../../redux/actions/interface.action';
@@ -14,10 +14,12 @@ import * as St from './styled';
 
 interface BoardPageProps {
   history: History<LocationState>;
+  style: any;
 }
 
 const Board = ({ history }: BoardPageProps) => {
   const dispatch = useDispatch();
+  const status = useSelector((state: RootStoreType) => state.service.status);
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
@@ -28,8 +30,13 @@ const Board = ({ history }: BoardPageProps) => {
   const [showEditUser, setShowEditUser] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
+    group: false,
     removeCard: false,
     fastCard: false,
+    addText: false,
+    connect: false,
+    pin: false,
+    blockedCard: false,
   });
 
   useEffect(() => {
@@ -41,21 +48,18 @@ const Board = ({ history }: BoardPageProps) => {
   }, [currentBoard]);
 
   useEffect(() => {
-    if (localStorage.Status && localStorage.Status === 'jwt expired') {
-      toast.dark(
-        'Sessão expirada... Redirecionando para a página inicial. Fique tranquilo seu trabalho foi salvo!',
-        {
-          position: 'top-left',
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+    if (status === 440) {
+      toast.dark('Sessão expirada, redirecionando... fique tranquilo seu trabalho foi salvo!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-  }, [localStorage.Status]);
+  }, [status]);
 
   useEffect(() => {
     if (!localStorage.service) {
@@ -69,6 +73,8 @@ const Board = ({ history }: BoardPageProps) => {
         <ToastContainer transition={Slide} />
       </St.Notification>
       <St.BoardPage>
+        <Feedback />
+
         <Container.FixedMenuContainer
           data={{
             showBoardModal,

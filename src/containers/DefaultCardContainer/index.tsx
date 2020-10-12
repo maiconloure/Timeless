@@ -17,6 +17,7 @@ interface DefaultCardProps {
   selectedCard: {
     removeCard: boolean;
     fastCard: boolean;
+    blockedCard: boolean;
   };
   setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
   setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,13 +41,13 @@ const DefaultCardContainer = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const [showWarning, setShowWarning] = useState(false);
-
   useEffect(() => {
     x.set(card.position.x);
     y.set(card.position.y);
   }, [cards.length]);
 
   const onDragEndFunction = () => {
+    console.log(card);
     dispatch(
       updateCardAPI({
         card: {
@@ -84,6 +85,25 @@ const DefaultCardContainer = ({
     );
   };
 
+  const blockCard = (res: boolean) => {
+    if (res) {
+      dispatch(getNewAction(` ${user.name} bloqueou o cartão ${card.data.title}`));
+    } else {
+      dispatch(getNewAction(` ${user.name} desbloqueou o cartão ${card.data.title}`));
+    }
+
+    dispatch(
+      updateCardAPI({
+        card: {
+          ...card,
+          data: { ...card.data, blocked: res },
+        },
+        token,
+        history,
+      })
+    );
+  };
+
   const DoubleClick = () => {
     if (!showEditCard) {
       setCurrentCard(card);
@@ -109,6 +129,7 @@ const DefaultCardContainer = ({
       removeCard={removeCard}
       creationCard={creationCard}
       DoubleClick={DoubleClick}
+      blockCard={blockCard}
     />
   );
 };

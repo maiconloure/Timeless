@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Login from '../../pages/Landing/Login';
-import { requestLogin } from '../../redux/actions/service.action';
+import { requestLogin, updateStatus } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 
 interface LoginContainerProps {
@@ -37,6 +37,7 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
         message: 'senha inválida',
       },
     });
+
     return () => {
       unregister('email');
       unregister('password');
@@ -48,12 +49,14 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
   };
 
   useEffect(() => {
-    if (status !== 200 && status !== 0) {
+    if (!handleForm && status === 400) {
       handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
+      dispatch(updateStatus(0));
     }
   }, [status]);
 
   const handleChangeEmail = (evt: any) => setValue('email', evt.currentTarget.value);
+
   const handleChangePassword = (evt: any) => setValue('password', evt.currentTarget.value);
 
   return (

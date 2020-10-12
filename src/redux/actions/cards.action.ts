@@ -34,9 +34,7 @@ export const updateCardAPI = ({
       }
     })
     .catch((error) => {
-      console.log('CATCH UPDATE CARD', error.response.data);
-      localStorage.setItem('Status', `${error.response.data}`);
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.error(
         `updateCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );
@@ -67,7 +65,7 @@ export const createCardAPI = ({
       }
     })
     .catch((error) => {
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.error(
         `createCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );
@@ -95,7 +93,7 @@ export const deleteCardAPI = ({
       }
     })
     .catch((error) => {
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.error(
         `deleteCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );

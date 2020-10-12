@@ -51,7 +51,7 @@ export const getBoardsAPI = ({
       }
     })
     .catch((error) => {
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.log(
         `getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );
@@ -78,7 +78,7 @@ export const updateBoardAPI = ({
       }
     })
     .catch((error) => {
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.error(
         `updateBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );
@@ -109,7 +109,7 @@ export const getCardsAPI = (
         }
       })
       .catch((error) => {
-        expiredSession({ error, history });
+        dispatch(expiredSession({ error, history }));
         console.error(
           `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
         );
@@ -126,8 +126,6 @@ export const createBoardAPI = (
   api
     .post(`/users/${user.id}/boards`, board, createHeader(token))
     .then((response) => {
-      localStorage.setItem('Status', `${response.status}`);
-
       if (response.status !== 201) {
         console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
@@ -137,9 +135,7 @@ export const createBoardAPI = (
       }
     })
     .catch((error) => {
-      localStorage.setItem('Status', `${error.response.status}`);
-
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.error(` ==> ERROR: ${error.response.data} Status: ${error.response.status}`);
     });
 };
@@ -150,7 +146,6 @@ export const deleteBoardAPI = (
   history: History<LocationState>
 ): ThunkAction<void, RootStoreType, unknown, Interface.DeleteBoardAction> => (dispatch) => {
   dispatch(deleteBoard(board));
-
   api
     .delete(`/boards/${board.id}`, createHeader(token))
     .then((response) => {
@@ -161,7 +156,7 @@ export const deleteBoardAPI = (
       }
     })
     .catch((error) => {
-      expiredSession({ error, history });
+      dispatch(expiredSession({ error, history }));
       console.error(
         `deleteBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
       );

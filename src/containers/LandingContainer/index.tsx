@@ -13,12 +13,14 @@ interface LandingContainerProps {
 
 const LandingContainer = ({ history }: LandingContainerProps) => {
   const [handleForm, setHandleForm] = useState(false);
+  const status = useSelector((state: RootStoreType) => state.service.status);
   const user = useSelector((state: RootStoreType) => state.service.user);
   const [currentFrame, setCurrentFrame] = useState('main');
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
   window.onresize = () => {
     setWindowSize({
       width: window.innerWidth,
@@ -29,7 +31,7 @@ const LandingContainer = ({ history }: LandingContainerProps) => {
   const handleError = (message: string) => {
     toast.error(message, {
       position: 'top-center',
-      autoClose: 2200,
+      autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

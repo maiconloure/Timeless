@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Register from '../../pages/Landing/Register';
-import { registerUser } from '../../redux/actions/service.action';
+import { registerUser, updateStatus } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 
 interface RegisterContainerProps {
@@ -31,7 +31,7 @@ const RegisterContainer = ({
     register('name', {
       required: 'digite seu nome',
       pattern: {
-        value: /^.{3,}$/,
+        value: /^.{5,}$/,
         message: 'nome inválido',
       },
     });
@@ -48,7 +48,7 @@ const RegisterContainer = ({
       required: 'digite sua senha',
       pattern: {
         value: /^.{5,}$/,
-        message: 'senha inválida',
+        message: 'senha deve possui no mínimo 5 caracteres.',
       },
     });
 
@@ -64,13 +64,16 @@ const RegisterContainer = ({
   };
 
   useEffect(() => {
-    if (status !== 200 && status !== 0) {
+    if (handleForm && status === 400) {
       handleError('Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.');
+      dispatch(updateStatus(0));
     }
   }, [status]);
 
   const handleChangeName = (evt: any) => setValue('name', evt.currentTarget.value);
+
   const handleChangeEmail = (evt: any) => setValue('email', evt.currentTarget.value);
+
   const handleChangePassword = (evt: any) => setValue('password', evt.currentTarget.value);
 
   return (

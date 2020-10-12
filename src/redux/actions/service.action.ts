@@ -30,17 +30,12 @@ export const requestLogin = ({
 
     .then((response) => {
       dispatch(updateStatus(response.status));
-      if (response.status !== 200) {
-        console.error(`requestLogin =>> ERROR: ${response.data} ${response.status}`);
-      } else {
-        console.warn(`requestLogin =>> Status: ${response.status}`);
+      if (response.status === 200) {
         dispatch(getUser(response));
       }
     })
     .catch((error) => {
       dispatch(updateStatus(error.response.status));
-      localStorage.setItem('Error', `${error.response.status}`);
-      console.error(`requestLogin =>> ERROR: ${error.response.data} ${error.response.status}`);
     });
 };
 
@@ -58,18 +53,13 @@ export const registerUser = ({
     .post('/register', { name, email, password })
     .then((response) => {
       dispatch(updateStatus(response.status));
-      localStorage.setItem('Error', `${response.status}`);
       if (response.status !== 201) {
-        console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
       } else {
-        console.warn(`registerUser =>> Status: ${response.status}`);
         dispatch(getUser(response));
       }
     })
     .catch((error) => {
       dispatch(updateStatus(error.response.status));
-      localStorage.setItem('Error', `${error.response.status}`);
-      console.error(`registerUser =>> ERROR: ${error.response.data} ${error.response.status}`);
     });
 };
 
@@ -87,10 +77,7 @@ const getUser = (
     .get(`/users/${decodedToken.sub}`, createHeader(data.data.accessToken))
     .then((response) => {
       dispatch(updateStatus(response.status));
-      if (response.status !== 200) {
-        console.error(`getUser =>> ERROR: ${response.data} ${response.status}`);
-      } else {
-        console.warn(`getUser =>> Status: ${response.status}`);
+      if (response.status === 200) {
         dispatch(
           loginAction({
             user: {
@@ -108,7 +95,6 @@ const getUser = (
     })
     .catch((error) => {
       dispatch(updateStatus(error.response.status));
-      console.error(`getUser =>> ERROR: ${error.response.data} ${error.response.status}`);
     });
 };
 
@@ -126,17 +112,9 @@ export const updateUserAPI = ({
     .patch(`/users/${user.id}`, user, createHeader(token))
     .then((response) => {
       dispatch(updateStatus(response.status));
-      if (response.status !== 200) {
-        console.error(`updateUserAPI ==> ERROR: ${response.data} Status: ${response.status}`);
-      } else {
-        console.warn(`updateUserAPI ==> Status: ${response.status}`);
-      }
     })
     .catch((error) => {
       dispatch(updateStatus(error.response.status));
-      console.error(
-        `updateUserAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      );
     });
 };
 

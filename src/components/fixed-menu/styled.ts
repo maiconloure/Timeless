@@ -1,5 +1,48 @@
 import styled from 'styled-components';
 
+export const TopContainer = styled.div`
+  grid-area: top;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  width: 100vw;
+
+  .tooltip {
+    &:hover .tooltiptext {
+      visibility: visible;
+    }
+  }
+
+  .tooltiptext {
+    font: 500 1.5rem Inter;
+    visibility: hidden;
+    min-width: 40px;
+    max-width: 160px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 4px 8px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 9999999;
+  }
+`;
+
+export const Bar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: var(--color-primary-0);
+
+  @media (min-width: 1000px) and (min-height: 768px) {
+    height: 60px;
+  }
+`;
+
 export const ProjectInfo = styled.div`
   display: flex;
   align-items: center;
@@ -18,6 +61,7 @@ export const ProjectInfo = styled.div`
 
   img {
     width: 60px;
+    border-radius: 6px;
     margin: 0 5px;
   }
 
@@ -63,10 +107,21 @@ export const ProjectInfo = styled.div`
 export const User = styled.div`
   font-family: Inter;
   font-size: 1.4rem;
-  margin: 0 4px;
+  margin: 0 10px 0 0;
+
+  h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   p {
     text-align: right;
+    font-weight: 600;
+    color: #adff2f;
+    margin: 0 4px 0 0;
   }
 
   @media (min-width: 1200px) and (min-height: 768px) {
@@ -74,7 +129,7 @@ export const User = styled.div`
       font-size: 2rem;
     }
     p {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
     }
   }
 `;
@@ -101,25 +156,6 @@ export const ProfileIcon = styled.div`
     }
   }
 `;
-export const TopContainer = styled.div`
-  grid-area: top;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  width: 100vw;
-`;
-export const Bar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 70px;
-  background-color: var(--color-primary-0);
-
-  @media (min-width: 1000px) and (min-height: 768px) {
-    height: 60px;
-  }
-`;
 
 export const UserMenu = styled.div`
   position: absolute;
@@ -141,8 +177,10 @@ export const UserInfo = styled.div`
   align-items: center;
   justify-content: flex-end;
   color: #fff;
-  width: 240px;
+  width: 260px;
+  max-width: 280;
 `;
+
 export const MenuOption = styled.div`
   border-top: 2px solid #dfe1e7;
   cursor: pointer;

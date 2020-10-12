@@ -10,20 +10,35 @@ import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
 
 const initialSelectCard = {
+  group: false,
   removeCard: false,
   fastCard: false,
+  addText: false,
+  connect: false,
+  pin: false,
+  blockedCard: false,
 };
 
 interface CreationMenuContainerProps {
   setSelectedCard: React.Dispatch<
     React.SetStateAction<{
+      group: boolean;
       removeCard: boolean;
       fastCard: boolean;
+      addText: boolean;
+      connect: boolean;
+      pin: boolean;
+      blockedCard: boolean;
     }>
   >;
   selectedCard: {
+    group: boolean;
     removeCard: boolean;
     fastCard: boolean;
+    addText: boolean;
+    connect: boolean;
+    pin: boolean;
+    blockedCard: boolean;
   };
   className: string;
   history: History<LocationState>;
@@ -40,6 +55,7 @@ const CreationMenuContainer = ({
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const random = () => Math.random() * (600 - 200) + 200;
+
   defaultCard.position = {
     x: random() + 400,
     y: random(),
@@ -47,36 +63,37 @@ const CreationMenuContainer = ({
 
   const groupButton = () => {
     console.log('groupButton');
+    setSelectedCard({ ...initialSelectCard, group: !selectedCard.group });
+
     dispatch(getNewAction(`${user.name} acabou de criar um grupo de cartões.`));
   };
   const createCardButton = () => {
-    console.log('createCardButton');
     dispatch(getNewAction(`${user.name} acabou de criar um cartão.`));
     dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard, history }));
   };
   const createFasterCardButton = () => {
-    console.log('createFasterCardButton');
     setSelectedCard({ ...initialSelectCard, fastCard: !selectedCard.fastCard });
   };
   const removeCardButton = () => {
-    console.log('removeCardButton');
     setSelectedCard({ ...initialSelectCard, removeCard: !selectedCard.removeCard });
   };
   const createTextButton = () => {
-    console.log('createTextButton');
+    setSelectedCard({ ...initialSelectCard, addText: !selectedCard.addText });
+
     dispatch(getNewAction(`${user.name} acabou de criar um texto.`));
   };
   const connectArrowButton = () => {
-    console.log('conectArrowButton');
+    setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
+
     dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
   };
   const pinCardButton = () => {
-    console.log('pinCardButton');
+    setSelectedCard({ ...initialSelectCard, pin: !selectedCard.pin });
+
     // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
   };
   const blockCardButton = () => {
-    console.log('blockCardButton');
-    // dispatch(getNewAction(` ${user.name} bloqueou um cartão.`));
+    setSelectedCard({ ...initialSelectCard, blockedCard: !selectedCard.blockedCard });
   };
 
   return (

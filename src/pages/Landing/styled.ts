@@ -5,7 +5,7 @@ export const LandingPage = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  /* IPHONE 5 ??? */
+
   @media (min-width: 550px) and (max-height: 400px) {
     overflow-y: scroll;
   }
@@ -35,13 +35,11 @@ export const Container = styled.div`
     'register'
     'login';
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     grid-gap: 4px;
     grid-template-rows: 8% 30% 15% 60%;
   }
 
-  /* IPAD */
   @media (min-width: 968px) and (max-width: 1200px) and (min-height: 768px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
@@ -54,7 +52,6 @@ export const Container = styled.div`
       'mainframe mainframe mainframe';
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 968px) {
     grid-gap: 0;
     grid-template-columns: 35% 30% 35%;
@@ -77,12 +74,10 @@ export const LeftMenu = styled.div`
     display: none;
   }
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     margin-top: 4px;
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     align-items: center;
     padding: 20px 2px;
@@ -112,14 +107,12 @@ export const LinksContainer = styled.div`
     cursor: pointer;
   }
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     p {
       font-size: 2.4rem;
     }
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     justify-content: flex-start;
 
@@ -146,7 +139,6 @@ export const LoginMenu = styled.form`
     }
   }
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     justify-content: flex-start;
     div {
@@ -164,7 +156,6 @@ export const LoginMenu = styled.form`
     }
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 768px) {
     flex-direction: row;
     justify-content: flex-end;
@@ -245,14 +236,12 @@ export const Logo = styled.div`
     }
   }
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     h1 {
       font-size: 6rem;
     }
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     h1 {
       font-size: 7rem;
@@ -271,17 +260,14 @@ export const LogoBox = styled.div`
   background: #3aa6f2;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     width: 143px;
   }
 
-  /* MOBILE ANTI-BUG */
   @media (min-width: 670px) {
     width: 148px;
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-width: 968px) and (min-height: 550px) {
     left: -2px;
     width: 174px;
@@ -297,7 +283,6 @@ export const Slogan = styled.div`
     color: var(--color-secondary-6);
   }
 
-  /* MOBILE HORIZONTAL*/
   @media (min-width: 550px) and (max-height: 550px) {
     display: flex;
     gap: 5px;
@@ -307,7 +292,6 @@ export const Slogan = styled.div`
     }
   }
 
-  /* IPAD  */
   @media (min-width: 968px) and (max-width: 1100px) {
     width: 500px;
     p {
@@ -315,7 +299,6 @@ export const Slogan = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     p {
       font-size: 3rem;
@@ -359,7 +342,6 @@ export const RegisterArea = styled.div`
   align-items: center;
   justify-content: center;
 
-  /* IPAD */
   @media (min-width: 968px) and (max-width: 1100px) {
     width: 68vw;
     position: relative;
@@ -375,7 +357,6 @@ export const RegisterArea = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC/ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1100px) {
     position: relative;
     flex-direction: row;
@@ -432,7 +413,6 @@ export const FeatOne = styled.div`
     background-color: var(--color-secondary-8);
   }
 
-  /* IPAD */
   @media (min-width: 968px) and (max-width: 1100px) {
     display: block;
     font-size: 1.2rem;
@@ -445,12 +425,10 @@ export const FeatOne = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC */
   @media (min-height: 768px) and (min-width: 1100px) {
     display: block;
   }
 
-  /* ULTRAWIDE */
   @media (min-width: 2000px) and (min-height: 768px) {
     left: 32vw;
   }
@@ -471,7 +449,6 @@ export const FeatTwo = styled.div`
     background-color: var(--color-secondary-8);
   }
 
-  /* IPAD */
   @media (min-width: 968px) and (max-width: 1100px) {
     display: block;
     font-size: 1.2rem;
@@ -485,12 +462,10 @@ export const FeatTwo = styled.div`
     }
   }
 
-  /* NOTEBOOK/PC */
   @media (min-height: 768px) and (min-width: 1100px) {
     display: block;
   }
 
-  /* ULTRAWIDE */
   @media (min-width: 2000px) and (min-height: 768px) {
     right: 33%;
   }
@@ -514,7 +489,6 @@ export const RegisterMenu = styled.form`
     margin-top: 5px;
   }
 
-  /* MOBILE HORIZONTAL */
   @media (min-width: 550px) and (max-height: 550px) {
     justify-content: flex-start;
     div {
@@ -532,7 +506,6 @@ export const RegisterMenu = styled.form`
     }
   }
 
-  /* NOTEBOOK/PC */
   @media (min-width: 968px) and (min-height: 550px) {
     flex-direction: row;
     justify-content: flex-end;
@@ -581,7 +554,6 @@ export const MainFrame = styled.div`
     }
   }
 
-  /* WIDESCREEN / ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
@@ -606,12 +578,10 @@ export const ExamplesFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      /* margin-top: 20px; */
       width: 800px;
     }
   }
 
-  /* WIDESCREEN / ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
@@ -636,12 +606,10 @@ export const TeamFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      /* margin-top: 20px; */
       width: 800px;
     }
   }
 
-  /* WIDESCREEN / ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
@@ -666,12 +634,10 @@ export const AboutFrame = styled.div`
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      /* margin-top: 20px; */
       width: 800px;
     }
   }
 
-  /* WIDESCREEN / ULTRAWIDE */
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
@@ -686,13 +652,11 @@ export const Wave = styled.div`
   left: -1600px;
   z-index: 10;
 
-  /* MOBILE HORIZONTAL */
   @media (min-width: 550px) and (max-height: 550px) {
     top: 4vh;
     left: -1450px;
   }
 
-  /* NOTEBOOK/PC */
   @media (min-width: 968px) and (min-height: 550px) {
     width: 100%;
     top: 12%;
@@ -719,17 +683,14 @@ export const BottomBar = styled.div`
     height: 150vh;
   }
 
-  /* IPAD VERTICAL*/
   @media (min-height: 768px) and (max-width: 1100px) {
     height: 70%;
   }
 
-  /* NOTEBOOK/PC */
   @media (min-height: 768px) and (min-width: 1999px) {
     height: 72%;
   }
 
-  /* ULTRAWIDE */
   @media (min-width: 2000px) {
     height: 70%;
   }

@@ -18,6 +18,9 @@ const feed = (state = defaultState, action: feedAction): feedProps => {
     case TYPE.NEW_ACTION:
       return { ...state, actions: [action.payload, ...state.actions] };
 
+    case TYPE.LOGOUT:
+      return defaultState;
+
     default:
       return state;
   }
