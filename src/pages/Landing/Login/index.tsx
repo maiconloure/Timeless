@@ -1,20 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, PasswordInput, Button } from 'capstone-project';
 import React from 'react';
 
+import { LoginProps } from '../../PageInterface';
 import * as St from '../styled';
-
-interface LoginProps {
-  handleSubmit: any;
-  OnFinishLogin: (data: any) => void;
-  windowSize: {
-    width: number;
-    height: number;
-  };
-  errors: any;
-  handleForm: boolean;
-  handleChangeEmail: any;
-  handleChangePassword: any;
-}
 
 const Login = ({
   handleSubmit,

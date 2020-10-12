@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { History, LocationState } from 'history';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CreationMenu from '../../components/creation-menu';
+import { CreationMenu } from '../../components';
 import { createCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
+import { CreationMenuContainerProps } from '../ContainerInterface';
 
 const initialSelectCard = {
   group: false,
@@ -18,31 +18,6 @@ const initialSelectCard = {
   pin: false,
   blockedCard: false,
 };
-
-interface CreationMenuContainerProps {
-  setSelectedCard: React.Dispatch<
-    React.SetStateAction<{
-      group: boolean;
-      removeCard: boolean;
-      fastCard: boolean;
-      addText: boolean;
-      connect: boolean;
-      pin: boolean;
-      blockedCard: boolean;
-    }>
-  >;
-  selectedCard: {
-    group: boolean;
-    removeCard: boolean;
-    fastCard: boolean;
-    addText: boolean;
-    connect: boolean;
-    pin: boolean;
-    blockedCard: boolean;
-  };
-  className: string;
-  history: History<LocationState>;
-}
 
 const CreationMenuContainer = ({
   setSelectedCard,

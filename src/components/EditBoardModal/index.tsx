@@ -4,31 +4,8 @@ import React from 'react';
 
 import * as Interface from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
+import { EditBoardModalProps } from '../ComponentsInterface';
 import * as St from '../EditModalStyles';
-
-interface EditBoardModalProps {
-  boards: Interface.UserBoards[];
-  values: {
-    boardTitle: any;
-    boardDescription: any;
-  };
-  showModal: {
-    showEditModal: boolean;
-    showBoardModal: boolean;
-    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  handlers: {
-    handlerTitle: (event: any) => void;
-    handlerDescription: (event: any) => void;
-    handleReturnForm: () => void;
-    handlerModifyBoard: (board: Interface.UserBoards) => void;
-    handlerRemoveBoard: (board: Interface.UserBoards) => void;
-    handlerSelectBoard: (board: Interface.UserBoards) => void;
-    handlerCreateBoard: () => void;
-    handlerSubmitForm: () => void;
-  };
-}
 
 const EditBoardModal = ({
   boards,

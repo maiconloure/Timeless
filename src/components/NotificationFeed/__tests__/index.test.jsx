@@ -1,6 +1,7 @@
 import React from 'react';
-import FeedCard from '../index';
 import renderer from 'react-test-renderer';
+
+import FeedCard from '../index';
 
 describe('Snapshot', () => {
   it('renders component', () => {

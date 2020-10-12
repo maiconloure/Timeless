@@ -1,18 +1,20 @@
-import BacklogCard from './backlog-card';
-import CreationMenu from './creation-menu';
-import DefaultCard from './default-card';
-import EditBoardModal from './edit-board-modal';
-import EditUserModal from './edit-user-modal';
-import Feedback from './feedback';
-import FixedMenu from './fixed-menu';
-import PageTransition from './pageTransition';
+import Card from './Card';
+import CreationMenu from './CreationMenu';
+import EditBoardModal from './EditBoardModal';
+import EditCardModal from './EditCardModal';
+import EditUserModal from './EditUserModal';
+import FeedbackButton from './FeedbackButton';
+import NotificationFeed from './NotificationFeed';
+import PageTransition from './PageTransition';
+import TopBarMenu from './TopBarMenu';
 export {
-  FixedMenu,
-  PageTransition,
-  EditBoardModal,
-  EditUserModal,
+  Card,
   CreationMenu,
-  DefaultCard,
-  BacklogCard,
-  Feedback,
+  EditBoardModal,
+  EditCardModal,
+  EditUserModal,
+  FeedbackButton,
+  NotificationFeed,
+  TopBarMenu,
+  PageTransition,
 };
