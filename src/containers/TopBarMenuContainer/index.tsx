@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { FixedMenu } from '../../components';
+import { TopBarMenu } from '../../components';
 import { clearBoard } from '../../redux/actions/boards.action';
 import { updateCardAPI, clearCards } from '../../redux/actions/cards.action';
 import { clearFeed, getNewAction } from '../../redux/actions/feed.action';
@@ -81,7 +81,7 @@ const FixedMenuContainer = ({
   const handleToggleMenu = () => setToggleMenu(!toggleMenu);
 
   return (
-    <FixedMenu
+    <TopBarMenu
       values={{ user, currentBoard, toggleMenu }}
       handlers={{
         handleLogout,

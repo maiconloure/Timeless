@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import * as St from './styled';
 
-const Feedback = () => {
+const FeedbackButton = () => {
   const [handleConfirm, setHandleConfirm] = useState(false);
   return (
     <St.FeedBackContainer>
@@ -57,4 +57,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default FeedbackButton;

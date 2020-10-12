@@ -1,7 +1,8 @@
 import React from 'react';
-import CreationMenu from '../index';
-import renderer from 'react-test-renderer';
 import { useDispatch } from 'react-redux';
+import renderer from 'react-test-renderer';
+
+import CreationMenu from '../index';
 
 jest.mock('react-redux', () => ({
   useDispatch: jest.fn(() => jest.fn()),

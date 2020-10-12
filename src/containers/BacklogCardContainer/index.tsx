@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CardLeandro } from 'capstone-project';
 import React from 'react';
 
-import Children from '../../components/backlog-card';
+import { EditCardModal } from '../../components';
 import { BacklogCardProps } from '../ContainerInterface';
 
 const BacklogCardContainer = ({
@@ -19,7 +20,7 @@ const BacklogCardContainer = ({
       closeDataPass={[showEditCard, setShowEditCard]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
-      <Children />
+      <EditCardModal />
     </CardLeandro>
   );
 };

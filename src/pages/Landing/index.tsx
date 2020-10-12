@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import PageTransition from '../../components/pageTransition';
+import { PageTransition } from '../../components';
 import LoginContainer from '../../containers/LoginContainer';
 import RegisterContainer from '../../containers/RegisterContainer';
 import { icons, images } from '../../utils/importAll';

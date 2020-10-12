@@ -5,13 +5,13 @@ import DefaultCardContainer from './DefaultCardContainer';
 import EditBoardModalContainer from './EditBoardModalContainer';
 import EditUserModalContainer from './EditUserModalContainer';
 import FeedContainer from './FeedContainer';
-import FixedMenuContainer from './FixedMenuContainer';
 import LandingContainer from './LandingContainer';
 import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
+import TopBarContainer from './TopBarMenuContainer';
 
 export {
-  FixedMenuContainer,
+  TopBarContainer,
   EditUserModalContainer,
   EditBoardModalContainer,
   CreationMenuContainer,

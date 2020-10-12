@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CreationMenu from '../../components/creation-menu';
+import { CreationMenu } from '../../components';
 import { createCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import { RootStoreType } from '../../redux/store/store';

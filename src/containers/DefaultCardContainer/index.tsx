@@ -3,7 +3,7 @@ import { useMotionValue } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import DefaultCard from '../../components/default-card';
+import { Card } from '../../components';
 import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -97,7 +97,7 @@ const DefaultCardContainer = ({
   };
 
   return (
-    <DefaultCard
+    <Card
       className={className}
       card={card}
       user={user}
