@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';

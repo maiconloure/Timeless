@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { feedAction } from '../actions/feed.action';
 import * as TYPE from '../actions/type.action';
 

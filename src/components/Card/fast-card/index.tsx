@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PlanCard, PlanContainer, PlanInnerContainer, PlanText, PlanLine } from 'capstone-project';
 import React from 'react';
 
