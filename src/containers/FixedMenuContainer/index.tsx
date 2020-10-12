@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -11,15 +10,7 @@ import { clearFeed, getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-
-interface FixedMenuContainerProps {
-  data: {
-    showBoardModal: boolean;
-    setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  history: History<LocationState>;
-}
+import { FixedMenuContainerProps } from '../ContainerInterface';
 
 const FixedMenuContainer = ({
   data: { showBoardModal, setShowBoardModal, setShowEditUser },

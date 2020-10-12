@@ -1,24 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, PasswordInput, Button } from 'capstone-project';
 import React from 'react';
 
 import PageTransition from '../../../components/pageTransition';
 import { icons } from '../../../utils/importAll';
+import { RegisterProps } from '../../PageInterface';
 import * as St from '../styled';
-
-interface RegisterProps {
-  windowSize: {
-    width: number;
-    height: number;
-  };
-  handleForm: boolean;
-  setHandleForm: any;
-  handleSubmit: any;
-  OnFinishRegister: (data: any) => void;
-  errors: any;
-  handleChangeName: (evt: any) => void;
-  handleChangeEmail: (evt: any) => void;
-  handleChangePassword: (evt: any) => void;
-}
 
 const Register = ({
   windowSize,

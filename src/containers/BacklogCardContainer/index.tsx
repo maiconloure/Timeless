@@ -2,15 +2,7 @@ import { CardLeandro } from 'capstone-project';
 import React from 'react';
 
 import Children from '../../components/backlog-card';
-
-interface BacklogCardProps {
-  usersArray?: { image: string; user: string }[];
-  data: {
-    showEditCard: boolean;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
-    currentCard: any;
-  };
-}
+import { BacklogCardProps } from '../ContainerInterface';
 
 const BacklogCardContainer = ({
   usersArray = [{ image: '', user: '' }],

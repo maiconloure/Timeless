@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -7,10 +6,7 @@ import { toast } from 'react-toastify';
 import Board from '../../pages/Board';
 import { getBoardsAPI, getCardsAPI } from '../../redux/actions/boards.action';
 import { RootStoreType } from '../../redux/store/store';
-
-interface BoardContainerProps {
-  history: History<LocationState>;
-}
+import { BoardContainerProps } from '../ContainerInterface';
 
 const BoardContainer = ({ history }: BoardContainerProps) => {
   const dispatch = useDispatch();

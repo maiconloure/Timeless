@@ -7,46 +7,8 @@ import { PageTransition, Feedback } from '../../components';
 import * as Container from '../../containers';
 import * as Interface from '../../redux/actions/interface.action';
 import 'react-toastify/dist/ReactToastify.css';
+import { BoardProps } from '../PageInterface';
 import * as St from './styled';
-
-interface BoardProps {
-  data: {
-    currentCard: object;
-    showEditUser: boolean;
-    showEditCard: boolean;
-    showEditModal: boolean;
-    showBoardModal: boolean;
-    setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
-    setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
-    selectedCard: {
-      group: boolean;
-      removeCard: boolean;
-      fastCard: boolean;
-      addText: boolean;
-      connect: boolean;
-      pin: boolean;
-      blockedCard: boolean;
-    };
-    setSelectedCard: React.Dispatch<
-      React.SetStateAction<{
-        group: boolean;
-        removeCard: boolean;
-        fastCard: boolean;
-        addText: boolean;
-        connect: boolean;
-        pin: boolean;
-        blockedCard: boolean;
-      }>
-    >;
-  };
-  values: {
-    cards: Interface.CardInterface[];
-    history: History<LocationState>;
-  };
-}
 
 const Board = ({
   data: {

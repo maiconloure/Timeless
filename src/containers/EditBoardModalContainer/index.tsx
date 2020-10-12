@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -13,16 +12,7 @@ import {
 import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultBoard } from '../../utils/defaults-json-cards';
-
-interface EditBoardModalContainerProps {
-  data: {
-    showEditModal: boolean;
-    showBoardModal: boolean;
-    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  history: History<LocationState>;
-}
+import { EditBoardModalContainerProps } from '../ContainerInterface';
 
 const EditBoardModalContainer = ({
   data: { showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },

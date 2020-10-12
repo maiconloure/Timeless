@@ -5,19 +5,8 @@ import PageTransition from '../../components/pageTransition';
 import LoginContainer from '../../containers/LoginContainer';
 import RegisterContainer from '../../containers/RegisterContainer';
 import { icons, images } from '../../utils/importAll';
+import { LandingPageProps } from '../PageInterface';
 import * as St from './styled';
-
-interface LandingPageProps {
-  currentFrame: string;
-  setCurrentFrame: React.Dispatch<React.SetStateAction<string>>;
-  handleError: (message: string) => void;
-  windowSize: {
-    width: number;
-    height: number;
-  };
-  handleForm: boolean;
-  setHandleForm: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const Landing = ({
   currentFrame,

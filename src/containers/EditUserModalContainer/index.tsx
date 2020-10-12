@@ -1,20 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { EditUserModal } from '../../components';
 import { updateUserAPI } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
-
-interface EditUserModalContainerProps {
-  data: {
-    showEditUser: boolean;
-    setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  history: History<LocationState>;
-}
+import { EditUserModalContainerProps } from '../ContainerInterface';
 
 const EditUserModalContainer = ({
   data: { showEditUser, setShowEditUser, setShowEditModal },

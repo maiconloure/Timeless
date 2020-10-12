@@ -2,19 +2,8 @@ import { Input, Button } from 'capstone-project';
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
+import { EditUserModalProps } from '../ComponentsInterface';
 import * as St from '../EditModalStyles';
-
-interface EditUserModalProps {
-  showEditUser: boolean;
-  setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
-  userName: string;
-  userAbout: string;
-  userImage: string;
-  submitNotification: () => void;
-  handleUserName: (evt: any) => void;
-  handleUserAbout: (evt: any) => void;
-  handleUserImage: (evt: any) => void;
-}
 
 const EditUserModal = ({
   showEditUser,
