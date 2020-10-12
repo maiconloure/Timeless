@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from 'framer-motion';
 import React from 'react';
 

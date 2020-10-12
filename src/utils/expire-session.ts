@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -54,17 +53,14 @@ const CreationMenuContainer = ({
   };
   const createTextButton = () => {
     setSelectedCard({ ...initialSelectCard, addText: !selectedCard.addText });
-
     dispatch(getNewAction(`${user.name} acabou de criar um texto.`));
   };
   const connectArrowButton = () => {
     setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
-
     dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
   };
   const pinCardButton = () => {
     setSelectedCard({ ...initialSelectCard, pin: !selectedCard.pin });
-
     // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
   };
   const blockCardButton = () => {

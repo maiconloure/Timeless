@@ -220,7 +220,7 @@ export const CardButton = styled.button`
 
 export const Block = styled.div`
   position: absolute;
-  top: 88%;
+  top: 150px;
   left: 269px;
 `;
 
