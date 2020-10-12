@@ -2,7 +2,7 @@
 
 exports[`Snapshot renders 1`] = `
 <div
-  className="sc-bdnylx gOyGLT"
+  className="sc-bdnylx kXwsFq"
 >
   <div
     className="sc-hKFyIo gnBfdK"
@@ -22,7 +22,7 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN leDWvJ"
+      className="sc-eCApGN eCwEhX"
     >
       <div
         className="tooltip"
@@ -89,7 +89,7 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN leDWvJ"
+      className="sc-eCApGN eCwEhX"
     >
       <div
         className="tooltip"
