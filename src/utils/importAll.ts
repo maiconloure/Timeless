@@ -14,5 +14,7 @@ const importAllImages = (r: importAllImages) => {
 export default importAllImages;
 
 // All icons in project, get by name in folder '/assets/icons', this return object.
-export const icons = importAllImages(require.context('../assets/icons', false, /\.(png|jpg|svg)$/));
-export const images = importAllImages(require.context('../assets/', false, /\.(png|jpg|svg)$/));
+export const icons = importAllImages(
+  require.context('../assets/icons', false, /\.(png|jpg|svg|gif)$/)
+);
+export const images = importAllImages(require.context('../assets/', false, /\.(png|jpg|svg|gif)$/));

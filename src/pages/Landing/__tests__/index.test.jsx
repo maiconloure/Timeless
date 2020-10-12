@@ -1,12 +1,13 @@
+import shallow from 'enzyme';
 import React, { useState as useStateMock } from 'react';
 import {
   useDispatch as useDispatchMock,
   useSelector,
   useSelector as useSelectorMock,
 } from 'react-redux';
-import Landing from '../index';
 import renderer from 'react-test-renderer';
-import shallow from 'enzyme';
+
+import Landing from '../index';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),

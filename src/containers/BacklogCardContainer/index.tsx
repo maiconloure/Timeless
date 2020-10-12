@@ -1,20 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CardLeandro } from 'capstone-project';
 import React from 'react';
 
-import Children from '../../components/backlog-card';
-
-interface BacklogCardProps {
-  usersArray?: { image: string; user: string }[];
-  closeDataPass: {
-    showEditCard: boolean;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
-    currentCard: any;
-  };
-}
+import { EditCardModal } from '../../components';
+import { BacklogCardProps } from '../ContainerInterface';
 
 const BacklogCardContainer = ({
   usersArray = [{ image: '', user: '' }],
-  closeDataPass: { showEditCard, setShowEditCard, currentCard },
+  data: { showEditCard, setShowEditCard, currentCard },
 }: BacklogCardProps) => {
   return (
     <CardLeandro
@@ -27,7 +20,7 @@ const BacklogCardContainer = ({
       closeDataPass={[showEditCard, setShowEditCard]}
       backgroundColor="rgba(58, 166, 242, 0.5)"
       borderDetails="none">
-      <Children />
+      <EditCardModal />
     </CardLeandro>
   );
 };

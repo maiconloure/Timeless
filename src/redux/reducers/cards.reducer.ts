@@ -30,6 +30,9 @@ const cards = (state = initialState, action: CardAction): CardState => {
         ...state,
         cards: [...state.cards.filter((card) => card.id !== action.payload.id)].sort(sortCards),
       };
+
+    case TYPE.CLEAR_CARDS:
+      return initialState;
     default:
       return state;
   }

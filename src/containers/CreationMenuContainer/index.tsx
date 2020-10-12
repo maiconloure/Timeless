@@ -2,76 +2,73 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CreationMenu from '../../components/creation-menu';
-import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import { CreationMenu } from '../../components';
+import { createCardAPI } from '../../redux/actions/cards.action';
 import { getNewAction } from '../../redux/actions/feed.action';
-import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
+import { CreationMenuContainerProps } from '../ContainerInterface';
 
 const initialSelectCard = {
+  group: false,
   removeCard: false,
   fastCard: false,
+  addText: false,
+  connect: false,
+  pin: false,
+  blockedCard: false,
 };
 
 const CreationMenuContainer = ({
   setSelectedCard,
   selectedCard,
-}: {
-  setSelectedCard: React.Dispatch<
-    React.SetStateAction<{
-      removeCard: boolean;
-      fastCard: boolean;
-    }>
-  >;
-  selectedCard: {
-    removeCard: boolean;
-    fastCard: boolean;
-  };
-}) => {
+  className,
+  history,
+}: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-  const random = () => Math.floor(Math.random() * 400);
+  const random = () => Math.random() * (600 - 200) + 200;
 
   defaultCard.position = {
-    x: random(),
+    x: random() + 400,
     y: random(),
   };
 
   const groupButton = () => {
     console.log('groupButton');
+    setSelectedCard({ ...initialSelectCard, group: !selectedCard.group });
+
     dispatch(getNewAction(`${user.name} acabou de criar um grupo de cartões.`));
   };
   const createCardButton = () => {
-    console.log('createCardButton');
     dispatch(getNewAction(`${user.name} acabou de criar um cartão.`));
-    dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard }));
+    dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard, history }));
   };
   const createFasterCardButton = () => {
-    console.log('createFasterCardButton');
     setSelectedCard({ ...initialSelectCard, fastCard: !selectedCard.fastCard });
   };
   const removeCardButton = () => {
-    console.log('removeCardButton');
     setSelectedCard({ ...initialSelectCard, removeCard: !selectedCard.removeCard });
   };
   const createTextButton = () => {
-    console.log('createTextButton');
+    setSelectedCard({ ...initialSelectCard, addText: !selectedCard.addText });
+
     dispatch(getNewAction(`${user.name} acabou de criar um texto.`));
   };
   const connectArrowButton = () => {
-    console.log('conectArrowButton');
+    setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
+
     dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
   };
   const pinCardButton = () => {
-    console.log('pinCardButton');
+    setSelectedCard({ ...initialSelectCard, pin: !selectedCard.pin });
+
     // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
   };
   const blockCardButton = () => {
-    console.log('blockCardButton');
-    // dispatch(getNewAction(` ${user.name} bloqueou um cartão.`));
+    setSelectedCard({ ...initialSelectCard, blockedCard: !selectedCard.blockedCard });
   };
 
   return (
@@ -85,6 +82,7 @@ const CreationMenuContainer = ({
       connectArrowButton={connectArrowButton}
       pinCardButton={pinCardButton}
       blockCardButton={blockCardButton}
+      className={className}
     />
   );
 };
