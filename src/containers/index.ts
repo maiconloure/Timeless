@@ -1,4 +1,5 @@
 import BacklogCardContainer from './BacklogCardContainer';
+import BoardContainer from './BoardContainer';
 import CreationMenuContainer from './CreationMenuContainer';
 import DefaultCardContainer from './DefaultCardContainer';
 import EditBoardModalContainer from './EditBoardModalContainer';
@@ -20,4 +21,5 @@ export {
   LoginContainer,
   RegisterContainer,
   LandingContainer,
+  BoardContainer,
 };
