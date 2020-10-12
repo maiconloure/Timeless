@@ -3,8 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CreationMenu } from '../../components';
+import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { createCardAPI } from '../../redux/actions/cards.action';
-import { getNewAction } from '../../redux/actions/feed.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
 import { CreationMenuContainerProps } from '../ContainerInterface';
@@ -39,34 +39,113 @@ const CreationMenuContainer = ({
   const groupButton = () => {
     console.log('groupButton');
     setSelectedCard({ ...initialSelectCard, group: !selectedCard.group });
-
-    dispatch(getNewAction(`${user.name} acabou de criar um grupo de cartões.`));
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} acabou de criar um grupo de cartões.`,
+              ...currentBoard.data.notifications,
+            ],
+          },
+        },
+        token,
+        history,
+      })
+    );
   };
+
   const createCardButton = () => {
-    dispatch(getNewAction(`${user.name} acabou de criar um cartão.`));
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} acabou de criar um cartão.`,
+              ...currentBoard.data.notifications,
+            ],
+          },
+        },
+        token,
+        history,
+      })
+    );
+
     dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard, history }));
   };
+
   const createFasterCardButton = () => {
     setSelectedCard({ ...initialSelectCard, fastCard: !selectedCard.fastCard });
   };
+
   const removeCardButton = () => {
     setSelectedCard({ ...initialSelectCard, removeCard: !selectedCard.removeCard });
   };
+
   const createTextButton = () => {
     setSelectedCard({ ...initialSelectCard, addText: !selectedCard.addText });
-
-    dispatch(getNewAction(`${user.name} acabou de criar um texto.`));
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} acabou de criar um texto.`,
+              ...currentBoard.data.notifications,
+            ],
+          },
+        },
+        token,
+        history,
+      })
+    );
   };
+
   const connectArrowButton = () => {
     setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
-
-    dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} acabou de fazer um ligação.`,
+              ...currentBoard.data.notifications,
+            ],
+          },
+        },
+        token,
+        history,
+      })
+    );
   };
+
   const pinCardButton = () => {
     setSelectedCard({ ...initialSelectCard, pin: !selectedCard.pin });
-
-    // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
+    // dispatch(
+    //   updateBoardAPI({
+    //     board: {
+    //       ...currentBoard,
+    //       data: {
+    //         ...currentBoard.data,
+    //         notifications: [
+    //           `${user.name} acabou de seguir um cartão.`,
+    //           ...currentBoard.data.notifications,
+    //         ],
+    //       },
+    //     },
+    //     token,
+    //     history,
+    //   })
+    // );
   };
+
   const blockCardButton = () => {
     setSelectedCard({ ...initialSelectCard, blockedCard: !selectedCard.blockedCard });
   };

@@ -53,6 +53,6 @@ export const defaultBoard = {
   users: [],
   data: {
     text: [],
-    comments: [],
+    notifications: [],
   },
 };

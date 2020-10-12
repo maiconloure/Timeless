@@ -8,7 +8,6 @@ import { RootStoreType } from '../store/store';
 import { getCards } from './cards.action';
 import * as Interface from './interface.action';
 import * as TYPE from './type.action';
-
 const createHeader = (token: string) => ({
   headers: {
     Authorization: 'Bearer ' + token,

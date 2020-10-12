@@ -58,10 +58,7 @@ export interface DataBoard {
     text: string;
     position: PositionInterface;
   }[];
-  comments: {
-    text: string;
-    position: PositionInterface;
-  }[];
+  notifications: string[];
 }
 
 export interface UserBoards {
