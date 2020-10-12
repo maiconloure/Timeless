@@ -3,6 +3,7 @@ import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
+import expiredSession from '../../utils/expire-session';
 import { RootStoreType } from '../store/store';
 import { getCards } from './cards.action';
 import * as Interface from './interface.action';
@@ -17,6 +18,7 @@ const createHeader = (token: string) => ({
 export const getBoardsAPI = ({
   user,
   token,
+  history,
 }: Interface.PropsGetUserBoards): ThunkAction<
   void,
   RootStoreType,
@@ -32,7 +34,6 @@ export const getBoardsAPI = ({
         console.warn(`getBoardsAPI ==> Status: ${response.status}`);
         if (response.data.length === 0) {
           console.log('vazio', response.data);
-
           dispatch(
             createBoardAPI(
               {
@@ -41,24 +42,30 @@ export const getBoardsAPI = ({
                 users: [],
               },
               token,
-              user
+              user,
+              history
             )
           );
         }
         dispatch(getBoards(response.data));
       }
     })
-    .catch((error) =>
-      console.log(`getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`)
-    );
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
+      console.log(
+        `getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+      );
+    });
 };
 
 export const updateBoardAPI = ({
   token,
   board,
+  history,
 }: {
   token: string;
   board: Interface.UserBoards;
+  history: History<LocationState>;
 }): ThunkAction<void, RootStoreType, unknown, Interface.UpdateBoardAction> => (dispatch) => {
   api
     .put(`/boards/${board.id}`, board, createHeader(token))
@@ -70,11 +77,12 @@ export const updateBoardAPI = ({
         dispatch(updateBoard(board));
       }
     })
-    .catch((error) =>
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
       console.error(
         `updateBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+      );
+    });
 };
 
 export const getCardsAPI = (
@@ -101,10 +109,7 @@ export const getCardsAPI = (
         }
       })
       .catch((error) => {
-        if (['jwt expired', 'Missing token'].includes(error.response.data)) {
-          localStorage.clear();
-          history.push('/');
-        }
+        dispatch(expiredSession({ error, history }));
         console.error(
           `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
         );
@@ -115,7 +120,8 @@ export const getCardsAPI = (
 export const createBoardAPI = (
   board: Interface.CreateUserBoards,
   token: string,
-  user: Interface.UserInterface
+  user: Interface.UserInterface,
+  history: History<LocationState>
 ): ThunkAction<void, RootStoreType, unknown, Interface.CreateBoardAction> => (dispatch) => {
   api
     .post(`/users/${user.id}/boards`, board, createHeader(token))
@@ -123,24 +129,23 @@ export const createBoardAPI = (
       if (response.status !== 201) {
         console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`createBoardAPI ==> Status: ${response.status}`);
+        console.warn(` ==> Status: ${response.status}`);
         dispatch(createBoard(response.data));
-        dispatch(getBoardsAPI({ user, token }));
+        dispatch(getBoardsAPI({ user, token, history }));
       }
     })
-    .catch((error) =>
-      console.error(
-        `createBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
+      console.error(` ==> ERROR: ${error.response.data} Status: ${error.response.status}`);
+    });
 };
 
 export const deleteBoardAPI = (
   board: Interface.UserBoards,
-  token: string
+  token: string,
+  history: History<LocationState>
 ): ThunkAction<void, RootStoreType, unknown, Interface.DeleteBoardAction> => (dispatch) => {
   dispatch(deleteBoard(board));
-
   api
     .delete(`/boards/${board.id}`, createHeader(token))
     .then((response) => {
@@ -150,11 +155,12 @@ export const deleteBoardAPI = (
         console.warn(`deleteBoardAPI ==> Status: ${response.status}`);
       }
     })
-    .catch((error) =>
+    .catch((error) => {
+      dispatch(expiredSession({ error, history }));
       console.error(
         `deleteBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+      );
+    });
 };
 
 const getBoards = (boards: Interface.UserBoards[]): Interface.GetBoardsAction => ({

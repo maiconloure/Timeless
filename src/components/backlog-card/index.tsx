@@ -1,91 +1,70 @@
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
-import {
-  WriteableContent,
-  WriteableTop,
-  WriteableBox,
-  ContentContainer,
-  Main,
-  Labels,
-  TimingLabel,
-  ActionDiv,
-  LabelTitle,
-  IdLabel,
-  HourglassLabel,
-  Icon,
-  ClockLabel,
-  ActionLabels,
-  IconSmall,
-  FeedbackButton,
-  ChecklistContainer,
-  Checklist,
-  ChecklistTitle,
-  ChecklistBox,
-} from './style';
+import * as St from './styled';
 
-export default function Content() {
-  return (
-    <ContentContainer>
-      <Main>
-        <WriteableContent>
-          <WriteableTop contentEditable="true" suppressContentEditableWarning>
-            DESCRIÇÃO
-          </WriteableTop>
-          <WriteableBox contentEditable="true" suppressContentEditableWarning>
-            ...
-          </WriteableBox>
-        </WriteableContent>
-        <Labels>
-          <TimingLabel>
-            <LabelTitle>ETIQUETAS</LabelTitle>
-            <IdLabel>#Sprint1</IdLabel>
-            <HourglassLabel>
-              <Icon src={icons.hourglass} alt="Ícone de Ampulheta" onClick={() => {}} />
-              <span>
-                Tempo Execução{' '}
-                <strong
-                  contentEditable="true"
-                  suppressContentEditableWarning
-                  style={{ color: 'red' }}>
-                  00:00
-                </strong>
-              </span>
-            </HourglassLabel>
-            <ClockLabel>
-              <Icon src={icons.clock} alt="Ícone de Cronômetro" onClick={() => {}} />
-              <span>
-                Data Entrega <strong style={{ color: '#ffbe00' }}>00/00/00</strong>
-              </span>
-            </ClockLabel>
-          </TimingLabel>
-          <ActionDiv>
-            <LabelTitle>AÇÕES</LabelTitle>
-            <ActionLabels>
-              <IconSmall src={icons.signOut} alt="Ícone de Porta" onClick={() => {}} />
-              <span>Mover</span>
-            </ActionLabels>
-            <ActionLabels>
-              <IconSmall src={icons.copy} alt="Ícone de Copiar" onClick={() => {}} />
-              <span>Copiar</span>
-            </ActionLabels>
-            <ActionLabels>
-              <IconSmall src={icons.deleteCard} alt="Ícone de Excluir" onClick={() => {}} />
-              <span>Excluir</span>
-            </ActionLabels>
-            <FeedbackButton>feedback</FeedbackButton>
-          </ActionDiv>
-        </Labels>
-      </Main>
-      <ChecklistContainer>
-        <Checklist>
-          <ChecklistTitle>
-            <IconSmall src={icons.checkboxList} alt="Ícone de Lista" />
-            <span>Checklist</span>
-          </ChecklistTitle>
-          <ChecklistBox>Teste</ChecklistBox>
-        </Checklist>
-      </ChecklistContainer>
-    </ContentContainer>
-  );
-}
+const Content = () => (
+  <St.ContentContainer>
+    <St.Main>
+      <St.WriteableContent>
+        <St.WriteableTop contentEditable="true" suppressContentEditableWarning>
+          DESCRIÇÃO
+        </St.WriteableTop>
+        <St.WriteableBox contentEditable="true" suppressContentEditableWarning>
+          ...
+        </St.WriteableBox>
+      </St.WriteableContent>
+      <St.Labels>
+        <St.TimingLabel>
+          <St.LabelTitle>ETIQUETAS</St.LabelTitle>
+          <St.IdLabel>#Sprint1</St.IdLabel>
+          <St.HourglassLabel>
+            <St.Icon src={icons.hourglass} alt="Ícone de Ampulheta" onClick={() => {}} />
+            <span>
+              Tempo Execução{' '}
+              <strong
+                contentEditable="true"
+                suppressContentEditableWarning
+                style={{ color: 'red' }}>
+                00:00
+              </strong>
+            </span>
+          </St.HourglassLabel>
+          <St.ClockLabel>
+            <St.Icon src={icons.clock} alt="Ícone de Cronômetro" onClick={() => {}} />
+            <span>
+              Data Entrega <strong style={{ color: '#ffbe00' }}>00/00/00</strong>
+            </span>
+          </St.ClockLabel>
+        </St.TimingLabel>
+        <St.ActionDiv>
+          <St.LabelTitle>AÇÕES</St.LabelTitle>
+          <St.ActionLabels>
+            <St.IconSmall src={icons.signOut} alt="Ícone de Porta" onClick={() => {}} />
+            <span>Mover</span>
+          </St.ActionLabels>
+          <St.ActionLabels>
+            <St.IconSmall src={icons.copy} alt="Ícone de Copiar" onClick={() => {}} />
+            <span>Copiar</span>
+          </St.ActionLabels>
+          <St.ActionLabels>
+            <St.IconSmall src={icons.deleteCard} alt="Ícone de Excluir" onClick={() => {}} />
+            <span>Excluir</span>
+          </St.ActionLabels>
+          <St.FeedbackButton>feedback</St.FeedbackButton>
+        </St.ActionDiv>
+      </St.Labels>
+    </St.Main>
+    <St.ChecklistContainer>
+      <St.Checklist>
+        <St.ChecklistTitle>
+          <St.IconSmall src={icons.checkboxList} alt="Ícone de Lista" />
+          <span>Checklist</span>
+        </St.ChecklistTitle>
+        <St.ChecklistBox>Teste</St.ChecklistBox>
+      </St.Checklist>
+    </St.ChecklistContainer>
+  </St.ContentContainer>
+);
+
+export default Content;

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { EditBoardModal } from '../../components';
@@ -47,24 +47,18 @@ const EditBoardModalContainer = ({
 
   const handlerSubmitForm = () => {
     if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
-      dispatch(
-        createBoardAPI(
-          { ...defaultBoard, title: boardTitle, description: boardDescription },
-          token,
-          user
-        )
-      );
+      dispatch(createBoardAPI(selectedBoard, token, user, history));
     } else {
       const newBoard: any = {
         ...selectedBoard,
         title: boardTitle,
         description: boardDescription,
       };
-      dispatch(updateBoardAPI({ token, board: newBoard }));
+      dispatch(updateBoardAPI({ token, board: newBoard, history }));
     }
 
-    setBoardTitle('Título do Board');
-    setBoardDescription('Descrição do Board');
+    setBoardTitle(boardTitle);
+    setBoardDescription(boardDescription);
     setShowEditModal(false);
   };
 
@@ -86,12 +80,12 @@ const EditBoardModalContainer = ({
   };
 
   const handlerRemoveBoard = (board: Interface.UserBoards) => {
-    dispatch(deleteBoardAPI(board, token));
+    dispatch(deleteBoardAPI(board, token, history));
   };
 
-  const handlerTitle = (evt: any) => setBoardTitle(evt.currentTarget.value);
+  const handlerTitle = (event: any) => setBoardTitle(event.currentTarget.value);
 
-  const handlerDescription = (evt: any) => setBoardDescription(evt.currentTarget.value);
+  const handlerDescription = (event: any) => setBoardDescription(event.currentTarget.value);
 
   return (
     <EditBoardModal

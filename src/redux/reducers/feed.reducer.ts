@@ -10,13 +10,16 @@ export interface feedProps {
 }
 
 const defaultState: feedProps = {
-  actions: ['Aqui aparecerá as novas atualizações no seu board!'],
+  actions: ['Aqui aparecerá as novas atualizações do seu board!'],
 };
 
 const feed = (state = defaultState, action: feedAction): feedProps => {
   switch (action.type) {
     case TYPE.NEW_ACTION:
       return { ...state, actions: [action.payload, ...state.actions] };
+
+    case TYPE.LOGOUT:
+      return defaultState;
 
     default:
       return state;

@@ -3,6 +3,7 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATE_STATUS = 'UPDATE_STATUS';
 // BOARDS ACTIONS
 
 export const NEW_ACTION = 'NEW_ACTION';

@@ -20,24 +20,23 @@ export const requestLogin = ({
   void,
   RootStoreType,
   unknown,
-  Interface.LoginAction
+  Interface.LoginAction | Interface.UpdateStatusAction
 > => (dispatch) => {
   api
     .post('/login', {
       email,
       password,
     })
+
     .then((response) => {
-      if (response.status !== 200) {
-        console.error(`requestLogin =>> ERROR: ${response.data} ${response.status}`);
-      } else {
-        console.warn(`requestLogin =>> Status: ${response.status}`);
+      dispatch(updateStatus(response.status));
+      if (response.status === 200) {
         dispatch(getUser(response));
       }
     })
-    .catch((error) =>
-      console.error(`requestLogin =>> ERROR: ${error.response.data} ${error.response.status}`)
-    );
+    .catch((error) => {
+      dispatch(updateStatus(error.response.status));
+    });
 };
 
 export const registerUser = ({
@@ -48,35 +47,37 @@ export const registerUser = ({
   void,
   RootStoreType,
   unknown,
-  Interface.LoginAction
+  Interface.LoginAction | Interface.UpdateStatusAction
 > => (dispatch) => {
   api
     .post('/register', { name, email, password })
     .then((response) => {
+      dispatch(updateStatus(response.status));
       if (response.status !== 201) {
-        console.error(`registerUser =>> ERROR: ${response.data} ${response.status}`);
       } else {
-        console.warn(`registerUser =>> Status: ${response.status}`);
         dispatch(getUser(response));
       }
     })
-    .catch((error) =>
-      console.error(`registerUser =>> ERROR: ${error.response.data} ${error.response.status}`)
-    );
+    .catch((error) => {
+      dispatch(updateStatus(error.response.status));
+    });
 };
 
 const getUser = (
   data: Interface.PropsResponseRegister
-): ThunkAction<void, RootStoreType, unknown, Interface.LoginAction> => async (dispatch) => {
+): ThunkAction<
+  void,
+  RootStoreType,
+  unknown,
+  Interface.LoginAction | Interface.UpdateStatusAction
+> => async (dispatch) => {
   const decodedToken: Interface.DecodeToken = await jwt_decode(data.data.accessToken);
 
   api
     .get(`/users/${decodedToken.sub}`, createHeader(data.data.accessToken))
     .then((response) => {
-      if (response.status !== 200) {
-        console.error(`getUser =>> ERROR: ${response.data} ${response.status}`);
-      } else {
-        console.warn(`getUser =>> Status: ${response.status}`);
+      dispatch(updateStatus(response.status));
+      if (response.status === 200) {
         dispatch(
           loginAction({
             user: {
@@ -92,9 +93,9 @@ const getUser = (
         );
       }
     })
-    .catch((error) =>
-      console.error(`getUser =>> ERROR: ${error.response.data} ${error.response.status}`)
-    );
+    .catch((error) => {
+      dispatch(updateStatus(error.response.status));
+    });
 };
 
 export const updateUserAPI = ({
@@ -104,23 +105,17 @@ export const updateUserAPI = ({
   void,
   RootStoreType,
   unknown,
-  Interface.UpdateUserAction
+  Interface.UpdateUserAction | Interface.UpdateStatusAction
 > => (dispatch) => {
   dispatch(updateUser(user));
   api
     .patch(`/users/${user.id}`, user, createHeader(token))
     .then((response) => {
-      if (response.status !== 200) {
-        console.error(`updateUserAPI ==> ERROR: ${response.data} Status: ${response.status}`);
-      } else {
-        console.warn(`updateUserAPI ==> Status: ${response.status}`);
-      }
+      dispatch(updateStatus(response.status));
     })
-    .catch((error) =>
-      console.error(
-        `updateUserAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      )
-    );
+    .catch((error) => {
+      dispatch(updateStatus(error.response.status));
+    });
 };
 
 const updateUser = (user: Interface.UserInterface): Interface.UpdateUserAction => ({
@@ -137,7 +132,13 @@ export const logout = (): Interface.LogoutAction => ({
   type: TYPE.LOGOUT,
 });
 
+export const updateStatus = (status: number | string): Interface.UpdateStatusAction => ({
+  type: TYPE.UPDATE_STATUS,
+  payload: status,
+});
+
 export type ServiceAction =
   | Interface.LoginAction
   | Interface.LogoutAction
-  | Interface.UpdateUserAction;
+  | Interface.UpdateUserAction
+  | Interface.UpdateStatusAction;

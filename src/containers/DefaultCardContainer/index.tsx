@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue } from 'framer-motion';
+import { History, LocationState } from 'history';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,20 +13,26 @@ import { fastCard } from '../../utils/defaults-json-cards';
 
 interface DefaultCardProps {
   card: CardInterface;
-  data: {
-    showEditCard: boolean;
-    selectedCard: {
-      removeCard: boolean;
-      fastCard: boolean;
-    };
-    setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
+  showEditCard: boolean;
+  selectedCard: {
+    removeCard: boolean;
+    fastCard: boolean;
+    blockedCard: boolean;
   };
+  setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
+  setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
+  history: History<LocationState>;
+  className: string;
 }
 
 const DefaultCardContainer = ({
-  data: { showEditCard, setCurrentCard, setShowEditCard, selectedCard },
   card,
+  showEditCard,
+  setCurrentCard,
+  setShowEditCard,
+  selectedCard,
+  history,
+  className,
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -34,13 +41,13 @@ const DefaultCardContainer = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const [showWarning, setShowWarning] = useState(false);
-
   useEffect(() => {
     x.set(card.position.x);
     y.set(card.position.y);
   }, [cards.length]);
 
   const onDragEndFunction = () => {
+    console.log(card);
     dispatch(
       updateCardAPI({
         card: {
@@ -51,6 +58,7 @@ const DefaultCardContainer = ({
           },
         },
         token,
+        history,
       })
     );
   };
@@ -63,7 +71,7 @@ const DefaultCardContainer = ({
 
   const removeCard = () => {
     dispatch(getNewAction(`${user.name} acabou de remover um cartão.`));
-    dispatch(deleteCardAPI({ card, token }));
+    dispatch(deleteCardAPI({ card, token, history }));
   };
 
   const creationCard = () => {
@@ -72,6 +80,26 @@ const DefaultCardContainer = ({
       updateCardAPI({
         token,
         card: { ...card, data: { ...card.data, ...fastCard } },
+        history,
+      })
+    );
+  };
+
+  const blockCard = (res: boolean) => {
+    if (res) {
+      dispatch(getNewAction(` ${user.name} bloqueou o cartão ${card.data.title}`));
+    } else {
+      dispatch(getNewAction(` ${user.name} desbloqueou o cartão ${card.data.title}`));
+    }
+
+    dispatch(
+      updateCardAPI({
+        card: {
+          ...card,
+          data: { ...card.data, blocked: res },
+        },
+        token,
+        history,
       })
     );
   };
@@ -85,6 +113,7 @@ const DefaultCardContainer = ({
 
   return (
     <DefaultCard
+      className={className}
       card={card}
       user={user}
       showEditCard={showEditCard}
@@ -100,6 +129,7 @@ const DefaultCardContainer = ({
       removeCard={removeCard}
       creationCard={creationCard}
       DoubleClick={DoubleClick}
+      blockCard={blockCard}
     />
   );
 };
