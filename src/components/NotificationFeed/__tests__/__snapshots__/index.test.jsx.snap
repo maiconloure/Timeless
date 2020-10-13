@@ -7,20 +7,30 @@ exports[`Snapshot renders component 1`] = `
   width="280px"
 >
   <div
-    className="sc-gXfWUo hUXhUB"
-  >
-    <h2>
-      Notificações recentes
-    </h2>
-  </div>
-  <div
-    className="sc-cBoprd sc-ciSmjq kjoiua dkScBe"
+    className="sc-gXfWUo cTZZDr"
   >
     <div
-      className="sc-jcwofb guvYnY"
+      className="sc-cBoprd hXbwCO"
+    >
+      <h2>
+        Notificações recentes
+      </h2>
+    </div>
+    <div
+      className="sc-ciSmjq jLvfax"
+      onClick={[Function]}
+    >
+       - 
+    </div>
+  </div>
+  <div
+    className="sc-jcwofb sc-carGAA kNhOZX gXYsNS"
+  >
+    <div
+      className="sc-iTVIwl jiAQaA"
     >
       <p
-        className="sc-carGAA mvVjk"
+        className="sc-iBzFoy dvbtwq"
         color="#014D82"
         fontSize="1.6rem"
       >
