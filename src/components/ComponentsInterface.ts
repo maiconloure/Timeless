@@ -34,13 +34,17 @@ export interface DefaultCardProps {
     removeCard: boolean;
     fastCard: boolean;
     blockedCard: boolean;
+    followedCard: boolean;
   };
   handleCheckBox: (evt: MouseEvent<HTMLInputElement>) => void;
   removeCard: () => void;
   creationCard: () => void;
   DoubleClick: () => void;
   className: string;
+  id: string;
   blockCard: (res: boolean) => void;
+  followCard: any;
+  forceRerender: any;
 }
 
 export interface EditBoardModalProps {

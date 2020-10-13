@@ -17,10 +17,6 @@ export interface LandingPageProps {
 }
 
 export interface LoginProps {
-  value: {
-    email: any;
-    password: any;
-  };
   OnFinishLogin: (data: { email: string; password: string }) => void;
   windowSize: {
     width: number;
@@ -66,7 +62,7 @@ export interface BoardProps {
       fastCard: boolean;
       addText: boolean;
       connect: boolean;
-      pin: boolean;
+      followedCard: boolean;
       blockedCard: boolean;
     };
     setSelectedCard: React.Dispatch<
@@ -76,7 +72,7 @@ export interface BoardProps {
         fastCard: boolean;
         addText: boolean;
         connect: boolean;
-        pin: boolean;
+        followedCard: boolean;
         blockedCard: boolean;
       }>
     >;
@@ -85,4 +81,6 @@ export interface BoardProps {
     cards: CardInterface[];
     history: History<LocationState>;
   };
+  forceRerender: any;
+  lines: any;
 }

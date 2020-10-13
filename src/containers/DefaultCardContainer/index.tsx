@@ -17,6 +17,8 @@ const DefaultCardContainer = ({
   selectedCard,
   history,
   className,
+  id,
+  forceRerender,
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -153,7 +155,6 @@ const DefaultCardContainer = ({
         })
       );
     }
-
     dispatch(
       updateCardAPI({
         card: {
@@ -173,8 +174,67 @@ const DefaultCardContainer = ({
     }
   };
 
+  const followCard = (res: any) => {
+    if (res) {
+      dispatch(
+        updateBoardAPI({
+          board: {
+            ...currentBoard,
+            data: {
+              ...currentBoard.data,
+              notifications: [
+                `${user.name} começou a seguir o cartão  ${card.data.title}`,
+                ...currentBoard.data.notifications,
+              ],
+            },
+          },
+          token,
+          history,
+        })
+      );
+      dispatch(
+        updateCardAPI({
+          card: {
+            ...card,
+            data: { ...card.data, followers: [{ name: user.name, id: user.id }] },
+          },
+          token,
+          history,
+        })
+      );
+    } else {
+      dispatch(
+        updateBoardAPI({
+          board: {
+            ...currentBoard,
+            data: {
+              ...currentBoard.data,
+              notifications: [
+                `${user.name} deixou de seguir o cartão  ${card.data.title}`,
+                ...currentBoard.data.notifications,
+              ],
+            },
+          },
+          token,
+          history,
+        })
+      );
+      dispatch(
+        updateCardAPI({
+          card: {
+            ...card,
+            data: { ...card.data, followers: [] },
+          },
+          token,
+          history,
+        })
+      );
+    }
+  };
+
   return (
     <Card
+      id={id}
       className={className}
       card={card}
       user={user}
@@ -192,6 +252,8 @@ const DefaultCardContainer = ({
       creationCard={creationCard}
       DoubleClick={DoubleClick}
       blockCard={blockCard}
+      followCard={followCard}
+      forceRerender={forceRerender}
     />
   );
 };

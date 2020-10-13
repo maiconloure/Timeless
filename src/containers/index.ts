@@ -6,8 +6,8 @@ import EditBoardModalContainer from './EditBoardModalContainer';
 import EditUserModalContainer from './EditUserModalContainer';
 import FeedContainer from './FeedContainer';
 import LandingContainer from './LandingContainer';
-import LoginContainer from './LoginContainer';
-import RegisterContainer from './RegisterContainer';
+import LoginContainer from './LandingContainer/LoginContainer';
+import RegisterContainer from './LandingContainer/RegisterContainer';
 import TopBarContainer from './TopBarMenuContainer';
 
 export {

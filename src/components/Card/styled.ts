@@ -38,18 +38,20 @@ export const CardContainer = styled(motion.div)`
 export const Editable = styled.div<{ blocked: any }>`
   pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
 
+  #unlock {
+    pointer-events: auto;
+  }
+
   &:active {
     cursor: grabbing;
   }
 `;
 
 export const MotionBox = styled(motion.div)`
-  position: absolute;
-  width: 1%;
-  height: 1%;
+  position: relative;
 `;
 
-export const Card = styled.div`
+export const Card = styled(motion.div)`
   background-color: var(--color-background);
   color: var(--color-primary-4);
   box-sizing: border-box;
@@ -57,7 +59,7 @@ export const Card = styled.div`
   min-width: 300px;
   max-width: 310px;
   border-radius: 4px;
-  position: relative;
+  position: absolute;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
 
   [contenteditable='true'] {
@@ -68,6 +70,7 @@ export const Card = styled.div`
 export const CardInside = styled.div`
   padding: 12px 14px 5px 14px;
   font-family: 'Inter', sans-serif;
+  position: relative;
 `;
 
 export const CardHeader = styled.div`
@@ -223,8 +226,7 @@ export const CardButton = styled.button`
   border: none;
   border-radius: 5px;
   position: absolute;
-  bottom: -200px;
-
+  top: 95%;
   transition: 0.2s;
 
   :hover {
@@ -243,6 +245,7 @@ export const Block = styled.div`
   position: absolute;
   top: 150px;
   left: 269px;
+  pointer-events: auto;
 `;
 
 export const BlockedIcon = styled.img`

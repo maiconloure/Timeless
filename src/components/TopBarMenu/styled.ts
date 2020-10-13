@@ -160,7 +160,7 @@ export const ProfileIcon = styled.div`
 export const UserMenu = styled.div`
   position: absolute;
   top: 65px;
-  left: -10px;
+  left: 10px;
   min-width: 220px;
   height: 300px;
   padding: 10px;
