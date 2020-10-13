@@ -30,6 +30,7 @@ const EditUserModal = ({
       <St.Form>
         <Input
           type="text"
+          value={userName}
           placeholder={userName}
           width="220px"
           fontSize="2rem"
@@ -38,6 +39,7 @@ const EditUserModal = ({
         />
         <Input
           type="text"
+          value={userAbout}
           placeholder={userAbout}
           width="220px"
           fontSize="2rem"
@@ -47,6 +49,7 @@ const EditUserModal = ({
 
         <Input
           type="text"
+          value={userImage}
           placeholder={userImage}
           width="220px"
           fontSize="2rem"

@@ -38,6 +38,7 @@ const EditBoardModal = ({
           <Button onClick={handleReturnForm}>Voltar</Button>
           <Input
             type="text"
+            value={boardTitle}
             placeholder={boardTitle}
             width="220px"
             fontSize="2rem"
@@ -46,6 +47,7 @@ const EditBoardModal = ({
           />
           <Input
             type="text"
+            value={boardTitle}
             placeholder={boardDescription}
             width="220px"
             fontSize="2rem"
