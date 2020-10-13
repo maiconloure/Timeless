@@ -2,6 +2,7 @@
 
 context('Logging to Board Page', () => {
   it('logs in and tests creating and deleting cards', () => {
+    cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
     cy.get('.sc-hKFyIo').type('leandro@gmail.com');
