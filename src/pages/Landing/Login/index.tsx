@@ -18,7 +18,7 @@ const Login = ({
       <St.LoginMenu onSubmit={handleSubmit(OnFinishLogin)}>
         <St.LoginForm>
           <Input
-            type="email"
+            type="text"
             name="email"
             placeholder="email"
             width={windowSize.width < 550 ? '300px' : '400px'}

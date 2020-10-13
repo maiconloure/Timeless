@@ -10,7 +10,7 @@ import { LoginContainerProps } from '../ContainerInterface';
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();
   const status = useSelector((state: RootStoreType) => state.service.status);
-  const { register, unregister, handleSubmit, setValue, errors } = useForm();
+  const { register, unregister, handleSubmit, setValue, getValues, errors } = useForm();
 
   useEffect(() => {
     register('email', {
@@ -52,8 +52,14 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
   const handleChangePassword = (evt: ChangeEvent<HTMLInputElement>) =>
     setValue('password', evt.currentTarget.value);
 
+  const email = getValues('email');
+  const password = getValues('password');
+  console.log(email, password);
+  useEffect(() => {}, [email, password]);
+
   return (
     <Login
+      value={{ email, password }}
       handleSubmit={handleSubmit}
       OnFinishLogin={OnFinishLogin}
       windowSize={windowSize}

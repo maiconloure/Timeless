@@ -17,6 +17,10 @@ export interface LandingPageProps {
 }
 
 export interface LoginProps {
+  value: {
+    email: any;
+    password: any;
+  };
   OnFinishLogin: (data: { email: string; password: string }) => void;
   windowSize: {
     width: number;
