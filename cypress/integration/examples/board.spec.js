@@ -9,12 +9,14 @@ context('Logging to Board Page', () => {
     cy.get('.sc-jSFkmK').type('123456');
     cy.get(':nth-child(3) > .sc-bdnylx').click();
 
-    cy.get(':nth-child(2) > .sc-fbIXFq > h4').contains('OBJETOS');
-    cy.get(':nth-child(3) > .sc-fbIXFq > h4').contains('FERRAMENTAS');
+    cy.get(':nth-child(2) > .sc-FRqcf > h4').contains('OBJETOS');
+    cy.get(':nth-child(3) > .sc-FRqcf > h4').contains('FERRAMENTAS');
     cy.get('.sc-cBoprd > h2').contains('Notificações recentes');
 
-    cy.get(':nth-child(2) > .sc-fXazxj > :nth-child(2)').click();
-
-    // cy.get('#fast').click();
+    cy.wait(2000);
+    cy.get('#card').click({ force: true });
+    cy.get('#trash').click();
+    cy.wait(2000);
+    cy.get(':nth-child(6) > .sc-jNnnWF > .sc-cTJmaU > .sc-eirseW').click();
   });
 });

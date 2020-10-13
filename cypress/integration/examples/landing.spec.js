@@ -1,5 +1,6 @@
 context('Login and Register (Landing) Page Rendering', () => {
   it('renders landing page and logs with valid credentials', () => {
+    cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
     cy.contains('Exemplo');
@@ -22,16 +23,19 @@ context('Login and Register (Landing) Page Rendering', () => {
 
 context('Modal Register in Landing Page', () => {
   it('open register modal', () => {
+    cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-    cy.get('.sc-fWWZrV > .sc-bdnylx').click();
+    cy.get('.sc-iIgiFR > .sc-bdnylx').click();
 
     cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
 
-    cy.get('.sc-cKRKlA > :nth-child(1) > .sc-hKFyIo');
-    cy.get(':nth-child(2) > .sc-hKFyIo');
-    cy.get('.sc-cKRKlA > .sc-eCApGN > .sc-jSFkmK');
-    cy.get('.sc-cKRKlA > .sc-bdnylx').click();
-    cy.get('.sc-ellfmu > img').click();
+    cy.get('.sc-cGKHXZ > :nth-child(1) > .sc-dlnjPT > .sc-hKFyIo');
+    cy.get(':nth-child(2) > .sc-dlnjPT > .sc-hKFyIo');
+    cy.get(':nth-child(3) > .sc-eCApGN > .sc-jSFkmK');
+    cy.get(':nth-child(3) > .sc-eCApGN > .sc-iCoHVE').click();
+    cy.get(':nth-child(4) > .sc-bdnylx').click();
+    cy.wait(3000);
+    cy.get('.sc-dSnYFs > img').click();
   });
 });
