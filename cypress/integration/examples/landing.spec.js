@@ -13,10 +13,9 @@ context('Login and Register (Landing) Page Rendering', () => {
     cy.contains('eficiência elevada ao máximo!');
 
     cy.get(':nth-child(3) > .sc-bdnylx').contains('Entrar');
-    cy.get('.sc-bQCGiA > img');
     cy.get('.sc-hKFyIo').type('leandro@gmail.com');
     cy.get('.sc-jSFkmK').type('123456');
-    cy.get('.sc-htmbXw > .sc-bdnylx').contains('Comece agora');
+
     cy.get(':nth-child(3) > .sc-bdnylx').click();
   });
 });
@@ -25,14 +24,14 @@ context('Modal Register in Landing Page', () => {
   it('open register modal', () => {
     cy.visit('http://localhost:3000');
 
-    cy.get('.sc-htmbXw > .sc-bdnylx').click();
+    cy.get('.sc-fWWZrV > .sc-bdnylx').click();
 
     cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
 
-    cy.get('.sc-dvUxUk > :nth-child(1) > .sc-hKFyIo');
+    cy.get('.sc-cKRKlA > :nth-child(1) > .sc-hKFyIo');
     cy.get(':nth-child(2) > .sc-hKFyIo');
-    cy.get('.sc-dvUxUk > .sc-eCApGN > .sc-jSFkmK');
-    cy.get('.sc-dvUxUk > .sc-bdnylx').click();
-    cy.get('.sc-eWnSVe > img').click();
+    cy.get('.sc-cKRKlA > .sc-eCApGN > .sc-jSFkmK');
+    cy.get('.sc-cKRKlA > .sc-bdnylx').click();
+    cy.get('.sc-ellfmu > img').click();
   });
 });
