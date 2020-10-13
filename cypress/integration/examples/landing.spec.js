@@ -26,7 +26,6 @@ context('Modal Register in Landing Page', () => {
     cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-<<<<<<< HEAD
     cy.get('.sc-iIgiFR > .sc-bdnylx').click();
 
     cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
@@ -38,16 +37,5 @@ context('Modal Register in Landing Page', () => {
     cy.get(':nth-child(4) > .sc-bdnylx').click();
     cy.wait(3000);
     cy.get('.sc-dSnYFs > img').click();
-=======
-    cy.get('.sc-fWWZrV > .sc-bdnylx').click();
-
-    cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
-
-    cy.get('.sc-cKRKlA > :nth-child(1) > .sc-hKFyIo');
-    cy.get(':nth-child(2) > .sc-hKFyIo');
-    cy.get('.sc-cKRKlA > .sc-eCApGN > .sc-jSFkmK');
-    cy.get('.sc-cKRKlA > .sc-bdnylx').click();
-    cy.get('.sc-ellfmu > img').click();
->>>>>>> master
   });
 });
