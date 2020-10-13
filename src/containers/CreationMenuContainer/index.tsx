@@ -14,7 +14,7 @@ const initialSelectCard = {
   fastCard: false,
   addText: false,
   connect: false,
-  pin: false,
+  followedCard: false,
   blockedCard: false,
 };
 
@@ -126,7 +126,7 @@ const CreationMenuContainer = ({
   };
 
   const pinCardButton = () => {
-    setSelectedCard({ ...initialSelectCard, pin: !selectedCard.pin });
+    setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
     // dispatch(
     //   updateBoardAPI({
     //     board: {
