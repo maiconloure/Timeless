@@ -104,6 +104,10 @@ const Board = ({
           </>}
           
 
+          {lines.map((line: any, i: number) => (
+            <Xarrow key={i} {...line} />
+          ))}
+
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
           </St.CardContainer>

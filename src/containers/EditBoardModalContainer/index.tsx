@@ -12,6 +12,7 @@ import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultBoard } from '../../utils/defaults-json-cards';
 import { EditBoardModalContainerProps } from '../ContainerInterface';
+
 const EditBoardModalContainer = ({
   data: { showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },
   history,

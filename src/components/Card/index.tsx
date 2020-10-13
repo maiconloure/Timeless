@@ -99,6 +99,7 @@ const DefaultCard = ({
                   defaultChecked={card.data.checked}
                 />
               </div>
+              
             </St.Description>
             <St.CardFooter>
               <St.CardUsers>
