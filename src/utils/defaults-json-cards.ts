@@ -53,6 +53,6 @@ export const defaultBoard = {
   users: [],
   data: {
     text: [],
-    notifications: [],
+    notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
   },
 };

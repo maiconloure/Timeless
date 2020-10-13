@@ -35,7 +35,18 @@ const EditBoardModalContainer = ({
 
   const handlerSubmitForm = () => {
     if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
-      dispatch(createBoardAPI(selectedBoard, token, user, history));
+      dispatch(
+        createBoardAPI(
+          {
+            ...selectedBoard,
+            title: boardTitle,
+            description: boardDescription,
+          },
+          token,
+          user,
+          history
+        )
+      );
     } else {
       const newBoard: any = {
         ...selectedBoard,
