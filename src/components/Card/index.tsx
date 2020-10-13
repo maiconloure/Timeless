@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from 'framer-motion';
 import React from 'react';
 
@@ -27,7 +26,7 @@ const DefaultCard = ({
   blockCard,
 }: DefaultCardProps) => (
   <St.CardContainer onDoubleClick={DoubleClick} className={className}>
-    <motion.div drag dragMomentum={false} onDragEnd={onDragEndFunction} style={{ x, y }}>
+    <St.MotionBox drag dragMomentum={false} onDragEnd={onDragEndFunction} style={{ x, y }}>
       <St.Editable blocked={card.data.blocked}>
         <St.Card>
           <St.CardInside>
@@ -131,7 +130,7 @@ const DefaultCard = ({
           </div>
         </St.Block>
       )}
-    </motion.div>
+    </St.MotionBox>
   </St.CardContainer>
 );
 

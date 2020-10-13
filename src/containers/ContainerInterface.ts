@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
+import React, { useEffect, ChangeEvent } from 'react';
 
 import { CardInterface } from '../redux/actions/interface.action';
 
@@ -12,13 +12,14 @@ export interface BacklogCardProps {
   data: {
     showEditCard: boolean;
     setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
-    currentCard: any;
+    currentCard: object;
   };
 }
 
 export interface BoardContainerProps {
   history: History<LocationState>;
 }
+
 export interface CreationMenuContainerProps {
   setSelectedCard: React.Dispatch<
     React.SetStateAction<{
@@ -102,5 +103,5 @@ export interface RegisterContainerProps {
     height: number;
   };
   handleForm: boolean;
-  setHandleForm: any;
+  setHandleForm: React.Dispatch<React.SetStateAction<boolean>>;
 }

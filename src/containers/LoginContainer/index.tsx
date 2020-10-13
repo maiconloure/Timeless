@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -36,7 +35,7 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
     };
   }, [register, unregister]);
 
-  const OnFinishLogin = (data: any) => {
+  const OnFinishLogin = (data: { email: string; password: string }) => {
     dispatch(requestLogin({ email: data.email, password: data.password }));
   };
 
@@ -47,9 +46,11 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
     }
   }, [status]);
 
-  const handleChangeEmail = (evt: any) => setValue('email', evt.currentTarget.value);
+  const handleChangeEmail = (evt: ChangeEvent<HTMLInputElement>) =>
+    setValue('email', evt.currentTarget.value);
 
-  const handleChangePassword = (evt: any) => setValue('password', evt.currentTarget.value);
+  const handleChangePassword = (evt: ChangeEvent<HTMLInputElement>) =>
+    setValue('password', evt.currentTarget.value);
 
   return (
     <Login

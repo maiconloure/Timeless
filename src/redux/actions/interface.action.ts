@@ -1,3 +1,5 @@
+import { History, LocationState } from 'history';
+
 import * as TYPE from './type.action';
 
 // --------------DECODE TOKEN TYPES--------------
@@ -50,7 +52,7 @@ export interface PropsResponseRegister {
 export interface PropsGetUserBoards {
   user: UserInterface;
   token: string;
-  history: any;
+  history: History<LocationState>;
 }
 
 export interface DataBoard {
@@ -143,7 +145,7 @@ export interface CardState {
 export interface PropsUpdatedCard {
   token: string;
   card: CardInterface;
-  history: any;
+  history: History<LocationState>;
 }
 
 export interface PropsCreatedCard {
@@ -151,7 +153,7 @@ export interface PropsCreatedCard {
   user: UserInterface;
   token: string;
   card: CardCreateInterface;
-  history: any;
+  history: History<LocationState>;
 }
 
 // --------------ACTIONS INTERFACES--------------

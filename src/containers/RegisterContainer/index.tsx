@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -50,7 +49,7 @@ const RegisterContainer = ({
     };
   }, [register, unregister]);
 
-  const OnFinishRegister = (data: any) => {
+  const OnFinishRegister = (data: { name: string; email: string; password: string }) => {
     dispatch(registerUser({ name: data.name, email: data.email, password: data.password }));
   };
 
@@ -61,11 +60,14 @@ const RegisterContainer = ({
     }
   }, [status]);
 
-  const handleChangeName = (evt: any) => setValue('name', evt.currentTarget.value);
+  const handleChangeName = (evt: ChangeEvent<HTMLInputElement>) =>
+    setValue('name', evt.currentTarget.value);
 
-  const handleChangeEmail = (evt: any) => setValue('email', evt.currentTarget.value);
+  const handleChangeEmail = (evt: ChangeEvent<HTMLInputElement>) =>
+    setValue('email', evt.currentTarget.value);
 
-  const handleChangePassword = (evt: any) => setValue('password', evt.currentTarget.value);
+  const handleChangePassword = (evt: ChangeEvent<HTMLInputElement>) =>
+    setValue('password', evt.currentTarget.value);
 
   return (
     <Register

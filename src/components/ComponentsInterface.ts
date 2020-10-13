@@ -1,3 +1,6 @@
+import { MotionValue } from 'framer-motion';
+import { MouseEvent, ChangeEvent } from 'react';
+
 import * as Interface from '../redux/actions/interface.action';
 
 export interface CreationMenuProps {
@@ -23,8 +26,8 @@ export interface DefaultCardProps {
   setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
   setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
   onDragEndFunction: () => void;
-  x: any;
-  y: any;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
   showWarning: boolean;
   setShowWarning: React.Dispatch<React.SetStateAction<boolean>>;
   selectedCard: {
@@ -32,10 +35,10 @@ export interface DefaultCardProps {
     fastCard: boolean;
     blockedCard: boolean;
   };
-  handleCheckBox: any;
-  removeCard: any;
-  creationCard: any;
-  DoubleClick: any;
+  handleCheckBox: (evt: MouseEvent<HTMLInputElement>) => void;
+  removeCard: () => void;
+  creationCard: () => void;
+  DoubleClick: () => void;
   className: string;
   blockCard: (res: boolean) => void;
 }
@@ -43,8 +46,8 @@ export interface DefaultCardProps {
 export interface EditBoardModalProps {
   boards: Interface.UserBoards[];
   values: {
-    boardTitle: any;
-    boardDescription: any;
+    boardTitle: string;
+    boardDescription: string;
   };
   showModal: {
     showEditModal: boolean;
@@ -53,8 +56,8 @@ export interface EditBoardModalProps {
     setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
   };
   handlers: {
-    handlerTitle: (event: any) => void;
-    handlerDescription: (event: any) => void;
+    handlerTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+    handlerDescription: (event: ChangeEvent<HTMLInputElement>) => void;
     handleReturnForm: () => void;
     handlerModifyBoard: (board: Interface.UserBoards) => void;
     handlerRemoveBoard: (board: Interface.UserBoards) => void;
@@ -71,9 +74,9 @@ export interface EditUserModalProps {
   userAbout: string;
   userImage: string;
   submitNotification: () => void;
-  handleUserName: (evt: any) => void;
-  handleUserAbout: (evt: any) => void;
-  handleUserImage: (evt: any) => void;
+  handleUserName: (evt: ChangeEvent<HTMLInputElement>) => void;
+  handleUserAbout: (evt: ChangeEvent<HTMLInputElement>) => void;
+  handleUserImage: (evt: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface FixedMenuProps {
@@ -87,7 +90,7 @@ export interface FixedMenuProps {
     handlerSaveBoard: () => void;
     handleOpenEditProfile: () => void;
     handleOpenEditBoard: () => void;
-    handlerToggleBoard: () => any;
-    handleToggleMenu: () => any;
+    handlerToggleBoard: () => void;
+    handleToggleMenu: () => void;
   };
 }

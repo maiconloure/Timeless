@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, Button } from 'capstone-project';
 import React from 'react';
 
@@ -47,7 +46,7 @@ const EditBoardModal = ({
           />
           <Input
             type="text"
-            value={boardTitle}
+            value={boardDescription}
             placeholder={boardDescription}
             width="220px"
             fontSize="2rem"
