@@ -97,10 +97,12 @@ const Board = ({
                 forceRerender={forceRerender}
               />
             ))}
-
-          {lines.map((line: any, i: number) => (
+            {cards.length > 1 && 
+            <>{lines.map((line: any, i: number) => (
             <Xarrow key={i} {...line} />
           ))}
+          </>}
+          
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />

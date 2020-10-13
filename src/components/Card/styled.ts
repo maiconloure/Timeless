@@ -28,6 +28,7 @@ export const CardContainer = styled(motion.div)`
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
+    
 
     /* Position the tooltip */
     position: absolute;
@@ -35,7 +36,7 @@ export const CardContainer = styled(motion.div)`
   }
 `;
 
-export const Editable = styled.div<{ blocked: any }>`
+export const Editable = styled.div<{ blocked: boolean }>`
   pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
 
   #unlock {
@@ -164,6 +165,8 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   }
 
   div input[type='checkbox'] {
@@ -183,6 +186,8 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 `;
 
 export const CheckBox = styled.input``;
@@ -218,7 +223,7 @@ export const CardButton = styled.button`
   background-color: var(--color-background);
   color: var(--color-primary-4);
   color: #8b4513;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-left: 10px;
   padding: 2px 10px;
@@ -233,7 +238,7 @@ export const CardButton = styled.button`
     color: var(--complement-color-2);
     font-weight: 900;
     border-top: none;
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   :active {

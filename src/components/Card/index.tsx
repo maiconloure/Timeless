@@ -65,10 +65,13 @@ const DefaultCard = ({
                       <span className="tooltiptext">Possui descrição</span>
                     </div>
 
+                    {card.data.followers.length >= 1 && (
                     <div className="tooltip">
                       <img src={icons.eye} alt="Someone follow" />
                       <span className="tooltiptext">Seguindo</span>
                     </div>
+                    )}
+
                   </St.InfoIcons>
                 </div>
               </St.MainTags>
@@ -118,7 +121,7 @@ const DefaultCard = ({
           {selectedCard.removeCard ? (
             <St.CardButton onClick={removeCard}>remover</St.CardButton>
           ) : (
-            selectedCard.fastCard && (
+            selectedCard.fastCard &&  !card.data.fastCard && (
               <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
             )
           )}
