@@ -1,6 +1,8 @@
 import { History, LocationState } from 'history';
-import React from 'react';
+import React, { useState } from 'react';
+import Draggable from 'react-draggable';
 import { ToastContainer, Slide } from 'react-toastify';
+import Xarrow from 'react-xarrows';
 
 import { PageTransition, FeedbackButton } from '../../components';
 import * as Container from '../../containers';
@@ -25,12 +27,14 @@ const Board = ({
     setShowBoardModal,
   },
   values: { cards, history },
+  forceRerender,
+  lines,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
       <ToastContainer transition={Slide} />
     </St.Notification>
-    <St.BoardPage>
+    <St.BoardPage id="canvas">
       <FeedbackButton />
 
       <Container.TopBarContainer
@@ -78,10 +82,10 @@ const Board = ({
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
-
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <Container.DefaultCardContainer
+                id={`card${key}`}
                 className="DefaultCard"
                 key={key}
                 card={card}
@@ -90,8 +94,13 @@ const Board = ({
                 setShowEditCard={setShowEditCard}
                 selectedCard={selectedCard}
                 history={history}
+                forceRerender={forceRerender}
               />
             ))}
+
+          {lines.map((line: any, i: number) => (
+            <Xarrow key={i} {...line} />
+          ))}
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />

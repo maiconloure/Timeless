@@ -62,7 +62,7 @@ export interface BoardProps {
       fastCard: boolean;
       addText: boolean;
       connect: boolean;
-      pin: boolean;
+      followedCard: boolean;
       blockedCard: boolean;
     };
     setSelectedCard: React.Dispatch<
@@ -72,7 +72,7 @@ export interface BoardProps {
         fastCard: boolean;
         addText: boolean;
         connect: boolean;
-        pin: boolean;
+        followedCard: boolean;
         blockedCard: boolean;
       }>
     >;
@@ -81,4 +81,6 @@ export interface BoardProps {
     cards: CardInterface[];
     history: History<LocationState>;
   };
+  forceRerender: any;
+  lines: any;
 }

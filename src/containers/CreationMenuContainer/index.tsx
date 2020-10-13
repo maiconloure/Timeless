@@ -14,7 +14,7 @@ const initialSelectCard = {
   fastCard: false,
   addText: false,
   connect: false,
-  pin: false,
+  followedCard: false,
   blockedCard: false,
 };
 
@@ -60,7 +60,7 @@ const CreationMenuContainer = ({
     dispatch(getNewAction(` ${user.name} acabou de fazer um ligação.`));
   };
   const pinCardButton = () => {
-    setSelectedCard({ ...initialSelectCard, pin: !selectedCard.pin });
+    setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
     // dispatch(getNewAction(`${user.name} acabou de seguir um cartão.`));
   };
   const blockCardButton = () => {

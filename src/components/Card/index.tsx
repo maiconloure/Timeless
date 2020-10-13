@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
@@ -23,12 +22,21 @@ const DefaultCard = ({
   creationCard,
   DoubleClick,
   className,
+  id,
   blockCard,
+  followCard,
+  forceRerender,
 }: DefaultCardProps) => (
   <St.CardContainer onDoubleClick={DoubleClick} className={className}>
-    <St.MotionBox drag dragMomentum={false} onDragEnd={onDragEndFunction} style={{ x, y }}>
+    <St.MotionBox
+      drag
+      onDrag={forceRerender}
+      onDragStart={forceRerender}
+      dragMomentum={false}
+      onDragEnd={onDragEndFunction}
+      style={{ x, y }}>
       <St.Editable blocked={card.data.blocked}>
-        <St.Card>
+        <St.Card id={id} style={{ x, y }}>
           <St.CardInside>
             <St.AlertImg>
               {card.data.fastCard && card.data.fastCard.show && (
@@ -104,32 +112,45 @@ const DefaultCard = ({
               </St.CardData>
             </St.CardFooter>
           </St.CardInside>
+
+          {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
+
+          {selectedCard.removeCard ? (
+            <St.CardButton onClick={removeCard}>remover</St.CardButton>
+          ) : (
+            selectedCard.fastCard && (
+              <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
+            )
+          )}
+
+          {selectedCard.followedCard && card.data.followers.length === 0 && (
+            <St.CardButton onClick={() => followCard(true)}>seguir</St.CardButton>
+          )}
+
+          {selectedCard.followedCard && card.data.followers.length >= 1 && (
+            <St.CardButton onClick={() => followCard(false)}>deixar de seguir</St.CardButton>
+          )}
+
+          {selectedCard.blockedCard && !card.data.blocked && (
+            <St.CardButton onClick={() => blockCard(true)}>bloquear</St.CardButton>
+          )}
+
+          {selectedCard.blockedCard && card.data.blocked && (
+            <St.CardButton id="unlock" onClick={() => blockCard(false)}>
+              desbloquear
+            </St.CardButton>
+          )}
+
+          {card.data.blocked && (
+            <St.Block>
+              <div className="tooltip">
+                <St.BlockedIcon src={icons.blocked} />
+                <span className="tooltiptext">Bloqueado</span>
+              </div>
+            </St.Block>
+          )}
         </St.Card>
-        {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
-        {selectedCard.removeCard ? (
-          <St.CardButton onClick={removeCard}>remover</St.CardButton>
-        ) : (
-          selectedCard.fastCard && (
-            <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
-          )
-        )}
       </St.Editable>
-
-      {selectedCard.blockedCard && !card.data.blocked && (
-        <St.CardButton onClick={() => blockCard(true)}>bloquear</St.CardButton>
-      )}
-
-      {selectedCard.blockedCard && card.data.blocked && (
-        <St.CardButton onClick={() => blockCard(false)}>desbloquear</St.CardButton>
-      )}
-      {card.data.blocked && (
-        <St.Block>
-          <div className="tooltip">
-            <St.BlockedIcon src={icons.blocked} />
-            <span className="tooltiptext">Bloqueado</span>
-          </div>
-        </St.Block>
-      )}
     </St.MotionBox>
   </St.CardContainer>
 );

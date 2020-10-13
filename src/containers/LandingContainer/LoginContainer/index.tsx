@@ -2,10 +2,10 @@ import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Login from '../../pages/Landing/Login';
-import { requestLogin, updateStatus } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store/store';
-import { LoginContainerProps } from '../ContainerInterface';
+import Login from '../../../pages/Landing/Login';
+import { requestLogin, updateStatus } from '../../../redux/actions/service.action';
+import { RootStoreType } from '../../../redux/store/store';
+import { LoginContainerProps } from '../../ContainerInterface';
 
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();

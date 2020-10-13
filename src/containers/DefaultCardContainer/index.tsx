@@ -17,6 +17,8 @@ const DefaultCardContainer = ({
   selectedCard,
   history,
   className,
+  id,
+  forceRerender,
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -75,7 +77,6 @@ const DefaultCardContainer = ({
     } else {
       dispatch(getNewAction(` ${user.name} desbloqueou o cartão ${card.data.title}`));
     }
-
     dispatch(
       updateCardAPI({
         card: {
@@ -95,8 +96,37 @@ const DefaultCardContainer = ({
     }
   };
 
+  const followCard = (res: any) => {
+    if (res) {
+      dispatch(getNewAction(` ${user.name} começou a seguir o cartão ${card.data.title}`));
+      dispatch(
+        updateCardAPI({
+          card: {
+            ...card,
+            data: { ...card.data, followers: [{ name: user.name, id: user.id }] },
+          },
+          token,
+          history,
+        })
+      );
+    } else {
+      dispatch(getNewAction(` ${user.name} deixou de seguir o cartão ${card.data.title}`));
+      dispatch(
+        updateCardAPI({
+          card: {
+            ...card,
+            data: { ...card.data, followers: [] },
+          },
+          token,
+          history,
+        })
+      );
+    }
+  };
+
   return (
     <Card
+      id={id}
       className={className}
       card={card}
       user={user}
@@ -114,6 +144,8 @@ const DefaultCardContainer = ({
       creationCard={creationCard}
       DoubleClick={DoubleClick}
       blockCard={blockCard}
+      followCard={followCard}
+      forceRerender={forceRerender}
     />
   );
 };
