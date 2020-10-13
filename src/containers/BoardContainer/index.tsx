@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import Board from '../../pages/Board';
-import { getBoardsAPI, getCardsAPI } from '../../redux/actions/boards.action';
+import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/boards.action';
 import { RootStoreType } from '../../redux/store/store';
 import { BoardContainerProps } from '../ContainerInterface';
 
@@ -34,7 +34,23 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   }, []);
 
   useEffect(() => {
-    currentBoard && dispatch(getCardsAPI(currentBoard, token, history));
+    if (currentBoard && currentBoard.data) {
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              ...currentBoard.data.notifications,
+              `${user.name} acabou de criar um grupo de cartões.`,
+            ],
+          },
+        },
+        token,
+        history,
+      });
+      dispatch(getCardsAPI(currentBoard, token, history));
+    }
   }, [currentBoard]);
 
   useEffect(() => {

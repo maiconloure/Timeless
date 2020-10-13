@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot not renders 1`] = `
+<div
+  className="sc-fKgIGh cNCOQf"
+>
+  <div
+    className="sc-crzoUp inpdim"
+    onClick={[Function]}
+  >
+    <img
+      alt="close icon"
+    />
+  </div>
+  <h1
+    className="sc-bCwgka dJmVvq"
+  >
+    Boards
+  </h1>
+  <div
+    className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
+  >
+    <div
+      className="sc-cOigif joWwyw"
+    >
+      <div
+        className="sc-cTJmaU mCPhx"
+      >
+        <p
+          className="sc-ArjOu lfTQLd"
+        >
+          Novo Board
+        </p>
+        <button
+          className="sc-jNnnWF kZsxcv"
+          onClick={[MockFunction]}
+        >
+          Criar
+        </button>
+      </div>
+    </div>
+    <div
+      className="sc-cOigif joWwyw"
+    >
+      <h2 />
+      <div
+        className="sc-dPaNSN jlRbDv"
+      >
+        <p
+          className="sc-ArjOu lfTQLd"
+        />
+        <div>
+          <button
+            className="sc-jNnnWF kZsxcv"
+            onClick={[Function]}
+          >
+            Selecionar
+          </button>
+          <button
+            className="sc-jNnnWF kZsxcv"
+            onClick={[Function]}
+          >
+            Modificar
+          </button>
+          <button
+            className="sc-jNnnWF kZsxcv"
+            onClick={[Function]}
+          >
+            Remover
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshot renders 1`] = `
+<div
+  className="sc-fKgIGh iYqHxB"
+>
+  <div
+    className="sc-crzoUp inpdim"
+    onClick={[Function]}
+  >
+    <img
+      alt="close icon"
+    />
+  </div>
+  <h1
+    className="sc-bCwgka dJmVvq"
+  >
+    Boards
+  </h1>
+  <div
+    className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
+  >
+    <div
+      className="sc-bBjRzc fZsUBF"
+    >
+      <button
+        className="sc-bdnylx hhyBUP"
+        color="#014D82"
+        fontSize="1.4rem"
+        height="55px"
+        onClick={[MockFunction]}
+        radius="6px"
+        width="170px"
+      >
+        Voltar
+      </button>
+      <div
+        className="sc-dlnjPT"
+      >
+        <input
+          className="sc-hKFyIo evVGth"
+          color="#014D82"
+          fontSize="2rem"
+          height="40px"
+          name="fname"
+          onChange={[Function]}
+          placeholder="title"
+          type="text"
+          width="220px"
+        />
+      </div>
+      <div
+        className="sc-dlnjPT"
+      >
+        <input
+          className="sc-hKFyIo evVGth"
+          color="#014D82"
+          fontSize="2rem"
+          height="40px"
+          name="fname"
+          onChange={[Function]}
+          placeholder="description"
+          type="text"
+          width="220px"
+        />
+      </div>
+      <button
+        className="sc-bdnylx jmFhMj"
+        color="#014D82"
+        fontSize="2.6rem"
+        height="44px"
+        onClick={[MockFunction]}
+        radius="6px"
+        width="170px"
+      >
+        Modificar
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshot renders but showBoardModal is false 1`] = `
+<div
+  className="sc-fKgIGh cNCOQf"
+>
+  <div
+    className="sc-crzoUp inpdim"
+    onClick={[Function]}
+  >
+    <img
+      alt="close icon"
+    />
+  </div>
+  <h1
+    className="sc-bCwgka dJmVvq"
+  >
+    Boards
+  </h1>
+  <div
+    className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
+  >
+    <div
+      className="sc-bBjRzc fZsUBF"
+    >
+      <button
+        className="sc-bdnylx hhyBUP"
+        color="#014D82"
+        fontSize="1.4rem"
+        height="55px"
+        onClick={[MockFunction]}
+        radius="6px"
+        width="170px"
+      >
+        Voltar
+      </button>
+      <div
+        className="sc-dlnjPT"
+      >
+        <input
+          className="sc-hKFyIo evVGth"
+          color="#014D82"
+          fontSize="2rem"
+          height="40px"
+          name="fname"
+          onChange={[Function]}
+          placeholder="title"
+          type="text"
+          width="220px"
+        />
+      </div>
+      <div
+        className="sc-dlnjPT"
+      >
+        <input
+          className="sc-hKFyIo evVGth"
+          color="#014D82"
+          fontSize="2rem"
+          height="40px"
+          name="fname"
+          onChange={[Function]}
+          placeholder="description"
+          type="text"
+          width="220px"
+        />
+      </div>
+      <button
+        className="sc-bdnylx jmFhMj"
+        color="#014D82"
+        fontSize="2.6rem"
+        height="44px"
+        onClick={[MockFunction]}
+        radius="6px"
+        width="170px"
+      >
+        Modificar
+      </button>
+    </div>
+  </div>
+</div>
+`;

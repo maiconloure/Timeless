@@ -10,7 +10,7 @@ import { LoginContainerProps } from '../../ContainerInterface';
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();
   const status = useSelector((state: RootStoreType) => state.service.status);
-  const { register, unregister, handleSubmit, setValue, errors } = useForm();
+  const { register, unregister, handleSubmit, setValue, getValues, errors } = useForm();
 
   useEffect(() => {
     register('email', {

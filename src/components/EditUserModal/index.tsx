@@ -36,6 +36,7 @@ const EditUserModal = ({
           height="40px"
           onTextChange={handleUserName}
         />
+
         <Input
           type="text"
           placeholder={userAbout}

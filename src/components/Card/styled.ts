@@ -227,8 +227,6 @@ export const CardButton = styled.button`
   border-radius: 5px;
   position: absolute;
   top: 95%;
-  /* left: 0; */
-
   transition: 0.2s;
 
   :hover {

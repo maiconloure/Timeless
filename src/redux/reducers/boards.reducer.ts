@@ -28,6 +28,7 @@ const boards = (state = initialState, action: BoardsAction): BoardState => {
       return {
         ...state,
         boards: [...state.boards.filter((board) => board.id !== action.payload.id), action.payload],
+        currentBoard: action.payload,
       };
 
     case TYPE.GET_CURRENT_BOARD:

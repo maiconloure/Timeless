@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renders unclicked 1`] = `
+<div
+  className="sc-bdnylx cCXgJk"
+>
+  <div
+    className="sc-gtssRu cga-DwH"
+  >
+    <div
+      className="sc-dlnjPT gtcHOL"
+    >
+      <a
+        href="https://gitlab.com/capstoneproject-group-4/timeless"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <div
+          className="tooltip"
+        >
+          <img
+            alt="Logo"
+          />
+          <span
+            className="tooltiptext"
+          >
+            Timeless salva automaticamente o seu trabalho!
+          </span>
+        </div>
+      </a>
+      <div
+        className="tooltip"
+      >
+        <h2>
+           Kenzie Academy Brasil 
+        </h2>
+        <span
+          className="tooltiptext"
+        >
+          Nome da empresa
+        </span>
+      </div>
+      <h4>
+           |   
+      </h4>
+      <div
+        className="tooltip"
+      >
+        <h3
+          onClick={[MockFunction]}
+        >
+          The Test
+        </h3>
+        <span
+          className="tooltiptext"
+        >
+          Nome do projeto
+        </span>
+      </div>
+    </div>
+    <div
+      className="sc-gKAblj kbRHGY"
+    >
+      <div
+        className="sc-hKFyIo hNixbw"
+      >
+        <h2>
+          Test
+        </h2>
+        <p>
+          Online
+        </p>
+      </div>
+      <div
+        className="sc-eCApGN jbpBzz"
+        onClick={[MockFunction]}
+      >
+        <img
+          alt="User icon"
+          src="test"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

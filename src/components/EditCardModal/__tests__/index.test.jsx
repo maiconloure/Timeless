@@ -3,11 +3,6 @@ import renderer from 'react-test-renderer';
 
 import BacklogCard from '..';
 
-// jest.mock('react', () => ({
-//   ...jest.requireActual('react'),
-//   useState: jest.fn(),
-// }));
-
 describe('Snapshot', () => {
   it('renders', () => {
     const showEditCard = true;
