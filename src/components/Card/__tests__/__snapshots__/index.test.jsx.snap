@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renderer 1`] = `
+<div
+  className="sc-efHXLn fldBtY"
+  style={Object {}}
+>
+  <div
+    className="sc-jNnnWF dgPxry"
+    draggable={false}
+    style={
+      Object {
+        "touchAction": "none",
+        "transform": "translateX(undefined) translateY(undefined) translateZ(0)",
+        "userSelect": "none",
+      }
+    }
+  >
+    <div
+      className="sc-cTJmaU kHBJNA"
+    >
+      <div
+        className="sc-dPaNSN krlKby"
+      >
+        <div
+          className="sc-bBjRzc jvREJE"
+        >
+          <span
+            className="sc-jgPznn hLjnEG"
+          >
+            
+          </span>
+          <div
+            className="sc-cOigif gcpPQW"
+          >
+            <div
+              className="sc-ArjOu kjlBSZ"
+            >
+              <div
+                className="sc-khIgXV ikuYwr"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+              />
+              <div
+                className="sc-khIgXV ikuYwr"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+              />
+              <div>
+                <figure
+                  className="sc-gSYCTC cHhcay"
+                >
+                  <div
+                    className="tooltip"
+                  >
+                    <img
+                      alt="Have description"
+                    />
+                    <span
+                      className="tooltiptext"
+                    >
+                      Possui descrição
+                    </span>
+                  </div>
+                  <div
+                    className="tooltip"
+                  >
+                    <img
+                      alt="Someone follow"
+                    />
+                    <span
+                      className="tooltiptext"
+                    >
+                      Seguindo
+                    </span>
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div
+              className="sc-hTRkEk"
+            >
+              <div
+                className="tooltip"
+              >
+                <span />
+                <span
+                  className="tooltiptext"
+                >
+                  Tempo Estimado
+                </span>
+              </div>
+            </div>
+          </div>
+          <section
+            className="sc-laZMyp gtmVhl"
+          >
+            <div>
+              <div>
+                <h4
+                  className="sc-iNiQeE hQiBPl"
+                >
+                  
+                </h4>
+              </div>
+              <div>
+                <p>
+                  
+                </p>
+              </div>
+            </div>
+            <div>
+              <input
+                className="sc-jffIyK"
+                defaultChecked=""
+                type="checkbox"
+              />
+            </div>
+          </section>
+          <div
+            className="sc-eJoaVz jtkqfq"
+          >
+            <figure
+              className="sc-oefIU iMslNp"
+            >
+              <div
+                className="tooltip"
+              >
+                <img
+                  alt="user icon"
+                  src={
+                    Object {
+                      "about": "",
+                      "email": "",
+                      "id": 0,
+                      "image": "",
+                      "name": "",
+                    }
+                  }
+                />
+                <span
+                  className="tooltiptext"
+                />
+              </div>
+            </figure>
+            <div
+              className="sc-hhIhEF sMkqH"
+            >
+              <div
+                className="tooltip"
+              >
+                <span />
+                <span
+                  className="tooltiptext"
+                >
+                  Data de Entrega
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        className="sc-eirseW cGdPTD"
+      >
+        remover
+      </button>
+    </div>
+    
+  </div>
+</div>
+`;
