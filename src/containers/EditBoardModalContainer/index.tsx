@@ -12,7 +12,6 @@ import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultBoard } from '../../utils/defaults-json-cards';
 import { EditBoardModalContainerProps } from '../ContainerInterface';
-
 const EditBoardModalContainer = ({
   data: { showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },
   history,
@@ -36,7 +35,18 @@ const EditBoardModalContainer = ({
 
   const handlerSubmitForm = () => {
     if (JSON.stringify(selectedBoard) === JSON.stringify(defaultBoard)) {
-      dispatch(createBoardAPI(selectedBoard, token, user, history));
+      dispatch(
+        createBoardAPI(
+          {
+            ...selectedBoard,
+            title: boardTitle,
+            description: boardDescription,
+          },
+          token,
+          user,
+          history
+        )
+      );
     } else {
       const newBoard: any = {
         ...selectedBoard,

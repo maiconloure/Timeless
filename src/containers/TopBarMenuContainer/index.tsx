@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { TopBarMenu } from '../../components';
-import { clearBoard } from '../../redux/actions/boards.action';
+import { clearBoard, updateBoardAPI } from '../../redux/actions/boards.action';
 import { updateCardAPI, clearCards } from '../../redux/actions/cards.action';
-import { clearFeed, getNewAction } from '../../redux/actions/feed.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { logout } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -33,14 +32,26 @@ const FixedMenuContainer = ({
       draggable: true,
       progress: undefined,
     });
-    dispatch(getNewAction(`${user.name} acabou de fazer logout.`));
+    updateBoardAPI({
+      board: {
+        ...currentBoard,
+        data: {
+          ...currentBoard.data,
+          notifications: [
+            `${user.name} acabou de fazer logout.`,
+            ...currentBoard.data.notifications,
+          ],
+        },
+      },
+      token,
+      history,
+    });
     setToggleMenu(!toggleMenu);
 
     setTimeout(() => {
       history.push('/');
       dispatch(clearBoard());
       dispatch(clearCards());
-      dispatch(clearFeed());
       dispatch(logout());
     }, 3300);
   };

@@ -31,7 +31,7 @@ const EditUserModalContainer = ({
         history,
       })
     );
-
+    setShowEditUser(false);
     setShowEditModal(false);
   };
 
