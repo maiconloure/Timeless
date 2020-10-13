@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
+import React, { ChangeEvent } from 'react';
+import Record, { DeepMap, FieldError } from 'react-hook-form';
 
 import { CardInterface } from '../redux/actions/interface.action';
 
@@ -14,17 +15,18 @@ export interface LandingPageProps {
   handleForm: boolean;
   setHandleForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export interface LoginProps {
-  handleSubmit: any;
-  OnFinishLogin: (data: any) => void;
+  OnFinishLogin: (data: { email: string; password: string }) => void;
   windowSize: {
     width: number;
     height: number;
   };
-  errors: any;
+  handleSubmit: any;
+  errors: DeepMap<Record<string, any>, FieldError>;
   handleForm: boolean;
-  handleChangeEmail: any;
-  handleChangePassword: any;
+  handleChangeEmail: (evt: ChangeEvent<HTMLInputElement>) => void;
+  handleChangePassword: (evt: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface RegisterProps {
@@ -33,13 +35,13 @@ export interface RegisterProps {
     height: number;
   };
   handleForm: boolean;
-  setHandleForm: any;
+  setHandleForm: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: any;
-  OnFinishRegister: (data: any) => void;
-  errors: any;
-  handleChangeName: (evt: any) => void;
-  handleChangeEmail: (evt: any) => void;
-  handleChangePassword: (evt: any) => void;
+  OnFinishRegister: (data: { name: string; email: string; password: string }) => void;
+  errors: DeepMap<Record<string, any>, FieldError>;
+  handleChangeName: (evt: ChangeEvent<HTMLInputElement>) => void;
+  handleChangeEmail: (evt: ChangeEvent<HTMLInputElement>) => void;
+  handleChangePassword: (evt: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface BoardProps {

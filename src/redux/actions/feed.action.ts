@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
