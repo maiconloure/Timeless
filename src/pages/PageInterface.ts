@@ -77,10 +77,23 @@ export interface BoardProps {
       }>
     >;
   };
+  connection: {
+    cardOne: any;
+    setCardOne: any;
+    cardTwo: any;
+    setCardTwo: any;
+    cardSelected: any; 
+    setCardSelected: any;
+    confirmConnection: any;
+    setconfirmConnection: any;
+  };
   values: {
     cards: CardInterface[];
     history: History<LocationState>;
   };
   forceRerender: any;
   lines: any;
+  setLines: any;
+  defProps: any;
+  state: any;
 }

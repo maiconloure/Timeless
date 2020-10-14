@@ -130,7 +130,7 @@ export interface CardInterface {
   data: CardDataInterface;
   boardId: number | string;
   userId: number | string;
-  id: number | string;
+  id: number | string | any;
 }
 
 export interface CardCreateInterface {

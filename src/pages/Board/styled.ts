@@ -7,7 +7,7 @@ import { images } from '../../utils/importAll';
 export const BoardPage = styled.div`
   /* background-image: url(https://media.giphy.com/media/MtJwM5N4fuMgw/giphy.gif); */
   /* background-image: url(${images.AbstractTimekeeper}); */
-  background-image: url(${images.background});
+  /* background-image: url(${images.background}); */
   background-size: cover;
   position: relative;
   width: 100vw;
@@ -106,3 +106,10 @@ export const CardContainer = styled(motion.div)`
   left: calc(50% - 650px / 2);
   z-index: 1;
 `;
+
+
+export const DeleteArrow = styled.div`
+  width: 100px;
+  height: 100px;
+  background: #000;
+`

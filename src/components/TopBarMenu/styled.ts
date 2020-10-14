@@ -62,6 +62,7 @@ export const ProjectInfo = styled.div`
   img {
     width: 60px;
     border-radius: 6px;
+    border-radius: 50%;
     margin: 0 5px;
   }
 

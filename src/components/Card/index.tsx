@@ -26,6 +26,9 @@ const DefaultCard = ({
   blockCard,
   followCard,
   forceRerender,
+  handleConnection,
+  cardOne,
+  cardTwo,
 }: DefaultCardProps) => (
   <St.CardContainer onDoubleClick={DoubleClick} className={className}>
     <St.MotionBox
@@ -36,7 +39,7 @@ const DefaultCard = ({
       onDragEnd={onDragEndFunction}
       style={{ x, y }}>
       <St.Editable blocked={card.data.blocked}>
-        <St.Card id={id} style={{ x, y }}>
+        <St.Card id={`card${card.id}`} style={{ x, y }}>
           <St.CardInside>
             <St.AlertImg>
               {card.data.fastCard && card.data.fastCard.show && (
@@ -45,7 +48,7 @@ const DefaultCard = ({
                     src={icons.warning}
                     onClick={() => setShowWarning(!showWarning)}
                     alt="warning"
-                  />{' '}
+                  />
                   <span className="tooltiptext">Possui um cartão rápido</span>
                 </div>
               )}
@@ -94,7 +97,7 @@ const DefaultCard = ({
               </div>
               <div>
                 <St.CheckBox
-                  onClick={handleCheckBox}
+                  onClick={(e) => handleCheckBox}
                   type="checkbox"
                   defaultChecked={card.data.checked}
                 />
@@ -117,6 +120,15 @@ const DefaultCard = ({
             </St.CardFooter>
           </St.CardInside>
 
+          {selectedCard.connect && (
+            <>
+
+          <St.ConnectCardRight   active={card.id === cardOne || card.id === cardTwo}  onClick={handleConnection} />
+          {/* <St.ConnectCardLeft  active={card.id === cardOne || card.id === cardTwo}  onClick={handleConnection} /> */}
+          </>
+          )}
+         
+          
           {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
 
           {selectedCard.removeCard ? (

@@ -1,6 +1,7 @@
 import { useMotionValue } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from "framer-motion"
 
 import { Card } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
@@ -19,6 +20,18 @@ const DefaultCardContainer = ({
   className,
   id,
   forceRerender,
+  lines,
+  setLines,
+  connection: {
+    cardOne,
+    setCardOne,
+    cardTwo,
+    setCardTwo,
+    cardSelected, 
+    setCardSelected,
+    confirmConnection, 
+    setconfirmConnection,
+  }
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -174,7 +187,7 @@ const DefaultCardContainer = ({
     }
   };
 
-  const followCard = (res: any) => {
+  const followCard = (res: boolean) => {
     if (res) {
       dispatch(
         updateBoardAPI({
@@ -232,6 +245,65 @@ const DefaultCardContainer = ({
     }
   };
 
+  const handleConnection = () => {
+    if  (!cardSelected && !cardTwo) {
+      setCardSelected(true)
+      setCardOne(card.id)
+      console.log('origem ligada')
+
+    } else if (card.id === cardOne) {
+      setCardOne(false)
+      setCardSelected(false) 
+      console.log('origem desligada')
+
+    } else if (card.id === cardTwo) {
+      setCardTwo(false)
+      console.log('destino desligado')
+
+    } else if (!cardTwo) {
+      setCardTwo(card.id)
+      console.log('destino ligado')
+
+      if (!confirmConnection ) {
+        console.log('nova conexão')
+        setconfirmConnection(true)
+      }
+    }
+  }
+  
+
+  useEffect(() => {
+    if (confirmConnection) {
+      if (cardOne && cardTwo) {
+        console.log('conexão criada')
+        setLines([...lines, { start: `card${cardOne}`, end: `card${cardTwo}`, headSize: 4,
+        strokeWidth: 10,
+      }])
+
+      // dispatch(
+      //   updateBoardAPI({
+      //     board: {
+      //       ...currentBoard,
+      //       data: {
+      //         ...currentBoard.data,
+      //         connections: [...lines, { start: `card${cardOne}`, end: `card${cardTwo}`, headSize: 4,
+      //         strokeWidth: 10,
+      //       }],
+      //       },
+      //     },
+      //     token,
+      //     history,
+      //   })
+      // );
+      
+        setconfirmConnection(false)
+        setCardSelected(false) 
+        setCardOne(false)
+        setCardTwo(false)
+      } 
+    }
+  }, [confirmConnection])
+
   return (
     <Card
       id={id}
@@ -254,6 +326,9 @@ const DefaultCardContainer = ({
       blockCard={blockCard}
       followCard={followCard}
       forceRerender={forceRerender}
+      handleConnection={handleConnection}
+      cardOne={cardOne}
+      cardTwo={cardTwo}
     />
   );
 };

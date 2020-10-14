@@ -26,9 +26,22 @@ const Board = ({
     setShowEditModal,
     setShowBoardModal,
   },
+  connection: {
+    cardOne,
+    setCardOne,
+    cardTwo,
+    setCardTwo,
+    cardSelected, 
+    setCardSelected,
+    confirmConnection, 
+    setconfirmConnection,
+  },
   values: { cards, history },
   forceRerender,
   lines,
+  setLines,
+  defProps,
+  state,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
@@ -76,12 +89,15 @@ const Board = ({
               setSelectedCard={setSelectedCard}
               selectedCard={selectedCard}
               history={history}
+              lines={lines}
+              setLines={setLines}
             />
           </St.SideMenuContainer>
 
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
+          
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <Container.DefaultCardContainer
@@ -95,18 +111,30 @@ const Board = ({
                 selectedCard={selectedCard}
                 history={history}
                 forceRerender={forceRerender}
+                lines={lines}
+                setLines={setLines}
+                connection={{
+                  cardOne,
+                  cardTwo,
+                  setCardOne,
+                  setCardTwo,
+                  cardSelected, 
+                  setCardSelected,
+                  confirmConnection, 
+                  setconfirmConnection,
+                }}
               />
             ))}
-            {cards.length > 1 && 
-            <>{lines.map((line: any, i: number) => (
-            <Xarrow key={i} {...line} />
-          ))}
-          </>}
-          
 
-          {lines.map((line: any, i: number) => (
-            <Xarrow key={i} {...line} />
+            {cards.length > 1 && 
+            <>
+            {lines.map((line: any, i: number) => (
+              <div id={`line${i}`} key={i}>
+              <Xarrow  {...line} {...{...defProps, ...state}}   />
+              </div>
           ))}
+          </>
+          }
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
@@ -115,6 +143,6 @@ const Board = ({
       </St.DragScroll>
     </St.BoardPage>
   </PageTransition>
-);
+)
 
 export default Board;

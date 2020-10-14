@@ -62,6 +62,7 @@ export const Card = styled(motion.div)`
   border-radius: 4px;
   position: absolute;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
+  
 
   [contenteditable='true'] {
     text-overflow: ellipsis;
@@ -165,8 +166,8 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   div input[type='checkbox'] {
@@ -186,7 +187,7 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-rendering: optimizeLegibility !important;
+  text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased !important;
 `;
 
@@ -256,3 +257,78 @@ export const Block = styled.div`
 export const BlockedIcon = styled.img`
   width: 60px;
 `;
+
+export const ConnectCardTop = styled.button<{ active: any}>`
+  position: absolute;
+  top: -34px;
+  left: 43%;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border-radius: 50%;
+  border-radius: 4px;
+  border: 4px solid var(--color-primary-4);
+  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+
+  :hover {
+    background: #FF8C00;
+    border: 4px solid var(--color-primary-4);
+  }
+`
+
+export const ConnectCardLeft = styled.button<{ active: any}>`
+  position: absolute;
+  top: 40%;
+  left: -11%;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border-radius: 50%;
+  border-radius: 4px;
+  border: 4px solid var(--color-primary-4);
+  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+
+  :hover {
+    background: #FF8C00;
+    border: 4px solid var(--color-primary-4);
+  }
+`
+
+export const ConnectCardRight   = styled.button<{ active: any}>`
+  position: absolute;
+  top: 40%;
+  left: 101%;
+  
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border-radius: 50%;
+  border-radius: 4px;
+  border: 4px solid var(--color-primary-4);
+  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+
+  :hover {
+    background: #FF8C00;
+    border: 4px solid var(--color-primary-4);
+  }
+`
+
+
+
+export const ConnectCardBottom = styled.button<{ active: any}>`
+  position: absolute;
+  top: 102%;
+  left: 43%;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border-radius: 50%;
+  border-radius: 4px;
+  border: 4px solid var(--color-primary-4);
+  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+
+  :hover {
+    background: #FF8C00;
+    border: 4px solid var(--color-primary-4);
+  }
+`

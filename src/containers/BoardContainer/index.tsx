@@ -73,23 +73,33 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     }
   });
 
-  const [lines] = useState([
-    {
-      start: 'card1',
-      end: 'card2',
-      headSize: 3,
-      strokeWidth: 10,
-    },
-    {
-      start: 'card2',
-      end: 'card3',
-      headSize: 3,
-      strokeWidth: 10,
-    },
-  ]);
+
+  const [cardOne, setCardOne] = useState(false)
+  const [cardTwo, setCardTwo] = useState(false)
+  const [cardSelected, setCardSelected] = useState(false)
+  const [confirmConnection, setconfirmConnection] = useState(false)
+  const [lines, setLines] = useState([  ]);
+
+  // Para pegar a data atual e horário, pode ser usado em notificações e no card.
+  // para atualizar jogar novamente > setHour({date: new Date()})
+  const [hour, setHour] = useState({date: new Date()})
 
   const [, setRender] = useState({});
-  const forceRerender = () => setRender(Math.random());
+  const forceRerender = () => setRender({});
+
+  const [state, setState] = useState({});
+  const defProps = {
+    consoleWarning: false,
+    passProps: {
+      className: "xarrow",
+      onMouseEnter: () => setState({dashness: { animation: 2 }, color: 'red'}),
+      onMouseLeave: () => setState({}),
+      onClick: (e: any) => {
+        console.log(e.currentTarget)
+      },
+      cursor: "pointer",
+    },
+  };
 
   return (
     <Board
@@ -107,9 +117,22 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
         setShowEditModal,
         setShowBoardModal,
       }}
+      connection={{
+        cardOne,
+        cardTwo,
+        setCardOne,
+        setCardTwo,
+        cardSelected, 
+        setCardSelected,
+        confirmConnection, 
+        setconfirmConnection,
+      }}
       values={{ cards, history }}
       forceRerender={forceRerender}
       lines={lines}
+      setLines={setLines}
+      defProps={defProps}
+      state={state}
     />
   );
 };

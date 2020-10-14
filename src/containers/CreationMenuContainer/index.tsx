@@ -23,6 +23,8 @@ const CreationMenuContainer = ({
   selectedCard,
   className,
   history,
+  lines,
+  setLines,
 }: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
@@ -104,45 +106,36 @@ const CreationMenuContainer = ({
       })
     );
   };
-
+    
   const connectArrowButton = () => {
     setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
-    dispatch(
-      updateBoardAPI({
-        board: {
-          ...currentBoard,
-          data: {
-            ...currentBoard.data,
-            notifications: [
-              `${user.name} acabou de fazer um ligação.`,
-              ...currentBoard.data.notifications,
-            ],
+  };
+
+  const desconnectArrowButton = () => {
+    if (lines.length >= 1) {
+      lines.pop()
+      setLines(lines)
+      dispatch(
+        updateBoardAPI({
+          board: {
+            ...currentBoard,
+            data: {
+              ...currentBoard.data,
+              notifications: [
+                `${user.name} desfez sua última ligação.`,
+                ...currentBoard.data.notifications,
+              ],
+            },
           },
-        },
-        token,
-        history,
-      })
-    );
+          token,
+          history,
+        })
+      );
+    }
   };
 
   const pinCardButton = () => {
     setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
-    // dispatch(
-    //   updateBoardAPI({
-    //     board: {
-    //       ...currentBoard,
-    //       data: {
-    //         ...currentBoard.data,
-    //         notifications: [
-    //           `${user.name} acabou de seguir um cartão.`,
-    //           ...currentBoard.data.notifications,
-    //         ],
-    //       },
-    //     },
-    //     token,
-    //     history,
-    //   })
-    // );
   };
 
   const blockCardButton = () => {
@@ -158,6 +151,7 @@ const CreationMenuContainer = ({
       removeCardButton={removeCardButton}
       createTextButton={createTextButton}
       connectArrowButton={connectArrowButton}
+      desconnectArrowButton={desconnectArrowButton}
       pinCardButton={pinCardButton}
       blockCardButton={blockCardButton}
       className={className}
