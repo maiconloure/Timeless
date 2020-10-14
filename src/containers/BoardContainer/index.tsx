@@ -94,9 +94,6 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       className: "xarrow",
       onMouseEnter: () => setState({dashness: { animation: 2 }, color: 'red'}),
       onMouseLeave: () => setState({}),
-      onClick: (e: any) => {
-        console.log(e.currentTarget)
-      },
       cursor: "pointer",
     },
   };

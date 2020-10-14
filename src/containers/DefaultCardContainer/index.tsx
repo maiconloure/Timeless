@@ -64,6 +64,9 @@ const DefaultCardContainer = ({
   };
 
   const handleCheckBox = (evt: any) => {
+    const date = new Date()
+    const curr_hour = `ás ${date.getHours()}:${date.getMinutes()}`
+
     if (evt.target.checked) {
       dispatch(
         updateBoardAPI({
@@ -72,7 +75,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} terminou o cartão ${card.data.title}.`,
+                `${user.name} terminou o cartão ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -85,6 +88,8 @@ const DefaultCardContainer = ({
   };
 
   const removeCard = () => {
+    const date = new Date()
+    const curr_hour = `ás ${date.getHours()}:${date.getMinutes()}`
     dispatch(
       updateBoardAPI({
         board: {
@@ -92,7 +97,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de remover um cartão.`,
+              `${user.name} removeu um cartão, ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -106,6 +111,8 @@ const DefaultCardContainer = ({
   };
 
   const creationCard = () => {
+    const date = new Date()
+    const curr_hour = `ás ${date.getHours()}:${date.getMinutes()}`
     dispatch(
       updateBoardAPI({
         board: {
@@ -113,7 +120,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de criar um cartão rápido.`,
+              `${user.name} criou um cartão rápido, ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -133,6 +140,9 @@ const DefaultCardContainer = ({
   };
 
   const blockCard = (res: boolean) => {
+    const date = new Date()
+    const curr_hour = `ás ${date.getHours()}:${date.getMinutes()}`
+
     if (res) {
       dispatch(
         updateBoardAPI({
@@ -141,7 +151,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} bloqueou o cartão ${card.data.title}`,
+                `${user.name} bloqueou o cartão ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -158,7 +168,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} desbloqueou o cartão ${card.data.title}`,
+                `${user.name} desbloqueou o cartão ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -188,6 +198,9 @@ const DefaultCardContainer = ({
   };
 
   const followCard = (res: boolean) => {
+    const date = new Date()
+    const curr_hour = `ás ${date.getHours()}:${date.getMinutes()}`
+
     if (res) {
       dispatch(
         updateBoardAPI({
@@ -196,7 +209,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} começou a seguir o cartão  ${card.data.title}`,
+                `${user.name} começou a seguir o cartão  ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -223,7 +236,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} deixou de seguir o cartão  ${card.data.title}`,
+                `${user.name} deixou de seguir o cartão  ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -275,10 +288,27 @@ const DefaultCardContainer = ({
   useEffect(() => {
     if (confirmConnection) {
       if (cardOne && cardTwo) {
-        console.log('conexão criada')
         setLines([...lines, { start: `card${cardOne}`, end: `card${cardTwo}`, headSize: 4,
         strokeWidth: 10,
       }])
+      const date = new Date()
+      const curr_hour = `ás ${date.getHours()}:${date.getMinutes()}`
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} conectou dois cartões, ${curr_hour}`,
+              ...currentBoard.data.notifications,
+            ],
+          },
+        },
+        token,
+        history,
+      })
+    );
 
       // dispatch(
       //   updateBoardAPI({
