@@ -89,7 +89,6 @@ export interface FixedMenuProps {
     user: Interface.UserInterface;
     currentBoard: Interface.UserBoards;
     toggleMenu: boolean;
-    showMobileMenu?: boolean;
   };
   handlers: {
     handleLogout: () => void;

@@ -59,7 +59,6 @@ const Board = ({
         <>
           <Container.TopBarContainer
             data={{
-              showMobileMenu,
               showBoardModal,
               setShowEditUser,
               setShowBoardModal,

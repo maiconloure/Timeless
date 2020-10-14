@@ -11,7 +11,7 @@ import { RootStoreType } from '../../redux/store/store';
 import { FixedMenuContainerProps } from '../ContainerInterface';
 
 const FixedMenuContainer = ({
-  data: { showMobileMenu = false, showBoardModal, setShowBoardModal, setShowEditUser },
+  data: { showBoardModal, setShowBoardModal, setShowEditUser },
   history,
 }: FixedMenuContainerProps) => {
   const dispatch = useDispatch();
@@ -92,7 +92,7 @@ const FixedMenuContainer = ({
 
   return (
     <TopBarMenu
-      values={{ user, currentBoard, toggleMenu, showMobileMenu }}
+      values={{ user, currentBoard, toggleMenu }}
       handlers={{
         handleLogout,
         handlerSaveBoard,

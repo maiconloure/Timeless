@@ -5,7 +5,7 @@ import { FixedMenuProps } from '../ComponentsInterface';
 import * as St from './styled';
 
 const FixedMenu = ({
-  values: { user, currentBoard, toggleMenu, showMobileMenu = false },
+  values: { user, currentBoard, toggleMenu },
   handlers: {
     handleLogout,
     handlerSaveBoard,

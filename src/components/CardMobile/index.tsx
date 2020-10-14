@@ -102,43 +102,44 @@ const CardMobile = ({
             </St.CardData>
           </St.CardFooter>
         </St.CardInside>
+        <div style={{ position: 'relative' }}>
+          {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
 
-        {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
+          {selectedCard.removeCard ? (
+            <St.CardButton onClick={removeCard}>remover</St.CardButton>
+          ) : (
+            selectedCard.fastCard && (
+              <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
+            )
+          )}
 
-        {selectedCard.removeCard ? (
-          <St.CardButton onClick={removeCard}>remover</St.CardButton>
-        ) : (
-          selectedCard.fastCard && (
-            <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
-          )
-        )}
+          {selectedCard.followedCard && card.data.followers.length === 0 && (
+            <St.CardButton onClick={() => followCard(true)}>seguir</St.CardButton>
+          )}
 
-        {selectedCard.followedCard && card.data.followers.length === 0 && (
-          <St.CardButton onClick={() => followCard(true)}>seguir</St.CardButton>
-        )}
+          {selectedCard.followedCard && card.data.followers.length >= 1 && (
+            <St.CardButton onClick={() => followCard(false)}>deixar de seguir</St.CardButton>
+          )}
 
-        {selectedCard.followedCard && card.data.followers.length >= 1 && (
-          <St.CardButton onClick={() => followCard(false)}>deixar de seguir</St.CardButton>
-        )}
+          {selectedCard.blockedCard && !card.data.blocked && (
+            <St.CardButton onClick={() => blockCard(true)}>bloquear</St.CardButton>
+          )}
 
-        {selectedCard.blockedCard && !card.data.blocked && (
-          <St.CardButton onClick={() => blockCard(true)}>bloquear</St.CardButton>
-        )}
+          {selectedCard.blockedCard && card.data.blocked && (
+            <St.CardButton id="unlock" onClick={() => blockCard(false)}>
+              desbloquear
+            </St.CardButton>
+          )}
 
-        {selectedCard.blockedCard && card.data.blocked && (
-          <St.CardButton id="unlock" onClick={() => blockCard(false)}>
-            desbloquear
-          </St.CardButton>
-        )}
-
-        {card.data.blocked && (
-          <St.Block>
-            <div className="tooltip">
-              <St.BlockedIcon src={icons.blocked} />
-              <span className="tooltiptext">Bloqueado</span>
-            </div>
-          </St.Block>
-        )}
+          {card.data.blocked && (
+            <St.Block>
+              <div className="tooltip">
+                <St.BlockedIcon src={icons.blocked} />
+                <span className="tooltiptext">Bloqueado</span>
+              </div>
+            </St.Block>
+          )}
+        </div>
       </St.Card>
     </St.Editable>
   </St.CardContainer>

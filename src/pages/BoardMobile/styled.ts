@@ -162,9 +162,15 @@ export const MobileMenuOpenClose = styled.div`
 `;
 
 export const MobileMapCards = styled.div`
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow: auto;
-  margin-top: 800px;
+  /* overflow: auto; */
+  overflow: scroll;
+
+  justify-content: flex-end;
+  margin-top: 100px;
 `;
