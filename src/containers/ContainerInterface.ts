@@ -70,7 +70,7 @@ export interface DefaultCardProps {
     setCardOne: any;
     cardTwo: any;
     setCardTwo: any;
-    cardSelected: any; 
+    cardSelected: any;
     setCardSelected: any;
     confirmConnection: any;
     setconfirmConnection: any;

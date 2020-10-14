@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue, motion } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,9 +45,12 @@ const DefaultCardContainer = ({
   useEffect(() => {
     x.set(card.position.x);
     y.set(card.position.y);
-  }, [cards.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [card.position.x, card.position.y, cards.length]);
 
   const onDragEndFunction = () => {
+    // if (x.get() >= 1 && y.get() >= 1) {
+
     dispatch(
       updateCardAPI({
         card: {
@@ -96,38 +100,27 @@ const DefaultCardContainer = ({
       .toString()
       .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 
-    setLines([
-      ...lines.filter((line: any) => {
-        if (!line.ids.includes(card.id)) {
-          return line;
-        }
-      }),
-    ]);
+    // setLines([
+    //   ...lines.filter((line: any) => {
+    //     if (!line.ids.includes(card.id)) {
+    //       return line;
+    //     }
+    //   }),
+    // ]);
 
     dispatch(
       updateBoardAPI({
         board: {
           ...currentBoard,
-          data: {
-            ...currentBoard.data,
-            connections: [
-              ...lines.filter((line: any) => {
-                if (!line.ids.includes(card.id)) {
-                  return line;
-                }
-              }),
-            ],
-          },
-        },
-        token,
-        history,
-      })
-    );
-
-    dispatch(
-      updateBoardAPI({
-        board: {
-          ...currentBoard,
+          connections: [
+            lines.filter((line: any) => {
+              if (!line.ids.includes(card.id)) {
+                return line;
+              } else {
+                return false;
+              }
+            }),
+          ],
           data: {
             ...currentBoard.data,
             notifications: [
@@ -313,7 +306,6 @@ const DefaultCardContainer = ({
     } else if (!cardTwo) {
       setCardTwo(card.id);
       if (!confirmConnection) {
-        console.log('nova conexão');
         setconfirmConnection(true);
       }
     }
@@ -337,32 +329,32 @@ const DefaultCardContainer = ({
           .getHours()
           .toString()
           .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-        dispatch(
-          updateBoardAPI({
-            board: {
-              ...currentBoard,
-              data: {
-                ...currentBoard.data,
-                notifications: [
-                  `${user.name} conectou dois cartões, ${curr_hour}`,
-                  ...currentBoard.data.notifications,
-                ],
-              },
-            },
-            token,
-            history,
-          })
-        );
+
+        // console.log(
+        //   lines.every((line: any) => {
+        //     return !line.ids.includes(card.id);
+        //   })
+        // );
 
         dispatch(
           updateBoardAPI({
             board: {
               ...currentBoard,
+              connections: [
+                ...lines,
+                {
+                  ids: [cardOne, cardTwo],
+                  start: `card${cardOne}`,
+                  end: `card${cardTwo}`,
+                  headSize: 4,
+                  strokeWidth: 10,
+                },
+              ],
               data: {
                 ...currentBoard.data,
-                connections: [
-                  ...lines,
-                  { start: `card${cardOne}`, end: `card${cardTwo}`, headSize: 4, strokeWidth: 10 },
+                notifications: [
+                  `${user.name} conectou dois cartões, ${curr_hour}`,
+                  ...currentBoard.data.notifications,
                 ],
               },
             },
@@ -377,6 +369,7 @@ const DefaultCardContainer = ({
         setCardTwo(false);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confirmConnection]);
 
   return (

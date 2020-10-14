@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -38,7 +39,7 @@ const LandingContainer = ({ history }: LandingContainerProps) => {
     if (localStorage.service !== undefined) {
       history.push('/board');
     }
-  }, [user]);
+  }, [history, user]);
 
   return (
     <Landing

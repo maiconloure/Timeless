@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 
@@ -27,11 +28,10 @@ export const getBoardsAPI = ({
     .get(`users/${user.id}/boards`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`getBoardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        // console.error(`getBoardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`getBoardsAPI ==> Status: ${response.status}`);
+        // console.warn(`getBoardsAPI ==> Status: ${response.status}`);
         if (response.data.length === 0) {
-          console.log('vazio', response.data);
           dispatch(
             createBoardAPI(
               {
@@ -42,6 +42,7 @@ export const getBoardsAPI = ({
                   text: [],
                   notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
                 },
+                connections: [],
               },
               token,
               user,
@@ -54,9 +55,9 @@ export const getBoardsAPI = ({
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      console.log(
-        `getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      );
+      // console.log(
+      // `getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+      // );
     });
 };
 
@@ -73,17 +74,17 @@ export const updateBoardAPI = ({
     .put(`/boards/${board.id}`, board, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`updateBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        // console.error(`updateBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`updateBoardAPI ==> Status: ${response.status}`);
+        // console.warn(`updateBoardAPI ==> Status: ${response.status}`);
         dispatch(updateBoard(board));
       }
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      console.error(
-        `updateBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      );
+      // console.error(
+      // `updateBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
+      // );
     });
 };
 
@@ -104,17 +105,17 @@ export const getCardsAPI = (
       .get(`/users/${board.userId}/cards?boardId=${board.id}`, createHeader(token))
       .then((response) => {
         if (response.status !== 200) {
-          console.error(`getCardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+          // console.error(`getCardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
         } else {
-          console.warn(`getCardsAPI ==> Status: ${response.status}`);
+          // console.warn(`getCardsAPI ==> Status: ${response.status}`);
           dispatch(getCards(response.data));
         }
       })
       .catch((error) => {
         dispatch(expiredSession({ error, history }));
-        console.error(
-          `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
-        );
+        // console.error(
+        // `getCardsAPI==> ERROR: ${error.response.data} Status: ${error.response.status}`
+        // );
       });
   }
 };
@@ -129,9 +130,9 @@ export const createBoardAPI = (
     .post(`/users/${user.id}/boards`, board, createHeader(token))
     .then((response) => {
       if (response.status !== 201) {
-        console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        // console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(` ==> Status: ${response.status}`);
+        // console.warn(` ==> Status: ${response.status}`);
         dispatch(createBoard(response.data));
         dispatch(getBoardsAPI({ user, token, history }));
       }
@@ -152,16 +153,16 @@ export const deleteBoardAPI = (
     .delete(`/boards/${board.id}`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        console.error(`deleteBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        // console.error(`deleteBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        console.warn(`deleteBoardAPI ==> Status: ${response.status}`);
+        // console.warn(`deleteBoardAPI ==> Status: ${response.status}`);
       }
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      console.error(
-        `deleteBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      );
+      // console.error(
+      // `deleteBoardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`;
+      // );
     });
 };
 

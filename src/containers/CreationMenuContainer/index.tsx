@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,7 +34,7 @@ const CreationMenuContainer = ({
   const random = () => Math.random() * (600 - 200) + 200;
 
   defaultCard.position = {
-    x: random() + 400,
+    x: random() + 300,
     y: random(),
   };
 

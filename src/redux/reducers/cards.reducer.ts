@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CardAction } from '../actions/cards.action';
 import { CardState, CardInterface } from '../actions/interface.action';
 import * as TYPE from '../actions/type.action';

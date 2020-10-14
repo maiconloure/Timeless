@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import jwt_decode from 'jwt-decode';
 import { ThunkAction } from 'redux-thunk';
 
@@ -26,7 +27,6 @@ export const requestLogin = ({
       email,
       password,
     })
-
     .then((response) => {
       dispatch(updateStatus(response.status));
       if (response.status === 200) {

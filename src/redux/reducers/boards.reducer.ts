@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { BoardsAction } from '../actions/boards.action';
 import { BoardState } from '../actions/interface.action';
 import * as TYPE from '../actions/type.action';
@@ -11,7 +12,12 @@ const initialState: BoardState = {
     "description": "",
     "user": [],
     "userId": "",
-    "id": ""
+    "id": "",
+    "data": {
+      "text": [],
+      "notifications": []
+    }   ,
+    "connections": []
   }`
   ),
 };

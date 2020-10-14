@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
@@ -98,12 +99,11 @@ const Board = ({
             <Container.FeedContainer />
           </St.FeedBox>
 
-          {cards &&
-            cards.map((card: Interface.CardInterface, key: number) => (
+          {cards.map((card: Interface.CardInterface, key: number) => (
+            <React.Fragment key={key}>
               <Container.DefaultCardContainer
                 id={`card${key}`}
                 className="DefaultCard"
-                key={key}
                 card={card}
                 showEditCard={showEditCard}
                 setCurrentCard={setCurrentCard}
@@ -124,17 +124,14 @@ const Board = ({
                   setconfirmConnection,
                 }}
               />
-            ))}
+            </React.Fragment>
+          ))}
 
-          {cards.length > 1 && (
-            <>
-              {lines.map((line: any, i: number) => (
-                <div id={`line${i}`} key={i}>
-                  <Xarrow {...line} {...{ ...defProps, ...state }} />
-                </div>
-              ))}
-            </>
-          )}
+          {lines.map((line: any, i: number) => (
+            <div id={`line${i}`} key={i}>
+              <Xarrow {...line} {...{ ...defProps, ...state }} />
+            </div>
+          ))}
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />

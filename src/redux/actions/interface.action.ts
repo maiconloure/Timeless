@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { History, LocationState } from 'history';
 
 import * as TYPE from './type.action';
@@ -71,6 +73,7 @@ export interface UserBoards {
   data: DataBoard;
   userId: number | string;
   id: number | string;
+  connections: string[];
 }
 
 export interface CreateUserBoards {
@@ -81,6 +84,7 @@ export interface CreateUserBoards {
     text: any;
     notifications: string[];
   };
+  connections: any;
 }
 
 export interface BoardState {

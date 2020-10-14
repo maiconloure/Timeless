@@ -55,4 +55,5 @@ export const defaultBoard = {
     text: [],
     notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
   },
+  connections: [{}],
 };

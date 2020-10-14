@@ -272,6 +272,11 @@ export const ConnectCardRight = styled.button<{ active: any }>`
   border-right: 0px solid transparent;
   outline: none;
   border-left: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
+  cursor: pointer;
+  background: transparent;
+  :hover {
+    border-left: 30px solid #ff8c00;
+  }
 `;
 
 export const ConnectCardLeft = styled.button<{ active: any }>`
@@ -286,4 +291,6 @@ export const ConnectCardLeft = styled.button<{ active: any }>`
   border-right: 30px solid var(--color-primary-4);
   outline: none;
   border-right: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
+  cursor: pointer;
+  background: transparent;
 `;

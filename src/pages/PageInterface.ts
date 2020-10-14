@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import React, { ChangeEvent } from 'react';
 import Record, { DeepMap, FieldError } from 'react-hook-form';
@@ -82,7 +83,7 @@ export interface BoardProps {
     setCardOne: any;
     cardTwo: any;
     setCardTwo: any;
-    cardSelected: any; 
+    cardSelected: any;
     setCardSelected: any;
     confirmConnection: any;
     setconfirmConnection: any;

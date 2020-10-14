@@ -10,6 +10,8 @@ const importAllImages = (res: any) => {
     if (file) {
       const filename = JSON.parse(JSON.stringify(file));
       return filename.match(/(.+?)(\.[^.]*$|$)/)[1].substring(2);
+    } else {
+      return false;
     }
   });
   const rValues = res.keys().map(res);
