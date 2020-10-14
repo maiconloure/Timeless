@@ -120,41 +120,24 @@ const DefaultCardContainer = ({
   };
 
   const blockCard = (res: boolean) => {
-    if (res) {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} bloqueou o cartão ${card.data.title}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
+
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} ${res ? "bloqueou" : "desbloqueou"} o cartão ${card.data.title}`,
+              ...currentBoard.data.notifications,
+            ],
           },
-          token,
-          history,
-        })
-      );
-    } else {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} desbloqueou o cartão ${card.data.title}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
-          },
-          token,
-          history,
-        })
-      );
-    }
+        },
+        token,
+        history,
+      })
+    );
+
     dispatch(
       updateCardAPI({
         card: {
@@ -175,61 +158,33 @@ const DefaultCardContainer = ({
   };
 
   const followCard = (res: any) => {
-    if (res) {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} começou a seguir o cartão  ${card.data.title}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
+
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão  ${card.data.title}`,
+              ...currentBoard.data.notifications,
+            ],
           },
-          token,
-          history,
-        })
-      );
-      dispatch(
-        updateCardAPI({
-          card: {
-            ...card,
-            data: { ...card.data, followers: [{ name: user.name, id: user.id }] },
-          },
-          token,
-          history,
-        })
-      );
-    } else {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} deixou de seguir o cartão  ${card.data.title}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
-          },
-          token,
-          history,
-        })
-      );
-      dispatch(
-        updateCardAPI({
-          card: {
-            ...card,
-            data: { ...card.data, followers: [] },
-          },
-          token,
-          history,
-        })
-      );
-    }
+        },
+        token,
+        history,
+      })
+    );
+    dispatch(
+      updateCardAPI({
+        card: {
+          ...card,
+          data: { ...card.data, followers: res ? [{ name: user.name, id: user.id }] : [] },
+        },
+        token,
+        history,
+      })
+    );
   };
 
   return (
