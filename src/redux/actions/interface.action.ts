@@ -61,6 +61,7 @@ export interface DataBoard {
     position: PositionInterface;
   }[];
   notifications: string[];
+  connections: any;
 }
 
 export interface UserBoards {

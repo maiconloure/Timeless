@@ -120,11 +120,8 @@ const DefaultCard = ({
 
           {selectedCard.connect && (
             <>
-              <St.ConnectCardRight
-                active={card.id === cardOne || card.id === cardTwo}
-                onClick={handleConnection}
-              />
-              {/* <St.ConnectCardLeft  active={card.id === cardOne || card.id === cardTwo}  onClick={handleConnection} /> */}
+              <St.ConnectCardRight active={card.id === cardOne} onClick={handleConnection} />
+              {/* <St.ConnectCardLeft active={card.id === cardOne} onClick={handleConnection} /> */}
             </>
           )}
 

@@ -110,6 +110,26 @@ const DefaultCardContainer = ({
           ...currentBoard,
           data: {
             ...currentBoard.data,
+            connections: [
+              ...lines.filter((line: any) => {
+                if (!line.ids.includes(card.id)) {
+                  return line;
+                }
+              }),
+            ],
+          },
+        },
+        token,
+        history,
+      })
+    );
+
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
             notifications: [
               `${user.name} removeu um cartão, ${curr_hour}`,
               ...currentBoard.data.notifications,
@@ -334,21 +354,22 @@ const DefaultCardContainer = ({
           })
         );
 
-        // dispatch(
-        //   updateBoardAPI({
-        //     board: {
-        //       ...currentBoard,
-        //       data: {
-        //         ...currentBoard.data,
-        //         connections: [...lines, { start: `card${cardOne}`, end: `card${cardTwo}`, headSize: 4,
-        //         strokeWidth: 10,
-        //       }],
-        //       },
-        //     },
-        //     token,
-        //     history,
-        //   })
-        // );
+        dispatch(
+          updateBoardAPI({
+            board: {
+              ...currentBoard,
+              data: {
+                ...currentBoard.data,
+                connections: [
+                  ...lines,
+                  { start: `card${cardOne}`, end: `card${cardTwo}`, headSize: 4, strokeWidth: 10 },
+                ],
+              },
+            },
+            token,
+            history,
+          })
+        );
 
         setconfirmConnection(false);
         setCardSelected(false);
