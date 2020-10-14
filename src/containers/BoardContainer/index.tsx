@@ -25,7 +25,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     fastCard: false,
     addText: false,
     connect: false,
-    pin: false,
+    followedCard: false,
     blockedCard: false,
   });
 
@@ -72,6 +72,25 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       history.push('/');
     }
   });
+
+  const [lines] = useState([
+    {
+      start: 'card1',
+      end: 'card2',
+      headSize: 3,
+      strokeWidth: 10,
+    },
+    {
+      start: 'card2',
+      end: 'card3',
+      headSize: 3,
+      strokeWidth: 10,
+    },
+  ]);
+
+  const [, setRender] = useState({});
+  const forceRerender = () => setRender(Math.random());
+
   return (
     <Board
       data={{
@@ -89,6 +108,8 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
         setShowBoardModal,
       }}
       values={{ cards, history }}
+      forceRerender={forceRerender}
+      lines={lines}
     />
   );
 };

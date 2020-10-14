@@ -28,7 +28,7 @@ export interface CreationMenuContainerProps {
       fastCard: boolean;
       addText: boolean;
       connect: boolean;
-      pin: boolean;
+      followedCard: boolean;
       blockedCard: boolean;
     }>
   >;
@@ -38,7 +38,7 @@ export interface CreationMenuContainerProps {
     fastCard: boolean;
     addText: boolean;
     connect: boolean;
-    pin: boolean;
+    followedCard: boolean;
     blockedCard: boolean;
   };
   className: string;
@@ -52,11 +52,14 @@ export interface DefaultCardProps {
     removeCard: boolean;
     fastCard: boolean;
     blockedCard: boolean;
+    followedCard: boolean;
   };
   setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
   setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
   history: History<LocationState>;
   className: string;
+  id: string;
+  forceRerender: any;
 }
 
 export interface EditBoardModalContainerProps {

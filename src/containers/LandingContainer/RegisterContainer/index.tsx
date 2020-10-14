@@ -2,10 +2,10 @@ import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Register from '../../pages/Landing/Register';
-import { registerUser, updateStatus } from '../../redux/actions/service.action';
-import { RootStoreType } from '../../redux/store/store';
-import { RegisterContainerProps } from '../ContainerInterface';
+import Register from '../../../pages/Landing/Register';
+import { registerUser, updateStatus } from '../../../redux/actions/service.action';
+import { RootStoreType } from '../../../redux/store/store';
+import { RegisterContainerProps } from '../../ContainerInterface';
 
 const RegisterContainer = ({
   handleError,
