@@ -46,6 +46,10 @@ export interface RegisterProps {
 
 export interface BoardProps {
   data: {
+    windowSize: {
+      width: number;
+      height: number;
+  }
     currentCard: object;
     showEditUser: boolean;
     showEditCard: boolean;

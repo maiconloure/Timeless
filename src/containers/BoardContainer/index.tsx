@@ -28,6 +28,17 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     followedCard: false,
     blockedCard: false,
   });
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  window.onresize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
 
   useEffect(() => {
     dispatch(getBoardsAPI({ user, token, history }));
@@ -94,6 +105,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   return (
     <Board
       data={{
+        windowSize,
         currentCard,
         showEditUser,
         showEditCard,

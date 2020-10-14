@@ -13,6 +13,7 @@ import * as St from './styled';
 
 const Board = ({
   data: {
+    windowSize,
     currentCard,
     showEditUser,
     showEditCard,
@@ -30,85 +31,85 @@ const Board = ({
   forceRerender,
   lines,
 }: BoardProps) => (
-  <PageTransition>
-    <St.Notification>
-      <ToastContainer transition={Slide} />
-    </St.Notification>
-    <St.BoardPage id="canvas">
-      <FeedbackButton />
+    <PageTransition>
+      <St.Notification>
+        <ToastContainer transition={Slide} />
+      </St.Notification>
+      <St.BoardPage id="canvas">
+        <FeedbackButton />
 
-      <Container.TopBarContainer
-        data={{
-          showBoardModal,
-          setShowEditUser,
-          setShowBoardModal,
-        }}
-        history={history}
-      />
+        <Container.TopBarContainer
+          data={{
+            showBoardModal,
+            setShowEditUser,
+            setShowBoardModal,
+          }}
+          history={history}
+        />
 
-      <Container.EditUserModalContainer
-        data={{
-          showEditUser,
-          setShowEditUser,
-          setShowEditModal,
-        }}
-        history={history}
-      />
+        <Container.EditUserModalContainer
+          data={{
+            showEditUser,
+            setShowEditUser,
+            setShowEditModal,
+          }}
+          history={history}
+        />
 
-      <Container.EditBoardModalContainer
-        data={{
-          showEditModal,
-          showBoardModal,
-          setShowEditModal,
-          setShowBoardModal,
-        }}
-        history={history}
-      />
+        <Container.EditBoardModalContainer
+          data={{
+            showEditModal,
+            showBoardModal,
+            setShowEditModal,
+            setShowBoardModal,
+          }}
+          history={history}
+        />
 
-      <St.DragScroll
-        ignoreElements=".DefaultCard, .CardContainer, .FeedContainer, .CreationMenu"
-        hideScrollbars={false}
-        className="container">
-        <St.InnerBoardContainer>
-          <St.SideMenuContainer drag dragMomentum={false}>
-            <Container.CreationMenuContainer
-              className="CreationMenu"
-              setSelectedCard={setSelectedCard}
-              selectedCard={selectedCard}
-              history={history}
-            />
-          </St.SideMenuContainer>
-
-          <St.FeedBox drag dragMomentum={false} className="FeedContainer">
-            <Container.FeedContainer />
-          </St.FeedBox>
-          {cards &&
-            cards.map((card: Interface.CardInterface, key: number) => (
-              <Container.DefaultCardContainer
-                id={`card${key}`}
-                className="DefaultCard"
-                key={key}
-                card={card}
-                showEditCard={showEditCard}
-                setCurrentCard={setCurrentCard}
-                setShowEditCard={setShowEditCard}
+        <St.DragScroll
+          ignoreElements=".DefaultCard, .CardContainer, .FeedContainer, .CreationMenu"
+          hideScrollbars={false}
+          className="container">
+          <St.InnerBoardContainer>
+            <St.SideMenuContainer drag dragMomentum={false}>
+              <Container.CreationMenuContainer
+                className="CreationMenu"
+                setSelectedCard={setSelectedCard}
                 selectedCard={selectedCard}
                 history={history}
-                forceRerender={forceRerender}
               />
+            </St.SideMenuContainer>
+
+            <St.FeedBox drag dragMomentum={false} className="FeedContainer">
+              <Container.FeedContainer />
+            </St.FeedBox>
+            {cards &&
+              cards.map((card: Interface.CardInterface, key: number) => (
+                <Container.DefaultCardContainer
+                  id={`card${key}`}
+                  className="DefaultCard"
+                  key={key}
+                  card={card}
+                  showEditCard={showEditCard}
+                  setCurrentCard={setCurrentCard}
+                  setShowEditCard={setShowEditCard}
+                  selectedCard={selectedCard}
+                  history={history}
+                  forceRerender={forceRerender}
+                />
+              ))}
+
+            {lines.map((line: any, i: number) => (
+              <Xarrow key={i} {...line} />
             ))}
 
-          {lines.map((line: any, i: number) => (
-            <Xarrow key={i} {...line} />
-          ))}
-
-          <St.CardContainer className="CardContainer">
-            <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
-          </St.CardContainer>
-        </St.InnerBoardContainer>
-      </St.DragScroll>
-    </St.BoardPage>
-  </PageTransition>
-);
+            <St.CardContainer className="CardContainer">
+              <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
+            </St.CardContainer>
+          </St.InnerBoardContainer>
+        </St.DragScroll>
+      </St.BoardPage>
+    </PageTransition>
+  );
 
 export default Board;
