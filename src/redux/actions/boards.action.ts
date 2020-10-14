@@ -35,9 +35,13 @@ export const getBoardsAPI = ({
           dispatch(
             createBoardAPI(
               {
-                title: 'titulo do board',
-                description: 'descrição do board',
+                title: 'Titulo do board',
+                description: 'Descrição do board',
                 users: [],
+                data: {
+                  text: [],
+                  notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
+                },
               },
               token,
               user,

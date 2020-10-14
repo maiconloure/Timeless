@@ -48,6 +48,22 @@ const EditBoardModalContainer = ({
           history
         )
       );
+      dispatch(
+        createBoardAPI(
+          {
+            ...selectedBoard,
+            title: 'Titulo do board',
+            description: 'Descrição do board',
+            data: {
+              text: [],
+              notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
+            },
+          },
+          token,
+          user,
+          history
+        )
+      );
     } else {
       const newBoard: any = {
         ...selectedBoard,

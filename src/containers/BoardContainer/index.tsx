@@ -28,12 +28,32 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     followedCard: false,
     blockedCard: false,
   });
+  const [cardOne, setCardOne] = useState(false);
+  const [cardTwo, setCardTwo] = useState(false);
+  const [cardSelected, setCardSelected] = useState(false);
+  const [confirmConnection, setconfirmConnection] = useState(false);
+  const [, setRender] = useState({});
+  const forceRerender = () => setRender({});
+  const [state, setState] = useState({});
+
+  const [lines, setLines] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.service === undefined) {
+      history.push('/');
+    }
+  }, [user]);
 
   useEffect(() => {
     dispatch(getBoardsAPI({ user, token, history }));
   }, []);
 
   useEffect(() => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
     if (currentBoard && currentBoard.data) {
       updateBoardAPI({
         board: {
@@ -42,7 +62,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
             ...currentBoard.data,
             notifications: [
               ...currentBoard.data.notifications,
-              `${user.name} acabou de criar um grupo de cartões.`,
+              `${user.name} criou um grupo, ${curr_hour}`,
             ],
           },
         },
@@ -73,28 +93,13 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     }
   });
 
-
-  const [cardOne, setCardOne] = useState(false)
-  const [cardTwo, setCardTwo] = useState(false)
-  const [cardSelected, setCardSelected] = useState(false)
-  const [confirmConnection, setconfirmConnection] = useState(false)
-  const [lines, setLines] = useState([  ]);
-
-  // Para pegar a data atual e horário, pode ser usado em notificações e no card.
-  // para atualizar jogar novamente > setHour({date: new Date()})
-  const [hour, setHour] = useState({date: new Date()})
-
-  const [, setRender] = useState({});
-  const forceRerender = () => setRender({});
-
-  const [state, setState] = useState({});
   const defProps = {
     consoleWarning: false,
     passProps: {
-      className: "xarrow",
-      onMouseEnter: () => setState({dashness: { animation: 2 }, color: 'red'}),
+      className: 'xarrow',
+      onMouseEnter: () => setState({ dashness: { animation: 2 }, color: 'red' }),
       onMouseLeave: () => setState({}),
-      cursor: "pointer",
+      cursor: 'pointer',
     },
   };
 
@@ -119,9 +124,9 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
         cardTwo,
         setCardOne,
         setCardTwo,
-        cardSelected, 
+        cardSelected,
         setCardSelected,
-        confirmConnection, 
+        confirmConnection,
         setconfirmConnection,
       }}
       values={{ cards, history }}

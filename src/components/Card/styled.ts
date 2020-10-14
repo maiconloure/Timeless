@@ -28,7 +28,8 @@ export const CardContainer = styled(motion.div)`
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
-    
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
 
     /* Position the tooltip */
     position: absolute;
@@ -49,7 +50,7 @@ export const Editable = styled.div<{ blocked: boolean }>`
 `;
 
 export const MotionBox = styled(motion.div)`
-  position: relative;
+  /* position: relative; */
 `;
 
 export const Card = styled(motion.div)`
@@ -62,8 +63,8 @@ export const Card = styled(motion.div)`
   border-radius: 4px;
   position: absolute;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
-  
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   [contenteditable='true'] {
     text-overflow: ellipsis;
   }
@@ -153,7 +154,8 @@ export const Description = styled.section`
   max-height: 90px;
   padding: 5px;
   overflow: hidden;
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   div p {
     display: block;
     max-height: 100px;
@@ -166,7 +168,7 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -187,7 +189,7 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
 `;
 
@@ -234,7 +236,8 @@ export const CardButton = styled.button`
   position: absolute;
   top: 95%;
   transition: 0.2s;
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   :hover {
     color: var(--complement-color-2);
     font-weight: 900;
@@ -258,7 +261,7 @@ export const BlockedIcon = styled.img`
   width: 60px;
 `;
 
-export const ConnectCardTop = styled.button<{ active: any}>`
+export const ConnectCardTop = styled.button<{ active: any }>`
   position: absolute;
   top: -34px;
   left: 43%;
@@ -268,15 +271,15 @@ export const ConnectCardTop = styled.button<{ active: any}>`
   border-radius: 50%;
   border-radius: 4px;
   border: 4px solid var(--color-primary-4);
-  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+  background: ${({ active }) => (active ? '#FFFF00' : '#ff')};
 
   :hover {
-    background: #FF8C00;
+    background: #ff8c00;
     border: 4px solid var(--color-primary-4);
   }
-`
+`;
 
-export const ConnectCardLeft = styled.button<{ active: any}>`
+export const ConnectCardLeft = styled.button<{ active: any }>`
   position: absolute;
   top: 40%;
   left: -11%;
@@ -286,36 +289,34 @@ export const ConnectCardLeft = styled.button<{ active: any}>`
   border-radius: 50%;
   border-radius: 4px;
   border: 4px solid var(--color-primary-4);
-  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+  background: ${({ active }) => (active ? '#FFFF00' : '#ff')};
 
   :hover {
-    background: #FF8C00;
+    background: #ff8c00;
     border: 4px solid var(--color-primary-4);
   }
-`
+`;
 
-export const ConnectCardRight   = styled.button<{ active: any}>`
+export const ConnectCardRight = styled.button<{ active: any }>`
   position: absolute;
   top: 40%;
   left: 101%;
-  
+
   width: 30px;
   height: 30px;
   outline: none;
   border-radius: 50%;
   border-radius: 4px;
   border: 4px solid var(--color-primary-4);
-  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+  background: ${({ active }) => (active ? '#FFFF00' : '#ff')};
 
   :hover {
-    background: #FF8C00;
+    background: #ff8c00;
     border: 4px solid var(--color-primary-4);
   }
-`
+`;
 
-
-
-export const ConnectCardBottom = styled.button<{ active: any}>`
+export const ConnectCardBottom = styled.button<{ active: any }>`
   position: absolute;
   top: 102%;
   left: 43%;
@@ -325,10 +326,10 @@ export const ConnectCardBottom = styled.button<{ active: any}>`
   border-radius: 50%;
   border-radius: 4px;
   border: 4px solid var(--color-primary-4);
-  background: ${({active}) => (active ? '#FFFF00' : '#ff')};
+  background: ${({ active }) => (active ? '#FFFF00' : '#ff')};
 
   :hover {
-    background: #FF8C00;
+    background: #ff8c00;
     border: 4px solid var(--color-primary-4);
   }
-`
+`;

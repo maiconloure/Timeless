@@ -76,6 +76,10 @@ export interface CreateUserBoards {
   title: string;
   description: string;
   users: { name: string; id: number | string }[];
+  data: {
+    text: any;
+    notifications: string[];
+  };
 }
 
 export interface BoardState {

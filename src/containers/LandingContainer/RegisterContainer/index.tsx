@@ -21,7 +21,7 @@ const RegisterContainer = ({
     register('name', {
       required: 'digite seu nome',
       pattern: {
-        value: /^.{5,}$/,
+        value: /^.{3,}$/,
         message: 'nome inválido',
       },
     });

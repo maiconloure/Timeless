@@ -22,7 +22,7 @@
     "@types/webpack-env": "^1.15.3",
     "add": "^2.0.6",
     "axios": "^0.20.0",
-    "capstone-project": "^0.5.6",
+    "capstone-project": "^0.5.8",
     "framer-motion": "^2.7.7",
     "jwt-decode": "^3.0.0",
     "react": "^16.13.1",
@@ -51,9 +51,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "universe/web",
-      "react-app",
-      "plugin:cypress/recommended"
+      "universe/web"
     ],
     "rules": {
       "react/no-did-mount-set-state": "off",
@@ -81,8 +79,18 @@
     "cypress": "^5.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
     "eslint-config-universe": "^4.0.0",
     "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
     "jest-webpack": "^0.5.1",
     "prettier": "^2.1.2"
   }

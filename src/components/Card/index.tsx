@@ -69,12 +69,11 @@ const DefaultCard = ({
                     </div>
 
                     {card.data.followers.length >= 1 && (
-                    <div className="tooltip">
-                      <img src={icons.eye} alt="Someone follow" />
-                      <span className="tooltiptext">Seguindo</span>
-                    </div>
+                      <div className="tooltip">
+                        <img src={icons.eye} alt="Someone follow" />
+                        <span className="tooltiptext">Seguindo</span>
+                      </div>
                     )}
-
                   </St.InfoIcons>
                 </div>
               </St.MainTags>
@@ -97,12 +96,11 @@ const DefaultCard = ({
               </div>
               <div>
                 <St.CheckBox
-                  onClick={(e) => handleCheckBox}
+                  onClick={handleCheckBox}
                   type="checkbox"
                   defaultChecked={card.data.checked}
                 />
               </div>
-              
             </St.Description>
             <St.CardFooter>
               <St.CardUsers>
@@ -122,19 +120,21 @@ const DefaultCard = ({
 
           {selectedCard.connect && (
             <>
-
-          <St.ConnectCardRight   active={card.id === cardOne || card.id === cardTwo}  onClick={handleConnection} />
-          {/* <St.ConnectCardLeft  active={card.id === cardOne || card.id === cardTwo}  onClick={handleConnection} /> */}
-          </>
+              <St.ConnectCardRight
+                active={card.id === cardOne || card.id === cardTwo}
+                onClick={handleConnection}
+              />
+              {/* <St.ConnectCardLeft  active={card.id === cardOne || card.id === cardTwo}  onClick={handleConnection} /> */}
+            </>
           )}
-         
-          
+
           {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
 
           {selectedCard.removeCard ? (
             <St.CardButton onClick={removeCard}>remover</St.CardButton>
           ) : (
-            selectedCard.fastCard &&  !card.data.fastCard && (
+            selectedCard.fastCard &&
+            !card.data.fastCard && (
               <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
             )
           )}

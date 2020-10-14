@@ -31,9 +31,9 @@ const Board = ({
     setCardOne,
     cardTwo,
     setCardTwo,
-    cardSelected, 
+    cardSelected,
     setCardSelected,
-    confirmConnection, 
+    confirmConnection,
     setconfirmConnection,
   },
   values: { cards, history },
@@ -97,7 +97,7 @@ const Board = ({
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
-          
+
           {cards &&
             cards.map((card: Interface.CardInterface, key: number) => (
               <Container.DefaultCardContainer
@@ -118,23 +118,23 @@ const Board = ({
                   cardTwo,
                   setCardOne,
                   setCardTwo,
-                  cardSelected, 
+                  cardSelected,
                   setCardSelected,
-                  confirmConnection, 
+                  confirmConnection,
                   setconfirmConnection,
                 }}
               />
             ))}
 
-            {cards.length > 1 && 
+          {cards.length > 1 && (
             <>
-            {lines.map((line: any, i: number) => (
-              <div id={`line${i}`} key={i}>
-              <Xarrow  {...line} {...{...defProps, ...state}}   />
-              </div>
-          ))}
-          </>
-          }
+              {lines.map((line: any, i: number) => (
+                <div id={`line${i}`} key={i}>
+                  <Xarrow {...line} {...{ ...defProps, ...state }} />
+                </div>
+              ))}
+            </>
+          )}
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
@@ -143,6 +143,6 @@ const Board = ({
       </St.DragScroll>
     </St.BoardPage>
   </PageTransition>
-)
+);
 
 export default Board;

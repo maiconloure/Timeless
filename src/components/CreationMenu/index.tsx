@@ -72,7 +72,6 @@ const CreationMenu = ({
           <span className="tooltiptext">Desfazer última conexão</span>
         </div>
 
-
         <div className="tooltip">
           <img id="pin" src={icons.pin} onClick={pinCardButton} alt="pin/follow" />
           <span className="tooltiptext">Seguir cartão</span>
