@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import Board from '../../pages/Board';
+import BoardMobile from '../../pages/BoardMobile';
 import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/boards.action';
 import { RootStoreType } from '../../redux/store/store';
 import { BoardContainerProps } from '../ContainerInterface';
@@ -32,6 +33,9 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const [showMobileMenu, setShowMobileMenu] = useState(true);
+
+  const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
 
   window.onresize = () => {
     setWindowSize({
@@ -102,9 +106,10 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [, setRender] = useState({});
   const forceRerender = () => setRender(Math.random());
 
-  return (
-    <Board
+  return windowSize.width < 550 ? (
+    <BoardMobile
       data={{
+        showMobileMenu,
         windowSize,
         currentCard,
         showEditUser,
@@ -118,6 +123,28 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
         setSelectedCard,
         setShowEditModal,
         setShowBoardModal,
+        toggleMenu,
+      }}
+      values={{ cards, history }}
+      forceRerender={forceRerender}
+      lines={lines}
+    />
+  ) : (
+    <Board
+      data={{
+        currentCard,
+        showEditUser,
+        showEditCard,
+        selectedCard,
+        showEditModal,
+        showBoardModal,
+        setCurrentCard,
+        setShowEditUser,
+        setShowEditCard,
+        setSelectedCard,
+        setShowEditModal,
+        setShowBoardModal,
+        toggleMenu,
       }}
       values={{ cards, history }}
       forceRerender={forceRerender}

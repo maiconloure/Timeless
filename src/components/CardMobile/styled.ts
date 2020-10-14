@@ -1,10 +1,19 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const CardContainer = styled(motion.div)`
-  position: absolute;
-  width: 10px;
-  height: 10px;
+export const CardContainer = styled(motion.div)<{ showMobileMenu: boolean } | any>`
+  ${(props) =>
+    !props.showMobileMenu
+      ? `
+      position: absolute;
+      width: 10px;
+      height: 10px;
+  
+    `
+      : `
+      margin: 20px auto;
+  `}
+
   z-index: 1;
 
   &:active {
@@ -47,11 +56,11 @@ export const Editable = styled.div<{ blocked: any }>`
   }
 `;
 
-export const MotionBox = styled(motion.div)`
-  position: relative;
+export const MotionBox = styled.div<{ showMobileMenu: boolean } | any>`
+  ${(props) => !props.showMobileMenu && 'position: relative;'}
 `;
 
-export const Card = styled(motion.div)`
+export const Card = styled.div<{ showMobileMenu: boolean } | any>`
   background-color: var(--color-background);
   color: var(--color-primary-4);
   box-sizing: border-box;
@@ -59,7 +68,7 @@ export const Card = styled(motion.div)`
   min-width: 300px;
   max-width: 310px;
   border-radius: 4px;
-  position: absolute;
+  ${(props) => !props.showMobileMenu && 'position: absolute;'}
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
 
   [contenteditable='true'] {

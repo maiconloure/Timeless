@@ -109,20 +109,27 @@ export const CardContainer = styled(motion.div)`
 
 export const MobileContainer = styled.div`
   background-color: var(--color-background);
+  max-width: 100vw;
   width: 100vw;
+  /* max-height: 85vh; */
+  /* overflow: auto; */
+  /* box-sizing: content-box; */
   z-index: 999;
-  position: absolute;
-  padding: 5px;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  transition: 100ms;
 
   &.close {
     top: 0;
   }
 
   &.open {
+    padding: 10px 5px 0 5px;
+
     top: 70px;
   }
 
@@ -142,6 +149,11 @@ export const MobileFeedback = styled.div`
 `;
 
 export const MobileMenuOpenClose = styled.div`
+  width: 100vw;
+  /* margin-top: 5px; */
+  /* margin-bottom: 0; */
+  border: 1px solid #0190f533;
+  /* background-color: var(--color-primary-1); */
   img {
     width: 40px;
     display: block;
@@ -154,13 +166,5 @@ export const MobileMapCards = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   overflow: auto;
-`;
-
-export const DragScrollMobile = styled(ScrollContainer)`
-  /* grid-area: board; */
-  height: calc(100vh - 20px);
-  max-height: 100vh;
-  &:active {
-    cursor: grabbing;
-  }
+  margin-top: 800px;
 `;

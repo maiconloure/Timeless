@@ -2,7 +2,7 @@ import { useMotionValue } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Card } from '../../components';
+import { Card, CardMobile } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -12,6 +12,7 @@ import { DefaultCardProps } from '../ContainerInterface';
 const DefaultCardContainer = ({
   card,
   showEditCard,
+  showMobileMenu,
   setCurrentCard,
   setShowEditCard,
   selectedCard,
@@ -120,7 +121,6 @@ const DefaultCardContainer = ({
   };
 
   const blockCard = (res: boolean) => {
-
     dispatch(
       updateBoardAPI({
         board: {
@@ -128,7 +128,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} ${res ? "bloqueou" : "desbloqueou"} o cartão ${card.data.title}`,
+              `${user.name} ${res ? 'bloqueou' : 'desbloqueou'} o cartão ${card.data.title}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -158,7 +158,6 @@ const DefaultCardContainer = ({
   };
 
   const followCard = (res: any) => {
-
     dispatch(
       updateBoardAPI({
         board: {
@@ -166,7 +165,9 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão  ${card.data.title}`,
+              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão  ${
+                card.data.title
+              }`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -187,13 +188,14 @@ const DefaultCardContainer = ({
     );
   };
 
-  return (
+  return !showMobileMenu ? (
     <Card
       id={id}
       className={className}
       card={card}
       user={user}
       showEditCard={showEditCard}
+      showMobileMenu={showMobileMenu}
       setCurrentCard={setCurrentCard}
       setShowEditCard={setShowEditCard}
       onDragEndFunction={onDragEndFunction}
@@ -209,6 +211,21 @@ const DefaultCardContainer = ({
       blockCard={blockCard}
       followCard={followCard}
       forceRerender={forceRerender}
+    />
+  ) : (
+    <CardMobile
+      card={card}
+      user={user}
+      showMobileMenu={showMobileMenu}
+      showWarning={showWarning}
+      setShowWarning={setShowWarning}
+      selectedCard={selectedCard}
+      handleCheckBox={handleCheckBox}
+      removeCard={removeCard}
+      creationCard={creationCard}
+      DoubleClick={DoubleClick}
+      blockCard={blockCard}
+      followCard={followCard}
     />
   );
 };

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -12,7 +11,7 @@ import { RootStoreType } from '../../redux/store/store';
 import { FixedMenuContainerProps } from '../ContainerInterface';
 
 const FixedMenuContainer = ({
-  data: { showBoardModal, setShowBoardModal, setShowEditUser },
+  data: { showMobileMenu = false, showBoardModal, setShowBoardModal, setShowEditUser },
   history,
 }: FixedMenuContainerProps) => {
   const dispatch = useDispatch();
@@ -93,7 +92,7 @@ const FixedMenuContainer = ({
 
   return (
     <TopBarMenu
-      values={{ user, currentBoard, toggleMenu }}
+      values={{ user, currentBoard, toggleMenu, showMobileMenu }}
       handlers={{
         handleLogout,
         handlerSaveBoard,

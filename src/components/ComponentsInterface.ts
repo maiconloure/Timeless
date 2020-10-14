@@ -20,6 +20,7 @@ export interface CreationMenuProps {
 }
 
 export interface DefaultCardProps {
+  showMobileMenu?: boolean;
   card: Interface.CardInterface;
   user: Interface.UserInterface;
   showEditCard: boolean;
@@ -88,6 +89,7 @@ export interface FixedMenuProps {
     user: Interface.UserInterface;
     currentBoard: Interface.UserBoards;
     toggleMenu: boolean;
+    showMobileMenu?: boolean;
   };
   handlers: {
     handleLogout: () => void;

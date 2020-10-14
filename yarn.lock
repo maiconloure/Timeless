@@ -3348,10 +3348,10 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001148.tgz#dc97c7ed918ab33bf8706ddd5e387287e015d637"
   integrity sha512-E66qcd0KMKZHNJQt9hiLZGE3J4zuTqE1OnU53miEVtylFbwOEmeA5OsRu90noZful+XGSQOni1aT2tiqu/9yYw==
 
-capstone-project@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.5.6.tgz#403d6f74d8b4bb8d3c2917a7b00de9493164737e"
-  integrity sha512-z3DOWDC6mfEbLyznPco/LxXvcAT19HAqb3HlFEBNDVAHfQ/TlogNzuXbmu5OiWY5C86pKaOS5JMa5mn4NNXl0g==
+capstone-project@^0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/capstone-project/-/capstone-project-0.5.8.tgz#c545f9f96ce75ae024909238c404f46bb5a94737"
+  integrity sha512-J84eFIrvoGhiHk7y1Gcud8NByFUCLADDdBQd4/6mhkO2JqjeAzk47Hq9y6rBHmKbypTv1u+/67uSmDqUo8abrw==
   dependencies:
     "@types/history" "^4.7.8"
     "@types/react-router-dom" "^5.1.5"

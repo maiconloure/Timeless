@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TopContainer = styled.div`
   grid-area: top;
   position: fixed;
-  z-index: 9999;
+  z-index: 99;
   top: 0;
   width: 100vw;
 
@@ -26,7 +26,7 @@ export const TopContainer = styled.div`
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 9999999;
+    z-index: 99;
   }
 `;
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import { icons, images } from '../../utils/importAll';
@@ -6,7 +5,7 @@ import { FixedMenuProps } from '../ComponentsInterface';
 import * as St from './styled';
 
 const FixedMenu = ({
-  values: { user, currentBoard, toggleMenu },
+  values: { user, currentBoard, toggleMenu, showMobileMenu = false },
   handlers: {
     handleLogout,
     handlerSaveBoard,
