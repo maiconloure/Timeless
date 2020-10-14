@@ -2,8 +2,7 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import { PageTransition } from '../../components';
-import LoginContainer from '../../containers/LoginContainer';
-import RegisterContainer from '../../containers/RegisterContainer';
+import { LoginContainer, RegisterContainer } from '../../containers';
 import { icons, images } from '../../utils/importAll';
 import { LandingPageProps } from '../PageInterface';
 import * as St from './styled';

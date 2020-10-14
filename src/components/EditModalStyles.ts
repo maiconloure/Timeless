@@ -1,6 +1,16 @@
 import { Modal } from 'capstone-project';
 import styled from 'styled-components';
 
+export const Background = styled.div`
+  z-index: 800;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+
+  -webkit-backdrop-filter: grayscale(80%) blur(5px);
+  backdrop-filter: grayscale(80%) blur(5px);
+`;
+
 export const CardModal = styled(Modal)`
   div {
     &:last-child {

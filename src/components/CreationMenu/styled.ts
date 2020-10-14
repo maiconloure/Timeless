@@ -138,7 +138,7 @@ ${(props) =>
   }`}
 
 ${(props) =>
-    props.selectedCard.pin &&
+    props.selectedCard.followedCard &&
     ` img#pin {
       -webkit-filter: drop-shadow(5px 5px 5px gray);
       filter: drop-shadow(5px 5px 5px gray);
