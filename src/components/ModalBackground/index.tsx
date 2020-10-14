@@ -1,7 +1,12 @@
 import React from 'react';
+
 import { Background } from '../EditModalStyles';
 
-const ModalBackground = ({ show }) => {
+interface Props {
+  show: boolean;
+}
+
+const ModalBackground = ({ show }: Props) => {
   return <>{show && <Background />}</>;
 };
 
