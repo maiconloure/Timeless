@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { LoginContainer, RegisterContainer } from 'containers';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import { PageTransition } from '../../components';
-import { LoginContainer, RegisterContainer } from '../../containers';
 import { icons, images } from '../../utils/importAll';
 import { LandingPageProps } from '../PageInterface';
 import * as St from './styled';
@@ -25,9 +25,17 @@ const Landing = ({
         <St.LeftMenu>
           <img onClick={() => setCurrentFrame('main')} src={icons.logo} alt="logo" />
           <St.LinksContainer>
-            <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
-            <p onClick={() => setCurrentFrame('teams')}>Times</p>
-            <p onClick={() => setCurrentFrame('about')}>Sobre</p>
+            {windowSize.width > 768 ? (
+              <>
+                <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
+                <p onClick={() => setCurrentFrame('teams')}>Times</p>
+                <p onClick={() => setCurrentFrame('about')}>Sobre</p>{' '}
+              </>
+            ) : (
+              <St.Welcome>
+                <p>Bem-vindo</p>
+              </St.Welcome>
+            )}
           </St.LinksContainer>
         </St.LeftMenu>
         <LoginContainer handleError={handleError} windowSize={windowSize} handleForm={handleForm} />

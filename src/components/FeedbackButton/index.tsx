@@ -13,6 +13,8 @@ const FeedbackButton = ({ showMobileMenu = false }: { showMobileMenu?: boolean }
           width="140px"
           height="40px"
           radius="2px"
+          color="#fff"
+          background="#4b4ff4"
           onClick={() => {
             setHandleConfirm(!handleConfirm);
           }}>

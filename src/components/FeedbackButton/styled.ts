@@ -6,7 +6,7 @@ export const FeedBackContainer = styled.div<{ showMobileMenu: boolean }>`
     !props.showMobileMenu &&
     `
       position: absolute;
-      top: 75px;
+      top: 58px;
       left: 10px;
   `}
   transition: 100ms;
@@ -43,7 +43,6 @@ export const ConfirmFeedBack = styled.div`
   background-color: #0190f5;
   width: 260px;
   height: 100px;
-  border-radius: 2px;
   padding: 8px 4px;
   display: flex;
   flex-direction: column;

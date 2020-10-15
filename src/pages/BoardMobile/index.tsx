@@ -1,6 +1,5 @@
 import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';
-import Xarrow from 'react-xarrows';
 
 import { FeedbackButton } from '../../components';
 import * as Container from '../../containers';
@@ -43,6 +42,7 @@ const Board = ({
   setLines,
   defProps,
   state,
+  user,
 }: BoardProps) => (
   <>
     <St.Notification>
@@ -135,8 +135,18 @@ const Board = ({
             />
           </React.Fragment>
         ))}
-
-      <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
+      {currentCard.data && showEditCard && (
+        <St.EditCard
+          style={{
+            x: currentCard.position && currentCard.position.x,
+            y: currentCard.position && currentCard.position.y,
+          }}
+          className="CardContainer">
+          <Container.BacklogCardContainer
+            data={{ showEditCard, setShowEditCard, currentCard, user }}
+          />
+        </St.EditCard>
+      )}{' '}
     </St.MobileMapCards>
   </>
 );
