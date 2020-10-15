@@ -170,6 +170,7 @@ export const MobileMapCards = styled.div`
   flex-wrap: wrap;
   /* overflow: auto; */
   overflow: scroll;
+  overflow-x: hidden;
 
   justify-content: flex-end;
   margin-top: 100px;
