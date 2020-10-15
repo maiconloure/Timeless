@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useSelector: jest.fn(() => jest.fn()),
+  useSelector: jest.fn(() => ({ data: { notifications: [] } })),
   useDispatch: jest.fn(() => jest.fn()),
 }));
 
@@ -55,7 +55,7 @@ describe('Behavior', () => {
       />
     );
 
-    wrapper.find('img').at(7).simulate('click');
-    expect(useDispatch).toHaveBeenCalledTimes(2);
+    wrapper.find('img').at(1).simulate('click');
+    expect(dispatchMock).toHaveBeenCalledTimes(2);
   });
 });

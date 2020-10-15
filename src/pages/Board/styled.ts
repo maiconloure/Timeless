@@ -100,13 +100,6 @@ export const FeedBox = styled(motion.div)`
   }
 `;
 
-export const CardContainer = styled(motion.div)`
-  position: absolute;
-  top: calc(50% - 650px / 2);
-  left: calc(50% - 650px / 2);
-  z-index: 1;
-`;
-
 export const MobileContainer = styled.div`
   background-color: var(--color-background);
   width: 100vw;
@@ -172,8 +165,15 @@ export const DeleteArrow = styled.div`
 `;
 
 export const Info = styled.div`
-  font: 400 1.4rem Roboto;
+  font: 400 1.3rem Roboto;
   position: absolute;
   top: 20px;
   left: 155px;
+`;
+
+export const EditCard = styled(motion.div)`
+  position: absolute;
+  z-index: 9999999999999999999999999999999;
+  top: -200px;
+  left: -200px;
 `;

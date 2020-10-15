@@ -18,33 +18,38 @@ export const WriteableContent = styled.div`
 export const WriteableTop = styled.div`
   -moz-appearance: textfield-multiline;
   -webkit-appearance: textarea;
-  padding: 10px;
   outline: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.4rem;
+  font: 700 1.6rem Inter;
   width: 100%;
   height: 8%;
   background: #f0f0f0;
-  color: #555;
+  color: #000;
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-left: 8px;
+  }
 
   @media (max-width: 720px) {
     height: fit-content;
   }
 `;
 
-export const WriteableBox = styled.div`
+export const WriteableBox = styled.textarea`
   -moz-appearance: textfield-multiline;
   -webkit-appearance: textarea;
   padding: 10px;
   outline: none;
   font-family: 'Inter', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   width: 100%;
-  height: 92%;
+  height: 100%;
   min-height: 100px;
   background: white;
   text-align: left;
-  color: #333;
+  color: #000;
+  resize: none;
 `;
 
 export const ContentContainer = styled.div`
@@ -250,4 +255,15 @@ export const ChecklistBox = styled.div`
   box-shadow: 8px 8px 12px 0 rgba(0, 0, 0, 0.4);
   background-color: white;
   height: 100px;
+`;
+
+export const Date = styled.input`
+  overflow: hidden;
+
+  [type='date']::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type='date']::-webkit-calendar-picker-indicator {
+    display: none;
+  }
 `;

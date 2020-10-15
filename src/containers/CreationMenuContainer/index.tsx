@@ -33,6 +33,7 @@ const CreationMenuContainer = ({
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const random = () => Math.random() * (600 - 200) + 200;
+  const cards = useSelector((state: RootStoreType) => state.cards.cards);
 
   defaultCard.position = {
     x: random() + 300,
@@ -91,6 +92,7 @@ const CreationMenuContainer = ({
       })
     );
 
+    console.log(currentBoard, defaultCard);
     dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard, history }));
   };
 
@@ -167,7 +169,7 @@ const CreationMenuContainer = ({
   };
 
   const pinCardButton = () => {
-    toggleMenu();
+    // toggleMenu();
     setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
   };
 
@@ -189,6 +191,7 @@ const CreationMenuContainer = ({
       pinCardButton={pinCardButton}
       blockCardButton={blockCardButton}
       className={className}
+      cards={cards}
     />
   );
 };

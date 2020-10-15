@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Menu = styled.div`
   background: #8ac0e9;
-  width: 300px;
+  width: 310px;
   max-width: 400px;
   color: #fff;
   padding-bottom: 1px;
@@ -86,7 +86,7 @@ export const MenuTitle = styled.div`
 export const MenuOptions = styled.div<{ selectedCard: any }>`
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   img {
     cursor: pointer;
     width: 55px;
