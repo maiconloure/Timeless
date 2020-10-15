@@ -52,7 +52,7 @@ export interface BoardProps {
       height: number;
     };
     showMobileMenu?: boolean;
-    currentCard: object;
+    currentCard: any;
     showEditUser: boolean;
     showEditCard: boolean;
     showEditModal: boolean;
@@ -103,4 +103,5 @@ export interface BoardProps {
   setLines: any;
   defProps: any;
   state: any;
+  user: any;
 }

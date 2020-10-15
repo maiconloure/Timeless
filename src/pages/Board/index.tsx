@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import * as Container from 'containers';
 import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
@@ -6,7 +7,6 @@ import { ToastContainer, Slide } from 'react-toastify';
 import Xarrow from 'react-xarrows';
 
 import { PageTransition, FeedbackButton } from '../../components';
-import * as Container from '../../containers';
 import * as Interface from '../../redux/actions/interface.action';
 import 'react-toastify/dist/ReactToastify.css';
 import { BoardProps } from '../PageInterface';
@@ -44,6 +44,7 @@ const Board = ({
   setLines,
   defProps,
   state,
+  user,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
@@ -103,7 +104,6 @@ const Board = ({
               setLines={setLines}
             />
           </St.SideMenuContainer>
-
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
@@ -135,7 +135,6 @@ const Board = ({
               />
             </React.Fragment>
           ))}
-
           {lines.length >= 1 &&
             lines.map((line: any, i: number) => (
               <div id={`line${i}`} key={i}>
@@ -143,16 +142,24 @@ const Board = ({
                   <Xarrow
                     start={line.start}
                     end={line.end}
-                    strokeWidth="8"
+                    strokeWidth={8}
                     {...{ ...defProps, ...state }}
                   />
                 )}
               </div>
             ))}
-
-          <St.CardContainer className="CardContainer">
-            <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
-          </St.CardContainer>
+          {currentCard.data && showEditCard && (
+            <St.EditCard
+              style={{
+                x: currentCard.position && currentCard.position.x,
+                y: currentCard.position && currentCard.position.y,
+              }}
+              className="CardContainer">
+              <Container.BacklogCardContainer
+                data={{ showEditCard, setShowEditCard, currentCard, user }}
+              />
+            </St.EditCard>
+          )}
         </St.InnerBoardContainer>
       </St.DragScroll>
     </St.BoardPage>

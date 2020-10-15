@@ -120,7 +120,6 @@ export const MobileContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   transition: 100ms;
 
   &.close {
@@ -129,7 +128,6 @@ export const MobileContainer = styled.div`
 
   &.open {
     padding: 10px 5px 0 5px;
-
     top: 70px;
   }
 
@@ -174,4 +172,11 @@ export const MobileMapCards = styled.div`
 
   justify-content: flex-end;
   margin-top: 100px;
+`;
+
+export const EditCard = styled(motion.div)`
+  position: absolute;
+  z-index: 9999999999999999999999999999999;
+  top: -200px;
+  left: -200px;
 `;

@@ -57,11 +57,14 @@ const DefaultCard = ({
             </St.AlertImg>
             <St.CardHeader>
               <St.MainTags>
-                {card.data.tags.map((tag: any, key: number) => (
-                  <St.Tag key={key} style={{ color: tag.color }}>
-                    {tag.text}
-                  </St.Tag>
-                ))}
+                <div className="tooltip">
+                  {card.data.tags.map((tag: any, key: number) => (
+                    <St.Tag key={key} style={{ color: tag.color }}>
+                      {tag.text}
+                    </St.Tag>
+                  ))}
+                  <span className="tooltiptext">tags</span>
+                </div>
 
                 <div>
                   <St.InfoIcons>
@@ -96,12 +99,13 @@ const DefaultCard = ({
                   <p>{card.data.description}</p>
                 </div>
               </div>
-              <div>
+              <div className="tooltip">
                 <St.CheckBox
                   onClick={handleCheckBox}
                   type="checkbox"
                   defaultChecked={card.data.checked}
                 />
+                <span className="tooltiptext">Realizar Check-in</span>
               </div>
             </St.Description>
             <St.CardFooter>
