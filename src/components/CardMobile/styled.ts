@@ -1,10 +1,19 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const CardContainer = styled(motion.div)`
-  position: absolute;
-  width: 10px;
-  height: 10px;
+export const CardContainer = styled(motion.div)<{ showMobileMenu: boolean } | any>`
+  ${(props) =>
+    !props.showMobileMenu
+      ? `
+      position: absolute;
+      width: 10px;
+      height: 10px;
+  
+    `
+      : `
+      margin: 20px auto;
+  `}
+
   z-index: 1;
 
   &:active {
@@ -28,8 +37,6 @@ export const CardContainer = styled(motion.div)`
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
 
     /* Position the tooltip */
     position: absolute;
@@ -37,7 +44,7 @@ export const CardContainer = styled(motion.div)`
   }
 `;
 
-export const Editable = styled.div<{ blocked: boolean }>`
+export const Editable = styled.div<{ blocked: any }>`
   pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
 
   #unlock {
@@ -49,11 +56,11 @@ export const Editable = styled.div<{ blocked: boolean }>`
   }
 `;
 
-export const MotionBox = styled(motion.div)`
-  /* position: relative; */
+export const MotionBox = styled.div<{ showMobileMenu: boolean } | any>`
+  ${(props) => !props.showMobileMenu && 'position: relative;'}
 `;
 
-export const Card = styled(motion.div)`
+export const Card = styled.div<{ showMobileMenu: boolean } | any>`
   background-color: var(--color-background);
   color: var(--color-primary-4);
   box-sizing: border-box;
@@ -61,10 +68,9 @@ export const Card = styled(motion.div)`
   min-width: 300px;
   max-width: 310px;
   border-radius: 4px;
-  position: absolute;
+  ${(props) => !props.showMobileMenu && 'position: absolute;'}
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+
   [contenteditable='true'] {
     text-overflow: ellipsis;
   }
@@ -154,8 +160,7 @@ export const Description = styled.section`
   max-height: 90px;
   padding: 5px;
   overflow: hidden;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+
   div p {
     display: block;
     max-height: 100px;
@@ -168,8 +173,6 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
   }
 
   div input[type='checkbox'] {
@@ -189,8 +192,6 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
 `;
 
 export const CheckBox = styled.input``;
@@ -226,7 +227,7 @@ export const CardButton = styled.button`
   background-color: var(--color-background);
   color: var(--color-primary-4);
   color: #8b4513;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-left: 10px;
   padding: 2px 10px;
@@ -234,16 +235,16 @@ export const CardButton = styled.button`
   border: none;
   border-radius: 5px;
   position: absolute;
-  top: 95%;
+  top: -10px;
   transition: 0.2s;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+
   :hover {
     color: var(--complement-color-2);
     font-weight: 900;
     border-top: none;
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
+
   :active {
     opacity: 0.5;
   }

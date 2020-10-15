@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import Board from '../../pages/Board';
+import BoardMobile from '../../pages/BoardMobile';
 import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/boards.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard } from '../../utils/defaults-json-cards';
@@ -30,6 +31,21 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     followedCard: false,
     blockedCard: false,
   });
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
+
+  window.onresize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
   const [cardOne, setCardOne] = useState(false);
   const [cardTwo, setCardTwo] = useState(false);
   const [cardSelected, setCardSelected] = useState(false);
@@ -44,7 +60,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       if (currentBoard.connections && lines.length < 1) {
         setLines(currentBoard.connections);
       }
-      if (currentBoard && lines.length > 1) {
+      if (currentBoard && currentBoard.connections && lines.length > 1) {
         setLines(currentBoard.connections);
       }
     }
@@ -102,7 +118,43 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     },
   };
 
-  return (
+  return windowSize.width < 550 ? (
+    <BoardMobile
+      data={{
+        showMobileMenu,
+        windowSize,
+        currentCard,
+        showEditUser,
+        showEditCard,
+        selectedCard,
+        showEditModal,
+        showBoardModal,
+        setCurrentCard,
+        setShowEditUser,
+        setShowEditCard,
+        setSelectedCard,
+        setShowEditModal,
+        setShowBoardModal,
+        toggleMenu,
+      }}
+      connection={{
+        cardOne,
+        cardTwo,
+        setCardOne,
+        setCardTwo,
+        cardSelected,
+        setCardSelected,
+        confirmConnection,
+        setconfirmConnection,
+      }}
+      values={{ cards, history }}
+      forceRerender={forceRerender}
+      lines={lines}
+      setLines={setLines}
+      defProps={defProps}
+      state={state}
+    />
+  ) : (
     <Board
       data={{
         currentCard,
@@ -117,6 +169,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
         setSelectedCard,
         setShowEditModal,
         setShowBoardModal,
+        toggleMenu,
       }}
       connection={{
         cardOne,

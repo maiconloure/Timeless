@@ -28,7 +28,7 @@ export const BoardPage = styled.div`
 
 export const Notification = styled.div`
   position: absolute;
-  z-index: 99999999999999;
+  z-index: 99;
   div {
     font-weight: 800;
     color: #fff;
@@ -62,7 +62,7 @@ export const InnerBoardContainer = styled.div`
   align-self: center;
   justify-self: center;
   margin: 5px;
-  width: 8000px;
+  width: 4000px;
   height: 4000px;
   overflow: scroll;
 
@@ -109,20 +109,27 @@ export const CardContainer = styled(motion.div)`
 
 export const MobileContainer = styled.div`
   background-color: var(--color-background);
+  max-width: 100vw;
   width: 100vw;
-  z-index: 999;
-  position: absolute;
-  padding: 5px;
+  /* max-height: 85vh; */
+  /* overflow: auto; */
+  /* box-sizing: content-box; */
+  z-index: 59;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  transition: 100ms;
 
   &.close {
     top: 0;
   }
 
   &.open {
+    padding: 10px 5px 0 5px;
+
     top: 70px;
   }
 
@@ -142,6 +149,11 @@ export const MobileFeedback = styled.div`
 `;
 
 export const MobileMenuOpenClose = styled.div`
+  width: 100vw;
+  /* margin-top: 5px; */
+  /* margin-bottom: 0; */
+  border: 1px solid #0190f533;
+  /* background-color: var(--color-primary-1); */
   img {
     width: 40px;
     display: block;
@@ -150,30 +162,16 @@ export const MobileMenuOpenClose = styled.div`
 `;
 
 export const MobileMapCards = styled.div`
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow: auto;
-`;
+  /* overflow: auto; */
+  overflow: scroll;
+  overflow-x: hidden;
 
-export const DragScrollMobile = styled(ScrollContainer)`
-  /* grid-area: board; */
-  height: calc(100vh - 20px);
-  max-height: 100vh;
-  &:active {
-    cursor: grabbing;
-  }
-`;
-
-export const DeleteArrow = styled.div`
-  width: 100px;
-  height: 100px;
-  background: #000;
-`;
-
-export const Info = styled.div`
-  font: 400 1.4rem Roboto;
-  position: absolute;
-  top: 20px;
-  left: 155px;
+  justify-content: flex-end;
+  margin-top: 100px;
 `;

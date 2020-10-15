@@ -21,6 +21,7 @@ export interface BoardContainerProps {
 }
 
 export interface CreationMenuContainerProps {
+  toggleMenu: () => void;
   setSelectedCard: React.Dispatch<
     React.SetStateAction<{
       group: boolean;
@@ -48,6 +49,7 @@ export interface CreationMenuContainerProps {
 }
 
 export interface DefaultCardProps {
+  showMobileMenu?: boolean;
   card: CardInterface;
   showEditCard: boolean;
   selectedCard: {
@@ -79,6 +81,7 @@ export interface DefaultCardProps {
 
 export interface EditBoardModalContainerProps {
   data: {
+    showMobileMenu: boolean;
     showEditModal: boolean;
     showBoardModal: boolean;
     setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -89,6 +92,7 @@ export interface EditBoardModalContainerProps {
 
 export interface EditUserModalContainerProps {
   data: {
+    showMobileMenu: boolean;
     showEditUser: boolean;
     setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
     setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -98,6 +102,8 @@ export interface EditUserModalContainerProps {
 
 export interface FixedMenuContainerProps {
   data: {
+    showEditUser: boolean;
+    showMobileMenu?: boolean;
     showBoardModal: boolean;
     setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
     setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;

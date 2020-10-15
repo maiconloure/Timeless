@@ -47,6 +47,11 @@ export interface RegisterProps {
 
 export interface BoardProps {
   data: {
+    windowSize?: {
+      width: number;
+      height: number;
+    };
+    showMobileMenu?: boolean;
     currentCard: object;
     showEditUser: boolean;
     showEditCard: boolean;
@@ -57,6 +62,7 @@ export interface BoardProps {
     setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
     setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
     setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
+    toggleMenu: () => void;
     selectedCard: {
       group: boolean;
       removeCard: boolean;

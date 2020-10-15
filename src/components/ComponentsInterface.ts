@@ -21,6 +21,7 @@ export interface CreationMenuProps {
 }
 
 export interface DefaultCardProps {
+  showMobileMenu?: boolean;
   card: Interface.CardInterface;
   user: Interface.UserInterface;
   showEditCard: boolean;
@@ -59,6 +60,7 @@ export interface EditBoardModalProps {
     boardDescription: string;
   };
   showModal: {
+    showMobileMenu?: boolean;
     showEditModal: boolean;
     showBoardModal: boolean;
     setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -77,6 +79,7 @@ export interface EditBoardModalProps {
 }
 
 export interface EditUserModalProps {
+  showMobileMenu?: boolean;
   showEditUser: boolean;
   setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
   userName: string;
