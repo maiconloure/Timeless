@@ -39,6 +39,8 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [state, setState] = useState({});
   const [lines, setLines] = useState([]);
 
+  console.log(lines)
+
   useEffect(() => {
     if (currentBoard) {
       if (currentBoard.connections && lines.length < 1) {

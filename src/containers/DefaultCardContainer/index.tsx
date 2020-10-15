@@ -100,21 +100,13 @@ const DefaultCardContainer = ({
       .toString()
       .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 
-    // setLines([
-    //   ...lines.filter((line: any) => {
-    //     if (!line.ids.includes(card.id)) {
-    //       return line;
-    //     }
-    //   }),
-    // ]);
-
     dispatch(
       updateBoardAPI({
         board: {
           ...currentBoard,
           connections: [
             lines.filter((line: any) => {
-              if (!line.ids.includes(card.id)) {
+              if (line.ids && !line.ids.includes(card.id)) {
                 return line;
               } else {
                 return false;
@@ -313,28 +305,27 @@ const DefaultCardContainer = ({
 
   useEffect(() => {
     if (confirmConnection) {
+      const thisExist = lines.some((line: any) => {
+        if (
+          (line.ids[0] === cardOne && line.ids[1] === cardTwo) ||
+          (line.ids[1] === cardOne && line.ids[0] === cardTwo)
+        ) {
+          console.log(line.ids[0], line.ids[1]);
+          console.log(cardOne, cardTwo);
+
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      console.log(thisExist);
       if (cardOne && cardTwo) {
-        setLines([
-          ...lines,
-          {
-            ids: [cardOne, cardTwo],
-            start: `card${cardOne}`,
-            end: `card${cardTwo}`,
-            headSize: 4,
-            strokeWidth: 10,
-          },
-        ]);
         const date = new Date();
         const curr_hour = `${date
           .getHours()
           .toString()
           .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
-        // console.log(
-        //   lines.every((line: any) => {
-        //     return !line.ids.includes(card.id);
-        //   })
-        // );
 
         dispatch(
           updateBoardAPI({

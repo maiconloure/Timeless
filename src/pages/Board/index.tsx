@@ -84,6 +84,10 @@ const Board = ({
         hideScrollbars={false}
         className="container">
         <St.InnerBoardContainer>
+          <St.Info>
+            <p>A manipulação e conexão de cards está apresentando problemas técnicos,</p>
+            <p>estamos trabalhando para resolver isto.</p>
+          </St.Info>
           <St.SideMenuContainer drag dragMomentum={false}>
             <Container.CreationMenuContainer
               className="CreationMenu"
@@ -130,7 +134,9 @@ const Board = ({
           {lines.length >= 1 &&
             lines.map((line: any, i: number) => (
               <div id={`line${i}`} key={i}>
-                <Xarrow {...line} {...{ ...defProps, ...state }} />
+                {line.start && line.end && (
+                  <Xarrow start={line.start} end={line.end} {...{ ...defProps, ...state }} />
+                )}
               </div>
             ))}
 

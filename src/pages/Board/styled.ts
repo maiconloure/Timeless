@@ -112,3 +112,9 @@ export const DeleteArrow = styled.div`
   height: 100px;
   background: #000;
 `;
+
+export const Info = styled.div`
+  font: 400 1.3rem Roboto;
+  position: absolute;
+  left: 155px;
+`;
