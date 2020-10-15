@@ -89,6 +89,10 @@ const Board = ({
         hideScrollbars={false}
         className="container">
         <St.InnerBoardContainer>
+          <St.Info>
+            <p>A atualização dos cards está apresentando problemas técnicos,</p>
+            <p>estamos trabalhando para resolver isto.</p>
+          </St.Info>
           <St.SideMenuContainer drag dragMomentum={false}>
             <Container.CreationMenuContainer
               className="CreationMenu"
