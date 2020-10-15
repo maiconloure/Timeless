@@ -18,6 +18,7 @@ export interface CreationMenuProps {
   pinCardButton: () => void;
   blockCardButton: () => void;
   className: string;
+  cards: any;
 }
 
 export interface DefaultCardProps {

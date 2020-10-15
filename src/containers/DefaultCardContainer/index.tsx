@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue, motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import React, { RefObject, useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Card, CardMobile } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';
-import { fastCard } from '../../utils/defaults-json-cards';
+import { defaultCard, fastCard } from '../../utils/defaults-json-cards';
 import { DefaultCardProps } from '../ContainerInterface';
 
 const DefaultCardContainer = ({
@@ -50,7 +50,7 @@ const DefaultCardContainer = ({
   }, [cards.length]);
 
   const onDragEndFunction = () => {
-    // if (x.get() >= 1 && y.get() >= 1) {
+    forceRerender();
 
     dispatch(
       updateCardAPI({
@@ -278,11 +278,6 @@ const DefaultCardContainer = ({
           .getHours()
           .toString()
           .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-        // console.log(
-        //   lines.every((line: any) => {
-        //     return !line.ids.includes(card.id);
-        //   })
-        // );
         dispatch(
           updateBoardAPI({
             board: {

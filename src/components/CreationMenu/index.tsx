@@ -17,6 +17,7 @@ const CreationMenu = ({
   pinCardButton,
   blockCardButton,
   className,
+  cards,
 }: CreationMenuProps) => (
   <St.Menu className={className}>
     <St.MenuTitle>
@@ -38,7 +39,7 @@ const CreationMenu = ({
 
         <div className="tooltip">
           <img id="card" src={icons.card} onClick={createCardButton} alt="create" />
-          <span className="tooltiptext">Cartão padrão</span>
+          <span className="tooltiptext">Criar cartão</span>
         </div>
 
         <div className="tooltip">

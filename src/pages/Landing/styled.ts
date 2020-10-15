@@ -97,8 +97,6 @@ export const LeftMenu = styled.div`
 export const LinksContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
-
   p {
     width: 70px;
     font: 600 2.8rem Roboto;
@@ -121,6 +119,16 @@ export const LinksContainer = styled.div`
       font-size: 1.8rem;
       margin: 0 14px;
     }
+  }
+`;
+
+export const Welcome = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  p {
+    width: fit-content;
   }
 `;
 
@@ -536,7 +544,7 @@ export const RegisterMenu = styled.form`
 
 export const MainFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 
@@ -731,7 +739,7 @@ export const ReturnModal = styled.div`
 
 export const RegisterModal = styled.div`
   position: absolute;
-  z-index: 999;
+  z-index: 9999999999;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

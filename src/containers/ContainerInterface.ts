@@ -12,7 +12,8 @@ export interface BacklogCardProps {
   data: {
     showEditCard: boolean;
     setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
-    currentCard: object;
+    currentCard: any;
+    user: any;
   };
 }
 
