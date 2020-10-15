@@ -3,7 +3,7 @@ import { useMotionValue, motion } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Card } from '../../components';
+import { Card, CardMobile } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';
@@ -13,6 +13,7 @@ import { DefaultCardProps } from '../ContainerInterface';
 const DefaultCardContainer = ({
   card,
   showEditCard,
+  showMobileMenu,
   setCurrentCard,
   setShowEditCard,
   selectedCard,
@@ -114,7 +115,7 @@ const DefaultCardContainer = ({
           ...currentBoard,
           connections: [
             lines.filter((line: any) => {
-              if (!line.ids.includes(card.id)) {
+              if (lines.ids && !line.ids.includes(card.id)) {
                 return line;
               } else {
                 return false;
@@ -176,41 +177,25 @@ const DefaultCardContainer = ({
       .toString()
       .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 
-    if (res) {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} bloqueou o cartão ${card.data.title}, ${curr_hour}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} ${res ? 'bloqueou' : 'desbloqueou'} o cartão ${
+                card.data.title
+              }, ${curr_hour}`,
+              ...currentBoard.data.notifications,
+            ],
           },
-          token,
-          history,
-        })
-      );
-    } else {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} desbloqueou o cartão ${card.data.title}, ${curr_hour}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
-          },
-          token,
-          history,
-        })
-      );
-    }
+        },
+        token,
+        history,
+      })
+    );
+
     dispatch(
       updateCardAPI({
         card: {
@@ -230,68 +215,40 @@ const DefaultCardContainer = ({
     }
   };
 
-  const followCard = (res: boolean) => {
+  const followCard = (res: any) => {
     const date = new Date();
     const curr_hour = `${date
       .getHours()
       .toString()
       .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
-    if (res) {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} começou a seguir o cartão  ${card.data.title}, ${curr_hour}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [
+              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão  ${
+                card.data.title
+              }, ${curr_hour}`,
+              ...currentBoard.data.notifications,
+            ],
           },
-          token,
-          history,
-        })
-      );
-      dispatch(
-        updateCardAPI({
-          card: {
-            ...card,
-            data: { ...card.data, followers: [{ name: user.name, id: user.id }] },
-          },
-          token,
-          history,
-        })
-      );
-    } else {
-      dispatch(
-        updateBoardAPI({
-          board: {
-            ...currentBoard,
-            data: {
-              ...currentBoard.data,
-              notifications: [
-                `${user.name} deixou de seguir o cartão  ${card.data.title}, ${curr_hour}`,
-                ...currentBoard.data.notifications,
-              ],
-            },
-          },
-          token,
-          history,
-        })
-      );
-      dispatch(
-        updateCardAPI({
-          card: {
-            ...card,
-            data: { ...card.data, followers: [] },
-          },
-          token,
-          history,
-        })
-      );
-    }
+        },
+        token,
+        history,
+      })
+    );
+    dispatch(
+      updateCardAPI({
+        card: {
+          ...card,
+          data: { ...card.data, followers: res ? [{ name: user.name, id: user.id }] : [] },
+        },
+        token,
+        history,
+      })
+    );
   };
 
   const handleConnection = () => {
@@ -372,13 +329,41 @@ const DefaultCardContainer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confirmConnection]);
 
-  return (
+  return !showMobileMenu ? (
     <Card
       id={id}
       className={className}
       card={card}
       user={user}
       showEditCard={showEditCard}
+      showMobileMenu={showMobileMenu}
+      setCurrentCard={setCurrentCard}
+      setShowEditCard={setShowEditCard}
+      onDragEndFunction={onDragEndFunction}
+      x={x}
+      y={y}
+      showWarning={showWarning}
+      setShowWarning={setShowWarning}
+      selectedCard={selectedCard}
+      handleCheckBox={handleCheckBox}
+      removeCard={removeCard}
+      creationCard={creationCard}
+      DoubleClick={DoubleClick}
+      blockCard={blockCard}
+      followCard={followCard}
+      forceRerender={forceRerender}
+      handleConnection={handleConnection}
+      cardOne={cardOne}
+      cardTwo={cardTwo}
+    />
+  ) : (
+    <CardMobile
+      id={id}
+      className={className}
+      card={card}
+      user={user}
+      showEditCard={showEditCard}
+      showMobileMenu={showMobileMenu}
       setCurrentCard={setCurrentCard}
       setShowEditCard={setShowEditCard}
       onDragEndFunction={onDragEndFunction}

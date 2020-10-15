@@ -26,6 +26,7 @@ const Board = ({
     setSelectedCard,
     setShowEditModal,
     setShowBoardModal,
+    toggleMenu,
   },
   connection: {
     cardOne,
@@ -53,6 +54,7 @@ const Board = ({
 
       <Container.TopBarContainer
         data={{
+          showEditUser,
           showBoardModal,
           setShowEditUser,
           setShowBoardModal,
@@ -62,6 +64,7 @@ const Board = ({
 
       <Container.EditUserModalContainer
         data={{
+          showMobileMenu: false,
           showEditUser,
           setShowEditUser,
           setShowEditModal,
@@ -71,6 +74,7 @@ const Board = ({
 
       <Container.EditBoardModalContainer
         data={{
+          showMobileMenu: false,
           showEditModal,
           showBoardModal,
           setShowEditModal,
@@ -87,6 +91,7 @@ const Board = ({
           <St.SideMenuContainer drag dragMomentum={false}>
             <Container.CreationMenuContainer
               className="CreationMenu"
+              toggleMenu={toggleMenu}
               setSelectedCard={setSelectedCard}
               selectedCard={selectedCard}
               history={history}
@@ -130,7 +135,9 @@ const Board = ({
           {lines.length >= 1 &&
             lines.map((line: any, i: number) => (
               <div id={`line${i}`} key={i}>
-                <Xarrow {...line} {...{ ...defProps, ...state }} />
+                {line.start && line.end && (
+                  <Xarrow start={line.start} end={line.end} {...{ ...defProps, ...state }} />
+                )}
               </div>
             ))}
 

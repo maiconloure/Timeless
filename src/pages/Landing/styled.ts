@@ -13,7 +13,7 @@ export const LandingPage = styled.div`
 
 export const Notification = styled.div`
   position: absolute;
-  z-index: 999999999;
+  z-index: 99;
 
   div {
     font-weight: 800;
@@ -700,7 +700,7 @@ export const ModalBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 999;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
@@ -731,7 +731,7 @@ export const ReturnModal = styled.div`
 
 export const RegisterModal = styled.div`
   position: absolute;
-  z-index: 99999;
+  z-index: 999;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

@@ -13,6 +13,7 @@ const DefaultCard = ({
   setCurrentCard,
   setShowEditCard,
   onDragEndFunction,
+  showMobileMenu,
   x,
   y,
   showWarning,

@@ -31,7 +31,7 @@ export const Menu = styled.div`
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 99999;
+    z-index: 999;
   }
 `;
 
