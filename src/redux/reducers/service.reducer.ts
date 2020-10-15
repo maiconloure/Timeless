@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PropsLogin } from '../actions/interface.action';
 import { ServiceAction } from '../actions/service.action';
 import * as TYPE from '../actions/type.action';

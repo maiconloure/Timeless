@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -21,7 +22,6 @@ const EditBoardModalContainer = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
-
   const [boardTitle, setBoardTitle] = useState('Título do Board');
   const [boardDescription, setBoardDescription] = useState('Descrição do Board');
   const [selectedBoard, setSelectedBoard] = useState<
@@ -39,7 +39,7 @@ const EditBoardModalContainer = ({
       dispatch(
         createBoardAPI(
           {
-            ...selectedBoard,
+            ...defaultBoard,
             title: boardTitle,
             description: boardDescription,
           },

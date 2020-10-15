@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,7 +25,7 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
     register('password', {
       required: 'digite sua senha',
       pattern: {
-        value: /^.{3,}$/,
+        value: /^.{5,}$/,
         message: 'senha inválida',
       },
     });
@@ -44,7 +45,8 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
       handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
       dispatch(updateStatus(0));
     }
-  }, [status]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, handleForm]);
 
   const handleChangeEmail = (evt: ChangeEvent<HTMLInputElement>) =>
     setValue('email', evt.currentTarget.value);

@@ -1,4 +1,5 @@
-import { useMotionValue } from 'framer-motion';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useMotionValue, motion } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +20,18 @@ const DefaultCardContainer = ({
   className,
   id,
   forceRerender,
+  lines,
+  setLines,
+  connection: {
+    cardOne,
+    setCardOne,
+    cardTwo,
+    setCardTwo,
+    cardSelected,
+    setCardSelected,
+    confirmConnection,
+    setconfirmConnection,
+  },
 }: DefaultCardProps) => {
   const dispatch = useDispatch();
   const x = useMotionValue(card.position.x);
@@ -32,9 +45,12 @@ const DefaultCardContainer = ({
   useEffect(() => {
     x.set(card.position.x);
     y.set(card.position.y);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cards.length]);
 
   const onDragEndFunction = () => {
+    // if (x.get() >= 1 && y.get() >= 1) {
+
     dispatch(
       updateCardAPI({
         card: {
@@ -51,6 +67,12 @@ const DefaultCardContainer = ({
   };
 
   const handleCheckBox = (evt: any) => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
     if (evt.target.checked) {
       dispatch(
         updateBoardAPI({
@@ -59,7 +81,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} terminou o cartão ${card.data.title}.`,
+                `${user.name} terminou o cartão ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -72,14 +94,37 @@ const DefaultCardContainer = ({
   };
 
   const removeCard = () => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+    // setLines([
+    //   ...lines.filter((line: any) => {
+    //     if (!line.ids.includes(card.id)) {
+    //       return line;
+    //     }
+    //   }),
+    // ]);
+
     dispatch(
       updateBoardAPI({
         board: {
           ...currentBoard,
+          connections: [
+            lines.filter((line: any) => {
+              if (!line.ids.includes(card.id)) {
+                return line;
+              } else {
+                return false;
+              }
+            }),
+          ],
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de remover um cartão.`,
+              `${user.name} removeu um cartão, ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -93,6 +138,11 @@ const DefaultCardContainer = ({
   };
 
   const creationCard = () => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
     dispatch(
       updateBoardAPI({
         board: {
@@ -100,7 +150,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de criar um cartão rápido.`,
+              `${user.name} criou um cartão rápido, ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -120,6 +170,12 @@ const DefaultCardContainer = ({
   };
 
   const blockCard = (res: boolean) => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
     if (res) {
       dispatch(
         updateBoardAPI({
@@ -128,7 +184,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} bloqueou o cartão ${card.data.title}`,
+                `${user.name} bloqueou o cartão ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -145,7 +201,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} desbloqueou o cartão ${card.data.title}`,
+                `${user.name} desbloqueou o cartão ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -174,7 +230,13 @@ const DefaultCardContainer = ({
     }
   };
 
-  const followCard = (res: any) => {
+  const followCard = (res: boolean) => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
     if (res) {
       dispatch(
         updateBoardAPI({
@@ -183,7 +245,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} começou a seguir o cartão  ${card.data.title}`,
+                `${user.name} começou a seguir o cartão  ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -210,7 +272,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} deixou de seguir o cartão  ${card.data.title}`,
+                `${user.name} deixou de seguir o cartão  ${card.data.title}, ${curr_hour}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -231,6 +293,84 @@ const DefaultCardContainer = ({
       );
     }
   };
+
+  const handleConnection = () => {
+    if (!cardSelected && !cardTwo) {
+      setCardSelected(true);
+      setCardOne(card.id);
+    } else if (card.id === cardOne) {
+      setCardOne(false);
+      setCardSelected(false);
+    } else if (card.id === cardTwo) {
+      setCardTwo(false);
+    } else if (!cardTwo) {
+      setCardTwo(card.id);
+      if (!confirmConnection) {
+        setconfirmConnection(true);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (confirmConnection) {
+      if (cardOne && cardTwo) {
+        setLines([
+          ...lines,
+          {
+            ids: [cardOne, cardTwo],
+            start: `card${cardOne}`,
+            end: `card${cardTwo}`,
+            headSize: 4,
+            strokeWidth: 10,
+          },
+        ]);
+        const date = new Date();
+        const curr_hour = `${date
+          .getHours()
+          .toString()
+          .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+        // console.log(
+        //   lines.every((line: any) => {
+        //     return !line.ids.includes(card.id);
+        //   })
+        // );
+
+        dispatch(
+          updateBoardAPI({
+            board: {
+              ...currentBoard,
+              connections: [
+                ...lines,
+                {
+                  ids: [cardOne, cardTwo],
+                  start: `card${cardOne}`,
+                  end: `card${cardTwo}`,
+                  headSize: 4,
+                  strokeWidth: 10,
+                },
+              ],
+              data: {
+                ...currentBoard.data,
+                notifications: [
+                  `${user.name} conectou dois cartões, ${curr_hour}`,
+                  ...currentBoard.data.notifications,
+                ],
+              },
+            },
+            token,
+            history,
+          })
+        );
+
+        setconfirmConnection(false);
+        setCardSelected(false);
+        setCardOne(false);
+        setCardTwo(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [confirmConnection]);
 
   return (
     <Card
@@ -254,6 +394,9 @@ const DefaultCardContainer = ({
       blockCard={blockCard}
       followCard={followCard}
       forceRerender={forceRerender}
+      handleConnection={handleConnection}
+      cardOne={cardOne}
+      cardTwo={cardTwo}
     />
   );
 };
