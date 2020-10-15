@@ -25,15 +25,15 @@ export const defaultCard = {
     title: 'Titulo do Cartão',
     time: {
       finish: {
-        date: '00/00',
-        hour: '00:00',
+        date: '00/00/00',
+        hour: '00/00/00',
       },
       start: {
         date: '00/00',
         hour: '00:00',
       },
       done: {
-        date: '00/00',
+        date: '00:00',
         hour: '00:00',
       },
     },

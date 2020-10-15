@@ -7,7 +7,7 @@ import { images } from '../../utils/importAll';
 export const BoardPage = styled.div`
   /* background-image: url(https://media.giphy.com/media/MtJwM5N4fuMgw/giphy.gif); */
   /* background-image: url(${images.AbstractTimekeeper}); */
-  /* background-image: url(${images.background}); */
+  background-image: url(${images.background});
   background-size: cover;
   position: relative;
   width: 100vw;

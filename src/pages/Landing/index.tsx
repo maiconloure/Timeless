@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { LoginContainer, RegisterContainer } from 'containers';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import { PageTransition } from '../../components';
-import { LoginContainer, RegisterContainer } from '../../containers';
 import { icons, images } from '../../utils/importAll';
 import { LandingPageProps } from '../PageInterface';
 import * as St from './styled';

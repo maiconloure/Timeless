@@ -12,7 +12,6 @@ const BacklogCardContainer = ({
   usersArray = [{ image: icons.user1, user: '' }],
   data: { showEditCard, setShowEditCard, currentCard, user },
 }: BacklogCardProps) => {
-  console.log(currentCard);
   const [currentDescription, setCurrentDescription] = useState(
     currentCard.data.description && currentCard.data.description
   );

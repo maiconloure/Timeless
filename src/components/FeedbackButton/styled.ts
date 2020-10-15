@@ -6,7 +6,7 @@ export const FeedBackContainer = styled.div<{ showMobileMenu: boolean }>`
     !props.showMobileMenu &&
     `
       position: absolute;
-      top: 75px;
+      top: 58px;
       left: 10px;
   `}
   transition: 100ms;

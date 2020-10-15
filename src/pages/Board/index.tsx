@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import * as Container from 'containers';
 import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
@@ -6,7 +7,6 @@ import { ToastContainer, Slide } from 'react-toastify';
 import Xarrow from 'react-xarrows';
 
 import { PageTransition, FeedbackButton } from '../../components';
-import * as Container from '../../containers';
 import * as Interface from '../../redux/actions/interface.action';
 import 'react-toastify/dist/ReactToastify.css';
 import { BoardProps } from '../PageInterface';
@@ -89,10 +89,6 @@ const Board = ({
         hideScrollbars={false}
         className="container">
         <St.InnerBoardContainer>
-          <St.Info>
-            <p>A atualização dos cards está apresentando problemas técnicos,</p>
-            <p>estamos trabalhando para resolver isto.</p>
-          </St.Info>
           <St.SideMenuContainer drag dragMomentum={false}>
             <Container.CreationMenuContainer
               className="CreationMenu"

@@ -63,7 +63,7 @@ export const Card = styled(motion.div)`
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
   text-rendering: optimizeLegibility !important;
   border: 3px solid #8f98eb;
-  transition: 0.2s;
+  /* transition: 0.2s; */
 
   :hover {
     border: 4px solid #191970;

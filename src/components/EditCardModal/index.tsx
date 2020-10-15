@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'react-date-picker';
+// import DatePicker from 'react-datepicker';
 
 import { icons } from '../../utils/importAll';
 import * as St from './styled';
@@ -37,12 +37,6 @@ const Content = ({
         <St.WriteableTop>
           <p>DESCRIÇÃO</p>
         </St.WriteableTop>
-        {/* <St.WriteableBox
-          onChange={getDescription}
-          contentEditable="true"
-          suppressContentEditableWarning>
-          {currentCard.data.description}
-        </St.WriteableBox> */}
         <St.WriteableBox onChange={getDescription} value={currentDescription} />
       </St.WriteableContent>
       <St.Labels>
@@ -65,10 +59,7 @@ const Content = ({
             <St.Icon src={icons.clock} alt="Ícone de Cronômetro" onClick={() => {}} />
             <span>
               Data Entrega
-              <DatePicker
-                // selected={startDate}
-                onChange={getTime}
-              />
+              {/* <DatePicker selected={currentDate} onChange={getTime} /> */}
             </span>
           </St.ClockLabel>
         </St.TimingLabel>
