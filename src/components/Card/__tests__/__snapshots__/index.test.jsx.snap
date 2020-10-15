@@ -17,10 +17,10 @@ exports[`Snapshot renderer 1`] = `
     }
   >
     <div
-      className="sc-cTJmaU GxEyK"
+      className="sc-cTJmaU fYdMiK"
     >
       <div
-        className="sc-dPaNSN ibmYNX"
+        className="sc-dPaNSN kLJpNB"
         id="cardundefined"
         style={
           Object {
@@ -43,21 +43,30 @@ exports[`Snapshot renderer 1`] = `
               className="sc-ArjOu kjlBSZ"
             >
               <div
-                className="sc-khIgXV ikuYwr"
-                style={
-                  Object {
-                    "color": undefined,
+                className="tooltip"
+              >
+                <div
+                  className="sc-khIgXV ikuYwr"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
                   }
-                }
-              />
-              <div
-                className="sc-khIgXV ikuYwr"
-                style={
-                  Object {
-                    "color": undefined,
+                />
+                <div
+                  className="sc-khIgXV ikuYwr"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
                   }
-                }
-              />
+                />
+                <span
+                  className="tooltiptext"
+                >
+                  tags
+                </span>
+              </div>
               <div>
                 <figure
                   className="sc-gSYCTC cHhcay"
@@ -93,12 +102,12 @@ exports[`Snapshot renderer 1`] = `
             </div>
           </div>
           <section
-            className="sc-laZMyp fkLiJr"
+            className="sc-laZMyp dZcIQI"
           >
             <div>
               <div>
                 <h4
-                  className="sc-iNiQeE iUmtWN"
+                  className="sc-jffIyK hZLutU"
                 >
                   
                 </h4>
@@ -109,12 +118,19 @@ exports[`Snapshot renderer 1`] = `
                 </p>
               </div>
             </div>
-            <div>
+            <div
+              className="tooltip"
+            >
               <input
-                className="sc-jffIyK"
+                className="sc-iNiQeE iMkigH"
                 defaultChecked=""
                 type="checkbox"
               />
+              <span
+                className="tooltiptext"
+              >
+                Realizar Check-in
+              </span>
             </div>
           </section>
           <div
@@ -160,7 +176,7 @@ exports[`Snapshot renderer 1`] = `
           </div>
         </div>
         <button
-          className="sc-eirseW dcfdVp"
+          className="sc-eirseW fVHLJS"
         >
           remover
         </button>

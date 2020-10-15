@@ -2,7 +2,7 @@
 
 exports[`Snapshot renders 1`] = `
 <div
-  className="sc-bdnylx bVmslF"
+  className="sc-bdnylx gtOhYI"
 >
   <div
     className="sc-hKFyIo gnBfdK"
@@ -22,7 +22,7 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN eCwEhX"
+      className="sc-eCApGN foPsUL"
     >
       <div
         className="tooltip"
@@ -47,7 +47,7 @@ exports[`Snapshot renders 1`] = `
         <span
           className="tooltiptext"
         >
-          Cartão padrão
+          Criar cartão
         </span>
       </div>
       <div
@@ -89,7 +89,7 @@ exports[`Snapshot renders 1`] = `
       </h4>
     </div>
     <div
-      className="sc-eCApGN eCwEhX"
+      className="sc-eCApGN foPsUL"
     >
       <div
         className="tooltip"

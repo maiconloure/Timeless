@@ -26,13 +26,9 @@ context('Logging to Board Page', () => {
     cy.wait(1500);
     cy.get('#blocked').click({ force: true });
     cy.wait(1500);
-    cy.get('.sc-dWBSoC > img').click()
-    cy.wait(1500)
+    cy.get('.sc-dWBSoC > img').click();
+    cy.wait(1500);
     cy.get('.sc-jHcYrh > :nth-child(4) > p').click({ force: true });
-    cy.wait(1500)
-
-
-
-
+    cy.wait(1500);
   });
 });
