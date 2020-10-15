@@ -26,7 +26,8 @@ context('Modal Register in Landing Page', () => {
     cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-    cy.get('.sc-cwixnI > .sc-bdnylx').click();
+    // cy.get('.sc-cwixnI > .sc-bdnylx').click();
+    cy.get('.sc-dwxYxt > .sc-bdnylx').click();
     cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
 
     cy.get('.sc-jhGSUB > :nth-child(1) > .sc-dlnjPT > .sc-hKFyIo');
