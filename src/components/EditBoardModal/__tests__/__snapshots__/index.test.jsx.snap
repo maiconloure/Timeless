@@ -2,10 +2,10 @@
 
 exports[`Snapshot not renders 1`] = `
 <div
-  className="sc-fKgIGh cNCOQf"
+  className="sc-fKgIGh cLxKwU"
 >
   <div
-    className="sc-crzoUp inpdim"
+    className="sc-crzoUp kYmTKt"
     onClick={[Function]}
   >
     <img
@@ -13,7 +13,7 @@ exports[`Snapshot not renders 1`] = `
     />
   </div>
   <h1
-    className="sc-bCwgka dJmVvq"
+    className="sc-bCwgka iFtFye"
   >
     Boards
   </h1>
@@ -21,7 +21,7 @@ exports[`Snapshot not renders 1`] = `
     className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
   >
     <div
-      className="sc-ArjOu dRKcKi"
+      className="sc-ArjOu errynM"
     >
       <div
         className="sc-jNnnWF lbALrE"
@@ -32,7 +32,7 @@ exports[`Snapshot not renders 1`] = `
           Novo Board
         </p>
         <button
-          className="sc-dPaNSN cmJrtY"
+          className="sc-dPaNSN ihQlZm"
           onClick={[MockFunction]}
         >
           Criar
@@ -40,30 +40,30 @@ exports[`Snapshot not renders 1`] = `
       </div>
     </div>
     <div
-      className="sc-ArjOu dRKcKi"
+      className="sc-ArjOu errynM"
     >
       <h2 />
       <div
-        className="sc-bBjRzc kCwEgw"
+        className="sc-bBjRzc iofTrk"
       >
         <p
           className="sc-khIgXV hVcsEV"
         />
         <div>
           <button
-            className="sc-dPaNSN cmJrtY"
+            className="sc-dPaNSN ihQlZm"
             onClick={[Function]}
           >
             Selecionar
           </button>
           <button
-            className="sc-dPaNSN cmJrtY"
+            className="sc-dPaNSN ihQlZm"
             onClick={[Function]}
           >
             Modificar
           </button>
           <button
-            className="sc-dPaNSN cmJrtY"
+            className="sc-dPaNSN ihQlZm"
             onClick={[Function]}
           >
             Remover
@@ -78,13 +78,13 @@ exports[`Snapshot not renders 1`] = `
 exports[`Snapshot renders 1`] = `
 Array [
   <div
-    className="sc-efHXLn bNzgxe"
+    className="sc-efHXLn dAUWVC"
   />,
   <div
-    className="sc-fKgIGh iYqHxB"
+    className="sc-fKgIGh kEPpFa"
   >
     <div
-      className="sc-crzoUp inpdim"
+      className="sc-crzoUp kYmTKt"
       onClick={[Function]}
     >
       <img
@@ -92,7 +92,7 @@ Array [
       />
     </div>
     <h1
-      className="sc-bCwgka dJmVvq"
+      className="sc-bCwgka iFtFye"
     >
       Boards
     </h1>
@@ -100,7 +100,7 @@ Array [
       className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
     >
       <div
-        className="sc-cOigif haWtsF"
+        className="sc-cOigif hsgXtx"
       >
         <button
           className="sc-bdnylx hhyBUP"
@@ -113,6 +113,9 @@ Array [
         >
           Voltar
         </button>
+        <h2>
+          Titulo
+        </h2>
         <div
           className="sc-dlnjPT"
         >
@@ -128,6 +131,9 @@ Array [
             width="220px"
           />
         </div>
+        <h2>
+          Descrição
+        </h2>
         <div
           className="sc-dlnjPT"
         >
@@ -162,10 +168,10 @@ Array [
 
 exports[`Snapshot renders but showBoardModal is false 1`] = `
 <div
-  className="sc-fKgIGh cNCOQf"
+  className="sc-fKgIGh cLxKwU"
 >
   <div
-    className="sc-crzoUp inpdim"
+    className="sc-crzoUp kYmTKt"
     onClick={[Function]}
   >
     <img
@@ -173,7 +179,7 @@ exports[`Snapshot renders but showBoardModal is false 1`] = `
     />
   </div>
   <h1
-    className="sc-bCwgka dJmVvq"
+    className="sc-bCwgka iFtFye"
   >
     Boards
   </h1>
@@ -181,7 +187,7 @@ exports[`Snapshot renders but showBoardModal is false 1`] = `
     className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
   >
     <div
-      className="sc-cOigif haWtsF"
+      className="sc-cOigif hsgXtx"
     >
       <button
         className="sc-bdnylx hhyBUP"
@@ -194,6 +200,9 @@ exports[`Snapshot renders but showBoardModal is false 1`] = `
       >
         Voltar
       </button>
+      <h2>
+        Titulo
+      </h2>
       <div
         className="sc-dlnjPT"
       >
@@ -209,6 +218,9 @@ exports[`Snapshot renders but showBoardModal is false 1`] = `
           width="220px"
         />
       </div>
+      <h2>
+        Descrição
+      </h2>
       <div
         className="sc-dlnjPT"
       >

@@ -167,7 +167,7 @@ const CreationMenuContainer = ({
   };
 
   const pinCardButton = () => {
-    toggleMenu();
+    // toggleMenu();
     setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
   };
 
