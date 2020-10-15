@@ -20,7 +20,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showEditCard, setShowEditCard] = useState(false);
-  const [showEditUser, setShowEditUser] = useState(false);
+  const [showEditUser, setShowEditUser] = useState(true);
   const [currentCard, setCurrentCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({
     group: false,

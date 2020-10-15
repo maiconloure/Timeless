@@ -13,7 +13,7 @@ import { RootStoreType } from '../../redux/store/store';
 import { FixedMenuContainerProps } from '../ContainerInterface';
 
 const FixedMenuContainer = ({
-  data: { showBoardModal, setShowBoardModal, setShowEditUser },
+  data: { showEditUser, showBoardModal, setShowBoardModal, setShowEditUser },
   history,
 }: FixedMenuContainerProps) => {
   const dispatch = useDispatch();
@@ -90,7 +90,11 @@ const FixedMenuContainer = ({
   };
 
   const handlerToggleBoard = () => setShowBoardModal(!showBoardModal);
-  const handleToggleMenu = () => setToggleMenu(!toggleMenu);
+  const handleToggleMenu = () => {
+    if (!showEditUser && !showBoardModal) {
+      setToggleMenu(!toggleMenu);
+    }
+  };
 
   return (
     <TopBarMenu

@@ -15,7 +15,7 @@ import { defaultBoard } from '../../utils/defaults-json-cards';
 import { EditBoardModalContainerProps } from '../ContainerInterface';
 
 const EditBoardModalContainer = ({
-  data: { showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },
+  data: { showMobileMenu, showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },
   history,
 }: EditBoardModalContainerProps) => {
   const dispatch = useDispatch();
@@ -92,6 +92,7 @@ const EditBoardModalContainer = ({
       boards={boards}
       values={{ boardTitle, boardDescription }}
       showModal={{
+        showMobileMenu,
         showEditModal,
         showBoardModal,
         setShowEditModal,

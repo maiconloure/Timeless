@@ -50,6 +50,7 @@ const Board = ({
     </St.Notification>
     <Container.EditUserModalContainer
       data={{
+        showMobileMenu: true,
         showEditUser,
         setShowEditUser,
         setShowEditModal,
@@ -59,6 +60,7 @@ const Board = ({
 
     <Container.EditBoardModalContainer
       data={{
+        showMobileMenu: true,
         showEditModal,
         showBoardModal,
         setShowEditModal,
@@ -71,6 +73,7 @@ const Board = ({
         <>
           <Container.TopBarContainer
             data={{
+              showEditUser,
               showBoardModal,
               setShowEditUser,
               setShowBoardModal,

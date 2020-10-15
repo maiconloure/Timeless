@@ -28,6 +28,8 @@ export const MenuModal = styled.div`
 export const CardModalButton = styled.button`
   background-color: var(--complement-color-0);
   color: var(--color-primary-4);
+  background-color: var(--color-primary-1);
+  /* color: var(--color-primary-4); */
   width: 90px;
   padding: 10px;
   font-size: 14px;
@@ -55,8 +57,7 @@ export const CardModalSection = styled.div`
   flex-direction: column;
   text-align: center;
 
-  @media (min-height: 768px) and (min-width: 968px) {
-    flex-direction: row;
+  @media (min-width: 550px) {
     justify-content: space-between;
     align-items: center;
   }
@@ -70,12 +71,18 @@ export const Form = styled.div`
 
   div {
     padding: 10px;
+
     &:nth-child(4) {
       margin-right: 17px;
     }
     input {
       font-size: 1.8rem;
       padding: 0px 10px;
+
+      @media (min-width: 550px) {
+        max-width: 350px;
+        min-width: 290px;
+      }
     }
     svg {
       width: 1.8rem;
@@ -89,9 +96,19 @@ export const Form = styled.div`
     height: 50px;
     width: 200px;
 
+    @media (min-width: 550px) {
+      margin: 15px;
+    }
     :hover {
       color: var(--complement-color-0);
     }
+  }
+
+  h2,
+  h3 {
+    text-align: left;
+    align-self: flex-start;
+    margin: 20px 0 0 20px;
   }
 
   button:nth-child(3) {
@@ -117,6 +134,11 @@ export const ModalContent = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
+  }
+
+  @media (min-width: 550px) {
+    max-width: 500px;
+    min-width: 300px;
   }
 `;
 
