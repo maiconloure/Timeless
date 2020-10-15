@@ -358,9 +358,17 @@ const DefaultCardContainer = ({
     />
   ) : (
     <CardMobile
+      id={id}
+      className={className}
       card={card}
       user={user}
+      showEditCard={showEditCard}
       showMobileMenu={showMobileMenu}
+      setCurrentCard={setCurrentCard}
+      setShowEditCard={setShowEditCard}
+      onDragEndFunction={onDragEndFunction}
+      x={x}
+      y={y}
       showWarning={showWarning}
       setShowWarning={setShowWarning}
       selectedCard={selectedCard}
@@ -370,6 +378,10 @@ const DefaultCardContainer = ({
       DoubleClick={DoubleClick}
       blockCard={blockCard}
       followCard={followCard}
+      forceRerender={forceRerender}
+      handleConnection={handleConnection}
+      cardOne={cardOne}
+      cardTwo={cardTwo}
     />
   );
 };

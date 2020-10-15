@@ -8,9 +8,15 @@ import * as St from './styled';
 const CardMobile = ({
   card,
   user,
+  showEditCard,
+  setCurrentCard,
+  setShowEditCard,
+  onDragEndFunction,
+  showMobileMenu,
+  x,
+  y,
   showWarning,
   setShowWarning,
-  showMobileMenu,
   selectedCard,
   handleCheckBox,
   removeCard,
@@ -20,13 +26,17 @@ const CardMobile = ({
   id,
   blockCard,
   followCard,
-}: any) => (
+  forceRerender,
+  handleConnection,
+  cardOne,
+  cardTwo,
+}: DefaultCardProps) => (
   <St.CardContainer
     onDoubleClick={DoubleClick}
     className={className}
     showMobileMenu={showMobileMenu}>
     <St.Editable blocked={card.data.blocked}>
-      <St.Card id={id} showMobileMenu={showMobileMenu}>
+      <St.Card id={`card${card.id}`} showMobileMenu={showMobileMenu}>
         <St.CardInside>
           <St.AlertImg>
             {card.data.fastCard && card.data.fastCard.show && (
@@ -103,6 +113,13 @@ const CardMobile = ({
           </St.CardFooter>
         </St.CardInside>
         <div style={{ position: 'relative' }}>
+          {selectedCard.connect && (
+            <>
+              <St.ConnectCardRight active={card.id === cardOne} onClick={handleConnection} />
+              {/* <St.ConnectCardLeft active={card.id === cardOne} onClick={handleConnection} /> */}
+            </>
+          )}
+
           {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
 
           {selectedCard.removeCard ? (

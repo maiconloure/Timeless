@@ -260,3 +260,38 @@ export const Block = styled.div`
 export const BlockedIcon = styled.img`
   width: 60px;
 `;
+
+export const ConnectCardRight = styled.button<{ active: any }>`
+  position: absolute;
+  top: 34%;
+  left: 102%;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid var(--color-primary-4);
+  border-right: 0px solid transparent;
+  outline: none;
+  border-left: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
+  cursor: pointer;
+  background: transparent;
+  :hover {
+    border-left: 30px solid #ff8c00;
+  }
+`;
+
+export const ConnectCardLeft = styled.button<{ active: any }>`
+  position: absolute;
+  top: 34%;
+  left: -35px;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 00px solid transparent;
+  border-right: 30px solid var(--color-primary-4);
+  outline: none;
+  border-right: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
+  cursor: pointer;
+  background: transparent;
+`;

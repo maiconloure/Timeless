@@ -45,6 +45,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       height: window.innerHeight,
     });
   };
+
   const [cardOne, setCardOne] = useState(false);
   const [cardTwo, setCardTwo] = useState(false);
   const [cardSelected, setCardSelected] = useState(false);

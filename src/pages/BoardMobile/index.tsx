@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';
+import Xarrow from 'react-xarrows';
 
 import { FeedbackButton } from '../../components';
 import * as Container from '../../containers';
@@ -47,7 +48,6 @@ const Board = ({
     <St.Notification>
       <ToastContainer transition={Slide} />
     </St.Notification>
-    {/* <St.BoardPage id="canvas"> */}
     <Container.EditUserModalContainer
       data={{
         showEditUser,
@@ -105,32 +105,35 @@ const Board = ({
     <St.MobileMapCards>
       {cards &&
         cards.map((card: Interface.CardInterface, key: number) => (
-          <Container.DefaultCardContainer
-            key={key}
-            id={`card${key}`}
-            className="DefaultCard"
-            card={card}
-            showEditCard={showEditCard}
-            setCurrentCard={setCurrentCard}
-            setShowEditCard={setShowEditCard}
-            selectedCard={selectedCard}
-            history={history}
-            forceRerender={forceRerender}
-            lines={lines}
-            setLines={setLines}
-            connection={{
-              cardOne,
-              cardTwo,
-              setCardOne,
-              setCardTwo,
-              cardSelected,
-              setCardSelected,
-              confirmConnection,
-              setconfirmConnection,
-            }}
-            showMobileMenu
-          />
+          <React.Fragment key={key}>
+            <Container.DefaultCardContainer
+              id={`card${key}`}
+              className="DefaultCard"
+              card={card}
+              showEditCard={showEditCard}
+              setCurrentCard={setCurrentCard}
+              setShowEditCard={setShowEditCard}
+              selectedCard={selectedCard}
+              history={history}
+              forceRerender={forceRerender}
+              lines={lines}
+              setLines={setLines}
+              connection={{
+                cardOne,
+                cardTwo,
+                setCardOne,
+                setCardTwo,
+                cardSelected,
+                setCardSelected,
+                confirmConnection,
+                setconfirmConnection,
+              }}
+              showMobileMenu
+            />
+          </React.Fragment>
         ))}
+
+      <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
     </St.MobileMapCards>
   </>
 );
