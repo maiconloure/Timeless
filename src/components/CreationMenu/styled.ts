@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Menu = styled.div`
   background: #8ac0e9;
-  width: 260px;
+  width: 300px;
   max-width: 400px;
   color: #fff;
   padding-bottom: 1px;
@@ -51,6 +51,10 @@ export const SectionTitle = styled.div`
   background-color: var(--color-primary-4);
   padding: 2px 4px;
   border-radius: 2px 2px 0px 0px;
+
+  h4 {
+    margin: 2px;
+  }
 `;
 
 export const MenuTitle = styled.div`

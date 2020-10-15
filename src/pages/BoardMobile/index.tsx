@@ -6,13 +6,11 @@ import * as Container from '../../containers';
 import * as Interface from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
 import 'react-toastify/dist/ReactToastify.css';
-import { BoardMobileProps } from '../PageInterface';
+import { BoardProps } from '../PageInterface';
 import * as St from './styled';
 
 const Board = ({
   data: {
-    showMobileMenu,
-    windowSize,
     currentCard,
     showEditUser,
     showEditCard,
@@ -25,12 +23,26 @@ const Board = ({
     setSelectedCard,
     setShowEditModal,
     setShowBoardModal,
+    showMobileMenu,
     toggleMenu,
+  },
+  connection: {
+    cardOne,
+    setCardOne,
+    cardTwo,
+    setCardTwo,
+    cardSelected,
+    setCardSelected,
+    confirmConnection,
+    setconfirmConnection,
   },
   values: { cards, history },
   forceRerender,
   lines,
-}: BoardMobileProps) => (
+  setLines,
+  defProps,
+  state,
+}: BoardProps) => (
   <>
     <St.Notification>
       <ToastContainer transition={Slide} />
@@ -69,8 +81,11 @@ const Board = ({
             <Container.CreationMenuContainer
               className="CreationMenu"
               setSelectedCard={setSelectedCard}
+              toggleMenu={toggleMenu}
               selectedCard={selectedCard}
               history={history}
+              lines={lines}
+              setLines={setLines}
             />
           </St.MobileContent>
 
@@ -91,18 +106,29 @@ const Board = ({
       {cards &&
         cards.map((card: Interface.CardInterface, key: number) => (
           <Container.DefaultCardContainer
+            key={key}
             id={`card${key}`}
             className="DefaultCard"
-            key={key}
             card={card}
             showEditCard={showEditCard}
             setCurrentCard={setCurrentCard}
             setShowEditCard={setShowEditCard}
-            showMobileMenu
-            toggleMenu={toggleMenu}
             selectedCard={selectedCard}
             history={history}
             forceRerender={forceRerender}
+            lines={lines}
+            setLines={setLines}
+            connection={{
+              cardOne,
+              cardTwo,
+              setCardOne,
+              setCardTwo,
+              cardSelected,
+              setCardSelected,
+              confirmConnection,
+              setconfirmConnection,
+            }}
+            showMobileMenu
           />
         ))}
     </St.MobileMapCards>

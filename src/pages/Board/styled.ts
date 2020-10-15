@@ -62,7 +62,7 @@ export const InnerBoardContainer = styled.div`
   align-self: center;
   justify-self: center;
   margin: 5px;
-  width: 4000px;
+  width: 8000px;
   height: 4000px;
   overflow: scroll;
 
@@ -163,4 +163,10 @@ export const DragScrollMobile = styled(ScrollContainer)`
   &:active {
     cursor: grabbing;
   }
+`;
+
+export const DeleteArrow = styled.div`
+  width: 100px;
+  height: 100px;
+  background: #000;
 `;

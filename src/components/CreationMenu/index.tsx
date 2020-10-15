@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
@@ -12,6 +13,7 @@ const CreationMenu = ({
   removeCardButton,
   createTextButton,
   connectArrowButton,
+  desconnectArrowButton,
   pinCardButton,
   blockCardButton,
   className,
@@ -64,7 +66,11 @@ const CreationMenu = ({
 
         <div className="tooltip">
           <img id="connect" src={icons.connect} onClick={connectArrowButton} alt="connect" />
-          <span className="tooltiptext">Conectar cartão</span>
+          <span className="tooltiptext">Habilitar modo conexão</span>
+        </div>
+        <div className="tooltip">
+          <img id="card" src={icons.desconnect} onClick={desconnectArrowButton} alt="connect" />
+          <span className="tooltiptext">Desfazer última conexão</span>
         </div>
 
         <div className="tooltip">

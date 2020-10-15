@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Background } from '../EditModalStyles';
 
 interface Props {

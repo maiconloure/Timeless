@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import React, { ChangeEvent } from 'react';
 import Record, { DeepMap, FieldError } from 'react-hook-form';
@@ -46,6 +47,11 @@ export interface RegisterProps {
 
 export interface BoardProps {
   data: {
+    windowSize?: {
+      width: number;
+      height: number;
+    };
+    showMobileMenu?: boolean;
     currentCard: object;
     showEditUser: boolean;
     showEditCard: boolean;
@@ -78,49 +84,15 @@ export interface BoardProps {
       }>
     >;
   };
-  values: {
-    cards: CardInterface[];
-    history: History<LocationState>;
-  };
-  forceRerender: any;
-  lines: any;
-}
-
-export interface BoardMobileProps {
-  data: {
-    showMobileMenu: boolean;
-    windowSize: { width: number; height: number };
-    currentCard: object;
-    showEditUser: boolean;
-    showEditCard: boolean;
-    showEditModal: boolean;
-    showBoardModal: boolean;
-    setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
-    setShowEditUser: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
-    toggleMenu: () => void;
-    selectedCard: {
-      group: boolean;
-      removeCard: boolean;
-      fastCard: boolean;
-      addText: boolean;
-      connect: boolean;
-      followedCard: boolean;
-      blockedCard: boolean;
-    };
-    setSelectedCard: React.Dispatch<
-      React.SetStateAction<{
-        group: boolean;
-        removeCard: boolean;
-        fastCard: boolean;
-        addText: boolean;
-        connect: boolean;
-        followedCard: boolean;
-        blockedCard: boolean;
-      }>
-    >;
+  connection: {
+    cardOne: any;
+    setCardOne: any;
+    cardTwo: any;
+    setCardTwo: any;
+    cardSelected: any;
+    setCardSelected: any;
+    confirmConnection: any;
+    setconfirmConnection: any;
   };
   values: {
     cards: CardInterface[];
@@ -128,4 +100,7 @@ export interface BoardMobileProps {
   };
   forceRerender: any;
   lines: any;
+  setLines: any;
+  defProps: any;
+  state: any;
 }

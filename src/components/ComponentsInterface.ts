@@ -14,6 +14,7 @@ export interface CreationMenuProps {
   removeCardButton: () => void;
   createTextButton: () => void;
   connectArrowButton: () => void;
+  desconnectArrowButton: () => void;
   pinCardButton: () => void;
   blockCardButton: () => void;
   className: string;
@@ -36,6 +37,7 @@ export interface DefaultCardProps {
     fastCard: boolean;
     blockedCard: boolean;
     followedCard: boolean;
+    connect: boolean;
   };
   handleCheckBox: (evt: MouseEvent<HTMLInputElement>) => void;
   removeCard: () => void;
@@ -46,6 +48,9 @@ export interface DefaultCardProps {
   blockCard: (res: boolean) => void;
   followCard: any;
   forceRerender: any;
+  handleConnection: any;
+  cardOne: any;
+  cardTwo: any;
 }
 
 export interface EditBoardModalProps {

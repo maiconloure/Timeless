@@ -28,6 +28,8 @@ export const CardContainer = styled(motion.div)`
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
 
     /* Position the tooltip */
     position: absolute;
@@ -35,7 +37,7 @@ export const CardContainer = styled(motion.div)`
   }
 `;
 
-export const Editable = styled.div<{ blocked: any }>`
+export const Editable = styled.div<{ blocked: boolean }>`
   pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
 
   #unlock {
@@ -48,7 +50,7 @@ export const Editable = styled.div<{ blocked: any }>`
 `;
 
 export const MotionBox = styled(motion.div)`
-  position: relative;
+  /* position: relative; */
 `;
 
 export const Card = styled(motion.div)`
@@ -61,7 +63,8 @@ export const Card = styled(motion.div)`
   border-radius: 4px;
   position: absolute;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   [contenteditable='true'] {
     text-overflow: ellipsis;
   }
@@ -151,7 +154,8 @@ export const Description = styled.section`
   max-height: 90px;
   padding: 5px;
   overflow: hidden;
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   div p {
     display: block;
     max-height: 100px;
@@ -164,6 +168,8 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   div input[type='checkbox'] {
@@ -183,6 +189,8 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 `;
 
 export const CheckBox = styled.input``;
@@ -218,7 +226,7 @@ export const CardButton = styled.button`
   background-color: var(--color-background);
   color: var(--color-primary-4);
   color: #8b4513;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-left: 10px;
   padding: 2px 10px;
@@ -228,14 +236,14 @@ export const CardButton = styled.button`
   position: absolute;
   top: 95%;
   transition: 0.2s;
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   :hover {
     color: var(--complement-color-2);
     font-weight: 900;
     border-top: none;
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
-
   :active {
     opacity: 0.5;
   }
@@ -250,4 +258,39 @@ export const Block = styled.div`
 
 export const BlockedIcon = styled.img`
   width: 60px;
+`;
+
+export const ConnectCardRight = styled.button<{ active: any }>`
+  position: absolute;
+  top: 34%;
+  left: 102%;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid var(--color-primary-4);
+  border-right: 0px solid transparent;
+  outline: none;
+  border-left: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
+  cursor: pointer;
+  background: transparent;
+  :hover {
+    border-left: 30px solid #ff8c00;
+  }
+`;
+
+export const ConnectCardLeft = styled.button<{ active: any }>`
+  position: absolute;
+  top: 34%;
+  left: -35px;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 00px solid transparent;
+  border-right: 30px solid var(--color-primary-4);
+  outline: none;
+  border-right: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
+  cursor: pointer;
+  background: transparent;
 `;

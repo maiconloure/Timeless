@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { History, LocationState } from 'history';
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
@@ -27,9 +28,22 @@ const Board = ({
     setShowBoardModal,
     toggleMenu,
   },
+  connection: {
+    cardOne,
+    setCardOne,
+    cardTwo,
+    setCardTwo,
+    cardSelected,
+    setCardSelected,
+    confirmConnection,
+    setconfirmConnection,
+  },
   values: { cards, history },
   forceRerender,
   lines,
+  setLines,
+  defProps,
+  state,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
@@ -74,35 +88,53 @@ const Board = ({
           <St.SideMenuContainer drag dragMomentum={false}>
             <Container.CreationMenuContainer
               className="CreationMenu"
+              toggleMenu={toggleMenu}
               setSelectedCard={setSelectedCard}
               selectedCard={selectedCard}
               history={history}
+              lines={lines}
+              setLines={setLines}
             />
           </St.SideMenuContainer>
 
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
-          {cards &&
-            cards.map((card: Interface.CardInterface, key: number) => (
+
+          {cards.map((card: Interface.CardInterface, key: number) => (
+            <React.Fragment key={key}>
               <Container.DefaultCardContainer
                 id={`card${key}`}
                 className="DefaultCard"
-                key={key}
                 card={card}
-                toggleMenu={toggleMenu}
                 showEditCard={showEditCard}
                 setCurrentCard={setCurrentCard}
                 setShowEditCard={setShowEditCard}
                 selectedCard={selectedCard}
                 history={history}
                 forceRerender={forceRerender}
+                lines={lines}
+                setLines={setLines}
+                connection={{
+                  cardOne,
+                  cardTwo,
+                  setCardOne,
+                  setCardTwo,
+                  cardSelected,
+                  setCardSelected,
+                  confirmConnection,
+                  setconfirmConnection,
+                }}
               />
-            ))}
-
-          {lines.map((line: any, i: number) => (
-            <Xarrow key={i} {...line} />
+            </React.Fragment>
           ))}
+
+          {lines.length >= 1 &&
+            lines.map((line: any, i: number) => (
+              <div id={`line${i}`} key={i}>
+                <Xarrow {...line} {...{ ...defProps, ...state }} />
+              </div>
+            ))}
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
