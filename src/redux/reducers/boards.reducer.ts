@@ -16,7 +16,11 @@ const boards = (state = initialState, action: BoardsAction): BoardState => {
       if (!localStorage.getItem('chosenBoard') && action.payload[0]) {
         localStorage.setItem('chosenBoard', JSON.stringify(action.payload[0]));
       }
-      return { ...state, boards: action.payload.sort(sortCards), currentBoard: action.payload[0] };
+      return {
+        ...state,
+        boards: action.payload.sort(sortCards),
+        currentBoard: JSON.parse(localStorage.getItem('chosenBoard') || ''),
+      };
 
     case TYPE.UPDATE_BOARD:
       return {

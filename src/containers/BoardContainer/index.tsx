@@ -60,7 +60,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       if (currentBoard.connections && lines.length < 1) {
         setLines(currentBoard.connections);
       }
-      if (currentBoard && lines.length > 1) {
+      if (currentBoard && currentBoard.connections && lines.length > 1) {
         setLines(currentBoard.connections);
       }
     }

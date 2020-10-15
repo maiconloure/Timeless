@@ -135,7 +135,9 @@ const Board = ({
           {lines.length >= 1 &&
             lines.map((line: any, i: number) => (
               <div id={`line${i}`} key={i}>
-                <Xarrow {...line} {...{ ...defProps, ...state }} />
+                {line.start && line.end && (
+                  <Xarrow start={line.start} end={line.end} {...{ ...defProps, ...state }} />
+                )}
               </div>
             ))}
 

@@ -113,13 +113,6 @@ const CardMobile = ({
           </St.CardFooter>
         </St.CardInside>
         <div style={{ position: 'relative' }}>
-          {selectedCard.connect && (
-            <>
-              <St.ConnectCardRight active={card.id === cardOne} onClick={handleConnection} />
-              {/* <St.ConnectCardLeft active={card.id === cardOne} onClick={handleConnection} /> */}
-            </>
-          )}
-
           {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
 
           {selectedCard.removeCard ? (

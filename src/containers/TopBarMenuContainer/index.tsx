@@ -89,7 +89,10 @@ const FixedMenuContainer = ({
     setToggleMenu(!toggleMenu);
   };
 
-  const handlerToggleBoard = () => setShowBoardModal(!showBoardModal);
+  const handlerToggleBoard = () => {
+    setShowEditUser(false);
+    setShowBoardModal(!showBoardModal);
+  };
   const handleToggleMenu = () => {
     if (!showEditUser && !showBoardModal) {
       setToggleMenu(!toggleMenu);
