@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CardLeandro } from 'capstone-project';
 import React from 'react';
 

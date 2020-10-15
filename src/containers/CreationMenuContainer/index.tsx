@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,6 +24,8 @@ const CreationMenuContainer = ({
   selectedCard,
   className,
   history,
+  lines,
+  setLines,
 }: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
@@ -31,13 +34,20 @@ const CreationMenuContainer = ({
   const random = () => Math.random() * (600 - 200) + 200;
 
   defaultCard.position = {
-    x: random() + 400,
+    x: random() + 300,
     y: random(),
   };
 
   const groupButton = () => {
     console.log('groupButton');
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
     setSelectedCard({ ...initialSelectCard, group: !selectedCard.group });
+
     dispatch(
       updateBoardAPI({
         board: {
@@ -45,7 +55,7 @@ const CreationMenuContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de criar um grupo de cartões.`,
+              `${user.name} criou um novo grupo - ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -57,6 +67,12 @@ const CreationMenuContainer = ({
   };
 
   const createCardButton = () => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
     dispatch(
       updateBoardAPI({
         board: {
@@ -64,7 +80,7 @@ const CreationMenuContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de criar um cartão.`,
+              `${user.name} criou um novo card, ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -86,7 +102,14 @@ const CreationMenuContainer = ({
   };
 
   const createTextButton = () => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
     setSelectedCard({ ...initialSelectCard, addText: !selectedCard.addText });
+
     dispatch(
       updateBoardAPI({
         board: {
@@ -94,7 +117,7 @@ const CreationMenuContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} acabou de criar um texto.`,
+              `${user.name} criou um novo texto, ${curr_hour}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -107,42 +130,39 @@ const CreationMenuContainer = ({
 
   const connectArrowButton = () => {
     setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
-    dispatch(
-      updateBoardAPI({
-        board: {
-          ...currentBoard,
-          data: {
-            ...currentBoard.data,
-            notifications: [
-              `${user.name} acabou de fazer um ligação.`,
-              ...currentBoard.data.notifications,
-            ],
+  };
+
+  const desconnectArrowButton = () => {
+    const date = new Date();
+    const curr_hour = `${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+    if (lines.length >= 1) {
+      lines.pop();
+      setLines(lines);
+      dispatch(
+        updateBoardAPI({
+          board: {
+            ...currentBoard,
+            data: {
+              ...currentBoard.data,
+              notifications: [
+                `${user.name} desfez sua última ligação, ${curr_hour}`,
+                ...currentBoard.data.notifications,
+              ],
+            },
           },
-        },
-        token,
-        history,
-      })
-    );
+          token,
+          history,
+        })
+      );
+    }
   };
 
   const pinCardButton = () => {
     setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
-    // dispatch(
-    //   updateBoardAPI({
-    //     board: {
-    //       ...currentBoard,
-    //       data: {
-    //         ...currentBoard.data,
-    //         notifications: [
-    //           `${user.name} acabou de seguir um cartão.`,
-    //           ...currentBoard.data.notifications,
-    //         ],
-    //       },
-    //     },
-    //     token,
-    //     history,
-    //   })
-    // );
   };
 
   const blockCardButton = () => {
@@ -158,6 +178,7 @@ const CreationMenuContainer = ({
       removeCardButton={removeCardButton}
       createTextButton={createTextButton}
       connectArrowButton={connectArrowButton}
+      desconnectArrowButton={desconnectArrowButton}
       pinCardButton={pinCardButton}
       blockCardButton={blockCardButton}
       className={className}

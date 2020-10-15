@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { icons } from '../../utils/importAll';
@@ -26,6 +27,9 @@ const DefaultCard = ({
   blockCard,
   followCard,
   forceRerender,
+  handleConnection,
+  cardOne,
+  cardTwo,
 }: DefaultCardProps) => (
   <St.CardContainer onDoubleClick={DoubleClick} className={className}>
     <St.MotionBox
@@ -36,7 +40,7 @@ const DefaultCard = ({
       onDragEnd={onDragEndFunction}
       style={{ x, y }}>
       <St.Editable blocked={card.data.blocked}>
-        <St.Card id={id} style={{ x, y }}>
+        <St.Card id={`card${card.id}`} style={{ x, y }}>
           <St.CardInside>
             <St.AlertImg>
               {card.data.fastCard && card.data.fastCard.show && (
@@ -45,7 +49,7 @@ const DefaultCard = ({
                     src={icons.warning}
                     onClick={() => setShowWarning(!showWarning)}
                     alt="warning"
-                  />{' '}
+                  />
                   <span className="tooltiptext">Possui um cartão rápido</span>
                 </div>
               )}
@@ -65,10 +69,12 @@ const DefaultCard = ({
                       <span className="tooltiptext">Possui descrição</span>
                     </div>
 
-                    <div className="tooltip">
-                      <img src={icons.eye} alt="Someone follow" />
-                      <span className="tooltiptext">Seguindo</span>
-                    </div>
+                    {card.data.followers.length >= 1 && (
+                      <div className="tooltip">
+                        <img src={icons.eye} alt="Someone follow" />
+                        <span className="tooltiptext">Seguindo</span>
+                      </div>
+                    )}
                   </St.InfoIcons>
                 </div>
               </St.MainTags>
@@ -113,12 +119,20 @@ const DefaultCard = ({
             </St.CardFooter>
           </St.CardInside>
 
+          {selectedCard.connect && (
+            <>
+              <St.ConnectCardRight active={card.id === cardOne} onClick={handleConnection} />
+              {/* <St.ConnectCardLeft active={card.id === cardOne} onClick={handleConnection} /> */}
+            </>
+          )}
+
           {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
 
           {selectedCard.removeCard ? (
             <St.CardButton onClick={removeCard}>remover</St.CardButton>
           ) : (
-            selectedCard.fastCard && (
+            selectedCard.fastCard &&
+            !card.data.fastCard && (
               <St.CardButton onClick={creationCard}>cartão rápido</St.CardButton>
             )
           )}

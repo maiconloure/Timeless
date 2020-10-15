@@ -43,6 +43,8 @@ export interface CreationMenuContainerProps {
   };
   className: string;
   history: History<LocationState>;
+  lines: any;
+  setLines: any;
 }
 
 export interface DefaultCardProps {
@@ -53,6 +55,7 @@ export interface DefaultCardProps {
     fastCard: boolean;
     blockedCard: boolean;
     followedCard: boolean;
+    connect: boolean;
   };
   setCurrentCard: React.Dispatch<React.SetStateAction<object>>;
   setShowEditCard: React.Dispatch<React.SetStateAction<boolean>>;
@@ -60,6 +63,18 @@ export interface DefaultCardProps {
   className: string;
   id: string;
   forceRerender: any;
+  lines: any;
+  setLines: any;
+  connection: {
+    cardOne: any;
+    setCardOne: any;
+    cardTwo: any;
+    setCardTwo: any;
+    cardSelected: any;
+    setCardSelected: any;
+    confirmConnection: any;
+    setconfirmConnection: any;
+  };
 }
 
 export interface EditBoardModalContainerProps {

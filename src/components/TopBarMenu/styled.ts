@@ -48,7 +48,8 @@ export const ProjectInfo = styled.div`
   align-items: center;
   justify-content: center;
   font-family: 'Inter';
-
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   h2,
   h3,
   h4 {
@@ -62,6 +63,7 @@ export const ProjectInfo = styled.div`
   img {
     width: 60px;
     border-radius: 6px;
+    border-radius: 50%;
     margin: 0 5px;
   }
 
