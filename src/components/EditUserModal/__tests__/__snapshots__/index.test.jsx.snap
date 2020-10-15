@@ -1,87 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Snapshot renders 1`] = `
-<div
-  className="sc-fKgIGh iYqHxB"
->
+Array [
   <div
-    className="sc-crzoUp inpdim"
-    onClick={[Function]}
-  >
-    <img
-      alt="close icon"
-    />
-  </div>
-  <h1
-    className="sc-bCwgka dJmVvq"
-  >
-    Editar
-  </h1>
+    className="sc-efHXLn bNzgxe"
+  />,
   <div
-    className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
+    className="sc-fKgIGh iYqHxB"
   >
-    <div>
-      <div
-        className="sc-bBjRzc fZsUBF"
-      >
+    <div
+      className="sc-crzoUp inpdim"
+      onClick={[Function]}
+    >
+      <img
+        alt="close icon"
+      />
+    </div>
+    <h1
+      className="sc-bCwgka dJmVvq"
+    >
+      Editar
+    </h1>
+    <div
+      className="sc-iwaifL sc-cxNIbT fFSxYx hcDzte"
+    >
+      <div>
         <div
-          className="sc-dlnjPT"
+          className="sc-cOigif haWtsF"
         >
-          <input
-            className="sc-hKFyIo evVGth"
+          <div
+            className="sc-dlnjPT"
+          >
+            <input
+              className="sc-hKFyIo evVGth"
+              color="#014D82"
+              fontSize="2rem"
+              height="40px"
+              name="fname"
+              onChange={[Function]}
+              placeholder="Test"
+              type="text"
+              width="220px"
+            />
+          </div>
+          <div
+            className="sc-dlnjPT"
+          >
+            <input
+              className="sc-hKFyIo evVGth"
+              color="#014D82"
+              fontSize="2rem"
+              height="40px"
+              name="fname"
+              onChange={[Function]}
+              placeholder="Testing test."
+              type="text"
+              width="220px"
+            />
+          </div>
+          <div
+            className="sc-dlnjPT"
+          >
+            <input
+              className="sc-hKFyIo evVGth"
+              color="#014D82"
+              fontSize="2rem"
+              height="40px"
+              name="fname"
+              onChange={[Function]}
+              placeholder="test"
+              type="text"
+              width="220px"
+            />
+          </div>
+          <button
+            className="sc-bdnylx jmFhMj"
             color="#014D82"
-            fontSize="2rem"
-            height="40px"
-            name="fname"
-            onChange={[Function]}
-            placeholder="Test"
-            type="text"
-            width="220px"
-          />
+            fontSize="2.6rem"
+            height="44px"
+            onClick={[MockFunction]}
+            radius="6px"
+            width="170px"
+          >
+            Modificar
+          </button>
         </div>
-        <div
-          className="sc-dlnjPT"
-        >
-          <input
-            className="sc-hKFyIo evVGth"
-            color="#014D82"
-            fontSize="2rem"
-            height="40px"
-            name="fname"
-            onChange={[Function]}
-            placeholder="Testing test."
-            type="text"
-            width="220px"
-          />
-        </div>
-        <div
-          className="sc-dlnjPT"
-        >
-          <input
-            className="sc-hKFyIo evVGth"
-            color="#014D82"
-            fontSize="2rem"
-            height="40px"
-            name="fname"
-            onChange={[Function]}
-            placeholder="test"
-            type="text"
-            width="220px"
-          />
-        </div>
-        <button
-          className="sc-bdnylx jmFhMj"
-          color="#014D82"
-          fontSize="2.6rem"
-          height="44px"
-          onClick={[MockFunction]}
-          radius="6px"
-          width="170px"
-        >
-          Modificar
-        </button>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

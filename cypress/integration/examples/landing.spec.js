@@ -26,16 +26,16 @@ context('Modal Register in Landing Page', () => {
     cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-    cy.get('.sc-iIgiFR > .sc-bdnylx').click();
-
+    cy.get('.sc-cwixnI > .sc-bdnylx').click();
     cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
 
-    cy.get('.sc-cGKHXZ > :nth-child(1) > .sc-dlnjPT > .sc-hKFyIo');
+    cy.get('.sc-jhGSUB > :nth-child(1) > .sc-dlnjPT > .sc-hKFyIo');
     cy.get(':nth-child(2) > .sc-dlnjPT > .sc-hKFyIo');
     cy.get(':nth-child(3) > .sc-eCApGN > .sc-jSFkmK');
+
     cy.get(':nth-child(3) > .sc-eCApGN > .sc-iCoHVE').click();
     cy.get(':nth-child(4) > .sc-bdnylx').click();
-    cy.wait(3000);
-    cy.get('.sc-dSnYFs > img').click();
+    cy.wait(2400);
+    cy.get('.sc-gGGEav > img').click();
   });
 });

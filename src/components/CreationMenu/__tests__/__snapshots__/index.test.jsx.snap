@@ -2,7 +2,7 @@
 
 exports[`Snapshot renders 1`] = `
 <div
-  className="sc-bdnylx kXwsFq"
+  className="sc-bdnylx hDFdjx"
 >
   <div
     className="sc-hKFyIo gnBfdK"
@@ -15,7 +15,7 @@ exports[`Snapshot renders 1`] = `
     className="sc-gtssRu bgBLvI"
   >
     <div
-      className="sc-dlnjPT csVGFK"
+      className="sc-dlnjPT dagonR"
     >
       <h4>
         OBJETOS
@@ -82,7 +82,7 @@ exports[`Snapshot renders 1`] = `
     className="sc-gtssRu bgBLvI"
   >
     <div
-      className="sc-dlnjPT csVGFK"
+      className="sc-dlnjPT dagonR"
     >
       <h4>
         FERRAMENTAS
@@ -114,7 +114,20 @@ exports[`Snapshot renders 1`] = `
         <span
           className="tooltiptext"
         >
-          Conectar cartão
+          Habilitar modo conexão
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      >
+        <img
+          alt="connect"
+          id="card"
+        />
+        <span
+          className="tooltiptext"
+        >
+          Desfazer última conexão
         </span>
       </div>
       <div
