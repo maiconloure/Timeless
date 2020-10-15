@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { History, LocationState } from 'history';
 
 import * as TYPE from './type.action';
@@ -61,6 +63,7 @@ export interface DataBoard {
     position: PositionInterface;
   }[];
   notifications: string[];
+  connections: any;
 }
 
 export interface UserBoards {
@@ -70,12 +73,18 @@ export interface UserBoards {
   data: DataBoard;
   userId: number | string;
   id: number | string;
+  connections: any;
 }
 
 export interface CreateUserBoards {
   title: string;
   description: string;
   users: { name: string; id: number | string }[];
+  data: {
+    text: any;
+    notifications: string[];
+  };
+  connections: any;
 }
 
 export interface BoardState {
@@ -130,7 +139,7 @@ export interface CardInterface {
   data: CardDataInterface;
   boardId: number | string;
   userId: number | string;
-  id: number | string;
+  id: number | string | any;
 }
 
 export interface CardCreateInterface {

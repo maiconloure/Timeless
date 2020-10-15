@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,7 +22,7 @@ const RegisterContainer = ({
     register('name', {
       required: 'digite seu nome',
       pattern: {
-        value: /^.{5,}$/,
+        value: /^.{3,}$/,
         message: 'nome inválido',
       },
     });
@@ -58,6 +59,7 @@ const RegisterContainer = ({
       handleError('Erro ao efetuar cadastro, verifique seus dados, ou tente novamente mais tarde.');
       dispatch(updateStatus(0));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   const handleChangeName = (evt: ChangeEvent<HTMLInputElement>) =>
