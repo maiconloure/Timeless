@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot renders component 1`] = `
+exports[`Renders add new messages 1`] = `
 <div
   className="sc-hiKfjK kmjzEC"
   height="450px"
@@ -25,18 +25,6 @@ exports[`Snapshot renders component 1`] = `
   </div>
   <div
     className="sc-jcwofb sc-carGAA kNhOZX gXYsNS"
-  >
-    <div
-      className="sc-iTVIwl jiAQaA"
-    >
-      <p
-        className="sc-iBzFoy igVgod"
-        color="#014D82"
-        fontSize="1.5rem"
-      >
-        Está muito parado por aqui... crie novos cartões!
-      </p>
-    </div>
-  </div>
+  />
 </div>
 `;

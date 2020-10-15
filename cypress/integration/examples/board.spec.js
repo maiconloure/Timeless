@@ -9,8 +9,10 @@ context('Logging to Board Page', () => {
     cy.get('.sc-jSFkmK').type('123456');
     cy.get(':nth-child(3) > .sc-bdnylx').click();
 
-    cy.get(':nth-child(2) > .sc-FRqcf > h4').contains('OBJETOS');
-    cy.get(':nth-child(3) > .sc-FRqcf > h4').contains('FERRAMENTAS');
+    // cy.get(':nth-child(2) > .sc-FRqcf > h4').contains('OBJETOS');
+    cy.get(':nth-child(2) > .sc-dvXXZy > h4').contains('OBJETOS');
+    // cy.get(':nth-child(3) > .sc-FRqcf > h4').contains('FERRAMENTAS');
+    cy.get(':nth-child(3) > .sc-dvXXZy > h4').contains('FERRAMENTAS');
     cy.get('.sc-cBoprd > h2').contains('Notificações recentes');
 
     cy.wait(2000);

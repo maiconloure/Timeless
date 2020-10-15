@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renders 1`] = `
+<div
+  className="sc-efHXLn haLeFd"
+>
+  <div
+    className="tooltip"
+  >
+    <button
+      className="sc-bdnylx lbriJJ"
+      color="#014D82"
+      fontSize="1.9rem"
+      height="40px"
+      onClick={[Function]}
+      radius="2px"
+      width="140px"
+    >
+      feedback
+    </button>
+    <span
+      className="tooltiptext"
+    >
+      Ajude-nos a melhorar!
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Snapshot renders opened 1`] = `
+<div
+  className="sc-efHXLn haLeFd"
+>
+  <div
+    className="tooltip"
+  >
+    <button
+      className="sc-bdnylx lbriJJ"
+      color="#014D82"
+      fontSize="1.9rem"
+      height="40px"
+      onClick={[Function]}
+      radius="2px"
+      width="140px"
+    >
+      feedback
+    </button>
+    <span
+      className="tooltiptext"
+    >
+      Ajude-nos a melhorar!
+    </span>
+  </div>
+  <div
+    className="sc-cTJmaU fRgBgC"
+  >
+    <p
+      className="sc-jNnnWF jsfpUR"
+    >
+      Você será redirecionado para um formulário do Google.
+    </p>
+    <div
+      className="sc-dPaNSN"
+    >
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSeQ19Ikk1f2XLbEhYMPkdIcAtZK8T4XWC2u-gCSPJ4InUvpSA/viewform"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <button
+          className="sc-bdnylx dWattX"
+          color="#014D82"
+          fontSize="1.8rem"
+          height="30px"
+          onClick={[Function]}
+          radius="2px"
+          width="100px"
+        >
+          permitir
+        </button>
+      </a>
+      <button
+        className="sc-bdnylx kBElPH"
+        color="#014D82"
+        fontSize="1.8rem"
+        height="30px"
+        onClick={[Function]}
+        radius="2px"
+        width="90px"
+      >
+        negar
+      </button>
+    </div>
+  </div>
+</div>
+`;
