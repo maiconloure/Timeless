@@ -3,8 +3,6 @@ import renderer from 'react-test-renderer';
 
 import FastCard from '../index';
 
-//jest.mock('../../../utils/importAll', () => ({ icons: {} }));
-
 const fastCard = {};
 
 describe('Snapshot', () => {
