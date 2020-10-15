@@ -153,6 +153,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       setLines={setLines}
       defProps={defProps}
       state={state}
+      user={user}
     />
   ) : (
     <Board
@@ -187,6 +188,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       setLines={setLines}
       defProps={defProps}
       state={state}
+      user={user}
     />
   );
 };

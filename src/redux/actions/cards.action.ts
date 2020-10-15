@@ -54,6 +54,7 @@ export const createCardAPI = ({
   Interface.CreateCardAction
 > => (dispatch) => {
   const newCard = { ...card, boardId: currentBoard.id };
+  console.log(newCard);
   api
     .post(`/users/${user.id}/cards`, newCard, createHeader(token))
     .then((response) => {

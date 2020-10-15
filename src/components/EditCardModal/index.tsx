@@ -1,18 +1,49 @@
 import React from 'react';
+import DatePicker from 'react-date-picker';
 
 import { icons } from '../../utils/importAll';
 import * as St from './styled';
 
-const Content = () => (
+interface ContentProps {
+  currentCard: any;
+  user: any;
+  getDescription: any;
+  currentDescription: any;
+  getDate: any;
+  getTime: any;
+  currentDate: any;
+  currentTime: any;
+}
+
+const ExampleCustomInput = ({ value, onClick }: any) => (
+  <button className="example-custom-input" onClick={onClick}>
+    {value}
+  </button>
+);
+
+const Content = ({
+  currentCard,
+  user,
+  getDescription,
+  currentDescription,
+  getDate,
+  getTime,
+  currentDate,
+  currentTime,
+}: ContentProps) => (
   <St.ContentContainer>
     <St.Main>
       <St.WriteableContent>
-        <St.WriteableTop contentEditable="true" suppressContentEditableWarning>
-          DESCRIÇÃO
+        <St.WriteableTop>
+          <p>DESCRIÇÃO</p>
         </St.WriteableTop>
-        <St.WriteableBox contentEditable="true" suppressContentEditableWarning>
-          ...
-        </St.WriteableBox>
+        {/* <St.WriteableBox
+          onChange={getDescription}
+          contentEditable="true"
+          suppressContentEditableWarning>
+          {currentCard.data.description}
+        </St.WriteableBox> */}
+        <St.WriteableBox onChange={getDescription} value={currentDescription} />
       </St.WriteableContent>
       <St.Labels>
         <St.TimingLabel>
@@ -33,7 +64,11 @@ const Content = () => (
           <St.ClockLabel>
             <St.Icon src={icons.clock} alt="Ícone de Cronômetro" onClick={() => {}} />
             <span>
-              Data Entrega <strong style={{ color: '#ffbe00' }}>00/00/00</strong>
+              Data Entrega
+              <DatePicker
+                // selected={startDate}
+                onChange={getTime}
+              />
             </span>
           </St.ClockLabel>
         </St.TimingLabel>
@@ -51,11 +86,10 @@ const Content = () => (
             <St.IconSmall src={icons.deleteCard} alt="Ícone de Excluir" onClick={() => {}} />
             <span>Excluir</span>
           </St.ActionLabels>
-          <St.FeedbackButton>feedback</St.FeedbackButton>
         </St.ActionDiv>
       </St.Labels>
     </St.Main>
-    <St.ChecklistContainer>
+    {/* <St.ChecklistContainer>
       <St.Checklist>
         <St.ChecklistTitle>
           <St.IconSmall src={icons.checkboxList} alt="Ícone de Lista" />
@@ -63,7 +97,7 @@ const Content = () => (
         </St.ChecklistTitle>
         <St.ChecklistBox>Teste</St.ChecklistBox>
       </St.Checklist>
-    </St.ChecklistContainer>
+    </St.ChecklistContainer> */}
   </St.ContentContainer>
 );
 

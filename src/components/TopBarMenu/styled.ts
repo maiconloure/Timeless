@@ -110,13 +110,21 @@ export const User = styled.div`
   font-family: Inter;
   font-size: 1.4rem;
   margin: 0 10px 0 0;
+  text-align: right;
 
   h2 {
+    width: 150px;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  @media (min-width: 768px) and (min-height: 550px) {
+    h2 {
+      width: 300px;
+    }
   }
 
   p {
@@ -195,9 +203,12 @@ export const MenuOption = styled.div`
 
 export const UserInfoMenu = styled.div`
   margin: 10px 5px;
+  max-width: 200px;
   height: 70%;
+  overflow: hidden;
+
   h2 {
-    font: 500 2rem Inter;
+    font: 500 1.8rem Inter;
   }
 
   h3 {

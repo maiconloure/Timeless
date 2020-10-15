@@ -41,7 +41,7 @@ export const defaultCard = {
     tags: [
       {
         color: '#000',
-        text: 'tags',
+        text: '#tags',
       },
     ],
   },

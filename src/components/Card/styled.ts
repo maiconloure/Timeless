@@ -39,11 +39,9 @@ export const CardContainer = styled(motion.div)`
 
 export const Editable = styled.div<{ blocked: boolean }>`
   pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
-
   #unlock {
     pointer-events: auto;
   }
-
   &:active {
     cursor: grabbing;
   }
@@ -64,7 +62,13 @@ export const Card = styled(motion.div)`
   position: absolute;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
   text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+  border: 3px solid #8f98eb;
+  transition: 0.2s;
+
+  :hover {
+    border: 4px solid #191970;
+  }
+
   [contenteditable='true'] {
     text-overflow: ellipsis;
   }
@@ -149,16 +153,20 @@ export const InfoIcons = styled.figure`
 export const Description = styled.section`
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
+  align-items: flex-start;
+  /* background-color: #fff; */
+  width: 268px;
   min-height: 85px;
   max-height: 90px;
   padding: 5px;
   overflow: hidden;
   text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+
   div p {
     display: block;
+    height: 100px;
     max-height: 100px;
+    width: 220px;
     max-width: 220px;
     font-size: 1.3rem;
     font-weight: 300;
@@ -169,14 +177,19 @@ export const Description = styled.section`
     overflow: hidden;
     text-overflow: ellipsis;
     text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
   }
+`;
 
-  div input[type='checkbox'] {
-    transform: scale(2);
-    margin: 10px;
-    cursor: pointer;
-  }
+export const CheckBox = styled.input`
+  /* transform: scale(2); */
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const DescriptionTitle = styled.h4`
@@ -190,10 +203,7 @@ export const DescriptionTitle = styled.h4`
   overflow: hidden;
   text-overflow: ellipsis;
   text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
 `;
-
-export const CheckBox = styled.input``;
 
 export const CardFooter = styled.div`
   display: flex;
@@ -237,7 +247,6 @@ export const CardButton = styled.button`
   top: 95%;
   transition: 0.2s;
   text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
   :hover {
     color: var(--complement-color-2);
     font-weight: 900;

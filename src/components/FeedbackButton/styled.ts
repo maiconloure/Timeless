@@ -43,7 +43,6 @@ export const ConfirmFeedBack = styled.div`
   background-color: #0190f5;
   width: 260px;
   height: 100px;
-  border-radius: 2px;
   padding: 8px 4px;
   display: flex;
   flex-direction: column;

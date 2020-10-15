@@ -44,6 +44,7 @@ const Board = ({
   setLines,
   defProps,
   state,
+  user,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
@@ -103,7 +104,6 @@ const Board = ({
               setLines={setLines}
             />
           </St.SideMenuContainer>
-
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
@@ -135,7 +135,6 @@ const Board = ({
               />
             </React.Fragment>
           ))}
-
           {lines.length >= 1 &&
             lines.map((line: any, i: number) => (
               <div id={`line${i}`} key={i}>
@@ -143,16 +142,24 @@ const Board = ({
                   <Xarrow
                     start={line.start}
                     end={line.end}
-                    strokeWidth="8"
+                    strokeWidth={8}
                     {...{ ...defProps, ...state }}
                   />
                 )}
               </div>
             ))}
-
-          <St.CardContainer className="CardContainer">
-            <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />
-          </St.CardContainer>
+          {currentCard.data && showEditCard && (
+            <St.EditCard
+              style={{
+                x: currentCard.position && currentCard.position.x,
+                y: currentCard.position && currentCard.position.y,
+              }}
+              className="CardContainer">
+              <Container.BacklogCardContainer
+                data={{ showEditCard, setShowEditCard, currentCard, user }}
+              />
+            </St.EditCard>
+          )}
         </St.InnerBoardContainer>
       </St.DragScroll>
     </St.BoardPage>

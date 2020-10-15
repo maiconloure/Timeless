@@ -22,10 +22,12 @@
     "@types/webpack-env": "^1.15.3",
     "add": "^2.0.6",
     "axios": "^0.20.0",
-    "capstone-project": "^0.5.8",
+    "capstone-project": "^0.6.2",
     "framer-motion": "^2.7.7",
     "jwt-decode": "^3.0.0",
     "react": "^16.13.1",
+    "react-date-picker": "^8.0.3",
+    "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
     "react-hook-form": "^6.9.2",
@@ -56,7 +58,9 @@
     "rules": {
       "react/no-did-mount-set-state": "off",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["off"]
+      "@typescript-eslint/no-unused-vars": [
+        "off"
+      ]
     }
   },
   "browserslist": {

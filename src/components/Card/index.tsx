@@ -62,7 +62,6 @@ const DefaultCard = ({
                     {tag.text}
                   </St.Tag>
                 ))}
-
                 <div>
                   <St.InfoIcons>
                     <div className="tooltip">
@@ -96,13 +95,11 @@ const DefaultCard = ({
                   <p>{card.data.description}</p>
                 </div>
               </div>
-              <div>
-                <St.CheckBox
-                  onClick={handleCheckBox}
-                  type="checkbox"
-                  defaultChecked={card.data.checked}
-                />
-              </div>
+              <St.CheckBox
+                onClick={handleCheckBox}
+                type="checkbox"
+                defaultChecked={card.data.checked}
+              />
             </St.Description>
             <St.CardFooter>
               <St.CardUsers>
