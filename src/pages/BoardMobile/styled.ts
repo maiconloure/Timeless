@@ -114,7 +114,7 @@ export const MobileContainer = styled.div`
   /* max-height: 85vh; */
   /* overflow: auto; */
   /* box-sizing: content-box; */
-  z-index: 999;
+  z-index: 59;
   position: fixed;
   display: flex;
   flex-direction: column;

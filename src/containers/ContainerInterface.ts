@@ -46,6 +46,7 @@ export interface CreationMenuContainerProps {
 }
 
 export interface DefaultCardProps {
+  toggleMenu: () => void;
   showMobileMenu?: boolean;
   card: CardInterface;
   showEditCard: boolean;

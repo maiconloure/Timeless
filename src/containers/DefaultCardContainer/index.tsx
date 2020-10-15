@@ -18,6 +18,7 @@ const DefaultCardContainer = ({
   selectedCard,
   history,
   className,
+  toggleMenu,
   id,
   forceRerender,
 }: DefaultCardProps) => {
@@ -52,6 +53,7 @@ const DefaultCardContainer = ({
   };
 
   const handleCheckBox = (evt: any) => {
+    toggleMenu();
     if (evt.target.checked) {
       dispatch(
         updateBoardAPI({
@@ -73,6 +75,7 @@ const DefaultCardContainer = ({
   };
 
   const removeCard = () => {
+    toggleMenu();
     dispatch(
       updateBoardAPI({
         board: {
@@ -94,6 +97,7 @@ const DefaultCardContainer = ({
   };
 
   const creationCard = () => {
+    toggleMenu();
     dispatch(
       updateBoardAPI({
         board: {
@@ -121,6 +125,7 @@ const DefaultCardContainer = ({
   };
 
   const blockCard = (res: boolean) => {
+    toggleMenu();
     dispatch(
       updateBoardAPI({
         board: {
@@ -158,6 +163,7 @@ const DefaultCardContainer = ({
   };
 
   const followCard = (res: any) => {
+    toggleMenu();
     dispatch(
       updateBoardAPI({
         board: {

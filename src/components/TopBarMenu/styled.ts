@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TopContainer = styled.div`
   grid-area: top;
   position: fixed;
-  z-index: 99;
+  z-index: 9999;
   top: 0;
   width: 100vw;
 

@@ -25,6 +25,7 @@ const Board = ({
     setSelectedCard,
     setShowEditModal,
     setShowBoardModal,
+    toggleMenu,
   },
   values: { cards, history },
   forceRerender,
@@ -89,6 +90,7 @@ const Board = ({
                 className="DefaultCard"
                 key={key}
                 card={card}
+                toggleMenu={toggleMenu}
                 showEditCard={showEditCard}
                 setCurrentCard={setCurrentCard}
                 setShowEditCard={setShowEditCard}

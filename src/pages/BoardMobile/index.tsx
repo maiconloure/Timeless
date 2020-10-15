@@ -99,6 +99,7 @@ const Board = ({
             setCurrentCard={setCurrentCard}
             setShowEditCard={setShowEditCard}
             showMobileMenu
+            toggleMenu={toggleMenu}
             selectedCard={selectedCard}
             history={history}
             forceRerender={forceRerender}

@@ -33,7 +33,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const [showMobileMenu, setShowMobileMenu] = useState(true);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
 

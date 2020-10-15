@@ -2,7 +2,7 @@ import { Modal } from 'capstone-project';
 import styled from 'styled-components';
 
 export const Background = styled.div`
-  z-index: 9999;
+  z-index: 99;
   width: 100vw;
   height: 100vh;
   position: fixed;
