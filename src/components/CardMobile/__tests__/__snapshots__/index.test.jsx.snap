@@ -2,177 +2,174 @@
 
 exports[`Snapshot renderer 1`] = `
 <div
-  className="sc-efHXLn fldBtY"
+  className="sc-efHXLn kWVwxX"
   style={Object {}}
 >
   <div
-    className="sc-jNnnWF dgPxry"
-    draggable={false}
-    style={
-      Object {
-        "touchAction": "none",
-        "transform": "translateX(undefined) translateY(undefined) translateZ(0)",
-        "userSelect": "none",
-      }
-    }
+    className="sc-cTJmaU GxEyK"
   >
     <div
-      className="sc-cTJmaU kHBJNA"
+      className="sc-dPaNSN dZPdRG"
+      id="cardundefined"
     >
       <div
-        className="sc-dPaNSN krlKby"
+        className="sc-bBjRzc fUXUeS"
       >
-        <div
-          className="sc-bBjRzc jvREJE"
+        <span
+          className="sc-jgPznn keREtS"
         >
-          <span
-            className="sc-jgPznn hLjnEG"
-          >
-            
-          </span>
+          
+        </span>
+        <div
+          className="sc-cOigif gcpPQW"
+        >
           <div
-            className="sc-cOigif gcpPQW"
+            className="sc-ArjOu kjlBSZ"
           >
             <div
-              className="sc-ArjOu kjlBSZ"
-            >
-              <div
-                className="sc-khIgXV ikuYwr"
-                style={
-                  Object {
-                    "color": undefined,
-                  }
+              className="sc-khIgXV ikuYwr"
+              style={
+                Object {
+                  "color": undefined,
                 }
-              />
-              <div
-                className="sc-khIgXV ikuYwr"
-                style={
-                  Object {
-                    "color": undefined,
-                  }
-                }
-              />
-              <div>
-                <figure
-                  className="sc-gSYCTC cHhcay"
-                >
-                  <div
-                    className="tooltip"
-                  >
-                    <img
-                      alt="Have description"
-                    />
-                    <span
-                      className="tooltiptext"
-                    >
-                      Possui descrição
-                    </span>
-                  </div>
-                  <div
-                    className="tooltip"
-                  >
-                    <img
-                      alt="Someone follow"
-                    />
-                    <span
-                      className="tooltiptext"
-                    >
-                      Seguindo
-                    </span>
-                  </div>
-                </figure>
-              </div>
-            </div>
+              }
+            />
             <div
-              className="sc-hTRkEk"
-            >
-              <div
-                className="tooltip"
+              className="sc-khIgXV ikuYwr"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+            />
+            <div>
+              <figure
+                className="sc-gSYCTC cHhcay"
               >
-                <span />
-                <span
-                  className="tooltiptext"
+                <div
+                  className="tooltip"
                 >
-                  Tempo Estimado
-                </span>
-              </div>
+                  <img
+                    alt="Have description"
+                  />
+                  <span
+                    className="tooltiptext"
+                  >
+                    Possui descrição
+                  </span>
+                </div>
+                <div
+                  className="tooltip"
+                >
+                  <img
+                    alt="Someone follow"
+                  />
+                  <span
+                    className="tooltiptext"
+                  >
+                    Seguindo
+                  </span>
+                </div>
+              </figure>
             </div>
           </div>
-          <section
-            className="sc-laZMyp gtmVhl"
+          <div
+            className="sc-hTRkEk"
           >
+            <div
+              className="tooltip"
+            >
+              <span />
+              <span
+                className="tooltiptext"
+              >
+                Tempo Estimado
+              </span>
+            </div>
+          </div>
+        </div>
+        <section
+          className="sc-laZMyp gtmVhl"
+        >
+          <div>
             <div>
-              <div>
-                <h4
-                  className="sc-iNiQeE hQiBPl"
-                >
-                  
-                </h4>
-              </div>
-              <div>
-                <p>
-                  
-                </p>
-              </div>
+              <h4
+                className="sc-iNiQeE hQiBPl"
+              >
+                
+              </h4>
             </div>
             <div>
-              <input
-                className="sc-jffIyK"
-                defaultChecked=""
-                type="checkbox"
+              <p>
+                
+              </p>
+            </div>
+          </div>
+          <div>
+            <input
+              className="sc-jffIyK"
+              defaultChecked=""
+              type="checkbox"
+            />
+          </div>
+        </section>
+        <div
+          className="sc-eJoaVz jtkqfq"
+        >
+          <figure
+            className="sc-oefIU iMslNp"
+          >
+            <div
+              className="tooltip"
+            >
+              <img
+                alt="user icon"
+                src={
+                  Object {
+                    "about": "",
+                    "email": "",
+                    "id": 0,
+                    "image": "",
+                    "name": "",
+                  }
+                }
+              />
+              <span
+                className="tooltiptext"
               />
             </div>
-          </section>
+          </figure>
           <div
-            className="sc-eJoaVz jtkqfq"
+            className="sc-hhIhEF sMkqH"
           >
-            <figure
-              className="sc-oefIU iMslNp"
-            >
-              <div
-                className="tooltip"
-              >
-                <img
-                  alt="user icon"
-                  src={
-                    Object {
-                      "about": "",
-                      "email": "",
-                      "id": 0,
-                      "image": "",
-                      "name": "",
-                    }
-                  }
-                />
-                <span
-                  className="tooltiptext"
-                />
-              </div>
-            </figure>
             <div
-              className="sc-hhIhEF sMkqH"
+              className="tooltip"
             >
-              <div
-                className="tooltip"
+              <span />
+              <span
+                className="tooltiptext"
               >
-                <span />
-                <span
-                  className="tooltiptext"
-                >
-                  Data de Entrega
-                </span>
-              </div>
+                Data de Entrega
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <button
-        className="sc-eirseW cGdPTD"
+      <div
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
       >
-        remover
-      </button>
+        <button
+          className="sc-eirseW iDNXvy"
+        >
+          remover
+        </button>
+        
+      </div>
     </div>
-    
   </div>
 </div>
 `;
