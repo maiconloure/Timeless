@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
-export const FeedBackContainer = styled.div`
-  position: absolute;
-  z-index: 99999999999;
-  top: 75px;
-  left: 10px;
+export const FeedBackContainer = styled.div<{ showMobileMenu: boolean }>`
+  z-index: 99;
+  ${(props) =>
+    !props.showMobileMenu &&
+    `
+      position: absolute;
+      top: 75px;
+      left: 10px;
+  `}
+  transition: 100ms;
+
+  margin: 10px 0;
 
   .tooltip {
     &:hover .tooltiptext {
@@ -32,7 +39,7 @@ export const ConfirmFeedBack = styled.div`
   position: absolute;
   top: 50px;
   left: 55px;
-  z-index: 9999999999999;
+  z-index: 99;
   background-color: #0190f5;
   width: 260px;
   height: 100px;

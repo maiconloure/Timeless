@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 
 import * as St from './styled';
 
-const FeedbackButton = () => {
+const FeedbackButton = ({ showMobileMenu = false }: { showMobileMenu?: boolean }) => {
   const [handleConfirm, setHandleConfirm] = useState(false);
   return (
-    <St.FeedBackContainer>
+    <St.FeedBackContainer showMobileMenu={showMobileMenu}>
       <div className="tooltip">
         <Button
           fontSize="1.9rem"

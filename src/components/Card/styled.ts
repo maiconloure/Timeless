@@ -33,7 +33,7 @@ export const CardContainer = styled(motion.div)`
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 99999;
+    z-index: 999;
   }
 `;
 
@@ -117,7 +117,7 @@ export const AlertImg = styled.span`
   position: absolute;
   top: -30px;
   left: 0px;
-  z-index: 99999;
+  z-index: 999;
 
   .tooltiptext {
     text-align: left;

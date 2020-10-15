@@ -28,7 +28,7 @@ export const BoardPage = styled.div`
 
 export const Notification = styled.div`
   position: absolute;
-  z-index: 999999999;
+  z-index: 99999999999999;
   div {
     font-weight: 800;
     color: #fff;
@@ -38,7 +38,7 @@ export const Notification = styled.div`
 export const TopContainer = styled.div`
   grid-area: top;
   position: fixed;
-  z-index: 9999;
+  z-index: 999;
   top: 0;
   width: 100vw;
 `;
@@ -107,6 +107,64 @@ export const CardContainer = styled(motion.div)`
   z-index: 1;
 `;
 
+export const MobileContainer = styled.div`
+  background-color: var(--color-background);
+  width: 100vw;
+  z-index: 999;
+  position: absolute;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &.close {
+    top: 0;
+  }
+
+  &.open {
+    top: 70px;
+  }
+
+  &:nth-child(1) {
+    margin-bottom: 80px;
+  }
+`;
+
+export const MobileContent = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const MobileFeedback = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+`;
+
+export const MobileMenuOpenClose = styled.div`
+  img {
+    width: 40px;
+    display: block;
+    margin: 0 auto;
+  }
+`;
+
+export const MobileMapCards = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+`;
+
+export const DragScrollMobile = styled(ScrollContainer)`
+  /* grid-area: board; */
+  height: calc(100vh - 20px);
+  max-height: 100vh;
+  &:active {
+    cursor: grabbing;
+  }
+`;
+
 export const DeleteArrow = styled.div`
   width: 100px;
   height: 100px;
@@ -114,7 +172,8 @@ export const DeleteArrow = styled.div`
 `;
 
 export const Info = styled.div`
-  font: 400 1.3rem Roboto;
+  font: 400 1.4rem Roboto;
   position: absolute;
+  top: 20px;
   left: 155px;
 `;

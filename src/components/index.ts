@@ -1,4 +1,5 @@
 import Card from './Card';
+import CardMobile from './CardMobile';
 import CreationMenu from './CreationMenu';
 import EditBoardModal from './EditBoardModal';
 import EditCardModal from './EditCardModal';
@@ -9,6 +10,7 @@ import PageTransition from './PageTransition';
 import TopBarMenu from './TopBarMenu';
 export {
   Card,
+  CardMobile,
   CreationMenu,
   EditBoardModal,
   EditCardModal,

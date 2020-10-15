@@ -8,7 +8,7 @@ import { RootStoreType } from '../../redux/store/store';
 import { EditUserModalContainerProps } from '../ContainerInterface';
 
 const EditUserModalContainer = ({
-  data: { showEditUser, setShowEditUser, setShowEditModal },
+  data: { showMobileMenu, showEditUser, setShowEditUser, setShowEditModal },
   history,
 }: EditUserModalContainerProps) => {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ const EditUserModalContainer = ({
 
   return (
     <EditUserModal
+      showMobileMenu={showMobileMenu}
       showEditUser={showEditUser}
       setShowEditUser={setShowEditUser}
       userName={userName}

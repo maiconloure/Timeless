@@ -2,11 +2,11 @@
 
 exports[`Snapshot renderer 1`] = `
 <div
-  className="sc-efHXLn fldBtY"
+  className="sc-efHXLn ijPgE"
   style={Object {}}
 >
   <div
-    className="sc-jNnnWF dgPxry"
+    className="sc-jNnnWF dbvHmM"
     draggable={false}
     style={
       Object {
@@ -17,13 +17,19 @@ exports[`Snapshot renderer 1`] = `
     }
   >
     <div
-      className="sc-cTJmaU kHBJNA"
+      className="sc-cTJmaU GxEyK"
     >
       <div
-        className="sc-dPaNSN krlKby"
+        className="sc-dPaNSN ibmYNX"
+        id="cardundefined"
+        style={
+          Object {
+            "transform": "translateX(undefined) translateY(undefined) translateZ(0)",
+          }
+        }
       >
         <div
-          className="sc-bBjRzc jvREJE"
+          className="sc-bBjRzc fUXUeS"
         >
           <span
             className="sc-jgPznn hLjnEG"
@@ -68,18 +74,6 @@ exports[`Snapshot renderer 1`] = `
                       Possui descrição
                     </span>
                   </div>
-                  <div
-                    className="tooltip"
-                  >
-                    <img
-                      alt="Someone follow"
-                    />
-                    <span
-                      className="tooltiptext"
-                    >
-                      Seguindo
-                    </span>
-                  </div>
                 </figure>
               </div>
             </div>
@@ -99,12 +93,12 @@ exports[`Snapshot renderer 1`] = `
             </div>
           </div>
           <section
-            className="sc-laZMyp gtmVhl"
+            className="sc-laZMyp fkLiJr"
           >
             <div>
               <div>
                 <h4
-                  className="sc-iNiQeE hQiBPl"
+                  className="sc-iNiQeE iUmtWN"
                 >
                   
                 </h4>
@@ -165,14 +159,14 @@ exports[`Snapshot renderer 1`] = `
             </div>
           </div>
         </div>
+        <button
+          className="sc-eirseW dcfdVp"
+        >
+          remover
+        </button>
+        
       </div>
-      <button
-        className="sc-eirseW cGdPTD"
-      >
-        remover
-      </button>
     </div>
-    
   </div>
 </div>
 `;

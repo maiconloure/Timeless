@@ -11,7 +11,7 @@ import ModalBackground from '../ModalBackground';
 const EditBoardModal = ({
   boards,
   values: { boardTitle, boardDescription },
-  showModal: { showEditModal, showBoardModal, setShowEditModal, setShowBoardModal },
+  showModal: { showMobileMenu, showEditModal, showBoardModal, setShowEditModal, setShowBoardModal },
   handlers: {
     handlerTitle,
     handlerDescription,
@@ -30,15 +30,16 @@ const EditBoardModal = ({
       title="Boards"
       data={[showBoardModal, setShowBoardModal]}
       styles={{
-        size: 'normal',
-        fontSize: 'large',
-        bgColorPrimary: '#3aa6f2',
+        size: showMobileMenu ? 'normal' : 'large',
+        fontSize: showMobileMenu ? 'large' : 'largest',
+        bgColorPrimary: '#cdd9e2',
         colorPrimary: '#014d82',
       }}>
       <>
         {showEditModal ? (
           <St.Form>
             <Button onClick={handleReturnForm}>Voltar</Button>
+            {!showMobileMenu && <h2>Titulo</h2>}
             <Input
               type="text"
               placeholder={boardTitle}
@@ -47,6 +48,7 @@ const EditBoardModal = ({
               height="40px"
               onTextChange={handlerTitle}
             />
+            {!showMobileMenu && <h2>Descrição</h2>}
             <Input
               type="text"
               placeholder={boardDescription}

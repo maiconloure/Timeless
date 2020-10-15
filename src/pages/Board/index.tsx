@@ -26,6 +26,7 @@ const Board = ({
     setSelectedCard,
     setShowEditModal,
     setShowBoardModal,
+    toggleMenu,
   },
   connection: {
     cardOne,
@@ -53,6 +54,7 @@ const Board = ({
 
       <Container.TopBarContainer
         data={{
+          showEditUser,
           showBoardModal,
           setShowEditUser,
           setShowBoardModal,
@@ -62,6 +64,7 @@ const Board = ({
 
       <Container.EditUserModalContainer
         data={{
+          showMobileMenu: false,
           showEditUser,
           setShowEditUser,
           setShowEditModal,
@@ -71,6 +74,7 @@ const Board = ({
 
       <Container.EditBoardModalContainer
         data={{
+          showMobileMenu: false,
           showEditModal,
           showBoardModal,
           setShowEditModal,
@@ -85,12 +89,13 @@ const Board = ({
         className="container">
         <St.InnerBoardContainer>
           <St.Info>
-            <p>A manipulação e conexão de cards está apresentando problemas técnicos,</p>
+            <p>A atualização dos cards está apresentando problemas técnicos,</p>
             <p>estamos trabalhando para resolver isto.</p>
           </St.Info>
           <St.SideMenuContainer drag dragMomentum={false}>
             <Container.CreationMenuContainer
               className="CreationMenu"
+              toggleMenu={toggleMenu}
               setSelectedCard={setSelectedCard}
               selectedCard={selectedCard}
               history={history}
@@ -135,7 +140,12 @@ const Board = ({
             lines.map((line: any, i: number) => (
               <div id={`line${i}`} key={i}>
                 {line.start && line.end && (
-                  <Xarrow start={line.start} end={line.end} {...{ ...defProps, ...state }} />
+                  <Xarrow
+                    start={line.start}
+                    end={line.end}
+                    strokeWidth="8"
+                    {...{ ...defProps, ...state }}
+                  />
                 )}
               </div>
             ))}
