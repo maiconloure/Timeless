@@ -3,13 +3,13 @@
 exports[`Snapshot renders 1`] = `
 Array [
   <div
-    className="sc-efHXLn bNzgxe"
+    className="sc-efHXLn dAUWVC"
   />,
   <div
-    className="sc-fKgIGh iYqHxB"
+    className="sc-fKgIGh kEPpFa"
   >
     <div
-      className="sc-crzoUp inpdim"
+      className="sc-crzoUp kYmTKt"
       onClick={[Function]}
     >
       <img
@@ -17,7 +17,7 @@ Array [
       />
     </div>
     <h1
-      className="sc-bCwgka dJmVvq"
+      className="sc-bCwgka iFtFye"
     >
       Editar
     </h1>
@@ -26,8 +26,11 @@ Array [
     >
       <div>
         <div
-          className="sc-cOigif haWtsF"
+          className="sc-cOigif hsgXtx"
         >
+          <h3>
+            Seu Nome
+          </h3>
           <div
             className="sc-dlnjPT"
           >
@@ -43,6 +46,9 @@ Array [
               width="220px"
             />
           </div>
+          <h3>
+            Sobre Você
+          </h3>
           <div
             className="sc-dlnjPT"
           >
@@ -58,6 +64,9 @@ Array [
               width="220px"
             />
           </div>
+          <h3>
+            Link da Imagem
+          </h3>
           <div
             className="sc-dlnjPT"
           >
