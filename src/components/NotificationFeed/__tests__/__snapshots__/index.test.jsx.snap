@@ -30,9 +30,9 @@ exports[`Snapshot renders component 1`] = `
       className="sc-iTVIwl jiAQaA"
     >
       <p
-        className="sc-iBzFoy dvbtwq"
+        className="sc-iBzFoy igVgod"
         color="#014D82"
-        fontSize="1.6rem"
+        fontSize="1.5rem"
       >
         Está muito parado por aqui... crie novos cartões!
       </p>
