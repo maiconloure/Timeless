@@ -26,6 +26,7 @@ const CreationMenuContainer = ({
   history,
   lines,
   setLines,
+  toggleMenu,
 }: CreationMenuContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
@@ -39,7 +40,7 @@ const CreationMenuContainer = ({
   };
 
   const groupButton = () => {
-    console.log('groupButton');
+    toggleMenu();
     const date = new Date();
     const curr_hour = `${date
       .getHours()
@@ -94,14 +95,17 @@ const CreationMenuContainer = ({
   };
 
   const createFasterCardButton = () => {
+    toggleMenu();
     setSelectedCard({ ...initialSelectCard, fastCard: !selectedCard.fastCard });
   };
 
   const removeCardButton = () => {
+    toggleMenu();
     setSelectedCard({ ...initialSelectCard, removeCard: !selectedCard.removeCard });
   };
 
   const createTextButton = () => {
+    toggleMenu();
     const date = new Date();
     const curr_hour = `${date
       .getHours()
@@ -129,6 +133,7 @@ const CreationMenuContainer = ({
   };
 
   const connectArrowButton = () => {
+    toggleMenu();
     setSelectedCard({ ...initialSelectCard, connect: !selectedCard.connect });
   };
 
@@ -162,10 +167,12 @@ const CreationMenuContainer = ({
   };
 
   const pinCardButton = () => {
+    toggleMenu();
     setSelectedCard({ ...initialSelectCard, followedCard: !selectedCard.followedCard });
   };
 
   const blockCardButton = () => {
+    toggleMenu();
     setSelectedCard({ ...initialSelectCard, blockedCard: !selectedCard.blockedCard });
   };
 

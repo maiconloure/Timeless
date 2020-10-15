@@ -9,6 +9,7 @@ import ModalBackground from '../ModalBackground';
 
 const EditUserModal = ({
   showEditUser,
+  showMobileMenu,
   setShowEditUser,
   userName,
   userAbout,
@@ -25,13 +26,15 @@ const EditUserModal = ({
       title="Editar"
       data={[showEditUser, setShowEditUser]}
       styles={{
-        size: 'normal',
-        fontSize: 'large',
-        bgColorPrimary: '#3aa6f2',
+        size: showMobileMenu ? 'normal' : 'large',
+        fontSize: showMobileMenu ? 'large' : 'largest',
+        bgColorPrimary: '#cdd9e2',
         colorPrimary: '#014d82',
       }}>
       <div>
         <St.Form>
+          {!showMobileMenu && <h3>Seu Nome</h3>}
+
           <Input
             type="text"
             placeholder={userName}
@@ -40,6 +43,7 @@ const EditUserModal = ({
             height="40px"
             onTextChange={handleUserName}
           />
+          {!showMobileMenu && <h3>Sobre Você</h3>}
 
           <Input
             type="text"
@@ -49,6 +53,7 @@ const EditUserModal = ({
             height="40px"
             onTextChange={handleUserAbout}
           />
+          {!showMobileMenu && <h3>Link da Imagem</h3>}
 
           <Input
             type="text"

@@ -26,7 +26,7 @@ export const TopContainer = styled.div`
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 9999999;
+    z-index: 3;
   }
 `;
 
