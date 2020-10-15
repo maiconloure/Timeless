@@ -29,7 +29,7 @@ const Landing = ({
               <>
                 <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
                 <p onClick={() => setCurrentFrame('teams')}>Times</p>
-                <p onClick={() => setCurrentFrame('about')}>Sobre</p>{' '}
+                <p onClick={() => setCurrentFrame('about')}>Sobre</p>
               </>
             ) : (
               <St.Welcome>
