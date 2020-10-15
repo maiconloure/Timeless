@@ -28,7 +28,7 @@ export const BoardPage = styled.div`
 
 export const Notification = styled.div`
   position: absolute;
-  z-index: 99999999;
+  z-index: 99999999999999;
   div {
     font-weight: 800;
     color: #fff;

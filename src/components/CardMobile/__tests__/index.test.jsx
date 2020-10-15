@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import DefaultCard from '../index';
+import CardMobile from '../index';
 
 jest.mock('../../../utils/importAll', () => ({ icons: {} }));
 
@@ -48,7 +48,7 @@ const removeCard = {
 describe('Snapshot', () => {
   it('renderer', () => {
     const tree = renderer
-      .create(<DefaultCard card={{ data }} user={{ image }} selectedCard={{ removeCard }} />)
+      .create(<CardMobile card={{ data }} user={{ image }} selectedCard={{ removeCard }} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
