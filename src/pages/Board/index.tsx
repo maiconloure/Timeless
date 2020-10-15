@@ -127,11 +127,12 @@ const Board = ({
             </React.Fragment>
           ))}
 
-          {lines.map((line: any, i: number) => (
-            <div id={`line${i}`} key={i}>
-              <Xarrow {...line} {...{ ...defProps, ...state }} />
-            </div>
-          ))}
+          {lines.length >= 1 &&
+            lines.map((line: any, i: number) => (
+              <div id={`line${i}`} key={i}>
+                <Xarrow {...line} {...{ ...defProps, ...state }} />
+              </div>
+            ))}
 
           <St.CardContainer className="CardContainer">
             <Container.BacklogCardContainer data={{ showEditCard, setShowEditCard, currentCard }} />

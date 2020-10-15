@@ -11,7 +11,6 @@ import { BoardContainerProps } from '../ContainerInterface';
 
 const BoardContainer = ({ history }: BoardContainerProps) => {
   const dispatch = useDispatch();
-
   const status = useSelector((state: RootStoreType) => state.service.status);
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
@@ -38,10 +37,18 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [, setRender] = useState({});
   const forceRerender = () => setRender(Math.random());
   const [state, setState] = useState({});
-  const [lines, setLines] = useState(currentBoard.connections);
+  const [lines, setLines] = useState([]);
 
   useEffect(() => {
-    setLines(currentBoard.connections);
+    if (currentBoard) {
+      if (currentBoard.connections && lines.length < 1) {
+        setLines(currentBoard.connections);
+      }
+      if (currentBoard && lines.length > 1) {
+        setLines(currentBoard.connections);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBoard]);
 
   useEffect(() => {
@@ -52,6 +59,9 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
 
   useEffect(() => {
     dispatch(getBoardsAPI({ user, token, history }));
+    setTimeout(() => {
+      dispatch(getBoardsAPI({ user, token, history }));
+    }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

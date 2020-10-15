@@ -73,7 +73,7 @@ export interface UserBoards {
   data: DataBoard;
   userId: number | string;
   id: number | string;
-  connections: string[];
+  connections: any;
 }
 
 export interface CreateUserBoards {

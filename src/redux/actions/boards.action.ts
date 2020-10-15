@@ -3,6 +3,7 @@ import { History, LocationState } from 'history';
 import { ThunkAction } from 'redux-thunk';
 
 import api from '../../services/api';
+import { defaultBoard } from '../../utils/defaults-json-cards';
 import expiredSession from '../../utils/expire-session';
 import { RootStoreType } from '../store/store';
 import { getCards } from './cards.action';
@@ -32,23 +33,7 @@ export const getBoardsAPI = ({
       } else {
         // console.warn(`getBoardsAPI ==> Status: ${response.status}`);
         if (response.data.length === 0) {
-          dispatch(
-            createBoardAPI(
-              {
-                title: 'Titulo do board',
-                description: 'Descrição do board',
-                users: [],
-                data: {
-                  text: [],
-                  notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
-                },
-                connections: [],
-              },
-              token,
-              user,
-              history
-            )
-          );
+          dispatch(createBoardAPI(defaultBoard, token, user, history));
         }
         dispatch(getBoards(response.data));
       }
@@ -126,15 +111,16 @@ export const createBoardAPI = (
   user: Interface.UserInterface,
   history: History<LocationState>
 ): ThunkAction<void, RootStoreType, unknown, Interface.CreateBoardAction> => (dispatch) => {
+  console.log(board, user);
   api
     .post(`/users/${user.id}/boards`, board, createHeader(token))
     .then((response) => {
       if (response.status !== 201) {
-        // console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
+        console.error(`createBoardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        // console.warn(` ==> Status: ${response.status}`);
+        console.warn(` ==> Status: ${response.status}`);
         dispatch(createBoard(response.data));
-        dispatch(getBoardsAPI({ user, token, history }));
+        // dispatch(getBoardsAPI({ user, token, history }));
       }
     })
     .catch((error) => {

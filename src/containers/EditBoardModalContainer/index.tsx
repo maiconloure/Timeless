@@ -22,7 +22,6 @@ const EditBoardModalContainer = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
-
   const [boardTitle, setBoardTitle] = useState('Título do Board');
   const [boardDescription, setBoardDescription] = useState('Descrição do Board');
   const [selectedBoard, setSelectedBoard] = useState<
@@ -40,25 +39,9 @@ const EditBoardModalContainer = ({
       dispatch(
         createBoardAPI(
           {
-            ...selectedBoard,
+            ...defaultBoard,
             title: boardTitle,
             description: boardDescription,
-          },
-          token,
-          user,
-          history
-        )
-      );
-      dispatch(
-        createBoardAPI(
-          {
-            ...selectedBoard,
-            title: 'Titulo do board',
-            description: 'Descrição do board',
-            data: {
-              text: [],
-              notifications: ['Aqui aparecerá as novas atualizações do seu board!'],
-            },
           },
           token,
           user,

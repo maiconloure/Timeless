@@ -1,31 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { defaultBoard } from '../../utils/defaults-json-cards';
 import { BoardsAction } from '../actions/boards.action';
 import { BoardState } from '../actions/interface.action';
 import * as TYPE from '../actions/type.action';
 
 const initialState: BoardState = {
   boards: [],
-  currentBoard: JSON.parse(
-    localStorage.getItem('chosenBoard') ||
-      `{
-    "title": "",
-    "description": "",
-    "user": [],
-    "userId": "",
-    "id": "",
-    "data": {
-      "text": [],
-      "notifications": []
-    }   ,
-    "connections": []
-  }`
-  ),
+  currentBoard: JSON.parse(localStorage.getItem('chosenBoard') || JSON.stringify(defaultBoard)),
 };
 
 const boards = (state = initialState, action: BoardsAction): BoardState => {
   switch (action.type) {
     case TYPE.GET_BOARDS:
-      if (!localStorage.getItem('chosenBoard')) {
+      if (!localStorage.getItem('chosenBoard') && action.payload[0]) {
         localStorage.setItem('chosenBoard', JSON.stringify(action.payload[0]));
       }
       return { ...state, boards: action.payload, currentBoard: action.payload[0] };
@@ -51,6 +38,7 @@ const boards = (state = initialState, action: BoardsAction): BoardState => {
       };
 
     case TYPE.CLEAR_BOARD:
+      localStorage.clear();
       return initialState;
 
     default:

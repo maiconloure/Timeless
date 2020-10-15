@@ -32,7 +32,9 @@ const cards = (state = initialState, action: CardAction): CardState => {
       };
 
     case TYPE.CLEAR_CARDS:
+      localStorage.clear();
       return initialState;
+
     default:
       return state;
   }

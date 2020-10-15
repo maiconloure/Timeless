@@ -46,7 +46,7 @@ const DefaultCardContainer = ({
     x.set(card.position.x);
     y.set(card.position.y);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [card.position.x, card.position.y, cards.length]);
+  }, [cards.length]);
 
   const onDragEndFunction = () => {
     // if (x.get() >= 1 && y.get() >= 1) {
