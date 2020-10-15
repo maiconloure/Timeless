@@ -28,7 +28,7 @@ export const BoardPage = styled.div`
 
 export const Notification = styled.div`
   position: absolute;
-  z-index: 9999;
+  z-index: 99999999999999;
   div {
     font-weight: 800;
     color: #fff;
@@ -169,4 +169,11 @@ export const DeleteArrow = styled.div`
   width: 100px;
   height: 100px;
   background: #000;
+`;
+
+export const Info = styled.div`
+  font: 400 1.4rem Roboto;
+  position: absolute;
+  top: 20px;
+  left: 155px;
 `;
