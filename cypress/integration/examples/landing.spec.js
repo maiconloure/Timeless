@@ -3,9 +3,9 @@ context('Login and Register (Landing) Page Rendering', () => {
     cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-    cy.contains('Exemplo');
-    cy.contains('Times');
-    cy.contains('Sobre');
+    cy.contains('#Exemplo1');
+    cy.contains('#Exemplo2');
+    cy.contains('#Exemplo3');
     cy.contains('Timeless');
     cy.contains('simples, rápido e dinâmico!');
     cy.contains('Alto nível em gestão');
@@ -26,17 +26,17 @@ context('Modal Register in Landing Page', () => {
     cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-    cy.get('.sc-cvdZLF > .sc-bdnylx').click({ force: true });
+    cy.get('.sc-jVSHhB > .sc-bdnylx').click();
     cy.contains('Comece hoje mesmo, a gerenciar seu tempo ou equipe.');
 
-    cy.get('.sc-ciOMec > :nth-child(1) > .sc-dlnjPT > .sc-hKFyIo');
+    cy.get('.sc-fGgRdh > :nth-child(1) > .sc-dlnjPT > .sc-hKFyIo');
     cy.get(':nth-child(2) > .sc-dlnjPT > .sc-hKFyIo');
     cy.get(':nth-child(3) > .sc-eCApGN > .sc-jSFkmK');
 
     cy.get(':nth-child(3) > .sc-eCApGN > .sc-iCoHVE').click();
     cy.get(':nth-child(4) > .sc-bdnylx').click();
     cy.wait(2400);
-    cy.get('.sc-clGIgy > img').click({ force: true });
+    cy.get('.sc-gJjCBC > p').click();
   });
 });
 
@@ -45,17 +45,13 @@ context('Login and Register (Landing) Page Rendering', () => {
     cy.viewport(1440, 900);
     cy.visit('http://localhost:3000');
 
-    cy.contains('Exemplo');
-    cy.contains('Times');
-    cy.contains('Sobre');
+    cy.get('.sc-hfVAxZ > :nth-child(1)').click();
     cy.wait(2000);
-    cy.get('.sc-JgrOI > :nth-child(1)').click();
+    cy.get('.sc-hfVAxZ > :nth-child(2)').click();
     cy.wait(2000);
-    cy.get('.sc-JgrOI > :nth-child(2)').click();
-    cy.wait(2000);
-    cy.get('.sc-JgrOI > :nth-child(3)').click();
+    cy.get('.sc-hfVAxZ > :nth-child(3)').click();
 
     cy.wait(2000);
-    cy.get('.sc-igOljT > img').click();
+    cy.get('.sc-biHcdI > img').click();
   });
 });

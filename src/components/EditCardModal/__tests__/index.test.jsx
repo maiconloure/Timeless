@@ -9,7 +9,21 @@ describe('Snapshot', () => {
     const setShowEditCard = jest.fn();
 
     const tree = renderer
-      .create(<BacklogCard closeDataPass={{ showEditCard, setShowEditCard }} />)
+      .create(
+        <BacklogCard
+          currentCard={{}}
+          user={{}}
+          getTags={() => {}}
+          getDescription={() => {}}
+          getDate={() => {}}
+          getTime={() => {}}
+          currentDate={{}}
+          currentTime={{}}
+          removeCard={() => {}}
+          duplicateCard={() => {}}
+          FormataStringData={() => {}}
+        />
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();

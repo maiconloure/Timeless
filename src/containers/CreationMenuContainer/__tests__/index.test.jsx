@@ -52,10 +52,11 @@ describe('Behavior', () => {
         }}
         className={'test'}
         history={[]}
+        toggleMenu={() => {}}
       />
     );
 
-    wrapper.find('img').at(1).simulate('click');
+    wrapper.find('img').at(0).simulate('click');
     expect(dispatchMock).toHaveBeenCalledTimes(2);
   });
 });
