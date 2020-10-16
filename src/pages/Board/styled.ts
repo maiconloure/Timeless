@@ -2,12 +2,13 @@ import { motion } from 'framer-motion';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import styled from 'styled-components';
 
-import { images } from '../../utils/importAll';
+import { images, background } from '../../utils/importAll';
 
-export const BoardPage = styled.div`
+export const BoardPage = styled.div<{ backgroundImage: any }>`
   /* background-image: url(https://media.giphy.com/media/MtJwM5N4fuMgw/giphy.gif); */
   /* background-image: url(${images.AbstractTimekeeper}); */
-  background-image: url(${images.background});
+  /* background-image: url(${background.ruby}); */
+  background-image: url(${(props) => props.backgroundImage});
   background-size: cover;
   position: relative;
   width: 100vw;

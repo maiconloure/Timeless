@@ -2,7 +2,7 @@ import React from 'react';
 
 import { icons } from '../../utils/importAll';
 import { DefaultCardProps } from '../ComponentsInterface';
-import FastCard from './fast-card';
+import FastCard from './FastCard';
 import * as St from './styled';
 
 const CardMobile = ({
@@ -30,6 +30,7 @@ const CardMobile = ({
   handleConnection,
   cardOne,
   cardTwo,
+  fastCard: { title, setTitle, subtitle, setSubtitle, time, setTime, saveFastCard },
 }: DefaultCardProps) => (
   <St.CardContainer
     onDoubleClick={DoubleClick}
@@ -113,8 +114,6 @@ const CardMobile = ({
           </St.CardFooter>
         </St.CardInside>
         <div style={{ position: 'relative' }}>
-          {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
-
           {selectedCard.removeCard ? (
             <St.CardButton onClick={removeCard}>remover</St.CardButton>
           ) : (
@@ -150,6 +149,18 @@ const CardMobile = ({
             </St.Block>
           )}
         </div>
+        <St.FastCard>
+          {showWarning && card.data.fastCard && (
+            <FastCard
+              title={title}
+              setTitle={setTitle}
+              subtitle={subtitle}
+              setSubtitle={setSubtitle}
+              time={time}
+              setTime={setTime}
+            />
+          )}
+        </St.FastCard>
       </St.Card>
     </St.Editable>
   </St.CardContainer>

@@ -43,6 +43,8 @@ export interface RegisterProps {
   handleChangeName: (evt: ChangeEvent<HTMLInputElement>) => void;
   handleChangeEmail: (evt: ChangeEvent<HTMLInputElement>) => void;
   handleChangePassword: (evt: ChangeEvent<HTMLInputElement>) => void;
+  switchText: any;
+  setSwitchText: any;
 }
 
 export interface BoardProps {
@@ -104,4 +106,7 @@ export interface BoardProps {
   defProps: any;
   state: any;
   user: any;
+  token: any;
+  backgroundImage: any;
+  setBackground: any;
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { LoginContainer, RegisterContainer } from 'containers';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -29,7 +28,7 @@ const Landing = ({
               <>
                 <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
                 <p onClick={() => setCurrentFrame('teams')}>Times</p>
-                <p onClick={() => setCurrentFrame('about')}>Sobre</p>{' '}
+                <p onClick={() => setCurrentFrame('about')}>Sobre</p>
               </>
             ) : (
               <St.Welcome>
