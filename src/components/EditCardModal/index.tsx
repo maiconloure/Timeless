@@ -3,13 +3,6 @@ import React from 'react';
 import { icons } from '../../utils/importAll';
 import * as St from './styled';
 
-const FormataStringData = (data: any) => {
-  var dia = data.split('/')[0];
-  var mes = data.split('/')[1];
-  var ano = data.split('/')[2];
-  return ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2);
-};
-
 interface ContentProps {
   currentCard: any;
   user: any;
@@ -23,6 +16,7 @@ interface ContentProps {
   currentTime: any;
   removeCard: any;
   duplicateCard: any;
+  FormataStringData: (args0: any) => any;
 }
 
 const Content = ({
@@ -38,6 +32,7 @@ const Content = ({
   currentTime,
   removeCard,
   duplicateCard,
+  FormataStringData,
 }: ContentProps) => (
   <St.ContentContainer>
     <St.Main>

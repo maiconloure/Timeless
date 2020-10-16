@@ -2,32 +2,33 @@
 
 exports[`Snapshot renderer 1`] = `
 <div
-  className="sc-efHXLn kWVwxX"
+  className="sc-jSFkmK fLOuYw className"
+  onDoubleClick={[Function]}
   style={Object {}}
 >
   <div
-    className="sc-cTJmaU GxEyK"
+    className="sc-gKAblj lfHsLf"
   >
     <div
-      className="sc-dPaNSN dZPdRG"
+      className="sc-fujyUd hxaril"
       id="cardundefined"
     >
       <div
-        className="sc-bBjRzc fUXUeS"
+        className="sc-pNWxx fPZvDG"
       >
         <span
-          className="sc-jgPznn keREtS"
+          className="sc-dIsAE iCpRUT"
         >
           
         </span>
         <div
-          className="sc-cOigif gcpPQW"
+          className="sc-jrsJCI MAmEw"
         >
           <div
-            className="sc-ArjOu kjlBSZ"
+            className="sc-kEqYlL iLtMjI"
           >
             <div
-              className="sc-khIgXV ikuYwr"
+              className="sc-iqAbSa gKWHDV"
               style={
                 Object {
                   "color": undefined,
@@ -35,7 +36,7 @@ exports[`Snapshot renderer 1`] = `
               }
             />
             <div
-              className="sc-khIgXV ikuYwr"
+              className="sc-iqAbSa gKWHDV"
               style={
                 Object {
                   "color": undefined,
@@ -44,7 +45,7 @@ exports[`Snapshot renderer 1`] = `
             />
             <div>
               <figure
-                className="sc-gSYCTC cHhcay"
+                className="sc-bqGHjH insWpZ"
               >
                 <div
                   className="tooltip"
@@ -74,7 +75,7 @@ exports[`Snapshot renderer 1`] = `
             </div>
           </div>
           <div
-            className="sc-hTRkEk"
+            className="sc-crzoUp"
           >
             <div
               className="tooltip"
@@ -89,12 +90,12 @@ exports[`Snapshot renderer 1`] = `
           </div>
         </div>
         <section
-          className="sc-laZMyp gtmVhl"
+          className="sc-ksluoS lifbBD"
         >
           <div>
             <div>
               <h4
-                className="sc-iNiQeE hQiBPl"
+                className="sc-hBMVcZ dJdmiy"
               >
                 
               </h4>
@@ -107,17 +108,18 @@ exports[`Snapshot renderer 1`] = `
           </div>
           <div>
             <input
-              className="sc-jffIyK"
+              className="sc-fnVYJo"
               defaultChecked=""
+              onClick={[Function]}
               type="checkbox"
             />
           </div>
         </section>
         <div
-          className="sc-eJoaVz jtkqfq"
+          className="sc-fFSRdu cBTUln"
         >
           <figure
-            className="sc-oefIU iMslNp"
+            className="sc-bkbjAj LssfT"
           >
             <div
               className="tooltip"
@@ -140,7 +142,7 @@ exports[`Snapshot renderer 1`] = `
             </div>
           </figure>
           <div
-            className="sc-hhIhEF sMkqH"
+            className="sc-iemXMA bErASg"
           >
             <div
               className="tooltip"
@@ -163,12 +165,16 @@ exports[`Snapshot renderer 1`] = `
         }
       >
         <button
-          className="sc-eirseW iDNXvy"
+          className="sc-dIvqjp hqzKSZ"
+          onClick={[Function]}
         >
           remover
         </button>
         
       </div>
+      <div
+        className="sc-bCwgka kkbsiN"
+      />
     </div>
   </div>
 </div>
