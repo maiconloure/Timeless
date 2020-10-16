@@ -577,7 +577,7 @@ export const MainFrame = styled.div`
 
 export const ExamplesFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 
@@ -605,7 +605,7 @@ export const ExamplesFrame = styled.div`
 
 export const TeamFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 
@@ -633,7 +633,7 @@ export const TeamFrame = styled.div`
 
 export const AboutFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 

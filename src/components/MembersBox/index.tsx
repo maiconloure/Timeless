@@ -15,7 +15,7 @@ export default MembersBox;
 
 const MembersContainer = styled.div`
   position: absolute;
-  z-index: 9999999999;
+  z-index: 9999999999999;
   top: 90%;
   left: 1%;
   padding: 5px;
