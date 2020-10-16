@@ -23,7 +23,7 @@ const SidePushMenu = ({ setBackground }: any) => {
           <BackgroundIcon
             onClick={() => setBackground(background.official)}
             style={{ transform: 'scale(5)' }}
-            src={images.background}
+            src={background.official}
             alt="background"
           />
         </IconBox>
@@ -50,8 +50,8 @@ const SidePushMenu = ({ setBackground }: any) => {
         </IconBox>
         <IconBox>
           <BackgroundIcon
-            onClick={() => setBackground(background.akatsuki)}
-            src={background.akatsuki}
+            onClick={() => setBackground(background.python)}
+            src={background.python}
             alt="background"
           />
         </IconBox>
