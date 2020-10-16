@@ -295,3 +295,10 @@ export const ConnectCardLeft = styled.button<{ active: any }>`
   cursor: pointer;
   background: transparent;
 `;
+
+export const FastCard = styled.div`
+  position: absolute;
+  z-index: 999999999;
+  top: 186px;
+  left: 0;
+`;

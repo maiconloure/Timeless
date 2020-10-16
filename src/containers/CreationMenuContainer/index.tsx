@@ -32,9 +32,8 @@ const CreationMenuContainer = ({
   const user = useSelector((state: RootStoreType) => state.service.user);
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-  const random = () => Math.random() * (600 - 200) + 200;
+  const random = () => Math.random() * (500 - 100) + 100;
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
-
   defaultCard.position = {
     x: random() + 300,
     y: random(),
@@ -42,14 +41,7 @@ const CreationMenuContainer = ({
 
   const groupButton = () => {
     toggleMenu();
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
     setSelectedCard({ ...initialSelectCard, group: !selectedCard.group });
-
     dispatch(
       updateBoardAPI({
         board: {
@@ -57,7 +49,7 @@ const CreationMenuContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} criou um novo grupo - ${curr_hour}`,
+              `${user.name} criou um novo grupo.`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -69,30 +61,19 @@ const CreationMenuContainer = ({
   };
 
   const createCardButton = () => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
     dispatch(
       updateBoardAPI({
         board: {
           ...currentBoard,
           data: {
             ...currentBoard.data,
-            notifications: [
-              `${user.name} criou um novo card, ${curr_hour}`,
-              ...currentBoard.data.notifications,
-            ],
+            notifications: [`${user.name} criou um novo card.`, ...currentBoard.data.notifications],
           },
         },
         token,
         history,
       })
     );
-
-    console.log(currentBoard, defaultCard);
     dispatch(createCardAPI({ currentBoard, token, user, card: defaultCard, history }));
   };
 
@@ -108,14 +89,7 @@ const CreationMenuContainer = ({
 
   const createTextButton = () => {
     toggleMenu();
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
     setSelectedCard({ ...initialSelectCard, addText: !selectedCard.addText });
-
     dispatch(
       updateBoardAPI({
         board: {
@@ -123,7 +97,7 @@ const CreationMenuContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} criou um novo texto, ${curr_hour}`,
+              `${user.name} criou um novo texto.`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -140,23 +114,19 @@ const CreationMenuContainer = ({
   };
 
   const desconnectArrowButton = () => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
     if (lines.length >= 1) {
-      lines.pop();
-      setLines(lines);
+      const remLines = [...lines];
+      remLines.pop();
+      setLines([...remLines]);
       dispatch(
         updateBoardAPI({
           board: {
             ...currentBoard,
+            connections: [...remLines],
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} desfez sua última ligação, ${curr_hour}`,
+                `${user.name} desfez sua última ligação.`,
                 ...currentBoard.data.notifications,
               ],
             },

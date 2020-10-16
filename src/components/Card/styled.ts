@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 export const CardContainer = styled(motion.div)`
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 1px;
+  height: 1px;
   z-index: 1;
 
   &:active {
@@ -28,9 +28,6 @@ export const CardContainer = styled(motion.div)`
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
-
     /* Position the tooltip */
     position: absolute;
     z-index: 999;
@@ -48,29 +45,26 @@ export const Editable = styled.div<{ blocked: boolean }>`
 `;
 
 export const MotionBox = styled(motion.div)`
-  /* position: relative; */
+  position: relative;
 `;
 
 export const Card = styled(motion.div)`
-  background-color: var(--color-background);
-  color: var(--color-primary-4);
-  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   min-width: 300px;
   max-width: 310px;
-  border-radius: 4px;
-  position: absolute;
+
+  background-color: var(--color-background);
+  color: var(--color-primary-4);
+  box-sizing: border-box;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
-  text-rendering: optimizeLegibility !important;
   border: 3px solid #8f98eb;
-  /* transition: 0.2s; */
+  border-radius: 4px;
 
   :hover {
     border: 4px solid #191970;
-  }
-
-  [contenteditable='true'] {
-    text-overflow: ellipsis;
   }
 `;
 
@@ -160,7 +154,6 @@ export const Description = styled.section`
   max-height: 90px;
   padding: 5px;
   overflow: hidden;
-  text-rendering: optimizeLegibility !important;
 
   div p {
     display: block;
@@ -176,7 +169,6 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-rendering: optimizeLegibility !important;
   }
 `;
 
@@ -202,7 +194,6 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-rendering: optimizeLegibility !important;
 `;
 
 export const CardFooter = styled.div`
@@ -226,6 +217,8 @@ export const CardData = styled.div`
   height: min-content;
   padding: 4px 6px;
   margin-left: auto;
+  min-width: 90px;
+  min-height: 18px;
 
   span {
     font-weight: bold;
@@ -246,7 +239,6 @@ export const CardButton = styled.button`
   position: absolute;
   top: 95%;
   transition: 0.2s;
-  text-rendering: optimizeLegibility !important;
   :hover {
     color: var(--complement-color-2);
     font-weight: 900;
@@ -302,4 +294,11 @@ export const ConnectCardLeft = styled.button<{ active: any }>`
   border-right: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
   cursor: pointer;
   background: transparent;
+`;
+
+export const FastCard = styled.div`
+  position: absolute;
+  z-index: 999999999;
+  top: 186px;
+  left: 0;
 `;

@@ -29,9 +29,7 @@ export const getBoardsAPI = ({
     .get(`users/${user.id}/boards`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        // console.error(`getBoardsAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        // console.warn(`getBoardsAPI ==> Status: ${response.status}`);
         if (response.data.length === 0) {
           dispatch(createBoardAPI(defaultBoard, token, user, history));
         }
@@ -40,9 +38,6 @@ export const getBoardsAPI = ({
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      // console.log(
-      // `getBoardsAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      // );
     });
 };
 
@@ -111,7 +106,6 @@ export const createBoardAPI = (
   user: Interface.UserInterface,
   history: History<LocationState>
 ): ThunkAction<void, RootStoreType, unknown, Interface.CreateBoardAction> => (dispatch) => {
-  console.log(board, user);
   api
     .post(`/users/${user.id}/boards`, board, createHeader(token))
     .then((response) => {
