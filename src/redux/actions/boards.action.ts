@@ -106,7 +106,6 @@ export const createBoardAPI = (
   user: Interface.UserInterface,
   history: History<LocationState>
 ): ThunkAction<void, RootStoreType, unknown, Interface.CreateBoardAction> => (dispatch) => {
-  console.log(board, user);
   api
     .post(`/users/${user.id}/boards`, board, createHeader(token))
     .then((response) => {

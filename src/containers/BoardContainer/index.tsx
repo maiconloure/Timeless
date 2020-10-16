@@ -9,6 +9,7 @@ import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/b
 import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
 import { defaultCard, defaultBoard } from '../../utils/defaults-json-cards';
+import { background } from '../../utils/importAll';
 import { BoardContainerProps } from '../ContainerInterface';
 
 const BoardContainer = ({ history }: BoardContainerProps) => {
@@ -37,7 +38,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [, setRender] = useState({});
   const [state, setState] = useState({});
   const [lines, setLines] = useState([]);
-
+  const [backgroundImage, setBackground] = useState(background.official);
   const [selectedCard, setSelectedCard] = useState({
     group: false,
     removeCard: false,
@@ -54,34 +55,6 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
 
   const forceRerender = () => setRender(Math.random());
   const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
-
-  // useEffect(() => {
-  //   console.log(`status: `, status);
-  // }, [status]);
-  // useEffect(() => {
-  //   console.log(`user:`, user);
-  // }, [user]);
-  // useEffect(() => {
-  //   console.log(`token: `, token);
-  // }, [token]);
-  // useEffect(() => {
-  //   console.log(`currentBoard:`, currentBoard);
-  // }, [currentBoard]);
-
-  // useEffect(() => {
-  //   console.log(`cards:`, cards);
-  // }, [cards]);
-
-  // useEffect(() => {
-  //   console.log(`lines:`, lines);
-  // }, [lines]);
-
-  // useEffect(() => {
-  //   console.log(
-  //     `localStorage.chosenBoards:`,
-  //     localStorage.chosenBoard && JSON.parse(localStorage.chosenBoard)
-  //   );
-  // }, [localStorage]);
 
   const defProps = {
     consoleWarning: false,
@@ -179,6 +152,8 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       state={state}
       user={user}
       token={token}
+      backgroundImage={backgroundImage}
+      setBackground={setBackground}
     />
   ) : (
     <Board
@@ -215,6 +190,8 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       state={state}
       user={user}
       token={token}
+      backgroundImage={backgroundImage}
+      setBackground={setBackground}
     />
   );
 };

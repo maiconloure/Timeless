@@ -37,8 +37,6 @@ const BacklogCardContainer = ({
   const [currentTime, setCurrentTime] = useState(currentCard.data.time.done.hour);
   const avatar = [{ image: user.image, user: user.name }];
 
-  console.log(currentDate);
-
   const getTags = (evt: any) => {
     setCurrentTags(evt.currentTarget.value);
   };

@@ -16,6 +16,8 @@ const Register = ({
   handleChangeName,
   handleChangeEmail,
   handleChangePassword,
+  switchText,
+  setSwitchText,
 }: RegisterProps) => (
   <>
     <St.RegisterArea>
@@ -36,7 +38,7 @@ const Register = ({
           </Button>
         ) : (
           <St.Return onClick={() => setHandleForm(false)}>
-            <img src={icons.return} alt="return-icon" />
+            <p>Voltar</p>
           </St.Return>
         )}
 
@@ -97,13 +99,15 @@ const Register = ({
       <St.ModalBackground>
         <PageTransition>
           <St.RegisterModal>
-            <St.ReturnModal onClick={() => setHandleForm(false)}>
-              <img src={icons.return} alt="return-icon" />
-            </St.ReturnModal>
-
-            <St.Text>
-              <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
-            </St.Text>
+            {!switchText ? (
+              <St.Text>
+                <h3>Comece hoje mesmo, a gerenciar seu tempo ou equipe.</h3>
+              </St.Text>
+            ) : (
+              <St.Text>
+                <h3>Aproveite 3 meses grátis!</h3>
+              </St.Text>
+            )}
 
             <St.Form onSubmit={handleSubmit(OnFinishRegister)}>
               <St.RegForm>
@@ -149,6 +153,10 @@ const Register = ({
                   onClick={handleSubmit(OnFinishRegister)}>
                   Começar
                 </Button>
+
+                <St.ReturnModal onClick={() => setHandleForm(false)}>
+                  <p>Voltar</p>
+                </St.ReturnModal>
               </St.RegForm>
             </St.Form>
           </St.RegisterModal>

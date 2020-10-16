@@ -43,7 +43,6 @@ const DefaultCardContainer = ({
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const [showWarning, setShowWarning] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(card.data.fastCard);
   const [title, setTitle] = useState(
     card.data.fastCard ? card.data.fastCard.title : fastCard.fastCard.title
   );

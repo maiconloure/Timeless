@@ -114,7 +114,6 @@ const CreationMenuContainer = ({
   };
 
   const desconnectArrowButton = () => {
-    console.log(lines);
     if (lines.length >= 1) {
       const remLines = [...lines];
       remLines.pop();
