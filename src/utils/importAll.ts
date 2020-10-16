@@ -1,10 +1,3 @@
-// interface importAllImagesProps {
-//   keys: () => string[];
-//   match?: (file: RegExp) => string;
-// }
-
-// type importAllProps = typeof require.context;
-
 const importAllImages = (res: any) => {
   const rKeys = res.keys().map((file: string) => {
     if (file) {
@@ -15,7 +8,6 @@ const importAllImages = (res: any) => {
     }
   });
   const rValues = res.keys().map(res);
-
   const result: { [key: string]: string } = {};
   rKeys.forEach((key: string, i: string) => (result[key] = rValues[i]));
   return result;

@@ -42,6 +42,13 @@ const DefaultCardContainer = ({
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const [showWarning, setShowWarning] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(true);
+    }, 100);
+  }, []);
 
   useEffect(() => {
     x.set(card.position.x);
@@ -51,7 +58,6 @@ const DefaultCardContainer = ({
 
   const onDragEndFunction = () => {
     forceRerender();
-
     dispatch(
       updateCardAPI({
         card: {
@@ -68,12 +74,6 @@ const DefaultCardContainer = ({
   };
 
   const handleCheckBox = (evt: any) => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
     if (evt.target.checked) {
       dispatch(
         updateBoardAPI({
@@ -82,7 +82,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} terminou o cartão ${card.data.title}, ${curr_hour}`,
+                `${user.name} terminou o cartão ${card.data.title}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -95,47 +95,25 @@ const DefaultCardContainer = ({
   };
 
   const removeCard = () => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
+    setLines([...lines.filter((line: any) => line.ids && line.ids.includes(card.id))]);
     dispatch(
       updateBoardAPI({
         board: {
           ...currentBoard,
-          connections: [
-            lines.filter((line: any) => {
-              if (line.ids && !line.ids.includes(card.id)) {
-                return line;
-              } else {
-                return false;
-              }
-            }),
-          ],
+          connections: [...lines.filter((line: any) => line.ids && line.ids.includes(card.id))],
           data: {
             ...currentBoard.data,
-            notifications: [
-              `${user.name} removeu um cartão, ${curr_hour}`,
-              ...currentBoard.data.notifications,
-            ],
+            notifications: [`${user.name} removeu um cartão.`, ...currentBoard.data.notifications],
           },
         },
         token,
         history,
       })
     );
-
     dispatch(deleteCardAPI({ card, token, history }));
   };
 
   const creationCard = () => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
     dispatch(
       updateBoardAPI({
         board: {
@@ -143,7 +121,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} criou um cartão rápido, ${curr_hour}`,
+              `${user.name} criou um cartão rápido.`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -152,7 +130,6 @@ const DefaultCardContainer = ({
         history,
       })
     );
-
     dispatch(
       updateCardAPI({
         token,
@@ -163,12 +140,6 @@ const DefaultCardContainer = ({
   };
 
   const blockCard = (res: boolean) => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
     dispatch(
       updateBoardAPI({
         board: {
@@ -176,9 +147,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} ${res ? 'bloqueou' : 'desbloqueou'} o cartão ${
-                card.data.title
-              }, ${curr_hour}`,
+              `${user.name} ${res ? 'bloqueou' : 'desbloqueou'} o cartão ${card.data.title}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -187,7 +156,6 @@ const DefaultCardContainer = ({
         history,
       })
     );
-
     dispatch(
       updateCardAPI({
         card: {
@@ -208,11 +176,6 @@ const DefaultCardContainer = ({
   };
 
   const followCard = (res: boolean) => {
-    const date = new Date();
-    const curr_hour = `${date
-      .getHours()
-      .toString()
-      .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
     dispatch(
       updateBoardAPI({
         board: {
@@ -220,9 +183,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão  ${
-                card.data.title
-              }, ${curr_hour}`,
+              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão ${card.data.title}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -250,9 +211,7 @@ const DefaultCardContainer = ({
     } else if (card.id === cardOne) {
       setCardOne(false);
       setCardSelected(false);
-    } else if (card.id === cardTwo) {
-      setCardTwo(false);
-    } else if (!cardTwo) {
+    } else if (!cardTwo && cardOne) {
       setCardTwo(card.id);
       if (!confirmConnection) {
         setconfirmConnection(true);
@@ -262,53 +221,45 @@ const DefaultCardContainer = ({
 
   useEffect(() => {
     if (confirmConnection) {
-      if (cardOne && cardTwo) {
-        setLines([
-          ...lines,
-          {
-            ids: [cardOne, cardTwo],
-            start: `card${cardOne}`,
-            end: `card${cardTwo}`,
-            headSize: 4,
-            strokeWidth: 6,
-          },
-        ]);
-        const date = new Date();
-        const curr_hour = `${date
-          .getHours()
-          .toString()
-          .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-        dispatch(
-          updateBoardAPI({
-            board: {
-              ...currentBoard,
-              connections: [
-                ...lines,
-                {
-                  ids: [cardOne, cardTwo],
-                  start: `card${cardOne}`,
-                  end: `card${cardTwo}`,
-                  headSize: 4,
-                  strokeWidth: 10,
-                },
-              ],
-              data: {
-                ...currentBoard.data,
-                notifications: [
-                  `${user.name} conectou dois cartões, ${curr_hour}`,
-                  ...currentBoard.data.notifications,
-                ],
+      setLines([
+        ...lines,
+        {
+          ids: [cardOne, cardTwo],
+          start: `card${cardOne}`,
+          end: `card${cardTwo}`,
+          headSize: 4,
+        },
+      ]);
+      dispatch(
+        updateBoardAPI({
+          board: {
+            ...currentBoard,
+            connections: [
+              ...lines,
+              {
+                ids: [cardOne, cardTwo],
+                start: `card${cardOne}`,
+                end: `card${cardTwo}`,
+                headSize: 4,
+                strokeWidth: 10,
               },
+            ],
+            data: {
+              ...currentBoard.data,
+              notifications: [
+                `${user.name} conectou dois cartões`,
+                ...currentBoard.data.notifications,
+              ],
             },
-            token,
-            history,
-          })
-        );
-        setconfirmConnection(false);
-        setCardSelected(false);
-        setCardOne(false);
-        setCardTwo(false);
-      }
+          },
+          token,
+          history,
+        })
+      );
+      setconfirmConnection(false);
+      setCardSelected(false);
+      setCardOne(false);
+      setCardTwo(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confirmConnection]);
@@ -339,6 +290,7 @@ const DefaultCardContainer = ({
       handleConnection={handleConnection}
       cardOne={cardOne}
       cardTwo={cardTwo}
+      loading={loading}
     />
   ) : (
     <CardMobile
@@ -366,6 +318,7 @@ const DefaultCardContainer = ({
       handleConnection={handleConnection}
       cardOne={cardOne}
       cardTwo={cardTwo}
+      loading={loading}
     />
   );
 };

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, PasswordInput, Button } from 'capstone-project';
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 
 import { LoginProps } from '../../PageInterface';
 import * as St from '../styled';

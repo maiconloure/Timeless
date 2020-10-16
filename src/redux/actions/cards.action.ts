@@ -28,16 +28,11 @@ export const updateCardAPI = ({
     .put(`/cards/${card.id}`, card, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        // console.error(`updateCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        // console.warn(`updateCardAPI ==> Status: ${response.status}`);
       }
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      // console.error(
-      // `updateCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      // );
     });
 };
 
@@ -54,22 +49,16 @@ export const createCardAPI = ({
   Interface.CreateCardAction
 > => (dispatch) => {
   const newCard = { ...card, boardId: currentBoard.id };
-  console.log(newCard);
   api
     .post(`/users/${user.id}/cards`, newCard, createHeader(token))
     .then((response) => {
       if (response.status !== 201) {
-        // console.error(`createCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        // console.warn(`createCardAPI ==> Status: ${response.status}`);
         dispatch(createCard(response.data));
       }
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      // console.error(
-      // `createCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      // );
     });
 };
 
@@ -88,16 +77,11 @@ export const deleteCardAPI = ({
     .delete(`/cards/${card.id}`, createHeader(token))
     .then((response) => {
       if (response.status !== 200) {
-        // console.error(`deleteCardAPI ==> ERROR: ${response.data} Status: ${response.status}`);
       } else {
-        // console.warn(`updateCardAPI ==> Status: ${response.status}`);
       }
     })
     .catch((error) => {
       dispatch(expiredSession({ error, history }));
-      // console.error(
-      // `deleteCardAPI ==> ERROR: ${error.response.data} Status: ${error.response.status}`
-      // );
     });
 };
 

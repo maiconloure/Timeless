@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 export const CardContainer = styled(motion.div)`
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 1px;
+  height: 1px;
   z-index: 1;
 
   &:active {
@@ -48,29 +48,26 @@ export const Editable = styled.div<{ blocked: boolean }>`
 `;
 
 export const MotionBox = styled(motion.div)`
-  /* position: relative; */
+  position: relative;
 `;
 
 export const Card = styled(motion.div)`
-  background-color: var(--color-background);
-  color: var(--color-primary-4);
-  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   min-width: 300px;
   max-width: 310px;
-  border-radius: 4px;
-  position: absolute;
+
+  background-color: var(--color-background);
+  color: var(--color-primary-4);
+  box-sizing: border-box;
   box-shadow: 1px 1px 16px 4px rgba(25, 25, 112, 0.3);
-  text-rendering: optimizeLegibility !important;
   border: 3px solid #8f98eb;
-  /* transition: 0.2s; */
+  border-radius: 4px;
 
   :hover {
     border: 4px solid #191970;
-  }
-
-  [contenteditable='true'] {
-    text-overflow: ellipsis;
   }
 `;
 

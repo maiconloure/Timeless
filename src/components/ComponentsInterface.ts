@@ -52,6 +52,7 @@ export interface DefaultCardProps {
   handleConnection: any;
   cardOne: any;
   cardTwo: any;
+  loading: any;
 }
 
 export interface EditBoardModalProps {

@@ -25,7 +25,7 @@ const expiredSession = ({
     setTimeout(() => {
       localStorage.clear();
       history.push('/');
-    }, 5000);
+    }, 3200);
   }
 };
 

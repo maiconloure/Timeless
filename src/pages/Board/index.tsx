@@ -100,6 +100,7 @@ const Board = ({
               setLines={setLines}
             />
           </St.SideMenuContainer>
+
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
@@ -131,19 +132,22 @@ const Board = ({
               />
             </React.Fragment>
           ))}
-          {lines.length >= 1 &&
-            lines.map((line: any, i: number) => (
-              <div id={`line${i}`} key={i}>
-                {line.start && line.end && (
-                  <Xarrow
-                    start={line.start}
-                    end={line.end}
-                    strokeWidth={8}
-                    {...{ ...defProps, ...state }}
-                  />
-                )}
-              </div>
-            ))}
+          <PageTransition>
+            {lines.length >= 1 &&
+              lines.map((line: any, i: number) => (
+                <div id={`line${i}`} key={i}>
+                  {line.start && line.end && (
+                    <Xarrow
+                      start={line.start}
+                      end={line.end}
+                      strokeWidth={8}
+                      {...{ ...defProps, ...state }}
+                    />
+                  )}
+                </div>
+              ))}
+          </PageTransition>
+
           {currentCard.data && showEditCard && (
             <St.EditCard
               style={{

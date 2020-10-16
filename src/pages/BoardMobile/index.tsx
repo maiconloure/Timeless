@@ -1,8 +1,8 @@
+import * as Container from 'containers';
 import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';
 
 import { FeedbackButton } from '../../components';
-import * as Container from '../../containers';
 import * as Interface from '../../redux/actions/interface.action';
 import { icons } from '../../utils/importAll';
 import 'react-toastify/dist/ReactToastify.css';
@@ -146,7 +146,7 @@ const Board = ({
             data={{ showEditCard, setShowEditCard, currentCard, user }}
           />
         </St.EditCard>
-      )}{' '}
+      )}
     </St.MobileMapCards>
   </>
 );
