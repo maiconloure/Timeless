@@ -48,7 +48,9 @@ const removeCard = {
 describe('Snapshot', () => {
   it('renderer', () => {
     const tree = renderer
-      .create(<DefaultCard card={{ data }} user={{ image }} selectedCard={{ removeCard }} />)
+      .create(
+        <DefaultCard card={{ data }} user={{ image }} selectedCard={{ removeCard }} fastCard={{}} />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

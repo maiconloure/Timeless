@@ -18,7 +18,8 @@ exports[`Snapshot renders 1`] = `
         </p>
       </div>
       <textarea
-        className="sc-dlnjPT bBHxEE"
+        className="sc-dlnjPT gIJSHY"
+        onChange={[Function]}
       />
     </div>
     <div
@@ -32,11 +33,10 @@ exports[`Snapshot renders 1`] = `
         >
           ETIQUETAS
         </h2>
-        <div
-          className="sc-pNWxx gNfIoO"
-        >
-          #Sprint1
-        </div>
+        <input
+          className="sc-pNWxx cLHdFW"
+          onChange={[Function]}
+        />
         <div
           className="sc-jrsJCI fFunpv"
         >
@@ -48,17 +48,18 @@ exports[`Snapshot renders 1`] = `
           <span>
             Tempo Execução
              
-            <strong
-              contentEditable="true"
+            <input
+              name="time"
+              onChange={[Function]}
               style={
                 Object {
-                  "color": "red",
+                  "fontSize": "1rem",
+                  "width": "90px",
                 }
               }
-              suppressContentEditableWarning={true}
-            >
-              00:00
-            </strong>
+              type="time"
+              value={Object {}}
+            />
           </span>
         </div>
         <div
@@ -71,6 +72,18 @@ exports[`Snapshot renders 1`] = `
           />
           <span>
             Data Entrega
+            <input
+              name="date"
+              onChange={[Function]}
+              style={
+                Object {
+                  "fontSize": "1rem",
+                  "width": "90px",
+                }
+              }
+              type="date"
+              value=""
+            />
           </span>
         </div>
       </div>
@@ -83,7 +96,7 @@ exports[`Snapshot renders 1`] = `
           AÇÕES
         </h2>
         <div
-          className="sc-crzoUp gvAPeb"
+          className="sc-crzoUp fJKmkt"
         >
           <img
             alt="Ícone de Porta"
@@ -95,7 +108,8 @@ exports[`Snapshot renders 1`] = `
           </span>
         </div>
         <div
-          className="sc-crzoUp gvAPeb"
+          className="sc-crzoUp fJKmkt"
+          onClick={[Function]}
         >
           <img
             alt="Ícone de Copiar"
@@ -103,16 +117,16 @@ exports[`Snapshot renders 1`] = `
             onClick={[Function]}
           />
           <span>
-            Copiar
+            Duplicar
           </span>
         </div>
         <div
-          className="sc-crzoUp gvAPeb"
+          className="sc-crzoUp fJKmkt"
+          onClick={[Function]}
         >
           <img
             alt="Ícone de Excluir"
             className="sc-dIsAE gAEsSU"
-            onClick={[Function]}
           />
           <span>
             Excluir

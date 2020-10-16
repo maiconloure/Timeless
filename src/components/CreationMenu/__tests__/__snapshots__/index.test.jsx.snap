@@ -2,7 +2,7 @@
 
 exports[`Snapshot renders 1`] = `
 <div
-  className="sc-bdnylx gtOhYI"
+  className="sc-bdnylx jCzfi"
 >
   <div
     className="sc-hKFyIo gnBfdK"
@@ -24,19 +24,6 @@ exports[`Snapshot renders 1`] = `
     <div
       className="sc-eCApGN foPsUL"
     >
-      <div
-        className="tooltip"
-      >
-        <img
-          alt="group"
-          id="group"
-        />
-        <span
-          className="tooltiptext"
-        >
-          Agrupar cartões
-        </span>
-      </div>
       <div
         className="tooltip"
       >
@@ -91,19 +78,6 @@ exports[`Snapshot renders 1`] = `
     <div
       className="sc-eCApGN foPsUL"
     >
-      <div
-        className="tooltip"
-      >
-        <img
-          alt="text"
-          id="addText"
-        />
-        <span
-          className="tooltiptext"
-        >
-          Adicionar Texto
-        </span>
-      </div>
       <div
         className="tooltip"
       >

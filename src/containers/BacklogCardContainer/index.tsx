@@ -147,6 +147,13 @@ const BacklogCardContainer = ({
     }, 500);
   };
 
+  const FormataStringData = (data: any) => {
+    var dia = data.split('/')[0];
+    var mes = data.split('/')[1];
+    var ano = data.split('/')[2];
+    return ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2);
+  };
+
   return (
     <EditCardContainer drag dragMomentum={false}>
       <CardLeandro
@@ -179,6 +186,7 @@ const BacklogCardContainer = ({
           currentTime={currentTime}
           removeCard={removeCard}
           duplicateCard={duplicateCard}
+          FormataStringData={FormataStringData}
         />
       </CardLeandro>
     </EditCardContainer>

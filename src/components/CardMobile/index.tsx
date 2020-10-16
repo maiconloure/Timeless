@@ -8,13 +8,7 @@ import * as St from './styled';
 const CardMobile = ({
   card,
   user,
-  showEditCard,
-  setCurrentCard,
-  setShowEditCard,
-  onDragEndFunction,
   showMobileMenu,
-  x,
-  y,
   showWarning,
   setShowWarning,
   selectedCard,
@@ -23,13 +17,8 @@ const CardMobile = ({
   creationCard,
   DoubleClick,
   className,
-  id,
   blockCard,
   followCard,
-  forceRerender,
-  handleConnection,
-  cardOne,
-  cardTwo,
   fastCard: { title, setTitle, subtitle, setSubtitle, time, setTime, saveFastCard },
 }: DefaultCardProps) => (
   <St.CardContainer
