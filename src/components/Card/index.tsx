@@ -88,7 +88,7 @@ const DefaultCard = ({
 
                   <St.TimeExec>
                     <div className="tooltip">
-                      <span>{card.data.time.start.date}</span>
+                      <span>{card.data.time.done.hour}</span>
                       <span className="tooltiptext">Tempo Estimado</span>
                     </div>
                   </St.TimeExec>
@@ -130,7 +130,6 @@ const DefaultCard = ({
               {selectedCard.connect && (
                 <>
                   <St.ConnectCardRight active={card.id === cardOne} onClick={handleConnection} />
-                  {/* <St.ConnectCardLeft active={card.id === cardOne} onClick={handleConnection} /> */}
                 </>
               )}
 

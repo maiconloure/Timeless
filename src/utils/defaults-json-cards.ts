@@ -22,7 +22,7 @@ export const defaultCard = {
     connected: [],
     followers: [],
     blocked: false,
-    title: 'Titulo do Cartão',
+    title: 'Titulo do card',
     time: {
       finish: {
         date: '00/00/00',
@@ -37,10 +37,10 @@ export const defaultCard = {
         hour: '00:00',
       },
     },
-    description: 'Coloque aqui um descrição.',
+    description: 'Coloque aqui a sua descrição.',
     tags: [
       {
-        color: '#000',
+        color: '#014D82',
         text: '#tags',
       },
     ],

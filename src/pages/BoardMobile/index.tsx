@@ -43,6 +43,7 @@ const Board = ({
   defProps,
   state,
   user,
+  token,
 }: BoardProps) => (
   <>
     <St.Notification>
@@ -67,6 +68,8 @@ const Board = ({
         setShowBoardModal,
       }}
       history={history}
+      lines={lines}
+      setLines={setLines}
     />
     <St.MobileContainer className={showMobileMenu ? 'open' : 'close'}>
       {showMobileMenu && (
@@ -144,6 +147,10 @@ const Board = ({
           className="CardContainer">
           <Container.BacklogCardContainer
             data={{ showEditCard, setShowEditCard, currentCard, user }}
+            lines={lines}
+            setLines={setLines}
+            token={token}
+            history={history}
           />
         </St.EditCard>
       )}

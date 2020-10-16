@@ -223,6 +223,8 @@ export const CardData = styled.div`
   height: min-content;
   padding: 4px 6px;
   margin-left: auto;
+  min-width: 90px;
+  min-height: 18px;
 
   span {
     font-weight: bold;

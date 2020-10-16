@@ -45,6 +45,7 @@ const Board = ({
   defProps,
   state,
   user,
+  token,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
@@ -82,6 +83,8 @@ const Board = ({
           setShowBoardModal,
         }}
         history={history}
+        lines={lines}
+        setLines={setLines}
       />
 
       <St.DragScroll
@@ -157,6 +160,10 @@ const Board = ({
               className="CardContainer">
               <Container.BacklogCardContainer
                 data={{ showEditCard, setShowEditCard, currentCard, user }}
+                lines={lines}
+                setLines={setLines}
+                token={token}
+                history={history}
               />
             </St.EditCard>
           )}

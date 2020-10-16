@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMotionValue, motion } from 'framer-motion';
-import React, { RefObject, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Card, CardMobile } from '../../components';
@@ -95,12 +95,12 @@ const DefaultCardContainer = ({
   };
 
   const removeCard = () => {
-    setLines([...lines.filter((line: any) => line.ids && line.ids.includes(card.id))]);
+    setLines([...lines.filter((line: any) => line.ids && !line.ids.includes(card.id))]);
     dispatch(
       updateBoardAPI({
         board: {
           ...currentBoard,
-          connections: [...lines.filter((line: any) => line.ids && line.ids.includes(card.id))],
+          connections: [...lines.filter((line: any) => line.ids && !line.ids.includes(card.id))],
           data: {
             ...currentBoard.data,
             notifications: [`${user.name} removeu um cartão.`, ...currentBoard.data.notifications],
@@ -241,7 +241,6 @@ const DefaultCardContainer = ({
                 start: `card${cardOne}`,
                 end: `card${cardTwo}`,
                 headSize: 4,
-                strokeWidth: 10,
               },
             ],
             data: {

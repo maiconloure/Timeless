@@ -6,8 +6,9 @@ import { toast } from 'react-toastify';
 import Board from '../../pages/Board';
 import BoardMobile from '../../pages/BoardMobile';
 import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/boards.action';
+import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultCard } from '../../utils/defaults-json-cards';
+import { defaultCard, defaultBoard } from '../../utils/defaults-json-cards';
 import { BoardContainerProps } from '../ContainerInterface';
 
 const BoardContainer = ({ history }: BoardContainerProps) => {
@@ -17,6 +18,10 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
+  const boards = useSelector((state: RootStoreType) => state.boards.boards);
+  const [selectedBoard, setSelectedBoard] = useState<
+    Interface.UserBoards | Interface.CreateUserBoards
+  >(defaultBoard);
 
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -50,33 +55,33 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const forceRerender = () => setRender(Math.random());
   const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
 
-  useEffect(() => {
-    console.log(`status: `, status);
-  }, [status]);
-  useEffect(() => {
-    console.log(`user:`, user);
-  }, [user]);
-  useEffect(() => {
-    console.log(`token: `, token);
-  }, [token]);
-  useEffect(() => {
-    console.log(`currentBoard:`, currentBoard);
-  }, [currentBoard]);
+  // useEffect(() => {
+  //   console.log(`status: `, status);
+  // }, [status]);
+  // useEffect(() => {
+  //   console.log(`user:`, user);
+  // }, [user]);
+  // useEffect(() => {
+  //   console.log(`token: `, token);
+  // }, [token]);
+  // useEffect(() => {
+  //   console.log(`currentBoard:`, currentBoard);
+  // }, [currentBoard]);
 
-  useEffect(() => {
-    console.log(`cards:`, cards);
-  }, [cards]);
+  // useEffect(() => {
+  //   console.log(`cards:`, cards);
+  // }, [cards]);
 
-  useEffect(() => {
-    console.log(`lines:`, lines);
-  }, [lines]);
+  // useEffect(() => {
+  //   console.log(`lines:`, lines);
+  // }, [lines]);
 
-  useEffect(() => {
-    console.log(
-      `localStorage.chosenBoards:`,
-      localStorage.chosenBoard && JSON.parse(localStorage.chosenBoard)
-    );
-  }, [localStorage]);
+  // useEffect(() => {
+  //   console.log(
+  //     `localStorage.chosenBoards:`,
+  //     localStorage.chosenBoard && JSON.parse(localStorage.chosenBoard)
+  //   );
+  // }, [localStorage]);
 
   const defProps = {
     consoleWarning: false,
@@ -89,25 +94,23 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   };
 
   useEffect(() => {
-    console.log(user, token);
+    dispatch(getBoardsAPI({ user, token, history }));
     if (user && token) {
       dispatch(getBoardsAPI({ user, token, history }));
     }
     setTimeout(() => {
       dispatch(getBoardsAPI({ user, token, history }));
-    }, 400);
+    }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, token]);
 
   useEffect(() => {
     if (currentBoard.connections && lines.length < 1) {
-      console.log('PRIMEIRO SETLINE');
       setLines(currentBoard.connections);
     } else if (currentBoard && currentBoard.connections && lines.length > 1) {
-      console.log('SEGUNDO SETLINE');
       setLines(currentBoard.connections);
     }
-  }, [currentBoard, cards]);
+  }, [currentBoard, cards, boards, selectedBoard]);
 
   useEffect(() => {
     if (localStorage.service === undefined || !localStorage.service) {
@@ -175,6 +178,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       defProps={defProps}
       state={state}
       user={user}
+      token={token}
     />
   ) : (
     <Board
@@ -210,6 +214,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       defProps={defProps}
       state={state}
       user={user}
+      token={token}
     />
   );
 };

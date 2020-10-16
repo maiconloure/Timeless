@@ -104,4 +104,5 @@ export interface BoardProps {
   defProps: any;
   state: any;
   user: any;
+  token: any;
 }

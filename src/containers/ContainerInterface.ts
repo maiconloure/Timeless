@@ -15,6 +15,10 @@ export interface BacklogCardProps {
     currentCard: any;
     user: any;
   };
+  lines: any;
+  setLines: any;
+  token: any;
+  history: any;
 }
 
 export interface BoardContainerProps {
@@ -89,6 +93,8 @@ export interface EditBoardModalContainerProps {
     setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
   };
   history: History<LocationState>;
+  lines: any;
+  setLines: any;
 }
 
 export interface EditUserModalContainerProps {

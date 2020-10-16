@@ -117,7 +117,7 @@ export const LabelTitle = styled.h2`
   margin-bottom: 4px;
 `;
 
-export const IdLabel = styled.div`
+export const IdLabel = styled.input`
   width: 100%;
   background-color: #8b62fc;
   color: white;
@@ -128,6 +128,8 @@ export const IdLabel = styled.div`
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 8px;
+  border: none;
+  outline: none;
 `;
 
 export const HourglassLabel = styled.div`
@@ -190,6 +192,7 @@ export const ActionLabels = styled.div`
   color: #014d82;
   border-radius: 0px 8px 8px 0px;
   padding: 4px;
+  cursor: pointer;
 
   font-family: 'Inter', sans-serif;
   font-size: 1.4rem;

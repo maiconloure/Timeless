@@ -2,29 +2,46 @@
 import { CardLeandro } from 'capstone-project';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { EditCardModal } from '../../components';
+import { updateBoardAPI } from '../../redux/actions/boards.action';
+import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
+import { RootStoreType } from '../../redux/store/store';
 import { icons } from '../../utils/importAll';
 import { BacklogCardProps } from '../ContainerInterface';
 
 const BacklogCardContainer = ({
   usersArray = [{ image: icons.user1, user: '' }],
   data: { showEditCard, setShowEditCard, currentCard, user },
+  lines,
+  setLines,
+  token,
+  history,
 }: BacklogCardProps) => {
+  const dispatch = useDispatch();
+  const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
+
+  const [currentTags, setCurrentTags] = useState(
+    currentCard.data.tags && currentCard.data.tags[0].text
+  );
+
   const [currentDescription, setCurrentDescription] = useState(
     currentCard.data.description && currentCard.data.description
   );
   const [currentTitle, setCurrentTitle] = useState(
     currentCard.data.title && currentCard.data.title
   );
-  const [currentDate, setCurrentDate] = useState(
-    currentCard.data.finish && currentCard.data.time.finish
-  );
-  const [currentTime, setCurrentTime] = useState(
-    currentCard.data.done && currentCard.data.time.done
-  );
+  const [currentDate, setCurrentDate] = useState(currentCard.data.time.finish.date);
+  const [currentTime, setCurrentTime] = useState(currentCard.data.time.done.hour);
   const avatar = [{ image: user.image, user: user.name }];
+
+  console.log(currentDate);
+
+  const getTags = (evt: any) => {
+    setCurrentTags(evt.currentTarget.value);
+  };
 
   const getDescription = (evt: any) => {
     setCurrentDescription(evt.currentTarget.value);
@@ -40,6 +57,96 @@ const BacklogCardContainer = ({
 
   const getTime = (evt: any) => {
     setCurrentTime(evt.currentTarget.value);
+  };
+  const duplicateCard = () => {
+    const random = () => Math.random() * (500 - 100) + 100;
+    dispatch(
+      createCardAPI({
+        currentBoard,
+        token,
+        user,
+        card: {
+          ...currentCard,
+          position: { x: random() + 300, y: random() },
+          id: Math.random() * (10000 - 100) + 100,
+        },
+        history,
+      })
+    );
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          data: {
+            ...currentBoard.data,
+            notifications: [`${user.name} duplicou um card.`, ...currentBoard.data.notifications],
+          },
+        },
+        token,
+        history,
+      })
+    );
+    setTimeout(() => {
+      setShowEditCard(!showEditCard);
+    }, 200);
+  };
+
+  const removeCard = () => {
+    setLines([...lines.filter((line: any) => line.ids && !line.ids.includes(currentCard.id))]);
+    dispatch(
+      updateBoardAPI({
+        board: {
+          ...currentBoard,
+          connections: [
+            ...lines.filter((line: any) => line.ids && !line.ids.includes(currentCard.id)),
+          ],
+          data: {
+            ...currentBoard.data,
+            notifications: [`${user.name} removeu um cartão.`, ...currentBoard.data.notifications],
+          },
+        },
+        token,
+        history,
+      })
+    );
+    dispatch(deleteCardAPI({ card: currentCard, token, history }));
+    setShowEditCard(false);
+  };
+
+  const handleEditCard = () => {
+    dispatch(
+      updateCardAPI({
+        card: {
+          ...currentCard,
+          data: {
+            ...currentCard.data,
+            tags: [{ color: '#014D82', text: currentTags }],
+            title: currentTitle,
+            description: currentDescription,
+            time: {
+              finish: {
+                date: currentDate,
+                hour: currentDate,
+              },
+              start: {
+                date: '00/00',
+                hour: '00:00',
+              },
+              done: {
+                date: currentTime,
+                hour: currentTime,
+              },
+            },
+          },
+        },
+        token,
+        history,
+      })
+    );
+
+    setTimeout(() => {
+      setShowEditCard(!showEditCard);
+    }, 500);
   };
 
   return (
@@ -57,12 +164,14 @@ const BacklogCardContainer = ({
         fontColor="#014D82"
         avatarWidth="45px"
         closeable
-        closeDataPass={[showEditCard, setShowEditCard]}
+        closeDataPass={[showEditCard, handleEditCard]}
         backgroundColor="rgba(58, 166, 242, 0.9)"
         borderDetails="none"
         titleOnChange={getTitle}>
         <EditCardModal
           user={user}
+          currentTags={currentTags}
+          getTags={getTags}
           currentCard={currentCard}
           getDescription={getDescription}
           currentDescription={currentDescription}
@@ -70,6 +179,8 @@ const BacklogCardContainer = ({
           getTime={getTime}
           currentDate={currentDate}
           currentTime={currentTime}
+          removeCard={removeCard}
+          duplicateCard={duplicateCard}
         />
       </CardLeandro>
     </EditCardContainer>
