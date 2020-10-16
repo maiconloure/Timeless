@@ -24,11 +24,11 @@ const Landing = ({
         <St.LeftMenu>
           <img onClick={() => setCurrentFrame('main')} src={icons.logo} alt="logo" />
           <St.LinksContainer>
-            {windowSize.width > 768 ? (
+            {windowSize.width > 768 && windowSize.height > 550 ? (
               <>
-                <p onClick={() => setCurrentFrame('examples')}>Exemplo</p>
-                <p onClick={() => setCurrentFrame('teams')}>Times</p>
-                <p onClick={() => setCurrentFrame('about')}>Sobre</p>
+                <p onClick={() => setCurrentFrame('examples')}> #Exemplo1</p>
+                <p onClick={() => setCurrentFrame('teams')}> #Exemplo2</p>
+                <p onClick={() => setCurrentFrame('about')}> #Exemplo3</p>
               </>
             ) : (
               <St.Welcome>
@@ -64,21 +64,21 @@ const Landing = ({
         {currentFrame === 'examples' && (
           <St.ExamplesFrame>
             <PageTransition>
-              <img src={images.blankBoard} alt="main-frame-board" />
+              <img src={images.frame1} alt="main-frame-board" />
             </PageTransition>
           </St.ExamplesFrame>
         )}
         {currentFrame === 'teams' && (
           <St.TeamFrame>
             <PageTransition>
-              <img src={images.blankBoard} alt="main-frame-board" />
+              <img src={images.frame2} alt="main-frame-board" />
             </PageTransition>
           </St.TeamFrame>
         )}
         {currentFrame === 'about' && (
           <St.AboutFrame>
             <PageTransition>
-              <img src={images.blankBoard} alt="main-frame-board" />
+              <img src={images.frame3} alt="main-frame-board" />
             </PageTransition>
           </St.AboutFrame>
         )}

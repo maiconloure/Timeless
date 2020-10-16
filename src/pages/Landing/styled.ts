@@ -577,84 +577,84 @@ export const MainFrame = styled.div`
 
 export const ExamplesFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
-      width: 700px;
+      width: 600px;
     }
   }
 
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      width: 800px;
+      width: 600px;
     }
   }
 
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
-      min-width: 1150px;
+      min-width: 900px;
     }
   }
 `;
 
 export const TeamFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
-      width: 700px;
+      width: 600px;
     }
   }
 
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      width: 800px;
+      width: 600px;
     }
   }
 
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
-      min-width: 1150px;
+      min-width: 900px;
     }
   }
 `;
 
 export const AboutFrame = styled.div`
   display: none;
-  z-index: 999;
+  z-index: 1;
   justify-content: center;
   grid-area: mainframe;
 
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
-      width: 700px;
+      width: 600px;
     }
   }
 
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      width: 800px;
+      width: 600px;
     }
   }
 
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
-      min-width: 1150px;
+      min-width: 900px;
     }
   }
 `;
