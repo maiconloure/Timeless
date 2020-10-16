@@ -53,6 +53,15 @@ export interface DefaultCardProps {
   cardOne: any;
   cardTwo: any;
   loading: any;
+  fastCard: {
+    title: any;
+    setTitle: any;
+    subtitle: any;
+    setSubtitle: any;
+    time: any;
+    setTime: any;
+    saveFastCard: any;
+  };
 }
 
 export interface EditBoardModalProps {

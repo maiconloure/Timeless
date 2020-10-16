@@ -4,7 +4,7 @@ import React from 'react';
 import { icons } from '../../utils/importAll';
 import { DefaultCardProps } from '../ComponentsInterface';
 import PageTransition from '../PageTransition';
-import FastCard from './fast-card';
+import FastCard from './FastCard';
 import * as St from './styled';
 const DefaultCard = ({
   card,
@@ -32,6 +32,7 @@ const DefaultCard = ({
   cardOne,
   cardTwo,
   loading,
+  fastCard: { title, setTitle, subtitle, setSubtitle, time, setTime, saveFastCard },
 }: DefaultCardProps) => (
   <St.CardContainer onDoubleClick={DoubleClick} className={className}>
     <St.MotionBox
@@ -51,7 +52,10 @@ const DefaultCard = ({
                     <div className="tooltip">
                       <img
                         src={icons.warning}
-                        onClick={() => setShowWarning(!showWarning)}
+                        onClick={() => {
+                          saveFastCard();
+                          setShowWarning(!showWarning);
+                        }}
                         alt="warning"
                       />
                       <span className="tooltiptext">Possui um cartão rápido</span>
@@ -133,8 +137,6 @@ const DefaultCard = ({
                 </>
               )}
 
-              {showWarning && card.data.fastCard && <FastCard fastCard={card.data.fastCard} />}
-
               {selectedCard.removeCard ? (
                 <St.CardButton onClick={removeCard}>remover</St.CardButton>
               ) : (
@@ -170,6 +172,18 @@ const DefaultCard = ({
                   </div>
                 </St.Block>
               )}
+              <St.FastCard>
+                {showWarning && card.data.fastCard && (
+                  <FastCard
+                    title={title}
+                    setTitle={setTitle}
+                    subtitle={subtitle}
+                    setSubtitle={setSubtitle}
+                    time={time}
+                    setTime={setTime}
+                  />
+                )}
+              </St.FastCard>
             </St.Editable>
           </St.Card>
         </PageTransition>

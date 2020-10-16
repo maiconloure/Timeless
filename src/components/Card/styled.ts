@@ -28,9 +28,6 @@ export const CardContainer = styled(motion.div)`
     text-align: center;
     border-radius: 3px;
     padding: 4px 8px;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
-
     /* Position the tooltip */
     position: absolute;
     z-index: 999;
@@ -157,7 +154,6 @@ export const Description = styled.section`
   max-height: 90px;
   padding: 5px;
   overflow: hidden;
-  text-rendering: optimizeLegibility !important;
 
   div p {
     display: block;
@@ -173,7 +169,6 @@ export const Description = styled.section`
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-rendering: optimizeLegibility !important;
   }
 `;
 
@@ -199,7 +194,6 @@ export const DescriptionTitle = styled.h4`
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-rendering: optimizeLegibility !important;
 `;
 
 export const CardFooter = styled.div`
@@ -245,7 +239,6 @@ export const CardButton = styled.button`
   position: absolute;
   top: 95%;
   transition: 0.2s;
-  text-rendering: optimizeLegibility !important;
   :hover {
     color: var(--complement-color-2);
     font-weight: 900;
@@ -301,4 +294,11 @@ export const ConnectCardLeft = styled.button<{ active: any }>`
   border-right: 30px solid ${({ active }) => (active ? '#FF8C00' : '#483D8B')};
   cursor: pointer;
   background: transparent;
+`;
+
+export const FastCard = styled.div`
+  position: absolute;
+  z-index: 999999999;
+  top: 186px;
+  left: 0;
 `;

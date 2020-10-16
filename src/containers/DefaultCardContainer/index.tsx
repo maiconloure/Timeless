@@ -43,6 +43,16 @@ const DefaultCardContainer = ({
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const [showWarning, setShowWarning] = useState(false);
   const [loading, setLoading] = useState(false);
+  console.log(card.data.fastCard);
+  const [title, setTitle] = useState(
+    card.data.fastCard ? card.data.fastCard.title : fastCard.fastCard.title
+  );
+  const [subtitle, setSubtitle] = useState(
+    card.data.fastCard ? card.data.fastCard.subTitle : fastCard.fastCard.subTitle
+  );
+  const [time, setTime] = useState(
+    card.data.fastCard ? card.data.fastCard.date : fastCard.fastCard.date
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -82,7 +92,7 @@ const DefaultCardContainer = ({
             data: {
               ...currentBoard.data,
               notifications: [
-                `${user.name} terminou o cartão ${card.data.title}`,
+                `${user.name} terminou o card ${card.data.title}`,
                 ...currentBoard.data.notifications,
               ],
             },
@@ -103,7 +113,7 @@ const DefaultCardContainer = ({
           connections: [...lines.filter((line: any) => line.ids && !line.ids.includes(card.id))],
           data: {
             ...currentBoard.data,
-            notifications: [`${user.name} removeu um cartão.`, ...currentBoard.data.notifications],
+            notifications: [`${user.name} removeu um card.`, ...currentBoard.data.notifications],
           },
         },
         token,
@@ -114,6 +124,9 @@ const DefaultCardContainer = ({
   };
 
   const creationCard = () => {
+    if (!showWarning) {
+      setShowWarning(true);
+    }
     dispatch(
       updateBoardAPI({
         board: {
@@ -121,7 +134,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} criou um cartão rápido.`,
+              `${user.name} criou um card rápido.`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -147,7 +160,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} ${res ? 'bloqueou' : 'desbloqueou'} o cartão ${card.data.title}`,
+              `${user.name} ${res ? 'bloqueou' : 'desbloqueou'} o card ${card.data.title}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -183,7 +196,7 @@ const DefaultCardContainer = ({
           data: {
             ...currentBoard.data,
             notifications: [
-              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o cartão ${card.data.title}`,
+              `${user.name} ${res ? 'começou a' : ' deixou de'} seguir o card ${card.data.title}`,
               ...currentBoard.data.notifications,
             ],
           },
@@ -197,6 +210,27 @@ const DefaultCardContainer = ({
         card: {
           ...card,
           data: { ...card.data, followers: res ? [{ name: user.name, id: user.id }] : [] },
+        },
+        token,
+        history,
+      })
+    );
+  };
+
+  const saveFastCard = () => {
+    dispatch(
+      updateCardAPI({
+        card: {
+          ...card,
+          data: {
+            ...card.data,
+            fastCard: {
+              title,
+              subTitle: subtitle,
+              date: time,
+              show: true,
+            },
+          },
         },
         token,
         history,
@@ -290,6 +324,7 @@ const DefaultCardContainer = ({
       cardOne={cardOne}
       cardTwo={cardTwo}
       loading={loading}
+      fastCard={{ title, setTitle, subtitle, setSubtitle, time, setTime, saveFastCard }}
     />
   ) : (
     <CardMobile
@@ -318,6 +353,7 @@ const DefaultCardContainer = ({
       cardOne={cardOne}
       cardTwo={cardTwo}
       loading={loading}
+      fastCard={{ title, setTitle, subtitle, setSubtitle, time, setTime, saveFastCard }}
     />
   );
 };

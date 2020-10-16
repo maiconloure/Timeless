@@ -42,7 +42,8 @@ export const WriteableBox = styled.textarea`
   padding: 10px;
   outline: none;
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-weight: 400 !important;
+  font-size: 1.3rem;
   width: 100%;
   height: 100%;
   min-height: 100px;
