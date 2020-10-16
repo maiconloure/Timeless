@@ -44,8 +44,8 @@ const DefaultCard = ({
       style={{ x, y }}>
       {loading && (
         <PageTransition>
-          <St.Card id={`card${card.id}`} style={{ x, y }}>
-            <St.Editable blocked={card.data.blocked}>
+          <St.Editable blocked={card.data.blocked}>
+            <St.Card id={`card${card.id}`} style={{ x, y }}>
               <St.CardInside>
                 <St.AlertImg>
                   {card.data.fastCard && card.data.fastCard.show && (
@@ -184,8 +184,8 @@ const DefaultCard = ({
                   />
                 )}
               </St.FastCard>
-            </St.Editable>
-          </St.Card>
+            </St.Card>
+          </St.Editable>
         </PageTransition>
       )}
     </St.MotionBox>
