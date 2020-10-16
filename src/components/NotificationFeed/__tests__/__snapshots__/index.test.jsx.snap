@@ -10,7 +10,7 @@ exports[`Snapshot renders component 1`] = `
     className="sc-gXfWUo cTZZDr"
   >
     <div
-      className="sc-cBoprd hXbwCO"
+      className="sc-cBoprd izdvHY"
     >
       <h2>
         Notificações recentes
@@ -30,9 +30,9 @@ exports[`Snapshot renders component 1`] = `
       className="sc-iTVIwl jiAQaA"
     >
       <p
-        className="sc-iBzFoy dvbtwq"
+        className="sc-iBzFoy aNJLg"
         color="#014D82"
-        fontSize="1.6rem"
+        fontSize="1.4rem"
       >
         Está muito parado por aqui... crie novos cartões!
       </p>

@@ -2,7 +2,6 @@ import { Input, PasswordInput, Button } from 'capstone-project';
 import React from 'react';
 
 import { PageTransition } from '../../../components';
-import { icons } from '../../../utils/importAll';
 import { RegisterProps } from '../../PageInterface';
 import * as St from '../styled';
 

@@ -1,4 +1,4 @@
-import { motion, transform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +6,6 @@ import { images, background } from '../../utils/importAll';
 
 const SidePushMenu = ({ setBackground }: any) => {
   const [lockDirection, setDirection] = useState('x');
-  const [unlock, setUnlock] = useState(false);
   useEffect(() => {
     if (lockDirection === 'y') {
       setTimeout(() => setDirection('x'), 500);

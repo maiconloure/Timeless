@@ -83,6 +83,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     } else if (currentBoard && currentBoard.connections && lines.length > 1) {
       setLines(currentBoard.connections);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBoard, cards, boards, selectedBoard]);
 
   useEffect(() => {
