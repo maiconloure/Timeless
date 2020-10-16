@@ -26,7 +26,7 @@ const FixedMenuContainer = ({
   const handleLogout = () => {
     toast.dark('Saindo... vamos sentir sua falta! 😭', {
       position: 'top-center',
-      autoClose: 2000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -54,7 +54,7 @@ const FixedMenuContainer = ({
       dispatch(clearBoard());
       dispatch(clearCards());
       dispatch(logout());
-    }, 3300);
+    }, 1600);
   };
 
   const saveChanges = () => {
@@ -67,7 +67,7 @@ const FixedMenuContainer = ({
   const handlerSaveBoard = () => {
     toast.dark('Salvando seu board...', {
       position: 'top-center',
-      autoClose: 2000,
+      autoClose: 1200,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

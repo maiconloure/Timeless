@@ -32,10 +32,10 @@ const CreationMenu = ({
       </St.SectionTitle>
 
       <St.MenuOptions selectedCard={selectedCard}>
-        <div className="tooltip">
+        {/* <div className="tooltip">
           <img id="group" src={icons.group} onClick={groupButton} alt="group" />
           <span className="tooltiptext">Agrupar cartões</span>
-        </div>
+        </div> */}
 
         <div className="tooltip">
           <img id="card" src={icons.card} onClick={createCardButton} alt="create" />
@@ -60,10 +60,10 @@ const CreationMenu = ({
       </St.SectionTitle>
 
       <St.MenuOptions selectedCard={selectedCard}>
-        <div className="tooltip">
+        {/* <div className="tooltip">
           <img id="addText" src={icons.addText} onClick={createTextButton} alt="text" />
           <span className="tooltiptext">Adicionar Texto</span>
-        </div>
+        </div> */}
 
         <div className="tooltip">
           <img id="connect" src={icons.connect} onClick={connectArrowButton} alt="connect" />

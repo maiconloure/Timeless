@@ -7,6 +7,8 @@ import { ToastContainer, Slide } from 'react-toastify';
 import Xarrow from 'react-xarrows';
 
 import { PageTransition, FeedbackButton } from '../../components';
+import MembersBox from '../../components/MembersBox';
+import SidePushMenu from '../../components/SidePushMenu';
 import * as Interface from '../../redux/actions/interface.action';
 import 'react-toastify/dist/ReactToastify.css';
 import { BoardProps } from '../PageInterface';
@@ -45,13 +47,18 @@ const Board = ({
   defProps,
   state,
   user,
+  token,
+  backgroundImage,
+  setBackground,
 }: BoardProps) => (
   <PageTransition>
     <St.Notification>
       <ToastContainer transition={Slide} />
     </St.Notification>
-    <St.BoardPage id="canvas">
+    <St.BoardPage backgroundImage={backgroundImage} id="canvas">
+      <MembersBox UserImage={user.image} />
       <FeedbackButton />
+      <SidePushMenu setBackground={setBackground} />
 
       <Container.TopBarContainer
         data={{
@@ -82,6 +89,8 @@ const Board = ({
           setShowBoardModal,
         }}
         history={history}
+        lines={lines}
+        setLines={setLines}
       />
 
       <St.DragScroll
@@ -100,6 +109,7 @@ const Board = ({
               setLines={setLines}
             />
           </St.SideMenuContainer>
+
           <St.FeedBox drag dragMomentum={false} className="FeedContainer">
             <Container.FeedContainer />
           </St.FeedBox>
@@ -131,19 +141,22 @@ const Board = ({
               />
             </React.Fragment>
           ))}
-          {lines.length >= 1 &&
-            lines.map((line: any, i: number) => (
-              <div id={`line${i}`} key={i}>
-                {line.start && line.end && (
-                  <Xarrow
-                    start={line.start}
-                    end={line.end}
-                    strokeWidth={8}
-                    {...{ ...defProps, ...state }}
-                  />
-                )}
-              </div>
-            ))}
+          <PageTransition>
+            {lines.length >= 1 &&
+              lines.map((line: any, i: number) => (
+                <div id={`line${i}`} key={i}>
+                  {line.start && line.end && (
+                    <Xarrow
+                      start={line.start}
+                      end={line.end}
+                      strokeWidth={8}
+                      {...{ ...defProps, ...state }}
+                    />
+                  )}
+                </div>
+              ))}
+          </PageTransition>
+
           {currentCard.data && showEditCard && (
             <St.EditCard
               style={{
@@ -153,6 +166,10 @@ const Board = ({
               className="CardContainer">
               <Container.BacklogCardContainer
                 data={{ showEditCard, setShowEditCard, currentCard, user }}
+                lines={lines}
+                setLines={setLines}
+                token={token}
+                history={history}
               />
             </St.EditCard>
           )}

@@ -6,8 +6,10 @@ import { toast } from 'react-toastify';
 import Board from '../../pages/Board';
 import BoardMobile from '../../pages/BoardMobile';
 import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/boards.action';
+import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultCard } from '../../utils/defaults-json-cards';
+import { defaultCard, defaultBoard } from '../../utils/defaults-json-cards';
+import { background } from '../../utils/importAll';
 import { BoardContainerProps } from '../ContainerInterface';
 
 const BoardContainer = ({ history }: BoardContainerProps) => {
@@ -17,11 +19,26 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const token = useSelector((state: RootStoreType) => state.service.token);
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
+  const boards = useSelector((state: RootStoreType) => state.boards.boards);
+  const [selectedBoard, setSelectedBoard] = useState<
+    Interface.UserBoards | Interface.CreateUserBoards
+  >(defaultBoard);
+
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showEditCard, setShowEditCard] = useState(false);
   const [showEditUser, setShowEditUser] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const [cardOne, setCardOne] = useState(false);
+  const [cardTwo, setCardTwo] = useState(false);
+  const [cardSelected, setCardSelected] = useState(false);
+  const [confirmConnection, setconfirmConnection] = useState(false);
+  const [, setRender] = useState({});
+  const [state, setState] = useState({});
+  const [lines, setLines] = useState([]);
+  const [backgroundImage, setBackground] = useState(background.official);
   const [selectedCard, setSelectedCard] = useState({
     group: false,
     removeCard: false,
@@ -35,78 +52,9 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
-
-  window.onresize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-
-  const [cardOne, setCardOne] = useState(false);
-  const [cardTwo, setCardTwo] = useState(false);
-  const [cardSelected, setCardSelected] = useState(false);
-  const [confirmConnection, setconfirmConnection] = useState(false);
-  const [, setRender] = useState({});
   const forceRerender = () => setRender(Math.random());
-  const [state, setState] = useState({});
-  const [lines, setLines] = useState([]);
-
-  useEffect(() => {
-    if (currentBoard) {
-      if (currentBoard.connections && lines.length < 1) {
-        setLines(currentBoard.connections);
-      }
-      if (currentBoard && currentBoard.connections && lines.length > 1) {
-        setLines(currentBoard.connections);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentBoard]);
-
-  useEffect(() => {
-    if (localStorage.service === undefined || !localStorage.service) {
-      history.push('/');
-    }
-  }, [history, user]);
-
-  useEffect(() => {
-    dispatch(getBoardsAPI({ user, token, history }));
-    setTimeout(() => {
-      dispatch(getBoardsAPI({ user, token, history }));
-    }, 500);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (currentBoard && currentBoard.id) {
-      dispatch(getCardsAPI(currentBoard, token, history));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentBoard, localStorage, token, history]);
-
-  useEffect(() => {
-    if (status === 440) {
-      toast.dark('Sessão expirada, redirecionando... fique tranquilo seu trabalho foi salvo!', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  }, [status]);
-
-  useEffect(() => {
-    if (!localStorage.service) {
-      history.push('/');
-    }
-  });
+  const toggleMenu = () => setShowMobileMenu(!showMobileMenu);
 
   const defProps = {
     consoleWarning: false,
@@ -116,6 +64,56 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       onMouseLeave: () => setState({}),
       cursor: 'pointer',
     },
+  };
+
+  useEffect(() => {
+    dispatch(getBoardsAPI({ user, token, history }));
+    if (user && token) {
+      dispatch(getBoardsAPI({ user, token, history }));
+    }
+    setTimeout(() => {
+      dispatch(getBoardsAPI({ user, token, history }));
+    }, 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, token]);
+
+  useEffect(() => {
+    if (currentBoard.connections && lines.length < 1) {
+      setLines(currentBoard.connections);
+    } else if (currentBoard && currentBoard.connections && lines.length > 1) {
+      setLines(currentBoard.connections);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentBoard, cards, boards, selectedBoard]);
+
+  useEffect(() => {
+    if (localStorage.service === undefined || !localStorage.service) {
+      history.push('/');
+    }
+    if (status === 440) {
+      toast.dark('Sessão expirada, redirecionando... fique tranquilo seu trabalho foi salvo!', {
+        position: 'top-center',
+        autoClose: 3200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, [history, user, status]);
+
+  useEffect(() => {
+    if (currentBoard && currentBoard.id) {
+      dispatch(getCardsAPI(currentBoard, token, history));
+    }
+  }, [dispatch, currentBoard, token, history]);
+
+  window.onresize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
   };
 
   return windowSize.width < 550 ? (
@@ -154,6 +152,9 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       defProps={defProps}
       state={state}
       user={user}
+      token={token}
+      backgroundImage={backgroundImage}
+      setBackground={setBackground}
     />
   ) : (
     <Board
@@ -189,6 +190,9 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
       defProps={defProps}
       state={state}
       user={user}
+      token={token}
+      backgroundImage={backgroundImage}
+      setBackground={setBackground}
     />
   );
 };

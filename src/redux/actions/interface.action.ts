@@ -104,10 +104,10 @@ interface DataTimeInterface {
   hour: number | string;
 }
 export interface FastCardDataInterface {
-  title?: string;
-  subTitle?: string;
-  date?: number | string;
-  show?: boolean;
+  title?: any;
+  subTitle?: any;
+  date?: any;
+  show?: any;
 }
 
 export interface CardDataInterface {

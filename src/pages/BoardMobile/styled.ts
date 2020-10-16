@@ -171,7 +171,7 @@ export const MobileMapCards = styled.div`
   overflow-x: hidden;
 
   justify-content: flex-end;
-  margin-top: 100px;
+  margin-top: 130px;
 `;
 
 export const EditCard = styled(motion.div)`

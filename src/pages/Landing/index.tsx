@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { LoginContainer, RegisterContainer } from 'containers';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';

@@ -17,6 +17,8 @@ import { EditBoardModalContainerProps } from '../ContainerInterface';
 const EditBoardModalContainer = ({
   data: { showMobileMenu, showBoardModal, showEditModal, setShowEditModal, setShowBoardModal },
   history,
+  lines,
+  setLines,
 }: EditBoardModalContainerProps) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStoreType) => state.service.user);
@@ -27,7 +29,6 @@ const EditBoardModalContainer = ({
   const [selectedBoard, setSelectedBoard] = useState<
     Interface.UserBoards | Interface.CreateUserBoards
   >(defaultBoard);
-
   const handleReturnForm = () => {
     setBoardTitle('Título do Board');
     setBoardDescription('Descrição do Board');
@@ -69,12 +70,14 @@ const EditBoardModalContainer = ({
 
   const handlerSelectBoard = (board: Interface.UserBoards) => {
     dispatch(getCardsAPI(board, token, history));
+    setLines([...board.connections]);
     setShowBoardModal(false);
   };
 
   const handlerModifyBoard = (board: Interface.UserBoards) => {
     setBoardTitle(board.title);
     setBoardDescription(board.description);
+    setLines([...board.connections]);
     setSelectedBoard(board);
     setShowEditModal(true);
   };

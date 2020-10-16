@@ -334,6 +334,11 @@ export const Return = styled.div`
     width: 65px;
   }
 
+  p {
+    font: 600 3rem Inter;
+    color: #fff;
+  }
+
   @media (min-width: 550px) and (max-height: 550px) {
     img {
       width: 65px;
@@ -732,8 +737,13 @@ export const ReturnModal = styled.div`
   &:hover {
     transform: scale(1.2);
   }
-  img {
+  /* img {
     width: 60px;
+  } */
+
+  p {
+    font: 600 2.4rem Inter;
+    color: #fff;
   }
 `;
 
@@ -751,6 +761,7 @@ export const RegisterModal = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  padding-top: 40px;
 `;
 
 export const Form = styled.form`

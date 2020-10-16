@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, ChangeEvent } from 'react';
+import React, { useEffect, ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,6 +16,7 @@ const RegisterContainer = ({
 }: RegisterContainerProps) => {
   const dispatch = useDispatch();
   const status = useSelector((state: RootStoreType) => state.service.status);
+  const [switchText, setSwitchText] = useState(false);
   const { register, unregister, handleSubmit, setValue, errors } = useForm();
 
   useEffect(() => {
@@ -82,6 +83,8 @@ const RegisterContainer = ({
       handleChangeName={handleChangeName}
       handleChangeEmail={handleChangeEmail}
       handleChangePassword={handleChangePassword}
+      switchText={switchText}
+      setSwitchText={setSwitchText}
     />
   );
 };

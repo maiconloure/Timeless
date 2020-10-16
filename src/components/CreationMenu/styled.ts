@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Menu = styled.div`
   background: #8ac0e9;
-  width: 310px;
+  width: 260px;
   max-width: 400px;
   color: #fff;
   padding-bottom: 1px;
