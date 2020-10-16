@@ -5,7 +5,7 @@ import { icons } from '../../utils/importAll';
 
 const MembersBox = ({ UserImage }: any) => (
   <MembersContainer>
-    <Icon src={UserImage} alt="member-icon" />
+    <Icon src={UserImage ? UserImage : icons.user1} alt="member-icon" />
     <Icon src={icons.user1} alt="member-icon" />
     <Icon src={icons.user2} alt="member-icon" />
   </MembersContainer>

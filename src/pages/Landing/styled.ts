@@ -584,21 +584,21 @@ export const ExamplesFrame = styled.div`
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
-      width: 700px;
+      width: 600px;
     }
   }
 
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      width: 800px;
+      width: 600px;
     }
   }
 
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
-      min-width: 1150px;
+      min-width: 900px;
     }
   }
 `;
@@ -612,21 +612,21 @@ export const TeamFrame = styled.div`
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
-      width: 700px;
+      width: 600px;
     }
   }
 
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      width: 800px;
+      width: 600px;
     }
   }
 
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
-      min-width: 1150px;
+      min-width: 900px;
     }
   }
 `;
@@ -640,21 +640,21 @@ export const AboutFrame = styled.div`
   @media (min-width: 968px) and (max-width: 1100px) {
     display: inline-grid;
     img {
-      width: 700px;
+      width: 600px;
     }
   }
 
   @media (min-height: 620px) and (min-width: 1100px) {
     display: inline-grid;
     img {
-      width: 800px;
+      width: 600px;
     }
   }
 
   @media (min-height: 768px) and (min-width: 1150px) {
     display: inline-grid;
     img {
-      min-width: 1150px;
+      min-width: 900px;
     }
   }
 `;
