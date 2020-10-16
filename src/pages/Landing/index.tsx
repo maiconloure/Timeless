@@ -24,11 +24,11 @@ const Landing = ({
         <St.LeftMenu>
           <img onClick={() => setCurrentFrame('main')} src={icons.logo} alt="logo" />
           <St.LinksContainer>
-            {windowSize.width > 768 ? (
+            {windowSize.width > 768 && windowSize.height > 550 ? (
               <>
-                <p onClick={() => setCurrentFrame('examples')}>Frame 1</p>
-                <p onClick={() => setCurrentFrame('teams')}>Frame 2</p>
-                <p onClick={() => setCurrentFrame('about')}>Frame 3</p>
+                <p onClick={() => setCurrentFrame('examples')}> #Exemplo1</p>
+                <p onClick={() => setCurrentFrame('teams')}> #Exemplo2</p>
+                <p onClick={() => setCurrentFrame('about')}> #Exemplo3</p>
               </>
             ) : (
               <St.Welcome>
