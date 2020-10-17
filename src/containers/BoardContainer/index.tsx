@@ -25,7 +25,6 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [showEditUser, setShowEditUser] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
   const [cardOne, setCardOne] = useState(false);
   const [cardTwo, setCardTwo] = useState(false);
   const [cardSelected, setCardSelected] = useState(false);

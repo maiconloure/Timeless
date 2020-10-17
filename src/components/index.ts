@@ -9,6 +9,7 @@ import MembersBox from './MembersBox';
 import NotificationFeed from './NotificationFeed';
 import PageTransition from './PageTransition';
 import SidePushMenu from './SidePushMenu';
+import ToolTip from './ToolTip';
 import TopBarMenu from './TopBarMenu';
 export {
   Card,
@@ -22,5 +23,6 @@ export {
   TopBarMenu,
   MembersBox,
   SidePushMenu,
+  ToolTip,
   PageTransition,
 };

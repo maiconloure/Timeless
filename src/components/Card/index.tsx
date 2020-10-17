@@ -1,3 +1,4 @@
+import { ToolTip } from 'components';
 import React from 'react';
 import { icons } from 'utils';
 
@@ -49,7 +50,7 @@ const DefaultCard = ({
               <St.CardInside>
                 <St.AlertImg>
                   {card.data.fastCard && card.data.fastCard.show && (
-                    <div className="tooltip">
+                    <ToolTip tooltiptext=" Possui um cartão rápido">
                       <img
                         src={icons.warning}
                         onClick={() => {
@@ -58,43 +59,38 @@ const DefaultCard = ({
                         }}
                         alt="warning"
                       />
-                      <span className="tooltiptext">Possui um cartão rápido</span>
-                    </div>
+                    </ToolTip>
                   )}
                 </St.AlertImg>
                 <St.CardHeader>
                   <St.MainTags>
-                    <div className="tooltip">
+                    <ToolTip tooltiptext="tags">
                       {card.data.tags.map((tag: any, key: number) => (
                         <St.Tag key={key} style={{ color: tag.color }}>
                           {tag.text}
                         </St.Tag>
                       ))}
-                      <span className="tooltiptext">tags</span>
-                    </div>
+                    </ToolTip>
 
                     <div>
                       <St.InfoIcons>
-                        <div className="tooltip">
+                        <ToolTip tooltiptext="Possui descrição">
                           <img src={icons.description} alt="Have description" />
-                          <span className="tooltiptext">Possui descrição</span>
-                        </div>
+                        </ToolTip>
 
                         {card.data.followers.length >= 1 && (
-                          <div className="tooltip">
+                          <ToolTip tooltiptext="Seguindo">
                             <img src={icons.eye} alt="Someone follow" />
-                            <span className="tooltiptext">Seguindo</span>
-                          </div>
+                          </ToolTip>
                         )}
                       </St.InfoIcons>
                     </div>
                   </St.MainTags>
 
                   <St.TimeExec>
-                    <div className="tooltip">
+                    <ToolTip tooltiptext="Tempo Estimado">
                       <span>{card.data.time.done.hour}</span>
-                      <span className="tooltiptext">Tempo Estimado</span>
-                    </div>
+                    </ToolTip>
                   </St.TimeExec>
                 </St.CardHeader>
                 <St.Description>
@@ -106,27 +102,24 @@ const DefaultCard = ({
                       <p>{card.data.description}</p>
                     </div>
                   </div>
-                  <div className="tooltip">
+                  <ToolTip tooltiptext="Realizar Check-in">
                     <St.CheckBox
                       onClick={handleCheckBox}
                       type="checkbox"
                       defaultChecked={card.data.checked}
                     />
-                    <span className="tooltiptext">Realizar Check-in</span>
-                  </div>
+                  </ToolTip>
                 </St.Description>
                 <St.CardFooter>
                   <St.CardUsers>
-                    <div className="tooltip">
+                    <ToolTip tooltiptext={user.name}>
                       <img src={user.image ? user.image : icons.user1} alt="user icon" />
-                      <span className="tooltiptext">{user.name}</span>
-                    </div>
+                    </ToolTip>
                   </St.CardUsers>
                   <St.CardData>
-                    <div className="tooltip">
+                    <ToolTip tooltiptext="Data de Entrega">
                       <span>{card.data.time.finish.date}</span>
-                      <span className="tooltiptext">Data de Entrega</span>
-                    </div>
+                    </ToolTip>
                   </St.CardData>
                 </St.CardFooter>
               </St.CardInside>
@@ -166,10 +159,9 @@ const DefaultCard = ({
 
               {card.data.blocked && (
                 <St.Block>
-                  <div className="tooltip">
+                  <ToolTip tooltiptext="Bloqueado">
                     <St.BlockedIcon src={icons.blocked} />
-                    <span className="tooltiptext">Bloqueado</span>
-                  </div>
+                  </ToolTip>
                 </St.Block>
               )}
               <St.FastCard>

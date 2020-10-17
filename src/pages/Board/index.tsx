@@ -53,6 +53,10 @@ const Board = ({
     <St.BoardPage backgroundImage={backgroundImage} id="canvas">
       <MembersBox UserImage={user.image} />
       <FeedbackButton />
+      <St.Info>
+        <p>Aplicação/servidor em fase de desenvolvimento.</p>
+        <p>Os dados salvados serão perdidos após 24horas.</p>
+      </St.Info>
       <Container.SidePushMenuContainer setBackground={setBackground} />
 
       <Container.TopBarContainer

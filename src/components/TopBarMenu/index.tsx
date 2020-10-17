@@ -1,3 +1,4 @@
+import { ToolTip } from 'components';
 import React from 'react';
 import { icons, images } from 'utils';
 
@@ -22,21 +23,18 @@ const FixedMenu = ({
           href="https://gitlab.com/capstoneproject-group-4/timeless"
           target="_blank"
           rel="noopener noreferrer">
-          <div className="tooltip">
+          <ToolTip tooltiptext="Timeless salva automaticamente o seu trabalho!">
             <img src={images.logo} alt="Logo" />
-            <span className="tooltiptext">Timeless salva automaticamente o seu trabalho!</span>
-          </div>
-          {/* <img src={icons.kenzie} alt="Project icon" /> */}
+          </ToolTip>
         </a>
-        <div className="tooltip">
+        <ToolTip tooltiptext="Nome da empresa">
           <h2> Kenzie Academy Brasil </h2>
-          <span className="tooltiptext">Nome da empresa</span>
-        </div>
+        </ToolTip>
+
         <h4> &nbsp; | &nbsp; </h4>
-        <div className="tooltip">
+        <ToolTip tooltiptext="Nome do projeto">
           <h3 onClick={handlerToggleBoard}>{currentBoard && currentBoard.title}</h3>
-          <span className="tooltiptext">Nome do projeto</span>
-        </div>
+        </ToolTip>
       </St.ProjectInfo>
 
       <St.UserInfo>

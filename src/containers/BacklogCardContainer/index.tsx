@@ -8,11 +8,9 @@ import styled from 'styled-components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';
-import { icons } from '../../utils/importAll';
 import { BacklogCardProps } from '../ContainerInterface';
 
 const BacklogCardContainer = ({
-  usersArray = [{ image: icons.user1, user: '' }],
   data: { showEditCard, setShowEditCard, currentCard, user },
   lines,
   setLines,
@@ -21,21 +19,22 @@ const BacklogCardContainer = ({
 }: BacklogCardProps) => {
   const dispatch = useDispatch();
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
-
   const [currentTags, setCurrentTags] = useState(
     currentCard.data.tags && currentCard.data.tags[0].text
   );
-
   const [currentDescription, setCurrentDescription] = useState(
-    currentCard.data.description && currentCard.data.description
+    currentCard.data.description ? currentCard.data.description : ''
   );
   const [currentTitle, setCurrentTitle] = useState(
-    currentCard.data.title && currentCard.data.title
+    currentCard.data.title ? currentCard.data.title : ''
   );
-  const [currentDate, setCurrentDate] = useState(currentCard.data.time.finish.date);
-  const [currentTime, setCurrentTime] = useState(currentCard.data.time.done.hour);
+  const [currentDate, setCurrentDate] = useState(
+    currentCard.data.time.finish.date ? currentCard.data.time.finish.date : ''
+  );
+  const [currentTime, setCurrentTime] = useState(
+    currentCard.data.time.done.hour ? currentCard.data.time.done.hour : ''
+  );
   const avatar = [{ image: user.image, user: user.name }];
-
   const getTags = (evt: any) => {
     setCurrentTags(evt.currentTarget.value);
   };

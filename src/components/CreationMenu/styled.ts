@@ -10,29 +10,6 @@ export const Menu = styled.div`
   &:active {
     cursor: grabbing;
   }
-
-  .tooltip {
-    &:hover .tooltiptext {
-      transition-delay: 0.5s;
-      visibility: visible;
-    }
-  }
-
-  .tooltiptext {
-    font: 500 1.5rem Inter;
-    visibility: hidden;
-    min-width: 40px;
-    max-width: 200px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 4px 8px;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 999;
-  }
 `;
 
 export const MenuSection = styled.div`
@@ -86,7 +63,6 @@ export const MenuTitle = styled.div`
 export const MenuOptions = styled.div<{ selectedCard: any }>`
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   img {
     cursor: pointer;
     width: 55px;
@@ -100,14 +76,6 @@ export const MenuOptions = styled.div<{ selectedCard: any }>`
     filter: drop-shadow(5px 5px 5px gray);
     transform: scale(1.2);
   }
-
-  ${(props) =>
-    props.selectedCard.group &&
-    ` img#group {
-      -webkit-filter: drop-shadow(5px 5px 5px gray);
-      filter: drop-shadow(5px 5px 5px gray);
-      transform: scale(1.2);
-  }`}
 
   ${(props) =>
     props.selectedCard.removeCard &&
