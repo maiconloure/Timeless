@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CardLeandro } from 'capstone-project';
+import { EditCardModal } from 'components';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { EditCardModal } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { createCardAPI, deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';

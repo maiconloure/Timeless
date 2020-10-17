@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { PageTransition, FeedbackButton, MembersBox } from 'components';
 import * as Container from 'containers';
-import { History, LocationState } from 'history';
-import React, { useState } from 'react';
-import Draggable from 'react-draggable';
+import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';
 import Xarrow from 'react-xarrows';
 
-import { PageTransition, FeedbackButton } from '../../components';
-import MembersBox from '../../components/MembersBox';
-import SidePushMenu from '../../components/SidePushMenu';
 import * as Interface from '../../redux/actions/interface.action';
 import 'react-toastify/dist/ReactToastify.css';
 import { BoardProps } from '../PageInterface';
@@ -58,7 +53,7 @@ const Board = ({
     <St.BoardPage backgroundImage={backgroundImage} id="canvas">
       <MembersBox UserImage={user.image} />
       <FeedbackButton />
-      <SidePushMenu setBackground={setBackground} />
+      <Container.SidePushMenuContainer setBackground={setBackground} />
 
       <Container.TopBarContainer
         data={{

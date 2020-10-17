@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Login } from 'pages';
 import React, { useEffect, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Login from '../../../pages/Landing/Login';
 import { requestLogin, updateStatus } from '../../../redux/actions/service.action';
 import { RootStoreType } from '../../../redux/store/store';
 import { LoginContainerProps } from '../../ContainerInterface';
@@ -11,7 +10,7 @@ import { LoginContainerProps } from '../../ContainerInterface';
 const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerProps) => {
   const dispatch = useDispatch();
   const status = useSelector((state: RootStoreType) => state.service.status);
-  const { register, unregister, handleSubmit, setValue, getValues, errors } = useForm();
+  const { register, unregister, handleSubmit, setValue, errors } = useForm();
 
   useEffect(() => {
     register('email', {
@@ -45,8 +44,7 @@ const LoginContainer = ({ handleError, windowSize, handleForm }: LoginContainerP
       handleError('Erro ao efetuar login, verifique seus dados, ou tente novamente mais tarde.');
       dispatch(updateStatus(0));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, handleForm]);
+  }, [dispatch, status, handleForm, handleError]);
 
   const handleChangeEmail = (evt: ChangeEvent<HTMLInputElement>) =>
     setValue('email', evt.currentTarget.value);

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { EditUserModal } from 'components';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { EditUserModal } from '../../components';
 import { updateUserAPI } from '../../redux/actions/service.action';
 import { RootStoreType } from '../../redux/store/store';
 import { EditUserModalContainerProps } from '../ContainerInterface';

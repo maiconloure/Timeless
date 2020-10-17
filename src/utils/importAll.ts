@@ -13,16 +13,12 @@ const importAllImages = (res: any) => {
   return result;
 };
 
-export default importAllImages;
-
-// All icons in project, get by name in folder '/assets/icons', this return object.
 export const icons = importAllImages(
   require.context('../assets/icons', false, /\.(png|jpg|svg|jpeg|gif)$/)
 );
 export const images = importAllImages(
   require.context('../assets/', false, /\.(png|jpg|svg|jpeg|gif)$/)
 );
-
 export const background = importAllImages(
   require.context('../assets/backgrounds', false, /\.(png|jpg|svg|jpeg|gif)$/)
 );

@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input, Button } from 'capstone-project';
 import React from 'react';
+import { icons } from 'utils';
 
-import { icons } from '../../utils/importAll';
 import { EditUserModalProps } from '../ComponentsInterface';
 import * as St from '../EditModalStyles';
 import ModalBackground from '../ModalBackground';

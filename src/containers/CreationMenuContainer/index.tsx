@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { CreationMenu } from 'components';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { defaultCard } from 'utils';
 
-import { CreationMenu } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { createCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultCard } from '../../utils/defaults-json-cards';
 import { CreationMenuContainerProps } from '../ContainerInterface';
 
 const initialSelectCard = {

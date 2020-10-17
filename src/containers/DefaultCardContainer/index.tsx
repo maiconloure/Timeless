@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useMotionValue, motion } from 'framer-motion';
+import { Card, CardMobile } from 'components';
+import { useMotionValue } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fastCard } from 'utils';
 
-import { Card, CardMobile } from '../../components';
 import { updateBoardAPI } from '../../redux/actions/boards.action';
 import { deleteCardAPI, updateCardAPI } from '../../redux/actions/cards.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultCard, fastCard } from '../../utils/defaults-json-cards';
 import { DefaultCardProps } from '../ContainerInterface';
 
 const DefaultCardContainer = ({

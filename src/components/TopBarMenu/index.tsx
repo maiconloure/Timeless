@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
+import { icons, images } from 'utils';
 
-import { icons, images } from '../../utils/importAll';
 import { FixedMenuProps } from '../ComponentsInterface';
 import * as St from './styled';
 

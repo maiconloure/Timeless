@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Landing } from 'pages';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import Landing from '../../pages/Landing';
 import { RootStoreType } from '../../redux/store/store';
 import { LandingContainerProps } from '../ContainerInterface';
 

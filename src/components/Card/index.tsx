@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
+import { icons } from 'utils';
 
-import { icons } from '../../utils/importAll';
 import { DefaultCardProps } from '../ComponentsInterface';
 import PageTransition from '../PageTransition';
 import FastCard from './FastCard';
 import * as St from './styled';
+
 const DefaultCard = ({
   card,
   user,
