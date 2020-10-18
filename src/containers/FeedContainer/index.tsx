@@ -1,7 +1,7 @@
+import { NotificationFeed } from 'components';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { NotificationFeed } from '../../components';
 import { RootStoreType } from '../../redux/store/store';
 
 const FeedContainer = ({ minimize = false }: { minimize?: boolean }) => {

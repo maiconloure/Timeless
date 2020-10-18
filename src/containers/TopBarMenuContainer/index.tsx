@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
+import { TopBarMenu } from 'components';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { TopBarMenu } from '../../components';
 import { clearBoard, updateBoardAPI } from '../../redux/actions/boards.action';
 import { updateCardAPI, clearCards } from '../../redux/actions/cards.action';
 import * as Interface from '../../redux/actions/interface.action';

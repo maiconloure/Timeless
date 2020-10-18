@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { EditBoardModal } from 'components';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { defaultBoard } from 'utils';
 
-import { EditBoardModal } from '../../components';
 import {
   updateBoardAPI,
   getCardsAPI,
@@ -11,7 +11,6 @@ import {
 } from '../../redux/actions/boards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultBoard } from '../../utils/defaults-json-cards';
 import { EditBoardModalContainerProps } from '../ContainerInterface';
 
 const EditBoardModalContainer = ({

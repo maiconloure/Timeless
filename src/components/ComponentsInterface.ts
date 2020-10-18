@@ -18,7 +18,7 @@ export interface CreationMenuProps {
   pinCardButton: () => void;
   blockCardButton: () => void;
   className: string;
-  cards: any;
+  cards: Interface.CardInterface[];
 }
 
 export interface DefaultCardProps {
@@ -47,20 +47,20 @@ export interface DefaultCardProps {
   className: string;
   id: string;
   blockCard: (res: boolean) => void;
-  followCard: any;
-  forceRerender: any;
-  handleConnection: any;
-  cardOne: any;
-  cardTwo: any;
-  loading: any;
+  followCard: (res: boolean) => void;
+  forceRerender: () => void;
+  handleConnection: () => void;
+  cardOne: boolean | number | string;
+  cardTwo: boolean | number | string;
+  loading: boolean;
   fastCard: {
     title: any;
-    setTitle: any;
+    setTitle: React.Dispatch<any>;
     subtitle: any;
-    setSubtitle: any;
+    setSubtitle: React.Dispatch<any>;
     time: any;
-    setTime: any;
-    saveFastCard: any;
+    setTime: React.Dispatch<any>;
+    saveFastCard: () => void;
   };
 }
 

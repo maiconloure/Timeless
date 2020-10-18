@@ -1,15 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Board, BoardMobile } from 'pages';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { background, defaultBoard } from 'utils';
 
-import Board from '../../pages/Board';
-import BoardMobile from '../../pages/BoardMobile';
-import { getBoardsAPI, getCardsAPI, updateBoardAPI } from '../../redux/actions/boards.action';
+import { getBoardsAPI, getCardsAPI } from '../../redux/actions/boards.action';
 import * as Interface from '../../redux/actions/interface.action';
 import { RootStoreType } from '../../redux/store/store';
-import { defaultCard, defaultBoard } from '../../utils/defaults-json-cards';
-import { background } from '../../utils/importAll';
 import { BoardContainerProps } from '../ContainerInterface';
 
 const BoardContainer = ({ history }: BoardContainerProps) => {
@@ -20,9 +17,7 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const currentBoard = useSelector((state: RootStoreType) => state.boards.currentBoard);
   const cards = useSelector((state: RootStoreType) => state.cards.cards);
   const boards = useSelector((state: RootStoreType) => state.boards.boards);
-  const [selectedBoard, setSelectedBoard] = useState<
-    Interface.UserBoards | Interface.CreateUserBoards
-  >(defaultBoard);
+  const [selectedBoard] = useState<Interface.UserBoards | Interface.CreateUserBoards>(defaultBoard);
 
   const [showBoardModal, setShowBoardModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -30,7 +25,6 @@ const BoardContainer = ({ history }: BoardContainerProps) => {
   const [showEditUser, setShowEditUser] = useState(false);
   const [currentCard, setCurrentCard] = useState({});
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
   const [cardOne, setCardOne] = useState(false);
   const [cardTwo, setCardTwo] = useState(false);
   const [cardSelected, setCardSelected] = useState(false);

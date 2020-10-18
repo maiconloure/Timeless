@@ -1,7 +1,7 @@
 import { History, LocationState } from 'history';
 import React, { useEffect, ChangeEvent } from 'react';
 
-import { CardInterface } from '../redux/actions/interface.action';
+import * as Interface from '../redux/actions/interface.action';
 
 export interface LandingContainerProps {
   history: History<LocationState>;
@@ -13,12 +13,12 @@ export interface BacklogCardProps {
     showEditCard: boolean;
     setShowEditCard: React.Dispatch<React.SetStateAction<boolean>> | ((props: boolean) => void);
     currentCard: any;
-    user: any;
+    user: Interface.UserInterface;
   };
-  lines: any;
-  setLines: any;
-  token: any;
-  history: any;
+  lines: never[];
+  setLines: React.Dispatch<React.SetStateAction<never[]>>;
+  token: string;
+  history: History<unknown>;
 }
 
 export interface BoardContainerProps {
@@ -49,13 +49,13 @@ export interface CreationMenuContainerProps {
   };
   className: string;
   history: History<LocationState>;
-  lines: any;
-  setLines: any;
+  lines: object[];
+  setLines: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export interface DefaultCardProps {
   showMobileMenu?: boolean;
-  card: CardInterface;
+  card: Interface.CardInterface;
   showEditCard: boolean;
   selectedCard: {
     removeCard: boolean;
@@ -69,18 +69,18 @@ export interface DefaultCardProps {
   history: History<LocationState>;
   className: string;
   id: string;
-  forceRerender: any;
-  lines: any;
-  setLines: any;
+  forceRerender: () => void;
+  lines: object[];
+  setLines: React.Dispatch<React.SetStateAction<any>>;
   connection: {
-    cardOne: any;
-    setCardOne: any;
-    cardTwo: any;
-    setCardTwo: any;
-    cardSelected: any;
-    setCardSelected: any;
-    confirmConnection: any;
-    setconfirmConnection: any;
+    cardOne: boolean | number;
+    setCardOne: React.Dispatch<React.SetStateAction<any>>;
+    cardTwo: boolean | number;
+    setCardTwo: React.Dispatch<React.SetStateAction<any>>;
+    cardSelected: boolean;
+    setCardSelected: React.Dispatch<React.SetStateAction<boolean>>;
+    confirmConnection: boolean;
+    setconfirmConnection: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
 
@@ -93,8 +93,8 @@ export interface EditBoardModalContainerProps {
     setShowBoardModal: React.Dispatch<React.SetStateAction<boolean>>;
   };
   history: History<LocationState>;
-  lines: any;
-  setLines: any;
+  lines: object[];
+  setLines: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export interface EditUserModalContainerProps {

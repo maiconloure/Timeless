@@ -10,28 +10,6 @@ export const CardContainer = styled(motion.div)`
   &:active {
     cursor: grabbing;
   }
-
-  .tooltip {
-    &:hover .tooltiptext {
-      transition-delay: 0.5s;
-      visibility: visible;
-    }
-  }
-
-  .tooltiptext {
-    font: 500 1.5rem Inter;
-    visibility: hidden;
-    min-width: 60px;
-    max-width: 200px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 4px 8px;
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 999;
-  }
 `;
 
 export const Editable = styled.div<{ blocked: boolean }>`
@@ -55,7 +33,6 @@ export const Card = styled(motion.div)`
   width: 100%;
   min-width: 300px;
   max-width: 310px;
-
   background-color: var(--color-background);
   color: var(--color-primary-4);
   box-sizing: border-box;
@@ -148,7 +125,6 @@ export const Description = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  /* background-color: #fff; */
   width: 268px;
   min-height: 85px;
   max-height: 90px;
@@ -173,7 +149,6 @@ export const Description = styled.section`
 `;
 
 export const CheckBox = styled.input`
-  /* transform: scale(2); */
   width: 30px;
   height: 30px;
   margin: 0;

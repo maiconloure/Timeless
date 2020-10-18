@@ -2,49 +2,23 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const CardContainer = styled(motion.div)<{ showMobileMenu: boolean } | any>`
+  z-index: 1;
   ${(props) =>
     !props.showMobileMenu
       ? `
       position: absolute;
       width: 10px;
       height: 10px;
-  
     `
       : `
       margin: 20px auto;
   `}
-
-  z-index: 1;
-
   &:active {
     cursor: grabbing;
   }
-
-  .tooltip {
-    &:hover .tooltiptext {
-      transition-delay: 0.5s;
-      visibility: visible;
-    }
-  }
-
-  .tooltiptext {
-    font: 500 1.5rem Inter;
-    visibility: hidden;
-    min-width: 60px;
-    max-width: 200px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 4px 8px;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 999;
-  }
 `;
 
-export const Editable = styled.div<{ blocked: any }>`
+export const Editable = styled.div<{ blocked: boolean }>`
   pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
 
   #unlock {
@@ -280,7 +254,7 @@ export const ConnectCardRight = styled.button<{ active: any }>`
   }
 `;
 
-export const ConnectCardLeft = styled.button<{ active: any }>`
+export const ConnectCardLeft = styled.button<{ active: boolean }>`
   position: absolute;
   top: 34%;
   left: -35px;
