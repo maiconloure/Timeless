@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { icons } from '../../utils/importAll';
+import { icons } from 'utils';
 
 const MembersBox = ({ UserImage }: any) => (
   <MembersContainer>
@@ -23,27 +22,6 @@ const MembersContainer = styled.div`
   width: 190px;
   height: 60px;
   border-radius: 4px;
-
-  .tooltip {
-    &:hover .tooltiptext {
-      visibility: visible;
-    }
-  }
-
-  .tooltiptext {
-    font: 500 1.5rem Inter;
-    visibility: hidden;
-    width: 100px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 4px 8px;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 99999;
-  }
 `;
 
 const Icon = styled.img`

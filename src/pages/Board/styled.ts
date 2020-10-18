@@ -166,9 +166,10 @@ export const DeleteArrow = styled.div`
 `;
 
 export const Info = styled.div`
-  font: 400 1.3rem Roboto;
+  font: 400 1.4rem Roboto;
   position: absolute;
-  top: 20px;
+  z-index: 999999;
+  top: 70px;
   left: 155px;
 `;
 

@@ -5,7 +5,7 @@ interface AuxProps {
   children: React.ReactNode;
 }
 
-const PageTransition: React.FC<AuxProps> = (props) => (
+const PageTransition: React.FC<AuxProps> = ({ children }) => (
   <motion.div
     initial="pageInitial"
     animate="pageAnimate"
@@ -20,7 +20,7 @@ const PageTransition: React.FC<AuxProps> = (props) => (
         },
       },
     }}>
-    {props.children}
+    {children}
   </motion.div>
 );
 

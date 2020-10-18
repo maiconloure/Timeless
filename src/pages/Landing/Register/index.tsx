@@ -1,7 +1,7 @@
 import { Input, PasswordInput, Button } from 'capstone-project';
+import { PageTransition } from 'components';
 import React from 'react';
 
-import { PageTransition } from '../../../components';
 import { RegisterProps } from '../../PageInterface';
 import * as St from '../styled';
 

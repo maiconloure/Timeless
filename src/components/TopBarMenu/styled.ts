@@ -6,28 +6,6 @@ export const TopContainer = styled.div`
   z-index: 9999;
   top: 0;
   width: 100vw;
-
-  .tooltip {
-    &:hover .tooltiptext {
-      visibility: visible;
-    }
-  }
-
-  .tooltiptext {
-    font: 500 1.5rem Inter;
-    visibility: hidden;
-    min-width: 40px;
-    max-width: 160px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 4px 8px;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 3;
-  }
 `;
 
 export const Bar = styled.div`

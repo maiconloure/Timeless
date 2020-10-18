@@ -1,6 +1,6 @@
 import React from 'react';
+import { icons } from 'utils';
 
-import { icons } from '../../utils/importAll';
 import * as St from './styled';
 
 interface ContentProps {

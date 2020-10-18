@@ -81,7 +81,7 @@ export interface CreateUserBoards {
   description: string;
   users: { name: string; id: number | string }[];
   data: {
-    text: any;
+    text: string[];
     notifications: string[];
   };
   connections: any;
@@ -104,10 +104,10 @@ interface DataTimeInterface {
   hour: number | string;
 }
 export interface FastCardDataInterface {
-  title?: any;
-  subTitle?: any;
-  date?: any;
-  show?: any;
+  title?: string;
+  subTitle?: string;
+  date?: string;
+  show?: boolean;
 }
 
 export interface CardDataInterface {

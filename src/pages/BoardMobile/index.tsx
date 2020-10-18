@@ -1,15 +1,15 @@
+import { FeedbackButton } from 'components';
 import * as Container from 'containers';
 import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';
+import { icons } from 'utils';
 
-import { FeedbackButton } from '../../components';
 import * as Interface from '../../redux/actions/interface.action';
-import { icons } from '../../utils/importAll';
 import 'react-toastify/dist/ReactToastify.css';
 import { BoardProps } from '../PageInterface';
 import * as St from './styled';
 
-const Board = ({
+const BoardMobile = ({
   data: {
     currentCard,
     showEditUser,
@@ -158,4 +158,4 @@ const Board = ({
   </>
 );
 
-export default Board;
+export default BoardMobile;

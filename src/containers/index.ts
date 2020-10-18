@@ -8,8 +8,8 @@ import FeedContainer from './FeedContainer';
 import LandingContainer from './LandingContainer';
 import LoginContainer from './LandingContainer/LoginContainer';
 import RegisterContainer from './LandingContainer/RegisterContainer';
+import SidePushMenuContainer from './SidePushMenuContainer';
 import TopBarContainer from './TopBarMenuContainer';
-
 export {
   TopBarContainer,
   EditUserModalContainer,
@@ -21,5 +21,6 @@ export {
   LoginContainer,
   RegisterContainer,
   LandingContainer,
+  SidePushMenuContainer,
   BoardContainer,
 };

@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ToolTip } from 'components';
 import React from 'react';
+import { icons } from 'utils';
 
-import { icons } from '../../utils/importAll';
 import { CreationMenuProps } from '../ComponentsInterface';
 import * as St from './styled';
-
 const CreationMenu = ({
   selectedCard,
   groupButton,
@@ -32,25 +31,21 @@ const CreationMenu = ({
       </St.SectionTitle>
 
       <St.MenuOptions selectedCard={selectedCard}>
-        {/* <div className="tooltip">
+        {/* <ToolTip tooltiptext="Agrupar cartões">
           <img id="group" src={icons.group} onClick={groupButton} alt="group" />
-          <span className="tooltiptext">Agrupar cartões</span>
-        </div> */}
+        </ToolTip> */}
 
-        <div className="tooltip">
+        <ToolTip tooltiptext="Criar cartão">
           <img id="card" src={icons.card} onClick={createCardButton} alt="create" />
-          <span className="tooltiptext">Criar cartão</span>
-        </div>
+        </ToolTip>
 
-        <div className="tooltip">
+        <ToolTip tooltiptext="Cartão Rápido">
           <img id="fast" src={icons.fastCard} onClick={createFasterCardButton} alt="fast" />
-          <span className="tooltiptext">Cartão Rápido</span>
-        </div>
+        </ToolTip>
 
-        <div className="tooltip">
+        <ToolTip tooltiptext="Habilitar lixeira">
           <img id="trash" src={icons.trash} onClick={removeCardButton} alt="remove" />
-          <span className="tooltiptext">Habilitar lixeira</span>
-        </div>
+        </ToolTip>
       </St.MenuOptions>
     </St.MenuSection>
 
@@ -60,29 +55,25 @@ const CreationMenu = ({
       </St.SectionTitle>
 
       <St.MenuOptions selectedCard={selectedCard}>
-        {/* <div className="tooltip">
+        {/* <ToolTip tooltiptext="Adicionar Texto">
           <img id="addText" src={icons.addText} onClick={createTextButton} alt="text" />
-          <span className="tooltiptext">Adicionar Texto</span>
-        </div> */}
+        </ToolTip> */}
 
-        <div className="tooltip">
+        <ToolTip tooltiptext="Habilitar modo conexão">
           <img id="connect" src={icons.connect} onClick={connectArrowButton} alt="connect" />
-          <span className="tooltiptext">Habilitar modo conexão</span>
-        </div>
-        <div className="tooltip">
+        </ToolTip>
+
+        <ToolTip tooltiptext="Desfazer última conexão">
           <img id="card" src={icons.desconnect} onClick={desconnectArrowButton} alt="connect" />
-          <span className="tooltiptext">Desfazer última conexão</span>
-        </div>
+        </ToolTip>
 
-        <div className="tooltip">
+        <ToolTip tooltiptext="Seguir cartão">
           <img id="pin" src={icons.pin} onClick={pinCardButton} alt="pin/follow" />
-          <span className="tooltiptext">Seguir cartão</span>
-        </div>
+        </ToolTip>
 
-        <div className="tooltip">
+        <ToolTip tooltiptext="Bloquear cartão">
           <img id="blocked" src={icons.blocked} onClick={blockCardButton} alt="block" />
-          <span className="tooltiptext">Bloquear cartão</span>
-        </div>
+        </ToolTip>
       </St.MenuOptions>
     </St.MenuSection>
   </St.Menu>

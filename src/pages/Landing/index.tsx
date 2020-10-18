@@ -1,9 +1,9 @@
+import { PageTransition } from 'components';
 import { LoginContainer, RegisterContainer } from 'containers';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import { icons, images } from 'utils';
 
-import { PageTransition } from '../../components';
-import { icons, images } from '../../utils/importAll';
 import { LandingPageProps } from '../PageInterface';
 import * as St from './styled';
 
